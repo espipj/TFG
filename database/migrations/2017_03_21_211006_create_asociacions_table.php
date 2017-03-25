@@ -14,9 +14,9 @@ class CreateAsociacionsTable extends Migration
     {
         Schema::create('asociacions', function (Blueprint $table) {
             $table->increments('id');
-            $table->mediumText('nombre');
+            $table->string('nombre');
             $table->mediumText('direccion');
-            $table->mediumText('email');
+            $table->string('email');
             $table->timestamps();
         });
     }

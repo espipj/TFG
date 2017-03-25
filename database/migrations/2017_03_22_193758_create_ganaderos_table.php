@@ -14,6 +14,11 @@ class CreateGanaderosTable extends Migration
     {
         Schema::create('ganaderos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('apellido1');
+            $table->string('apellido2');
+            $table->string('dni');
+            $table->string('email');
             $table->timestamps();
         });
     }
