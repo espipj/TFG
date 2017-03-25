@@ -19,6 +19,7 @@ class CreateGanaderosTable extends Migration
             $table->string('apellido2');
             $table->string('dni');
             $table->string('email');
+            $table->string('telefono');
             $table->timestamps();
         });
     }

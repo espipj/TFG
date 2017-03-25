@@ -8,5 +8,5 @@ class Ganadero extends Model
 {
     //
 
-    protected $fillable = ['nombre','apellido1','apellido2','dni','email'];
+    protected $fillable = ['nombre','apellido1','apellido2','dni','email','telefono'];
 }

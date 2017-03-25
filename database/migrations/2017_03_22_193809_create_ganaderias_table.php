@@ -14,6 +14,8 @@ class CreateGanaderiasTable extends Migration
     {
         Schema::create('ganaderias', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
+            $table->string('direccion');
             $table->timestamps();
         });
     }

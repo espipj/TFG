@@ -14,6 +14,7 @@ class AsociacionesController extends Controller
     public function index(){
 
       $asociaciones=Asociacion::all();
+      return $asociaciones;
 
     }
 

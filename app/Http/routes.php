@@ -18,9 +18,25 @@ Route::get('/', function () {
 Route::get('/registrar', function(){
   return view('registrar');
 });
-
+//Asociaciones
 Route::get('/registrar/asociacion', 'AsociacionesController@registrar');
 Route::post('/registrar/asociacion', 'AsociacionesController@guardar');
+Route::get('/ver/asociacion/{asociacion?}', 'AsociacionesController@show');
+
+//Ganaderos
+Route::get('/registrar/ganadero', 'GanaderosController@registrar');
+Route::post('/registrar/ganadero', 'GanaderosController@guardar');
+Route::get('/ver/ganadero/{ganadero?}', 'GanaderosController@show');
+
+//Ganaderia
+Route::get('/registrar/ganaderia', 'GanaderiasController@registrar');
+Route::post('/registrar/ganaderia', 'GanaderiasController@guardar');
+Route::get('/ver/ganaderia/{ganaderia?}', 'GanaderiasController@show');
+
+//Ganado
+Route::get('/registrar/ganado', 'GanadosController@registrar');
+Route::post('/registrar/ganado', 'GanadosController@guardar');
+Route::get('/ver/ganado/{ganado?}', 'GanadosController@show');
 
 
 
@@ -28,4 +44,3 @@ Route::get('/ver/', function(){
   return view('ver');
 } );
 
-Route::get('/ver/asociacion/{asociacion?}', 'AsociacionesController@show');

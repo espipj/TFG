@@ -14,6 +14,9 @@ class CreateGanadosTable extends Migration
     {
         Schema::create('ganados', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('crotal');
+            $table->string('sexo');
+            $table->date('fecha_nacimiento');
             $table->timestamps();
         });
     }
