@@ -35,8 +35,8 @@ class GanaderosController extends Controller
 
     public function show($Asociacion=null){
         if($Asociacion==null){
-            return Ganadero::all();
-            //return view('asociaciones');
+            $ganaderos=Ganadero::all();
+            return view('verGanaderos',compact('ganaderos'));
         }else {
             dd($Asociacion);
         }

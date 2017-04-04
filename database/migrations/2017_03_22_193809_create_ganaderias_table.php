@@ -17,6 +17,7 @@ class CreateGanaderiasTable extends Migration
             $table->string('nombre');
             $table->string('direccion');
             $table->timestamps();
+            $table->integer('asociacion_id');
         });
     }
 

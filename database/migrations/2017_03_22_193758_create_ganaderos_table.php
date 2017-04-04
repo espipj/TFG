@@ -21,6 +21,7 @@ class CreateGanaderosTable extends Migration
             $table->string('email');
             $table->string('telefono');
             $table->timestamps();
+            $table->integer('ganaderia_id');
         });
     }
 

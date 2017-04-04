@@ -19,3 +19,49 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Ganado::class, function (Faker\Generator $faker){
+
+    return [
+        'crotal'=>$faker->numberBetween(2000,9999),
+        'sexo'=>$faker->randomElement(['macho','hembra']),
+        'fecha_nacimiento'=>$faker->dateTime
+    ];
+
+
+});
+
+$factory->define(App\Ganaderia::class, function (Faker\Generator $faker){
+
+    return [
+        'nombre'=> $faker->name,
+        'direccion'=> $faker->address
+    ];
+
+
+});
+
+$factory->define(App\Ganadero::class, function (Faker\Generator $faker){
+
+    return [
+        'nombre'=> $faker->name,
+        'apellido1'=>$faker->word,
+        'apellido2'=>$faker->word,
+        'dni'=>$faker->numberBetween(0,9999999),
+        'email'=>$faker->email,
+        'telefono'=>$faker->phoneNumber
+    ];
+
+
+});
+
+$factory->define(App\Asociacion::class, function (Faker\Generator $faker){
+
+    return [
+        'nombre'=>$faker->word,
+        'direccion'=>$faker->address,
+        'email'=>$faker->email
+    ];
+
+
+});

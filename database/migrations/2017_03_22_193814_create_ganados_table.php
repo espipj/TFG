@@ -18,6 +18,7 @@ class CreateGanadosTable extends Migration
             $table->string('sexo');
             $table->date('fecha_nacimiento');
             $table->timestamps();
+            $table->integer('ganaderia_id');
         });
     }
 

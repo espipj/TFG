@@ -32,8 +32,8 @@ class GanadosController extends Controller
 
     public function show($Ganado=null){
         if($Ganado==null){
-            return Ganado::all();
-            //return view('asociaciones');
+            $ganados=Ganado::all();
+            return view('verGanados',compact('ganados'));
         }else {
             dd($Ganado);
         }

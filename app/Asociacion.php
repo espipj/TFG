@@ -11,4 +11,8 @@ class Asociacion extends Model
     //protected $table = 'mis_asociaciones';
     protected $fillable = ['nombre','direccion','email'];
 
+    public function ganaderias(){
+        return $this->hasMany(Ganaderia::class);
+    }
+
 }
