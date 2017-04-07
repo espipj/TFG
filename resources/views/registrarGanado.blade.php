@@ -15,7 +15,7 @@
             <label class="radio-inline"> <input type="radio" name="sexo_id" value="{{$sexo->id}}" {{ (old("sexo_id") == $sexo->id ? "selected":"") }}>{{$sexo->nombre}}
             </label>
         @endforeach
-        <input type="text" name="sexo" class="form-control" placeholder="Macho/Hembra" value="{{ old('sexo')}}"></input>
+        <br>
         Fecha de nacimiento:
         <input type="date" name="fecha_nacimiento" class="form-control" value="{{ old('fecha_nacimiento')}}"></input>
         Ganadería:

@@ -45,7 +45,21 @@ class GanadosController extends Controller
             $ganados=Ganado::all();
             return view('verGanados',compact('ganados'));
         }else {
-            dd($Ganado);
+            //dd(Ganado::find($Ganado));
+            $ganado=Ganado::find($Ganado);
+            return view('verGanado', compact('ganado'));
+        }
+    }
+
+    public function edit($Ganado=null){
+        if($Ganado==null){
+            $ganados=Ganado::all();
+            return view('verGanados',compact('ganados'));
+        }else{
+            $ganado=Ganado::find($Ganado);
+            $sexos=Sexo::all();
+            $ganaderias=Ganaderia::all();
+            return view('editarGanado', compact('ganado','sexos','ganaderias'));
         }
     }
 }

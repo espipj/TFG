@@ -16,7 +16,7 @@
         <tbody>
             @foreach($ganados as $ganado)
                 @if($ganado->crotal && $ganado->sexo && $ganado->fecha_nacimiento && $ganado->ganaderia->nombre)
-                <tr style="cursor:pointer" class="clickable-row">
+                <tr style="cursor:pointer" class="clickable-row" onclick="location.href='{{url('/ver/ganado/'.$ganado->id)}}'">
                     <td style="width:25%;">{{$ganado->crotal}}</td>
                     <td style="width:25%;">{{$ganado->sexo->nombre}}</td>
                     <td style="width:25%;">{{$ganado->fecha_nacimiento}}</td>

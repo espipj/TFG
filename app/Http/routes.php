@@ -37,6 +37,7 @@ Route::get('/ver/ganaderia/{ganaderia?}', 'GanaderiasController@show');
 Route::get('/registrar/ganado', 'GanadosController@registrar');
 Route::post('/registrar/ganado', 'GanadosController@guardar');
 Route::get('/ver/ganado/{ganado?}', 'GanadosController@show');
+Route::get('/editar/ganado/{ganado?}', 'GanadosController@edit');
 
 
 
