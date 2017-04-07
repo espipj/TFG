@@ -23,6 +23,7 @@
 		<![endif]-->
 <meta name="theme-color" content="#00557d">
 <style>
+
 html {
 	position: relative;
 	min-height: 100%;

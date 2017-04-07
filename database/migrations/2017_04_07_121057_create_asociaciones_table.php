@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGanadosTable extends Migration
+class CreateAsociacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateGanadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('ganados', function (Blueprint $table) {
+        Schema::create('asociaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('crotal');
-            $table->date('fecha_nacimiento');
-            $table->integer('ganaderia_id');
-            $table->integer('sexo_id');
+            $table->string('nombre');
+            $table->mediumText('direccion');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateGanadosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ganados');
+        Schema::drop('asociaciones');
     }
 }

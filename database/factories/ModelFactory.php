@@ -24,7 +24,6 @@ $factory->define(App\Ganado::class, function (Faker\Generator $faker){
 
     return [
         'crotal'=>$faker->numberBetween(2000,9999),
-        'sexo'=>$faker->randomElement(['macho','hembra']),
         'fecha_nacimiento'=>$faker->dateTime
     ];
 
