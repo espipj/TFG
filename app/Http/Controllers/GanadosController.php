@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ganaderia;
 use App\Ganado;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class GanadosController extends Controller
     }
     public function registrar(){
 
-        return view('registrarGanado');
+        $ganaderias=Ganaderia::all();
+        return view('registrarGanado',compact('ganaderias'));
     }
 
     public function guardar(Request $request){
@@ -25,8 +27,11 @@ class GanadosController extends Controller
             'sexo'=>['required','max:256'],
             'fecha_nacimiento'=>['required'],
         ]);
-        $datos = $request->all();
-        Ganado::create($datos);
+        $datos = $request->except('ganaderia_id');
+        $ganado=Ganado::create($datos);
+        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+        //$ganaderia=$request->input('ganaderia_id');
+        $ganaderia->ganados()->save($ganado);
         return redirect()->to('/ver/ganado');
     }
 
