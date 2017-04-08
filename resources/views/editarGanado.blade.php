@@ -29,6 +29,7 @@
                 <option value="{{$ganaderia->id}}" @if($ganado->ganaderia==$ganaderia) selected="selected"@endif>{{$ganaderia->nombre}}</option>
             @endforeach
         </select>
+        <input type="hidden" name="ganado_id" value="{{$ganado->id}}">
         <button type="submit" class="btn btn-primary">Crear</button>
     </form>
 

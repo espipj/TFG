@@ -51,7 +51,7 @@ class GanadosController extends Controller
         }
     }
 
-    public function edit($Ganado=null){
+    public function show_edit($Ganado=null){
         if($Ganado==null){
             $ganados=Ganado::all();
             return view('verGanados',compact('ganados'));
@@ -61,5 +61,24 @@ class GanadosController extends Controller
             $ganaderias=Ganaderia::all();
             return view('editarGanado', compact('ganado','sexos','ganaderias'));
         }
+    }
+
+    public function edit(Request $request){
+        $this->validate($request,[
+            'crotal'=>['required','max:256'],
+            'sexo_id'=>['required'],
+            'fecha_nacimiento'=>['required'],
+            'ganaderia_id'=>['required'],
+            'ganado_id'=>['required'],
+        ]);
+        $datos = $request->except(['ganaderia_id','sexo_id','ganado_id']);
+        $ganado=Ganado::find($request->input('ganado_id'));
+        $ganado->fill($datos)->save();
+        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+        $sexo=Sexo::find($request->input('sexo_id'));
+        //$ganaderia=$request->input('ganaderia_id');
+        $ganaderia->ganados()->save($ganado);
+        $sexo->ganados()->save($ganado);
+        return redirect()->to('/ver/ganado');
     }
 }
