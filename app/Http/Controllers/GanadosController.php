@@ -40,27 +40,26 @@ class GanadosController extends Controller
         return redirect()->to('/ver/ganado');
     }
 
-    public function show($Ganado=null){
-        if($Ganado==null){
+    public function show(){
             $ganados=Ganado::all();
             return view('verGanados',compact('ganados'));
-        }else {
-            //dd(Ganado::find($Ganado));
-            $ganado=Ganado::find($Ganado);
-            return view('verGanado', compact('ganado'));
-        }
     }
 
-    public function show_edit($Ganado=null){
-        if($Ganado==null){
-            $ganados=Ganado::all();
-            return view('verGanados',compact('ganados'));
-        }else{
-            $ganado=Ganado::find($Ganado);
+    public function show_detail(Request $request){
+
+        //dd(Ganado::find($Ganado));
+        $ganado=Ganado::find($request->input('ganado_id'));
+        return view('verGanado', compact('ganado'));
+
+    }
+
+    public function show_edit(Request $request){
+
+            $ganado=Ganado::find($request->input('ganado_id'));
             $sexos=Sexo::all();
             $ganaderias=Ganaderia::all();
             return view('editarGanado', compact('ganado','sexos','ganaderias'));
-        }
+
     }
 
     public function edit(Request $request){
@@ -80,5 +79,12 @@ class GanadosController extends Controller
         $ganaderia->ganados()->save($ganado);
         $sexo->ganados()->save($ganado);
         return redirect()->to('/ver/ganado');
+    }
+
+    public function delete(Request $request){
+            $ganado=Ganado::find($request->input('ganado_id'));
+            $ganado->delete();
+            return redirect()->to('/ver/ganado');
+
     }
 }

@@ -6,7 +6,7 @@
 
     <h1>Datos de la res:</h1>
     <p>Modifique los campos que desee editar.</p>
-    <form method="POST" class="form" action="{{url('editar/ganado')}}">
+    <form method="POST" class="form" action="{{url('editar/ganado/completed')}}">
         {!! csrf_field() !!}
         Crotal:
         <input type="text" name="crotal" class="form-control" placeholder="{{ $ganado->crotal }}" value="{{ $ganado->crotal }}"></input>
