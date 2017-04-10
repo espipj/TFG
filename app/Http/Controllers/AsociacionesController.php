@@ -34,12 +34,42 @@ class AsociacionesController extends Controller
       return redirect()->to('/ver/asociacion');
     }
 
-    public function show($Asociacion=null){
-      if($Asociacion==null){
-        return Asociacion::all();
-        //return view('asociaciones');
-      }else {
-        dd($Asociacion);
-      }
+    public function show(){
+        $asociaciones=Asociacion::all();
+        return view('verAsociaciones',compact('asociaciones'));
+
+    }
+    public function show_detail(Request $request){
+
+    //dd(Ganado::find($Ganado));
+    $asociacion=Asociacion::find($request->input('asociacion_id'));
+    return view('verAsociacion', compact('asociacion'));
+
+    }
+    public function show_edit(Request $request){
+
+        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        return view('editarAsociacion', compact('asociacion'));
+
+    }
+
+    public function edit(Request $request){
+        $this->validate($request,[
+            'nombre'=>['required','max:100'],
+            'direccion'=>['required'],
+            'email'=>['required'],
+            'asociacion_id'=>['required'],
+        ]);
+        $datos = $request->except(['asociacion_id']);
+        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        $asociacion->fill($datos)->save();
+        return redirect()->to('/ver/asociacion');
+    }
+
+    public function delete(Request $request){
+        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        $asociacion->delete();
+        return redirect()->to('/ver/asociacion');
+
     }
 }

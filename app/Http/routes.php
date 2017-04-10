@@ -21,7 +21,11 @@ Route::get('/registrar', function(){
 //Asociaciones
 Route::get('/registrar/asociacion', 'AsociacionesController@registrar');
 Route::post('/registrar/asociacion', 'AsociacionesController@guardar');
-Route::get('/ver/asociacion/{asociacion?}', 'AsociacionesController@show');
+Route::get('/ver/asociacion/', 'AsociacionesController@show');
+Route::post('/ver/asociacion/', 'AsociacionesController@show_detail');
+Route::post('/editar/asociacion/', 'AsociacionesController@show_edit');
+Route::post('/editar/asociacion/completed', 'AsociacionesController@edit');
+Route::post('/eliminar/asociacion/', 'AsociacionesController@delete');
 
 //Ganaderos
 Route::get('/registrar/ganadero', 'GanaderosController@registrar');
