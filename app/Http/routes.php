@@ -30,12 +30,20 @@ Route::post('/eliminar/asociacion/', 'AsociacionesController@delete');
 //Ganaderos
 Route::get('/registrar/ganadero', 'GanaderosController@registrar');
 Route::post('/registrar/ganadero', 'GanaderosController@guardar');
-Route::get('/ver/ganadero/{ganadero?}', 'GanaderosController@show');
+Route::get('/ver/ganadero/', 'GanaderosController@show');
+Route::post('/ver/ganadero/', 'GanaderosController@show_detail');
+Route::post('/editar/ganado/', 'GanaderosController@show_edit');
+Route::post('/editar/ganado/completed', 'GanaderosController@edit');
+Route::post('/eliminar/ganadero/', 'GanaderosController@delete');
 
 //Ganaderia
 Route::get('/registrar/ganaderia', 'GanaderiasController@registrar');
 Route::post('/registrar/ganaderia', 'GanaderiasController@guardar');
-Route::get('/ver/ganaderia/{ganaderia?}', 'GanaderiasController@show');
+Route::get('/ver/ganaderia/', 'GanaderiasController@show');
+Route::post('/ver/ganaderia/', 'GanaderiasController@show_detail');
+Route::post('/editar/ganaderia/', 'GanaderiasController@show_edit');
+Route::post('/editar/ganaderia/completed', 'GanaderiasController@edit');
+Route::post('/eliminar/ganaderia/', 'GanaderiasController@delete');
 
 //Ganado
 Route::get('/registrar/ganado', 'GanadosController@registrar');

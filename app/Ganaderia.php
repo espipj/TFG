@@ -11,8 +11,8 @@ class Ganaderia extends Model
 
 
     public function asociacion()
-    {
-        return $this->belongsTo(Asociacion::class);
+    {   //Se pone la clave al haber editado en Asociacion el nombre de la tabla que contiene la migración
+        return $this->belongsTo(Asociacion::class,'asociacion_id');
     }
 
     public function ganados()
