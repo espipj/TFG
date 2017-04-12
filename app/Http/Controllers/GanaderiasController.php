@@ -38,7 +38,9 @@ class GanaderiasController extends Controller
 
     public function show_detail(Request $request){
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        return view('verGanaderia', compact('ganaderia'));
+        $ganados=$ganaderia->ganados;
+        $ganaderos=$ganaderia->ganaderos;
+        return view('verGanaderia', compact('ganaderia','ganados','ganaderos'));
 
     }
 

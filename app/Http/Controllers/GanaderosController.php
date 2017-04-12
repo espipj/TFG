@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ganaderia;
 use App\Ganadero;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,8 @@ class GanaderosController extends Controller
         return Ganadero::all();
     }
     public function registrar(){
-
-        return view('registrarGanadero');
+        $ganaderias=Ganaderia::all();
+        return view('registrarGanadero', compact('ganaderias'));
     }
 
     public function guardar(Request $request){
@@ -27,9 +28,12 @@ class GanaderosController extends Controller
             'dni'=>['required','max:256'],
             'email'=>['required','max:256'],
             'telefono'=>['required','max:14'],
+            'ganaderia_id'=>['required'],
         ]);
-        $datos = $request->all();
-        Ganadero::create($datos);
+        $datos = $request->except('ganaderia_id');
+        $ganadero=Ganadero::create($datos);
+        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+        $ganaderia->ganaderos()->save($ganadero);
         return redirect()->to('/ver/ganadero');
     }
 
@@ -66,15 +70,12 @@ class GanaderosController extends Controller
             'ganadero_id'=>['required'],
             'ganaderia_id'=>['required'],
         ]);
-        $datos = $request->except(['ganaderia_id','sexo_id','ganado_id']);
-        $ganado=Ganado::find($request->input('ganado_id'));
-        $ganado->fill($datos)->save();
+        $datos = $request->except(['ganaderia_id','ganadero_id']);
+        $ganadero=Ganadero::find($request->input('ganadero_id'));
+        $ganadero->fill($datos)->save();
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        $sexo=Sexo::find($request->input('sexo_id'));
-        //$ganaderia=$request->input('ganaderia_id');
-        $ganaderia->ganados()->save($ganado);
-        $sexo->ganados()->save($ganado);
-        return redirect()->to('/ver/ganado');
+        $ganaderia->ganados()->save($ganadero);
+        return redirect()->to('/ver/ganadero');
     }
 
     public function delete(Request $request){

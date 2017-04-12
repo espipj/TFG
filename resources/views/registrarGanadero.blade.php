@@ -20,7 +20,13 @@
     <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email')}}"></input>
     Telefono:
     <input type="text" name="telefono" class="form-control" placeholder="telefono" value="{{ old('telefono')}}"></input>
-
+    Ganadería:
+    <select name="ganaderia_id" class="form-control">
+      <option disabled selected value> -- Selecciona una opción -- </option>
+      @foreach($ganaderias as $ganaderia)
+        <option value="{{$ganaderia->id}}">{{$ganaderia->nombre}}</option>
+      @endforeach
+    </select>
     <button type="submit" class="btn btn-primary">Crear</button>
   </form>
 

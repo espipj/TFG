@@ -43,7 +43,8 @@ class AsociacionesController extends Controller
 
     //dd(Ganado::find($Ganado));
     $asociacion=Asociacion::find($request->input('asociacion_id'));
-    return view('verAsociacion', compact('asociacion'));
+    $ganaderias=$asociacion->ganaderias;
+    return view('verAsociacion', compact('asociacion','ganaderias'));
 
     }
     public function show_edit(Request $request){

@@ -14,6 +14,7 @@
     <input type="text" name="direccion" class="form-control" placeholder="Direccion" value="{{ old('direccion')}}"></input>
     Asociación:
     <select name="asociacion_id" class="form-control">
+      <option disabled selected value> -- Selecciona una opción -- </option>
       @foreach($asociaciones as $asociacion)
         <option value="{{$asociacion->id}}" {{ (old("asociacion_id") == $asociacion->id ? "selected":"") }}>{{$asociacion->nombre}}</option>
       @endforeach
