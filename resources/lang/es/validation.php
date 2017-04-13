@@ -116,6 +116,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    /**
+     * Para cuando se llama a trans de laravel trans('validation.atributes.email')
+     */
+    'attributes' => [
+        'email'=>'E-mail',
+        'password'=>'Contraseña',
+        'remember'=>'Recuérdame'
+    ],
 
 ];

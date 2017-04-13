@@ -22,7 +22,7 @@
         </form>
     </div>
 
-    <!--TODO Lista de ganaderias-->
+    <!--TODO ¿Meterlo en un collapsible panel?-->
     <h2>Ganaderías</h2>
     <table id="miTabla" class="table header-fixed">
         <thead>
