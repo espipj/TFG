@@ -20,7 +20,7 @@ class GanadosController extends Controller
 
         $ganaderias=Ganaderia::all();
         $sexos=Sexo::all();
-        return view('registrarGanado',compact('ganaderias','sexos'));
+        return view('ganado.registrarGanado',compact('ganaderias','sexos'));
     }
 
     public function guardar(Request $request){
@@ -42,12 +42,12 @@ class GanadosController extends Controller
 
     public function show(){
             $ganados=Ganado::all();
-            return view('verGanados',compact('ganados'));
+            return view('ganado.verGanados',compact('ganados'));
     }
 
     public function show_detail(Request $request){
         $ganado=Ganado::find($request->input('ganado_id'));
-        return view('verGanado', compact('ganado'));
+        return view('ganado.verGanado', compact('ganado'));
     }
 
     public function show_edit(Request $request){
@@ -55,7 +55,7 @@ class GanadosController extends Controller
         $ganado=Ganado::find($request->input('ganado_id'));
         $sexos=Sexo::all();
         $ganaderias=Ganaderia::all();
-        return view('editarGanado', compact('ganado','sexos','ganaderias'));
+        return view('ganado.editarGanado', compact('ganado','sexos','ganaderias'));
 
 
 

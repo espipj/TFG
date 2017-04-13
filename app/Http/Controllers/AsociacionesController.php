@@ -20,7 +20,7 @@ class AsociacionesController extends Controller
 
     public function registrar(){
 
-      return view('registrarAsociacion');
+      return view('asociacion.registrarAsociacion');
     }
 
     public function guardar(Request $request){
@@ -36,7 +36,7 @@ class AsociacionesController extends Controller
 
     public function show(){
         $asociaciones=Asociacion::all();
-        return view('verAsociaciones',compact('asociaciones'));
+        return view('asociacion.verAsociaciones',compact('asociaciones'));
 
     }
     public function show_detail(Request $request){
@@ -44,13 +44,13 @@ class AsociacionesController extends Controller
     //dd(Ganado::find($Ganado));
     $asociacion=Asociacion::find($request->input('asociacion_id'));
     $ganaderias=$asociacion->ganaderias;
-    return view('verAsociacion', compact('asociacion','ganaderias'));
+    return view('asociacion.verAsociacion', compact('asociacion','ganaderias'));
 
     }
     public function show_edit(Request $request){
 
         $asociacion=Asociacion::find($request->input('asociacion_id'));
-        return view('editarAsociacion', compact('asociacion'));
+        return view('asociacion.editarAsociacion', compact('asociacion'));
 
     }
 

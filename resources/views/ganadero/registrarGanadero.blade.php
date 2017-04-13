@@ -4,7 +4,7 @@
 @section('contenido')
 
 
-  @include('partials/errors')
+  @include('partials.errors')
 
   <form method="POST" class="form" action="{{url('registrar/ganadero')}}">
     {!! csrf_field() !!}

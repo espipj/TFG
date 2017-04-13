@@ -17,7 +17,7 @@ class GanaderosController extends Controller
     }
     public function registrar(){
         $ganaderias=Ganaderia::all();
-        return view('registrarGanadero', compact('ganaderias'));
+        return view('ganadero.registrarGanadero', compact('ganaderias'));
     }
 
     public function guardar(Request $request){
@@ -39,14 +39,14 @@ class GanaderosController extends Controller
 
     public function show(){
         $ganaderos=Ganadero::all();
-        return view('verGanaderos',compact('ganaderos'));
+        return view('ganadero.verGanaderos',compact('ganaderos'));
     }
 
     public function show_detail(Request $request){
 
         $ganadero=Ganadero::find($request->input('ganadero_id'));
         $ganaderias=Ganaderia::all();
-        return view('verGanadero', compact('ganadero','ganaderias'));
+        return view('ganadero.verGanadero', compact('ganadero','ganaderias'));
 
     }
 
@@ -54,7 +54,7 @@ class GanaderosController extends Controller
 
         $ganadero=Ganadero::find($request->input('ganadero_id'));
         $ganaderias=Ganaderia::all();
-        return view('editarGanadero', compact('ganadero','ganaderias'));
+        return view('ganadero.editarGanadero', compact('ganadero','ganaderias'));
 
     }
 
