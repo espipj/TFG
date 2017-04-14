@@ -3,23 +3,52 @@
 
 @section('contenido')
 
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">Registrar Ganadería</div>
+          <div class="panel-body">
+            @include('partials.errors')
 
-  @include('partials.errors')
+            <form class="form-horizontal" role="form" method="POST" action="{{url('registrar/ganaderia')}}">
+              {!! csrf_field() !!}
 
-  <form method="POST" class="form" action="{{url('registrar/ganaderia')}}">
-    {!! csrf_field() !!}
-    Nombre:
-    <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="{{ old('nombre')}}"></input>
-    Direccion postal:
-    <input type="text" name="direccion" class="form-control" placeholder="Direccion" value="{{ old('direccion')}}"></input>
-    Asociación:
-    <select name="asociacion_id" class="form-control">
-      <option disabled selected value> -- Selecciona una opción -- </option>
-      @foreach($asociaciones as $asociacion)
-        <option value="{{$asociacion->id}}" {{ (old("asociacion_id") == $asociacion->id ? "selected":"") }}>{{$asociacion->nombre}}</option>
-      @endforeach
-    </select>
-    <button type="submit" class="btn btn-primary">Crear</button>
-  </form>
+              <div class="form-group">
+                <label class="col-md-4 control-label">Nombre</label>
+                <div class="col-md-6">
+                  {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder'=>'Nombre','required']) !!}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Dirección postal</label>
+                <div class="col-md-6">
+                  {!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder'=>'Direccion','required']) !!}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Asociación</label>
+                <div class="col-md-6">
+                  {!! Form::select('asociacion_id',$asociaciones,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                  <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
+                    Crear
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection

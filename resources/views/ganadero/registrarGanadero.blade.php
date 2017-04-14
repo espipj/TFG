@@ -6,28 +6,85 @@
 
   @include('partials.errors')
 
-  <form method="POST" class="form" action="{{url('registrar/ganadero')}}">
-    {!! csrf_field() !!}
-    Nombre:
-    <input type="text" name="nombre" class="form-control" placeholder="Nombre" value="{{ old('nombre')}}"></input>
-    Primer Apellido:
-    <input type="text" name="apellido1" class="form-control" placeholder="Primero Apellido" value="{{ old('apellido1')}}"></input>
-    Segundo Apellido:
-    <input type="text" name="apellido2" class="form-control" placeholder="Segundo Apellido" value="{{ old('apellido2')}}"></input>
-    DNI:
-    <input type="text" name="dni" class="form-control" placeholder="DNI" value="{{ old('dni')}}"></input>
-    Email:
-    <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email')}}"></input>
-    Telefono:
-    <input type="text" name="telefono" class="form-control" placeholder="telefono" value="{{ old('telefono')}}"></input>
-    Ganadería:
-    <select name="ganaderia_id" class="form-control">
-      <option disabled selected value> -- Selecciona una opción -- </option>
-      @foreach($ganaderias as $ganaderia)
-        <option value="{{$ganaderia->id}}">{{$ganaderia->nombre}}</option>
-      @endforeach
-    </select>
-    <button type="submit" class="btn btn-primary">Crear</button>
-  </form>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-heading">Registrar Ganadero</div>
+          <div class="panel-body">
+            @include('partials.errors')
+
+            <form class="form-horizontal" role="form" method="POST" action="{{url('registrar/ganadero')}}">
+              {!! csrf_field() !!}
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Nombre</label>
+                <div class="col-md-6">
+                  {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder'=>'Nombre','required']) !!}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Primer Apellido</label>
+                <div class="col-md-6">
+                  {!! Form::text('apellido1', null, ['class' => 'form-control', 'placeholder'=>'Primer Apellido','required']) !!}
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Segundo Apellido</label>
+                <div class="col-md-6">
+                  {!! Form::text('apellido2', null, ['class' => 'form-control', 'placeholder'=>'Segundo Apellido','required']) !!}
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">DNI</label>
+                <div class="col-md-6">
+                  {!! Form::text('dni', null, ['class' => 'form-control', 'placeholder'=>'DNI','required']) !!}
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-6">
+                  {!! Form::email('email', null, ['class' => 'form-control', 'placeholder'=>'E-Mail','required']) !!}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Teléfono</label>
+                <div class="col-md-6">
+                  {!! Form::text('telefono', null, ['class' => 'form-control', 'placeholder'=>'Teléfono','required']) !!}
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-4 control-label">Ganadería</label>
+                <div class="col-md-6">
+                  {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                </div>
+              </div>
+
+
+
+              <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                  <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
+                    Crear
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection

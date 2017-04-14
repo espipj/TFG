@@ -3,32 +3,85 @@
 
 @section('contenido')
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Editar Ganadero</div>
+                    <div class="panel-body">
+                        @include('partials.errors')
 
-    <h1>Datos del ganadero:</h1>
-    <p>Modifique los campos que desee editar.</p>
-    <form method="POST" class="form" action="{{url('editar/ganadero/completed')}}">
-        {!! csrf_field() !!}
-        Nombre:
-        <input type="text" name="nombre" class="form-control" placeholder="{{ $ganadero->nombre }}" value="{{ $ganadero->nombre }}">
-        Primer Apellido:
-        <input type="text" name="apellido1" class="form-control" placeholder="{{ $ganadero->apellido1 }}" value="{{ $ganadero->apellido1 }}">
-        Segundo Apellido:
-        <input type="text" name="apellido2" class="form-control" placeholder="{{ $ganadero->apellido2 }}" value="{{ $ganadero->apellido2 }}">
-        DNI:
-        <input type="text" name="dni" class="form-control" placeholder="{{ $ganadero->dni }}" value="{{ $ganadero->dni }}">
-        Correo Electronico:
-        <input type="text" name="email" class="form-control" placeholder="{{ $ganadero->email }}" value="{{ $ganadero->email }}">
-        Telefono:
-        <input type="text" name="telefono" class="form-control" placeholder="{{ $ganadero->email }}" value="{{ $ganadero->email }}">
-        Ganadería:
-        <select name="ganaderia_id" class="form-control">
-            @foreach($ganaderias as $ganaderia)
-                <option value="{{$ganaderia->id}}" @if($ganadero->ganaderia==$ganaderia) selected="selected"@endif>{{$ganaderia->nombre}}</option>
-            @endforeach
-        </select>
-        <input type="hidden" name="ganadero_id" value="{{$ganadero->id}}">
-        <button type="submit" class="btn btn-primary">Confirmar</button>
-    </form>
+                        <form class="form-horizontal" role="form" method="POST" action="{{url('editar/ganadero/completed')}}">
+                            {!! csrf_field() !!}
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nombre</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('nombre', $ganadero->nombre, ['class' => 'form-control', 'placeholder'=>$ganadero->nombre,'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Primer Apellido</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('apellido1', $ganadero->apellido1, ['class' => 'form-control', 'placeholder'=>$ganadero->apellido1,'required']) !!}
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Segundo Apellido</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('apellido2', $ganadero->apellido2, ['class' => 'form-control', 'placeholder'=>$ganadero->apellido2,'required']) !!}
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">DNI</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('dni', $ganadero->dni, ['class' => 'form-control', 'placeholder'=>$ganadero->dni,'required']) !!}
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">E-Mail</label>
+                                <div class="col-md-6">
+                                    {!! Form::email('email', $ganadero->email, ['class' => 'form-control', 'placeholder'=>$ganadero->email,'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Teléfono</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('telefono', $ganadero->telefono, ['class' => 'form-control', 'placeholder'=>$ganadero->email,'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Ganadería</label>
+                                <div class="col-md-6">
+                                    {!! Form::select('ganaderia_id',$ganaderias,$ganadero->ganaderia->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-success" style="margin-right: 15px;">
+                                        Editar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 @endsection

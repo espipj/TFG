@@ -17,17 +17,20 @@ class GanaderiasController extends Controller
         return Ganaderia::all();
     }
     public function registrar(){
-
-        return view('ganaderia.registrarGanaderia');
+        $asociaciones= Asociacion::lists('nombre','id');
+        return view('ganaderia.registrarGanaderia',compact('asociaciones'));
     }
 
     public function guardar(Request $request){
         $this->validate($request,[
             'nombre'=>['required','max:256'],
             'direccion'=>['required','max:256'],
+            'asociacion_id'=>['required']
         ]);
-        $datos = $request->all();
-        Ganaderia::create($datos);
+        $datos = $request->except('asociacion_id');
+        $ganaderia=Ganaderia::create($datos);
+        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        $asociacion->ganaderias()->save($ganaderia);
         return redirect()->to('/ver/ganaderia');
     }
 
@@ -47,7 +50,7 @@ class GanaderiasController extends Controller
     public function show_edit(Request $request){
 
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        $asociaciones=Asociacion::all();
+        $asociaciones= Asociacion::lists('nombre','id');
         return view('ganaderia.editarGanaderia', compact('ganaderia','asociaciones'));
 
     }

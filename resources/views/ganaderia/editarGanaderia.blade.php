@@ -3,24 +3,52 @@
 
 @section('contenido')
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Editar Ganadería</div>
+                    <div class="panel-body">
 
-    <h1>Datos de la res:</h1>
-    <p>Modifique los campos que desee editar.</p>
-    <form method="POST" class="form" action="{{url('editar/ganaderia/completed')}}">
-        {!! csrf_field() !!}
-        Nombre:
-        <input type="text" name="nombre" class="form-control" placeholder="{{$ganaderia->nombre}}" value="{{$ganaderia->nombre}}"></input>
-        Direccion postal:
-        <input type="text" name="direccion" class="form-control" placeholder="{{$ganaderia->direccion}}" value="{{$ganaderia->direccion}}"></input>
-        Asociacion:
-        <select name="asociacion_id" class="form-control">
-            @foreach($asociaciones as $asociacion)
-                <option value="{{$asociacion->id}}" @if($ganaderia->asociacion==$asociacion) selected="selected"@endif>{{$asociacion->nombre}}</option>
-            @endforeach
-        </select>
-        <input type="hidden" name="ganaderia_id" value="{{$ganaderia->id}}">
-        <button type="submit" class="btn btn-primary">Crear</button>
-    </form>
+                        @include('partials.errors')
+
+                        {!! Form::open(['action' => 'GanaderiasController@edit','class' =>'form-horizontal']) !!}
+                            {!! csrf_field() !!}
+                            <input name="_method" type="hidden" value="PATCH">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nombre</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('nombre', $ganaderia->nombre, ['class' => 'form-control', 'placeholder'=>$ganaderia->nombre,'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Dirección postal</label>
+                                <div class="col-md-6">
+                                    {!! Form::text('direccion', $ganaderia->direccion, ['class' => 'form-control', 'placeholder'=>$ganaderia->direccion,'required']) !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Asociación</label>
+                                <div class="col-md-6">
+                                    {!! Form::select('asociacion_id',$asociaciones,$ganaderia->asociacion->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                </div>
+                            </div>
 
 
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-success" style="margin-right: 15px;">
+                                        Editar
+                                    </button>
+                                </div>
+                            </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
