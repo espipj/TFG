@@ -12,8 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout');
 });
+
+Route::get('/inicio',[
+    'uses'  =>  'InicioController@Index',
+    'as'    =>  'home'
+]);
 
 Route::get('/registrar', function(){
   return view('registrar');
@@ -54,14 +59,25 @@ Route::post('/editar/ganado/', 'GanadosController@show_edit');
 Route::post('/editar/ganado/completed', 'GanadosController@edit');
 Route::post('/eliminar/ganado/', 'GanadosController@delete');
 
-// Authentication routes...
-Route::get('login', 'Auth\AuthController@getLogin');
+/* Authentication routes... Utilizamos uses-as para usar action=route('as') y no tenerno que preocupar de
+la url(puede que cambie en un futuro)*/
+Route::get('login', [
+    'uses'=>'Auth\AuthController@getLogin',
+    'as'=>'login'
+]);
+
 Route::post('login', 'Auth\AuthController@postLogin');
-Route::get('logout', 'Auth\AuthController@getLogout');
+Route::get('cerrar-sesion', [
+    'uses'  =>  'Auth\AuthController@getLogout',
+    'as'    =>  'logout'
+]);
 
 // Registration routes...
-Route::get('register', 'Auth\AuthController@getRegister');
-Route::post('register', 'Auth\AuthController@postRegister');
+Route::get('registro', [
+    'uses'=>'Auth\AuthController@getRegister',
+    'as'=>'register'
+]);
+Route::post('registro', 'Auth\AuthController@postRegister');
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');

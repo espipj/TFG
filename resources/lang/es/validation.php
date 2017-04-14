@@ -122,7 +122,9 @@ return [
     'attributes' => [
         'email'=>'E-mail',
         'password'=>'Contraseña',
-        'remember'=>'Recuérdame'
+        'remember'=>'Recuérdame',
+        'name'=>'Nombre',
+        'repeat'=>'Confirmar Contraseña',
     ],
 
 ];
