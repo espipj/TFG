@@ -12,7 +12,7 @@
 
                         @include('partials.errors')
 
-                        {!! Form::open(['action' => 'GanaderiasController@edit','class' =>'form-horizontal']) !!}
+                        {!! Form::open(['url' => 'editar/ganaderia/completed','class' =>'form-horizontal']) !!}
                             {!! csrf_field() !!}
                             <input name="_method" type="hidden" value="PATCH">
                             <div class="form-group">

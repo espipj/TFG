@@ -56,17 +56,6 @@ class GanaderiasController extends Controller
     }
 
     public function edit(Request $request){
-        $this->validate($request,[
-            'nombre'=>['required','max:256'],
-            'direccion'=>['required'],
-            'ganaderia_id'=>['required'],
-            'asociacion_id'=>['required'],
-        ]);
-        $datos = $request->except(['ganaderia_id','asociacion_id']);
-        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        $ganaderia->fill($datos)->save();
-        $asociacion=Asociacion::find($request->input('asociacion_id'));
-        $asociacion->ganaderias()->save($ganaderia);
         return redirect()->to('/ver/ganaderia');
     }
 

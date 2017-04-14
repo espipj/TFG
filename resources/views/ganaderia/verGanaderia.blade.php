@@ -9,16 +9,17 @@
     <h2>Dirección: {{$ganaderia->direccion}}</h2>
     <h3>Asociación: {{$ganaderia->asociacion->nombre}} </h3>
         <br>
-        <form method="POST" action="{{url('editar/ganaderia')}}" style="display: inline">
-            {!! csrf_field() !!}
-            <input type="hidden" name="ganaderia_id" value="{{ $ganaderia->id }}">
-            <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button>
-        </form>
-        <form method="POST" action="{{url('eliminar/ganaderia')}}" style="display: inline">
-            {!! csrf_field() !!}
-            <input type="hidden" name="ganaderia_id" value="{{ $ganaderia->id }}">
-            <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
-        </form>
+        {!! Form::open(['url' => 'editar/ganaderia', 'style'=>'display: inline']) !!}
+        {!! csrf_field() !!}
+        {!! Form::hidden('ganaderia_id',$ganaderia->id) !!}
+        <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Detalles</button>
+        {!! Form::close() !!}
+
+        {!! Form::open(['url' => 'eliminar/ganaderia', 'style'=>'display: inline']) !!}
+        {!! csrf_field() !!}
+        {!! Form::hidden('ganaderia_id',$ganaderia->id) !!}
+        <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Detalles</button>
+        {!! Form::close() !!}
     </div>
     <!--TODO Lista de ganados-->
     <!--TODO Lista de ganaderos-->
