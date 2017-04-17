@@ -3,6 +3,9 @@
 
 @section('contenido')
 
+    @if (Auth::guest())
+        @include('partials.permission')
+    @else
     <div class="jumbotron">
         <h1>Datos de la asociación</h1>
         <h2>Nombre: {{$asociacion->nombre}}</h2>
@@ -20,5 +23,5 @@
     @include('ganaderia.tablaGanaderias');
 
 
-
+    @endif
 @endsection

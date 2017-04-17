@@ -2,7 +2,9 @@
 
 
 @section('contenido')
-
+  @if (Auth::guest())
+    @include('partials.permission')
+  @else
 
   @include('partials.errors')
 
@@ -86,5 +88,5 @@
       </div>
     </div>
   </div>
-
+  @endif
 @endsection

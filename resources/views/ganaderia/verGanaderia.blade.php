@@ -2,7 +2,9 @@
 
 
 @section('contenido')
-
+    @if (Auth::guest())
+        @include('partials.permission')
+    @else
     <div class="jumbotron">
     <h1>Datos de la ganadería</h1>
     <h2>Nombre: {{$ganaderia->nombre}}</h2>
@@ -20,5 +22,5 @@
     <h2>Ganaderos</h2>
     @include('ganadero.tablaGanaderos')
 
-
+    @endif
 @endsection

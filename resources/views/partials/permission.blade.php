@@ -1,2 +1,4 @@
+<div class="alert alert-danger">
 <h1>Error!</h1>
-<h4>No tienes permisos para ver la página solicitada, registraté o contacta con el administrador de la web.</h4>
+<h4>No tienes permisos para ver la página solicitada, <a href="{{route('register')}}">regístrate</a> o contacta con el administrador de la web.</h4>
+</div>

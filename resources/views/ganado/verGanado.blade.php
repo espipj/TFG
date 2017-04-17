@@ -3,6 +3,9 @@
 
 @section('contenido')
 
+    @if (Auth::guest())
+        @include('partials.permission')
+    @else
 
     <h1>Datos de la res:</h1>
     <h2>Crotal: {{$ganado->crotal}}</h2>
@@ -12,6 +15,6 @@
     <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
     <a href="{{url('eliminar/ganado',['ganado'=>$ganado])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
 
-
+    @endif
 
 @endsection

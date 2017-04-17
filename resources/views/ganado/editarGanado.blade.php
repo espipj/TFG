@@ -3,7 +3,9 @@
 
 @section('contenido')
 
-
+    @if (Auth::guest())
+        @include('partials.permission')
+    @else
     <h1>Datos de la res:</h1>
     <p>Modifique los campos que desee editar.</p>
 
@@ -32,5 +34,5 @@
         <button type="submit" class="btn btn-primary">Confirmar</button>
     </form>
 
-
+    @endif
 @endsection

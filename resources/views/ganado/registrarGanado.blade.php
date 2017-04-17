@@ -2,7 +2,9 @@
 
 
 @section('contenido')
-
+    @if (Auth::guest())
+        @include('partials.permission')
+    @else
 
     @include('partials.errors')
 
@@ -27,5 +29,5 @@
         </select>
         <button type="submit" class="btn btn-primary">Crear</button>
     </form>
-
+    @endif
 @endsection

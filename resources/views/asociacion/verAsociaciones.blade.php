@@ -2,7 +2,9 @@
 
 
 @section('contenido')
-
+    @if (Auth::guest())
+        @include('partials.permission')
+    @else
 
     <table id="miTabla" class="table header-fixed">
         <thead>
@@ -34,5 +36,5 @@
             @endforeach
         </tbody>
     </table>
-
+    @endif
 @endsection
