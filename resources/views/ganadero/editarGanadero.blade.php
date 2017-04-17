@@ -11,9 +11,11 @@
                     <div class="panel-body">
                         @include('partials.errors')
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{url('editar/ganadero/completed')}}">
-                            {!! csrf_field() !!}
 
+
+                        {!! Form::open(['url' => 'editar/ganadero/completed','class' =>'form-horizontal']) !!}
+                            {!! csrf_field() !!}
+                            {!! Form::hidden('ganadero_id',$ganadero->id) !!}
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Nombre</label>
                                 <div class="col-md-6">
@@ -76,7 +78,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        {!! Form::close(); !!}
                     </div>
                 </div>
             </div>

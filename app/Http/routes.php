@@ -26,38 +26,43 @@ Route::get('/registrar', function(){
 //Asociaciones
 Route::get('/registrar/asociacion', 'AsociacionesController@registrar');
 Route::post('/registrar/asociacion', 'AsociacionesController@guardar');
-Route::get('/ver/asociacion/', 'AsociacionesController@show');
-Route::post('/ver/asociacion/', 'AsociacionesController@show_detail');
-Route::post('/editar/asociacion/', 'AsociacionesController@show_edit');
+Route::get('/ver/asociacion/{asociacion?}', [
+    'uses'=>'AsociacionesController@show',
+    'as'=>'verasociacion']);
+//Route::post('/ver/asociacion/', 'AsociacionesController@show_detail');
+Route::get('/editar/asociacion/{asociacion}', 'AsociacionesController@show_edit');
 Route::post('/editar/asociacion/completed', 'AsociacionesController@edit');
-Route::post('/eliminar/asociacion/', 'AsociacionesController@delete');
+Route::get('/eliminar/asociacion/{asociacion}', 'AsociacionesController@delete');
 
 //Ganaderos
 Route::get('/registrar/ganadero', 'GanaderosController@registrar');
 Route::post('/registrar/ganadero', 'GanaderosController@guardar');
-Route::get('/ver/ganadero/', 'GanaderosController@show');
-Route::post('/ver/ganadero/', 'GanaderosController@show_detail');
-Route::post('/editar/ganadero/', 'GanaderosController@show_edit');
-Route::post('/editar/ganadero/completed', 'GanaderosController@edit');
-Route::post('/eliminar/ganadero/', 'GanaderosController@delete');
+Route::get('/ver/ganadero/{ganadero?}', [
+    'uses'  =>  'GanaderosController@show',
+    'as'    =>  'verganadero']);
+Route::get('/editar/ganadero/{ganadero}', 'GanaderosController@show_edit');
+Route::post('/editar/ganadero/completed/', 'GanaderosController@edit');
+Route::get('/eliminar/ganadero/{ganadero}', 'GanaderosController@delete');
 
 //Ganaderia
 Route::get('/registrar/ganaderia', 'GanaderiasController@registrar');
 Route::post('/registrar/ganaderia', 'GanaderiasController@guardar');
-Route::get('/ver/ganaderia/', 'GanaderiasController@show');
-Route::post('/ver/ganaderia/', 'GanaderiasController@show_detail');
-Route::post('/editar/ganaderia/', 'GanaderiasController@show_edit');
+Route::get('/ver/ganaderia/{ganaderia?}', [
+    'uses'  =>  'GanaderiasController@show',
+    'as'    =>  'verganaderia']);
+Route::get('/editar/ganaderia/{ganaderia}', 'GanaderiasController@show_edit');
 Route::post('/editar/ganaderia/completed', 'GanaderiasController@edit');
-Route::post('/eliminar/ganaderia/', 'GanaderiasController@delete');
+Route::get('/eliminar/ganaderia/{ganaderia}', 'GanaderiasController@delete');
 
 //Ganado
 Route::get('/registrar/ganado', 'GanadosController@registrar');
 Route::post('/registrar/ganado', 'GanadosController@guardar');
-Route::get('/ver/ganado/', 'GanadosController@show');
-Route::post('/ver/ganado/', 'GanadosController@show_detail');
-Route::post('/editar/ganado/', 'GanadosController@show_edit');
+Route::get('/ver/ganado/{ganado?}', [
+    'uses'  =>  'GanadosController@show',
+    'as'    =>  'verganado']);
+Route::get('/editar/ganado/{ganado}', 'GanadosController@show_edit');
 Route::post('/editar/ganado/completed', 'GanadosController@edit');
-Route::post('/eliminar/ganado/', 'GanadosController@delete');
+Route::get('/eliminar/ganado/{ganado}', 'GanadosController@delete');
 
 /* Authentication routes... Utilizamos uses-as para usar action=route('as') y no tenerno que preocupar de
 la url(puede que cambie en un futuro)*/

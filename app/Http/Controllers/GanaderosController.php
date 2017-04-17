@@ -37,22 +37,27 @@ class GanaderosController extends Controller
         return redirect()->to('/ver/ganadero');
     }
 
-    public function show(){
-        $ganaderos=Ganadero::all();
-        return view('ganadero.verGanaderos',compact('ganaderos'));
+    public function show($Ganadero=null){
+        if($Ganadero==null){
+            $ganaderos=Ganadero::all();
+            return view('ganadero.verGanaderos',compact('ganaderos'));
+
+        }else{
+            return $this->show_detail($Ganadero);
+        }
     }
 
-    public function show_detail(Request $request){
+    public function show_detail($Ganadero){
 
-        $ganadero=Ganadero::find($request->input('ganadero_id'));
+        $ganadero=Ganadero::find($Ganadero);
         $ganaderias=Ganaderia::all();
         return view('ganadero.verGanadero', compact('ganadero','ganaderias'));
 
     }
 
-    public function show_edit(Request $request){
+    public function show_edit($Ganadero){
 
-        $ganadero=Ganadero::find($request->input('ganadero_id'));
+        $ganadero=Ganadero::find($Ganadero);
         $ganaderias=Ganaderia::lists('nombre','id');
         return view('ganadero.editarGanadero', compact('ganadero','ganaderias'));
 
@@ -75,12 +80,12 @@ class GanaderosController extends Controller
         $ganadero->fill($datos)->save();
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
         $ganaderia->ganados()->save($ganadero);
-        return redirect()->to('/ver/ganadero');
+        return redirect()->route('verganadero',[$ganadero]);
     }
 
-    public function delete(Request $request){
+    public function delete($Ganadero){
 
-        $ganadero=Ganadero::find($request->input('ganadero_id'));
+        $ganadero=Ganadero::find($Ganadero);
         $ganadero->delete();
         return redirect()->to('/ver/ganadero');
 

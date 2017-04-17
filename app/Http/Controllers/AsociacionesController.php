@@ -34,22 +34,28 @@ class AsociacionesController extends Controller
       return redirect()->to('/ver/asociacion');
     }
 
-    public function show(){
-        $asociaciones=Asociacion::all();
-        return view('asociacion.verAsociaciones',compact('asociaciones'));
+    public function show($Asociacion=null){
+        if($Asociacion==null){
+
+            $asociaciones=Asociacion::all();
+            return view('asociacion.verAsociaciones',compact('asociaciones'));
+
+        }else{
+            return $this->show_detail($Asociacion);
+        }
 
     }
-    public function show_detail(Request $request){
+    public function show_detail($Asociacion){
 
     //dd(Ganado::find($Ganado));
-    $asociacion=Asociacion::find($request->input('asociacion_id'));
+    $asociacion=Asociacion::find($Asociacion);
     $ganaderias=$asociacion->ganaderias;
     return view('asociacion.verAsociacion', compact('asociacion','ganaderias'));
 
     }
-    public function show_edit(Request $request){
+    public function show_edit($Asociacion){
 
-        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        $asociacion=Asociacion::find($Asociacion);
         return view('asociacion.editarAsociacion', compact('asociacion'));
 
     }
@@ -62,15 +68,18 @@ class AsociacionesController extends Controller
             'asociacion_id'=>['required'],
         ]);
         $datos = $request->except(['asociacion_id']);
-        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        $asociacion_id=$request->input('asociacion_id');
+        $asociacion=Asociacion::find($asociacion_id);
         $asociacion->fill($datos)->save();
-        return redirect()->to('/ver/asociacion');
+
+        return redirect()->route('verasociacion',[$asociacion]);
+        //return redirect('ver/asociacion/'.$asociacion_id);
     }
 
-    public function delete(Request $request){
-        $asociacion=Asociacion::find($request->input('asociacion_id'));
+    public function delete($Asociacion){
+        $asociacion=Asociacion::find($Asociacion);
         $asociacion->delete();
-        return redirect()->to('/ver/asociacion');
+        return redirect()->to('/ver/asociacion/');
 
     }
 }

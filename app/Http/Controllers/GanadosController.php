@@ -40,21 +40,25 @@ class GanadosController extends Controller
         return redirect()->to('/ver/ganado');
     }
 
-    public function show(){
+    public function show($Ganado=null){
+        if($Ganado==null){
             $ganados=Ganado::all();
             return view('ganado.verGanados',compact('ganados'));
+        }else{
+            return $this->show_detail($Ganado);
+        }
     }
 
-    public function show_detail(Request $request){
-        $ganado=Ganado::find($request->input('ganado_id'));
+    public function show_detail($Ganado){
+        $ganado=Ganado::find($Ganado);
         return view('ganado.verGanado', compact('ganado'));
     }
 
-    public function show_edit(Request $request){
+    public function show_edit($Ganado){
 
-        $ganado=Ganado::find($request->input('ganado_id'));
+        $ganado=Ganado::find($Ganado);
         $sexos=Sexo::all();
-        $ganaderias=Ganaderia::all();
+        $ganaderias=Ganaderia::lists('nombre','id');
         return view('ganado.editarGanado', compact('ganado','sexos','ganaderias'));
 
 
@@ -77,12 +81,12 @@ class GanadosController extends Controller
         //$ganaderia=$request->input('ganaderia_id');
         $ganaderia->ganados()->save($ganado);
         $sexo->ganados()->save($ganado);
-        return redirect()->to('/ver/ganado');
+        return redirect()->route('verganado',[$ganado]);
     }
 
-    public function delete(Request $request){
+    public function delete($Ganado){
 
-        $ganado=Ganadero::find($request->input('ganadero_id'));
+        $ganado=Ganado::find($Ganado);
         $ganado->delete();
         return redirect()->to('/ver/ganado');
 

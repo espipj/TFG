@@ -11,16 +11,9 @@
     <h3>Teléfono: <a href="tel:{{$ganadero->telefono}}">{{$ganadero->telefono}}</a></h3>
     <h3>Email: <a href="mailto:{{$ganadero->email}}">{{$ganadero->email}}</a></h3>
     <h3>Ganadería: {{$ganadero->ganaderia->nombre}}</h3>
-    <form method="POST" action="{{url('editar/ganadero')}}" style="display: inline">
-        {!! csrf_field() !!}
-        <input type="hidden" name="ganadero_id" value="{{ $ganadero->id }}">
-        <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button>
-    </form>
-    <form method="POST" action="{{url('eliminar/ganadero')}}" style="display: inline">
-        {!! csrf_field() !!}
-        <input type="hidden" name="ganadero_id" value="{{ $ganadero->id }}">
-        <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
-    </form>
+    <a href="{{url('ver/ganadero',['$ganadero'=>$ganadero])}}" class="btn btn-info btn-sm" role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
+    <a href="{{url('editar/ganadero',['$ganadero'=>$ganadero])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+    <a href="{{url('eliminar/ganadero',['$ganadero'=>$ganadero])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
 
 
 @endsection

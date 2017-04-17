@@ -10,55 +10,14 @@
         <h3>Email: <a href="mailto:{{$asociacion->email}}">{{$asociacion->email}}</a></h3>
 
         <br>
-        <form method="POST" action="{{url('editar/asociacion')}}" style="display: inline">
-            {!! csrf_field() !!}
-            <input type="hidden" name="asociacion_id" value="{{ $asociacion->id }}">
-            <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button>
-        </form>
-        <form method="POST" action="{{url('eliminar/asociacion')}}" style="display: inline">
-            {!! csrf_field() !!}
-            <input type="hidden" name="asociacion_id" value="{{ $asociacion->id }}">
-            <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
-        </form>
+
+        <a href="{{url('editar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+        <a href="{{url('eliminar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+
     </div>
 
     <!--TODO ¿Meterlo en un collapsible panel?-->
-    <h2>Ganaderías</h2>
-    <table id="miTabla" class="table header-fixed">
-        <thead>
-        <tr class="header">
-            <th style="width:20%;">Nombre</th>
-            <th style="width:25%;">Dirección</th>
-            <th style="width:25%;">Asociación</th>
-            <th style="width:30%;">Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($ganaderias as $ganaderia)
-            @if($ganaderia->nombre && $ganaderia->direccion && $ganaderia->asociacion->nombre)
-
-                <tr class="clickable-row">
-                    <td style="width:20%;">{{$ganaderia->nombre}}</td>
-                    <td style="width:25%;">{{$ganaderia->direccion}}</td>
-                    <td style="width:25%;">{{$ganaderia->asociacion->nombre}}</td>
-                    <td style="width:30%;">
-                        {!! Form::open(['url' => 'editar/ganaderia', 'style'=>'display: inline']) !!}
-                        {!! csrf_field() !!}
-                        {!! Form::hidden('ganaderia_id',$ganaderia->id) !!}
-                        <button type="submit" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                        {!! Form::close() !!}
-
-                        {!! Form::open(['url' => 'eliminar/ganaderia', 'style'=>'display: inline']) !!}
-                        {!! csrf_field() !!}
-                        {!! Form::hidden('ganaderia_id',$ganaderia->id) !!}
-                        <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Eliminar</button>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endif
-        @endforeach
-        </tbody>
-    </table>
+    @include('ganaderia.tablaGanaderias');
 
 
 

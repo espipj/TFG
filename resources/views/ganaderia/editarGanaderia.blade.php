@@ -14,6 +14,7 @@
 
                         {!! Form::open(['url' => 'editar/ganaderia/completed','class' =>'form-horizontal']) !!}
                             {!! csrf_field() !!}
+                        {!! Form::hidden('ganaderia_id',$ganaderia->id) !!}
                             <input name="_method" type="hidden" value="PATCH">
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Nombre</label>

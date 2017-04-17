@@ -34,33 +34,48 @@ class GanaderiasController extends Controller
         return redirect()->to('/ver/ganaderia');
     }
 
-    public function show(){
-        $ganaderias=Ganaderia::all();
-        return view('ganaderia.verGanaderias',compact('ganaderias'));
+    public function show($Ganaderia=null){
+        if($Ganaderia==null){
+            $ganaderias=Ganaderia::all();
+            return view('ganaderia.verGanaderias',compact('ganaderias'));
+        }else{
+            return $this->show_detail($Ganaderia);
+        }
     }
 
-    public function show_detail(Request $request){
-        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+    public function show_detail($Ganaderia){
+        $ganaderia=Ganaderia::find($Ganaderia);
         $ganados=$ganaderia->ganados;
         $ganaderos=$ganaderia->ganaderos;
         return view('ganaderia.verGanaderia', compact('ganaderia','ganados','ganaderos'));
 
     }
 
-    public function show_edit(Request $request){
+    public function show_edit($Ganaderia){
 
-        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+        $ganaderia=Ganaderia::find($Ganaderia);
         $asociaciones= Asociacion::lists('nombre','id');
         return view('ganaderia.editarGanaderia', compact('ganaderia','asociaciones'));
 
     }
 
     public function edit(Request $request){
-        return redirect()->to('/ver/ganaderia');
+        $this->validate($request,[
+            'nombre'=>['required','max:256'],
+            'direccion'=>['required','max:256'],
+            'asociacion_id'=>['required'],
+            'ganaderia_id' =>['required']
+        ]);
+        $datos = $request->except('asociacion_id','ganaderia_id');
+        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+        $ganaderia->fill($datos)->save();
+        $asociacion=Asociacion::find($request->input('asociacion_id'));
+        $asociacion->ganaderias()->save($ganaderia);
+        return redirect()->route('verganaderia',[$ganaderia]);
     }
 
-    public function delete(Request $request){
-        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
+    public function delete($Ganaderia){
+        $ganaderia=Ganaderia::find($Ganaderia);
         $ganaderia->delete();
         return redirect()->to('/ver/ganaderia');
 

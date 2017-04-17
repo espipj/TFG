@@ -68,7 +68,6 @@
 
 <!-- Cambiar imagenes a carousel para que ocupen todo el ancho, 1600*600-->
 <div class="container">
-
       @yield('contenido')
 
 </div>
