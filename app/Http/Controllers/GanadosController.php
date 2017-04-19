@@ -16,11 +16,17 @@ class GanadosController extends Controller
     public function index(){
         return Ganado::all();
     }
-    public function registrar(){
+    public function registrar($Ganaderia=null){
 
-        $ganaderias=Ganaderia::all();
+        $ganaderias=Ganaderia::lists('nombre','id');
         $sexos=Sexo::all();
-        return view('ganado.registrarGanado',compact('ganaderias','sexos'));
+        if($Ganaderia==null){
+            return view('ganado.registrarGanado',compact('ganaderias','sexos'));
+
+        }else{
+            return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia'));
+
+        }
     }
 
     public function guardar(Request $request){

@@ -21,12 +21,11 @@
         Fecha de nacimiento:
         <input type="date" name="fecha_nacimiento" class="form-control" value="{{ old('fecha_nacimiento')}}"></input>
         Ganadería:
-        <select name="ganaderia_id" class="form-control">
-            <option disabled selected value> -- Selecciona una opción -- </option>
-            @foreach($ganaderias as $ganaderia)
-                <option value="{{$ganaderia->id}}" {{ (old("ganaderia_id") == $ganaderia->id ? "selected":"") }}>{{$ganaderia->nombre}}</option>
-            @endforeach
-        </select>
+            @if($Ganaderia==null)
+                {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+            @else
+                {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+            @endif
         <button type="submit" class="btn btn-primary">Crear</button>
     </form>
     @endif

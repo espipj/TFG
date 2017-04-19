@@ -69,7 +69,11 @@
               <div class="form-group">
                 <label class="col-md-4 control-label">Ganadería</label>
                 <div class="col-md-6">
-                  {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                  @if($Ganaderia==null)
+                      {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                  @else
+                      {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                  @endif
                 </div>
               </div>
 

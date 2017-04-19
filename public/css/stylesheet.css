@@ -5,7 +5,7 @@ html {
 body {
 	font-family: 'Raleway', sans-serif;
 	padding-top: 65px;
-	padding-bottom: 270px;
+	padding-bottom: 285px;
 }
 .footer {
 	position: absolute;
@@ -13,7 +13,7 @@ body {
 	left: 0;
 	width: 100%;
 	/* Set the fixed height of the footer here */
-	height: 270px;
+	height: 285px;
 	background-image: -webkit-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
 	background-image: -moz-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
 	background-image: -o-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
@@ -23,16 +23,8 @@ body {
 	color: #FFFFFF;
 }
 .navbar ul {
-	/* [disabled]list-style-position:outside;
-*/
-	text-align: left;	/*list-style:none;*/
+	text-align: left;
 }
-/*li:before{
-		content: '';
-   display: inline-block;
-   height: 12px;
-   background-image:url('../images/bullet1.png');
-}*/
 #topFixedNavbar1 {
 }
 table.table{

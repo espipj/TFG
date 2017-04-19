@@ -15,7 +15,7 @@
 
 
 
-                <tr class="clickable-row">
+                <tr class="clickable-row" data-href="{{route('verganadero',[$ganadero])}}">
                     <td style="width:12%;">{{$ganadero->nombre}}</td>
                     <td style="width:15%;">{{$ganadero->apellido1}} {{$ganadero->apellido2}}</td>
                     <td style="width:20%;"><a href="tel:{{$ganadero->telefono}}">{{$ganadero->telefono}}</a></td>

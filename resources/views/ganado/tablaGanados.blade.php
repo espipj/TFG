@@ -14,7 +14,7 @@
 
 
 
-                <tr class="clickable-row">
+                <tr class="clickable-row" data-href="{{route('verganado',[$ganado])}}">
                     <td style="width:12%;">{{$ganado->crotal}}</td>
                     <td style="width:15%;">{{$ganado->sexo->nombre}}</td>
                     <td style="width:20%;">{{$ganado->fecha_nacimiento}}</td>

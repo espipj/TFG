@@ -13,6 +13,8 @@
         <br>
         <a href="{{url('editar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
         <a href="{{url('eliminar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+        <a href="{{url('registrar/ganadero',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-md" role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadero</a>
+        <a href="{{url('registrar/ganado',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-md" role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganado</a>
 
     </div>
     <!--TODO Lista de ganados-->

@@ -11,7 +11,7 @@
     @foreach($ganaderias as $ganaderia)
         @if($ganaderia->nombre && $ganaderia->direccion && $ganaderia->asociacion->nombre)
 
-            <tr class="clickable-row">
+            <tr class="clickable-row" data-href="{{route('verganaderia',[$ganaderia])}}">
                 <td style="width:20%;">{{$ganaderia->nombre}}</td>
                 <td style="width:25%;">{{$ganaderia->direccion}}</td>
                 <td style="width:25%;">{{$ganaderia->asociacion->nombre}}</td>

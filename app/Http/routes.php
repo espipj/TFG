@@ -40,7 +40,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/eliminar/asociacion/{asociacion}', 'AsociacionesController@delete');
 
     //Ganaderos
-    Route::get('/registrar/ganadero', 'GanaderosController@registrar');
+    Route::get('/registrar/ganadero/{ganaderia?}', 'GanaderosController@registrar');
     Route::post('/registrar/ganadero', 'GanaderosController@guardar');
     Route::get('/ver/ganadero/{ganadero?}', [
         'uses'  =>  'GanaderosController@show',
@@ -60,7 +60,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/eliminar/ganaderia/{ganaderia}', 'GanaderiasController@delete');
 
     //Ganado
-    Route::get('/registrar/ganado', 'GanadosController@registrar');
+    Route::get('/registrar/ganado/{ganaderia?}', 'GanadosController@registrar');
     Route::post('/registrar/ganado', 'GanadosController@guardar');
     Route::get('/ver/ganado/{ganado?}', [
         'uses'  =>  'GanadosController@show',

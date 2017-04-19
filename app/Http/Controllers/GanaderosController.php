@@ -15,9 +15,16 @@ class GanaderosController extends Controller
     public function index(){
         return Ganadero::all();
     }
-    public function registrar(){
+    public function registrar($Ganaderia=null){
+
         $ganaderias=Ganaderia::lists('nombre','id');
-        return view('ganadero.registrarGanadero', compact('ganaderias'));
+        if($Ganaderia==null){
+            return view('ganadero.registrarGanadero', compact('ganaderias'));
+
+        }else{
+            return view('ganadero.registrarGanadero', compact('ganaderias','Ganaderia'));
+
+        }
     }
 
     public function guardar(Request $request){
