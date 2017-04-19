@@ -16,9 +16,17 @@ class GanaderiasController extends Controller
     public function index(){
         return Ganaderia::all();
     }
-    public function registrar(){
-        $asociaciones= Asociacion::lists('nombre','id');
-        return view('ganaderia.registrarGanaderia',compact('asociaciones'));
+    public function registrar($Asociacion = null){
+        if($Asociacion==null){
+
+            $asociaciones= Asociacion::lists('nombre','id');
+            return view('ganaderia.registrarGanaderia',compact('asociaciones'));
+
+        }else{
+
+            $asociaciones= Asociacion::lists('nombre','id');
+            return view('ganaderia.registrarGanaderia',compact('asociaciones','Asociacion'));
+        }
     }
 
     public function guardar(Request $request){

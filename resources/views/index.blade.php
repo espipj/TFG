@@ -1,5 +1,7 @@
 @extends('layout')
 
 @section('contenido')
-    @include('auth.loginform')
+
+    <h1>Página de inicio</h1>
+
 @endsection

@@ -12,7 +12,6 @@ class InicioController extends Controller
 {
     //
     public function index(){
-        $asociaciones=Asociacion::all();
-        return view('asociacion.verAsociaciones',compact('asociaciones'));
+        return view('home.main');
     }
 }

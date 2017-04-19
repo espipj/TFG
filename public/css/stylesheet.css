@@ -35,6 +35,9 @@ body {
 }*/
 #topFixedNavbar1 {
 }
+table.table{
+	margin-top: 30px;
+}
 .navbar-default {
 	background-color: hsla(0,0%,98%,0.93);
 	border-color: #e1e1e1;
@@ -85,14 +88,6 @@ body {
 .navbar-default .navbar-link:hover {
 	color: #672121;
 }
-
-/*
-[class*="col-"] {
-	float: none;
-	display: table-cell;
-	vertical-align: top;
-}
-*/
 
 
 
@@ -280,7 +275,7 @@ body {
 }*/
 
 .header-fixed {
-    width: 100% 
+    width: 100%
 }
 
 .header-fixed > thead,
@@ -332,8 +327,8 @@ body {
 	text-align: center;
 	font-size: 48px;
 	font-weight: 600;
-	
-	
+
+
 }
 #enfermedad h2{
 	font-weight: 400;
@@ -361,7 +356,7 @@ body {
 	content: '';
 	background: url("/images/logo.png");
 	background-size: contain;
-	background-repeat: no-repeat;	
+	background-repeat: no-repeat;
 	height: 200px;
 	width: 200px;
 	margin: 10px auto;
@@ -379,7 +374,7 @@ body {
 #div-lost-msg,
 #div-register-msg {
 /*    border: 1px solid #dadfe1;
-*/    
+*/
 	height: 30px;
     line-height: 28px;
     transition: all ease-in-out 500ms;
@@ -436,7 +431,7 @@ body {
 .modal-content {
     background-color: #ececec;
     border: 1px solid #bdc3c7;
-    border-radius: 0px;
+	/*border-radius: 0px;*/
     outline: 0;
 }
 
@@ -462,7 +457,7 @@ body {
 }
 
 .btn {
-    border-radius: 0px;
+    /*border-radius: 0px;*/
 }
 
 .btn:focus,
@@ -475,7 +470,7 @@ body {
 }
 
 .btn-lg, .btn-group-lg>.btn {
-    border-radius: 0px;
+    /*border-radius: 0px;*/
 }
 
 .btn-link {
@@ -493,5 +488,5 @@ body {
 }
 
 .form-control {
-  border-radius: 0px;
+  /*border-radius: 0px;*/
 }
