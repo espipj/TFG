@@ -33,8 +33,6 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/ver/asociacion/{asociacion?}', [
         'uses'=>'AsociacionesController@show',
         'as'=>'verasociacion']);
-
-    //Route::post('/ver/asociacion/', 'AsociacionesController@show_detail');
     Route::get('/editar/asociacion/{asociacion}', 'AsociacionesController@show_edit');
     Route::post('/editar/asociacion/completed', 'AsociacionesController@edit');
     Route::get('/eliminar/asociacion/{asociacion}', 'AsociacionesController@delete');

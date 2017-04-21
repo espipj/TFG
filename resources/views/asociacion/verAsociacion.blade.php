@@ -18,12 +18,14 @@
                role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
             <a href="{{url('eliminar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-danger btn-sm"
                role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-            <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-md"
-               role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
 
         </div>
 
         <!--TODO ¿Meterlo en un collapsible panel?-->
+        <h2>Ganaderías</h2>
+        <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-sm"
+           role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
+
         @include('ganaderia.tablaGanaderias');
 
 

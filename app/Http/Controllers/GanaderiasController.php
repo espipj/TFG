@@ -72,7 +72,7 @@ class GanaderiasController extends Controller
             'nombre'=>['required','max:256'],
             'direccion'=>['required','max:256'],
             'asociacion_id'=>['required'],
-            'ganaderia_id' =>['required']
+            'ganaderia_id' =>['required'],
         ]);
         $datos = $request->except('asociacion_id','ganaderia_id');
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
@@ -80,6 +80,7 @@ class GanaderiasController extends Controller
         $asociacion=Asociacion::find($request->input('asociacion_id'));
         $asociacion->ganaderias()->save($ganaderia);
         return redirect()->route('verganaderia',[$ganaderia]);
+        //return redirect()->to('/ver/ganaderia');
     }
 
     public function delete($Ganaderia){
