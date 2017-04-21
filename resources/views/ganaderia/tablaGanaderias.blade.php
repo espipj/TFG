@@ -16,10 +16,14 @@
                 <td style="width:25%;">{{$ganaderia->direccion}}</td>
                 <td style="width:25%;">{{$ganaderia->asociacion->nombre}}</td>
                 <td style="width:30%;">
-                    <a href="{{url('ver/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-info btn-sm" role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
-                    <a href="{{url('editar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                    <a href="{{url('eliminar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-
+                    <div class="btn-group">
+                        <a href="{{url('ver/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-info btn-sm"
+                           role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
+                        <a href="{{url('editar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-success btn-sm"
+                           role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                        <a href="{{url('eliminar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-danger btn-sm"
+                           role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                    </div>
 
                 </td>
             </tr>

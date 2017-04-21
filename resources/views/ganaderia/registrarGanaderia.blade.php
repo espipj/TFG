@@ -35,10 +35,12 @@
               <div class="form-group">
                 <label class="col-md-4 control-label">Asociación</label>
                 <div class="col-md-6">
-                    @if($Asociacion==null)
-                        {!! Form::select('asociacion_id',$asociaciones,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
-                    @else
+                    @if(!empty($Asociacion))
+
                         {!! Form::select('asociacion_id',$asociaciones,$Asociacion,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                    @else
+                        {!! Form::select('asociacion_id',$asociaciones,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+
 
                     @endif
                 </div>

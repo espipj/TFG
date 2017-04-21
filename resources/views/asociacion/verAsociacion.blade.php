@@ -6,22 +6,25 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
-    <div class="jumbotron">
-        <h1>Datos de la asociación</h1>
-        <h2>Nombre: {{$asociacion->nombre}}</h2>
-        <h2>Dirección: {{$asociacion->direccion}}</h2>
-        <h3>Email: <a href="mailto:{{$asociacion->email}}">{{$asociacion->email}}</a></h3>
+        <div class="jumbotron">
+            <h1>Datos de la asociación</h1>
+            <h2>Nombre: {{$asociacion->nombre}}</h2>
+            <h2>Dirección: {{$asociacion->direccion}}</h2>
+            <h3>Email: <a href="mailto:{{$asociacion->email}}">{{$asociacion->email}}</a></h3>
 
-        <br>
+            <br>
 
-        <a href="{{url('editar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-        <a href="{{url('eliminar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
-        <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-md" role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
+            <a href="{{url('editar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-success btn-sm"
+               role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+            <a href="{{url('eliminar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-danger btn-sm"
+               role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+            <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-md"
+               role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
 
-    </div>
+        </div>
 
-    <!--TODO ¿Meterlo en un collapsible panel?-->
-    @include('ganaderia.tablaGanaderias');
+        <!--TODO ¿Meterlo en un collapsible panel?-->
+        @include('ganaderia.tablaGanaderias');
 
 
     @endif

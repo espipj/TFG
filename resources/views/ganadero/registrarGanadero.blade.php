@@ -17,7 +17,8 @@
           <div class="panel-body">
             @include('partials.errors')
 
-            <form class="form-horizontal" role="form" method="POST" action="{{url('registrar/ganadero')}}">
+            {!! Form::open(['url' => 'registrar/ganadero','class' =>'form-horizontal']) !!}
+
               {!! csrf_field() !!}
 
               <div class="form-group">
@@ -69,10 +70,10 @@
               <div class="form-group">
                 <label class="col-md-4 control-label">Ganadería</label>
                 <div class="col-md-6">
-                  @if($Ganaderia==null)
-                      {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                  @if(!empty($Ganaderia))
+                    {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                   @else
-                      {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                    {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                   @endif
                 </div>
               </div>
@@ -86,7 +87,7 @@
                   </button>
                 </div>
               </div>
-            </form>
+            {!! Form::close() !!}
           </div>
         </div>
       </div>

@@ -6,27 +6,66 @@
         @include('partials.permission')
     @else
 
-    @include('partials.errors')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Registrar Ganado</div>
+                    <div class="panel-body">
+                        @include('partials.errors')
 
-    <form method="POST" class="form" action="{{url('registrar/ganado')}}">
-        {!! csrf_field() !!}
-        Crotal:
-        <input type="text" name="crotal" class="form-control" placeholder="Crotal" value="{{ old('crotal')}}"></input>
-        Sexo: <br>
-        @foreach($sexos as $sexo)
-            <label class="radio-inline"> <input type="radio" name="sexo_id" value="{{$sexo->id}}" {{ (old("sexo_id") == $sexo->id ? "selected":"") }}>{{$sexo->nombre}}
-            </label>
-        @endforeach
-        <br>
-        Fecha de nacimiento:
-        <input type="date" name="fecha_nacimiento" class="form-control" value="{{ old('fecha_nacimiento')}}"></input>
-        Ganadería:
-            @if($Ganaderia==null)
-                {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
-            @else
-                {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
-            @endif
-        <button type="submit" class="btn btn-primary">Crear</button>
-    </form>
+
+                        {!! Form::open(['url' => 'registrar/ganado','class' =>'form-horizontal']) !!}
+                        {!! csrf_field() !!}
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Crotal</label>
+                            <div class="col-md-6">
+                               {!! Form::text('crotal', null, ['class' => 'form-control', 'placeholder'=>'Crotal','required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Sexo</label>
+                            <div class="col-md-6">
+                                @foreach($sexos as $sexo)
+                                    <label class="radio-inline">{!! Form::radio('sexo_id',$sexo->id) !!} {{$sexo->nombre}}</label>
+                                @endforeach
+                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Fecha de Nacimiento</label>
+                            <div class="col-md-6">
+                                {!! Form::date('fecha_nacimiento', \Carbon\Carbon::now()) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Ganadería</label>
+                            <div class="col-md-6">
+                                @if(!empty($Ganaderia))
+                                    {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                @else
+                                    {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                @endif
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
+                                    Crear
+                                </button>
+                            </div>
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @endif
 @endsection
