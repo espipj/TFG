@@ -35,7 +35,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'=>'verasociacion']);
     Route::get('/editar/asociacion/{asociacion}', 'AsociacionesController@show_edit');
     Route::post('/editar/asociacion/completed', 'AsociacionesController@edit');
-    Route::get('/eliminar/asociacion/{asociacion}', 'AsociacionesController@delete');
+    Route::delete('/eliminar/asociacion/{asociacion}', 'AsociacionesController@delete');
 
     //Ganaderos
     Route::get('/registrar/ganadero/{ganaderia?}', 'GanaderosController@registrar');
@@ -45,7 +45,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'verganadero']);
     Route::get('/editar/ganadero/{ganadero}', 'GanaderosController@show_edit');
     Route::post('/editar/ganadero/completed/', 'GanaderosController@edit');
-    Route::get('/eliminar/ganadero/{ganadero}', 'GanaderosController@delete');
+    Route::delete('/eliminar/ganadero/{ganadero}', 'GanaderosController@delete');
 
     //Ganaderia
     Route::get('/registrar/ganaderia/{asociacion?}', 'GanaderiasController@registrar');
@@ -55,7 +55,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'verganaderia']);
     Route::get('/editar/ganaderia/{ganaderia}', 'GanaderiasController@show_edit');
     Route::post('/editar/ganaderia/completed', 'GanaderiasController@edit');
-    Route::get('/eliminar/ganaderia/{ganaderia}', 'GanaderiasController@delete');
+    Route::delete('/eliminar/ganaderia/{ganaderia}', 'GanaderiasController@delete');
 
     //Ganado
     Route::get('/registrar/ganado/{ganaderia?}', 'GanadosController@registrar');
@@ -65,7 +65,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'verganado']);
     Route::get('/editar/ganado/{ganado}', 'GanadosController@show_edit');
     Route::post('/editar/ganado/completed', 'GanadosController@edit');
-    Route::get('/eliminar/ganado/{ganado}', 'GanadosController@delete');
+    Route::delete('/eliminar/ganado/{ganado}', 'GanadosController@delete');
 });
 
 

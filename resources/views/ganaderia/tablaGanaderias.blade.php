@@ -11,7 +11,7 @@
     @foreach($ganaderias as $ganaderia)
         @if($ganaderia->nombre && $ganaderia->direccion && $ganaderia->asociacion->nombre)
 
-            <tr class="clickable-row" data-href="{{route('verganaderia',[$ganaderia])}}">
+            <tr class="clickable-row" data-href="{{route('verganaderia',[$ganaderia])}}" data-id="{{$ganaderia->id}}">
                 <td style="width:20%;">{{$ganaderia->nombre}}</td>
                 <td style="width:25%;">{{$ganaderia->direccion}}</td>
                 <td style="width:25%;">{{$ganaderia->asociacion->nombre}}</td>
@@ -21,7 +21,7 @@
                            role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
                         <a href="{{url('editar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-success btn-sm"
                            role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                        <a href="{{url('eliminar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-danger btn-sm"
+                        <a href="" class="btn btn-danger btn-sm eliminar"
                            role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                     </div>
 
@@ -31,3 +31,13 @@
     @endforeach
     </tbody>
 </table>
+
+
+{!! Form::open(['url' => ['eliminar/ganaderia/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
+{!! Form::close() !!}
+
+@section('scripts')
+
+    <script src="{{asset('js/controller-model.js')}}" type="text/javascript"></script>
+
+@endsection

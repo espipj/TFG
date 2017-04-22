@@ -26,7 +26,7 @@
 
 
 
-                    <tr class="clickable-row" data-href="{{route('verasociacion',[$asociacion])}}">
+                    <tr class="clickable-row" data-href="{{route('verasociacion',[$asociacion])}}" data-id="{{$asociacion->id}}">
                         <td style="width:20%;">{{$asociacion->nombre}}</td>
                         <td style="width:25%;">{{$asociacion->direccion}}</td>
                         <td style="width:25%;"><a href="mailto:{{$asociacion->email}}">{{$asociacion->email}}</a></td>
@@ -38,8 +38,8 @@
                                 <a href="{{url('editar/asociacion',['asociacion'=>$asociacion])}}"
                                    class="btn btn-success btn-sm" role="button"><span
                                             class="glyphicon glyphicon-edit"></span> Editar</a>
-                                <a href="{{url('eliminar/asociacion',['asociacion'=>$asociacion])}}"
-                                   class="btn btn-danger btn-sm" role="button"><span
+                                <a href=""
+                                   class="btn btn-danger btn-sm eliminar" role="button"><span
                                             class="glyphicon glyphicon-remove"></span> Eliminar</a>
                             </div>
                         </td>
@@ -49,4 +49,15 @@
             </tbody>
         </table>
     @endif
+@endsection
+
+
+
+{!! Form::open(['url' => ['eliminar/asociacion/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
+{!! Form::close() !!}
+
+@section('scripts')
+
+    <script src="{{asset('js/controller-model.js')}}" type="text/javascript"></script>
+
 @endsection

@@ -83,9 +83,14 @@ class GanaderiasController extends Controller
         //return redirect()->to('/ver/ganaderia');
     }
 
-    public function delete($Ganaderia){
-        $ganaderia=Ganaderia::find($Ganaderia);
-        $ganaderia->delete();
+    public function delete($id, Request $request){
+
+        if($request->ajax()){
+            $ganaderia=Ganaderia::find($id);
+            $ganaderia->delete();
+            return $id;
+
+        }
         return redirect()->to('/ver/ganaderia');
 
     }

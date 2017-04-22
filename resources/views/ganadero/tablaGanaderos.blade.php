@@ -14,7 +14,7 @@
 
 
 
-            <tr class="clickable-row" data-href="{{route('verganadero',[$ganadero])}}">
+            <tr class="clickable-row" data-href="{{route('verganadero',[$ganadero])}}" data-id="{{$ganadero->id}}">
                 <td style="width:12%;">{{$ganadero->nombre}}</td>
                 <td style="width:15%;">{{$ganadero->apellido1}} {{$ganadero->apellido2}}</td>
                 <td style="width:20%;"><a href="tel:{{$ganadero->telefono}}">{{$ganadero->telefono}}</a></td>
@@ -25,7 +25,7 @@
                            role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
                         <a href="{{url('editar/ganadero',['ganadero'=>$ganadero])}}" class="btn btn-success btn-sm"
                            role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                        <a href="{{url('eliminar/ganadero',['ganadero'=>$ganadero])}}" class="btn btn-danger btn-sm"
+                        <a href="" class="btn btn-danger btn-sm eliminar"
                            role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                     </div>
                 </td>
@@ -34,4 +34,12 @@
     @endforeach
     </tbody>
 </table>
+{!! Form::open(['url' => ['eliminar/ganadero/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
+{!! Form::close() !!}
+
+@section('scripts')
+
+    <script src="{{asset('js/controller-model.js')}}" type="text/javascript"></script>
+
+@endsection
 

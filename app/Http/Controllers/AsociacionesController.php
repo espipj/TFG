@@ -76,9 +76,14 @@ class AsociacionesController extends Controller
         //return redirect('ver/asociacion/'.$asociacion_id);
     }
 
-    public function delete($Asociacion){
-        $asociacion=Asociacion::find($Asociacion);
-        $asociacion->delete();
+    public function delete($id, Request $request){
+
+        if($request->ajax()){
+            $asociacion=Asociacion::find($id);
+            $asociacion->delete();
+            return $id;
+
+        }
         return redirect()->to('/ver/asociacion/');
 
     }

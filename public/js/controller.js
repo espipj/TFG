@@ -56,16 +56,11 @@ $(document).ready(function(){
 	$(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
-	
-	
 
-	//Cada fila es clickable
-	/*jQuery(document).ready(function($) {
-		$(".clickable-row").click(function() {
-			window.document.location = $(this).data("href");
-		});
-	});
-	*/
+    //Para que los botones no sean incluidos como parte de la fila
+    $(".btn-group").click(function(event){
+        event.stopPropagation();
+    });
 
 
     function initMap() {
@@ -222,7 +217,7 @@ $(document).ready(function(){
 	
 	
 	var $root = $('html, body');
-	$('a[href*=#]:not([href=#carousel1])').click(function() {
+	/*$('a[href*=#]:not([href=#carousel1])').click(function() {
 		
 		var href = $.attr(this, 'href');
 		
@@ -231,7 +226,7 @@ $(document).ready(function(){
 		});
 		return false;
 	});
-	
+	*/
 	
 	$(document).on('click','.navbar-collapse.in',function(e) {
 

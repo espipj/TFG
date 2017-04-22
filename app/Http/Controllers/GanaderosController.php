@@ -90,11 +90,15 @@ class GanaderosController extends Controller
         return redirect()->route('verganadero',[$ganadero]);
     }
 
-    public function delete($Ganadero){
+    public function delete($id,Request $request){
 
-        $ganadero=Ganadero::find($Ganadero);
-        $ganadero->delete();
-        return redirect()->to('/ver/ganadero');
+        if($request->ajax()){
+            $ganadero=Ganadero::find($id);
+            $ganadero->delete();
+            return $id;
+            return redirect()->to('/ver/ganadero');
+
+        }
 
     }
 }

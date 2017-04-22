@@ -90,11 +90,14 @@ class GanadosController extends Controller
         return redirect()->route('verganado',[$ganado]);
     }
 
-    public function delete($Ganado){
+    public function delete($id,Request $request){
+        if($request->ajax()){
 
-        $ganado=Ganado::find($Ganado);
-        $ganado->delete();
-        return redirect()->to('/ver/ganado');
+            $ganado=Ganado::find($id);
+            $ganado->delete();
+            return $id;
+
+        }
 
 
     }
