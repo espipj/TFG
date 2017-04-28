@@ -66,6 +66,11 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/editar/ganado/{ganado}', 'GanadosController@show_edit');
     Route::post('/editar/ganado/completed', 'GanadosController@edit');
     Route::delete('/eliminar/ganado/{ganado}', 'GanadosController@delete');
+
+
+    Route::get('importExport', 'MaatwebsiteDemoController@importExport');
+    Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
+    Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
 });
 
 

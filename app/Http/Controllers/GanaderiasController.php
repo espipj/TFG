@@ -32,7 +32,9 @@ class GanaderiasController extends Controller
     public function guardar(Request $request){
         $this->validate($request,[
             'nombre'=>['required','max:256'],
-            'direccion'=>['required','max:256'],
+            'sigla'=>['required'],
+            'email'=>['required'],
+            'telefono'=>['required'],
             'asociacion_id'=>['required']
         ]);
         $datos = $request->except('asociacion_id');
@@ -70,7 +72,9 @@ class GanaderiasController extends Controller
     public function edit(Request $request){
         $this->validate($request,[
             'nombre'=>['required','max:256'],
-            'direccion'=>['required','max:256'],
+            'sigla'=>['required'],
+            'email'=>['required'],
+            'telefono'=>['required'],
             'asociacion_id'=>['required'],
             'ganaderia_id' =>['required'],
         ]);

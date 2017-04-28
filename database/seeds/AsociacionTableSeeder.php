@@ -13,6 +13,12 @@ class AsociacionTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(Asociacion::class)->times(50)->create();
+        Asociacion::create([
+            'nombre' => 'Morucha',
+            'direccion' => 'Calle Santa Clara, 20 – 37001 SALAMANCA',
+            'email' => 'morucha@morucha.com',
+            'telefono' => '923 28 08 92',
+        ]);
+        //factory(Asociacion::class)->times(50)->create();
     }
 }

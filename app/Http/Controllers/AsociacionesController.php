@@ -28,6 +28,7 @@ class AsociacionesController extends Controller
         'nombre'=>['required','max:100'],
         'direccion'=>['required'],
         'email'=>['required'],
+        'telefono'=>['required'],
       ]);
       $datos = $request->all();
       Asociacion::create($datos);
@@ -66,6 +67,7 @@ class AsociacionesController extends Controller
             'direccion'=>['required'],
             'email'=>['required'],
             'asociacion_id'=>['required'],
+            'telefono'=>['required'],
         ]);
         $datos = $request->except(['asociacion_id']);
         $asociacion_id=$request->input('asociacion_id');

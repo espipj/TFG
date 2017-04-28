@@ -2,18 +2,18 @@
     <thead>
     <tr class="header">
         <th style="width:20%;">Nombre</th>
-        <th style="width:25%;">Dirección</th>
+        <th style="width:25%;">Telefono</th>
         <th style="width:25%;">Asociación</th>
         <th style="width:30%;">Acciones</th>
     </tr>
     </thead>
     <tbody>
     @foreach($ganaderias as $ganaderia)
-        @if($ganaderia->nombre && $ganaderia->direccion && $ganaderia->asociacion->nombre)
+        @if($ganaderia->nombre && $ganaderia->telefono && $ganaderia->asociacion->nombre)
 
             <tr class="clickable-row" data-href="{{route('verganaderia',[$ganaderia])}}" data-id="{{$ganaderia->id}}">
                 <td style="width:20%;">{{$ganaderia->nombre}}</td>
-                <td style="width:25%;">{{$ganaderia->direccion}}</td>
+                <td style="width:25%;">{{$ganaderia->telefono}}</td>
                 <td style="width:25%;">{{$ganaderia->asociacion->nombre}}</td>
                 <td style="width:30%;">
                     <div class="btn-group">

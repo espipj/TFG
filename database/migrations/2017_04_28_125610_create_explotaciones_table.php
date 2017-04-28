@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGanaderiasTable extends Migration
+class CreateExplotacionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,11 @@ class CreateGanaderiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ganaderias', function (Blueprint $table) {
+        Schema::create('explotaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->string('sigla');
-            $table->string('email');
-            $table->string('telefono');
+            $table->string('cod_explotacion');
+            $table->string('municipio');
             $table->integer('asociacion_id');
-            $table->timestamps();
         });
     }
 
@@ -30,6 +27,6 @@ class CreateGanaderiasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ganaderias');
+        Schema::drop('explotaciones');
     }
 }

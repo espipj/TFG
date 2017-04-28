@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(UserTableSeeder::class);
         $this->call(AsociacionTableSeeder::class);
         $this->call(SexoTableSeeder::class);
-        $this->call(GanaderiaTableSeeder::class);
-        $this->call(GanadoTableSeeder::class);
-        $this->call(GanaderoTableSeeder::class);
+        //$this->call(GanaderiaTableSeeder::class);
+        //$this->call(GanadoTableSeeder::class);
+        //$this->call(GanaderoTableSeeder::class);
 
         Model::reguard();
 

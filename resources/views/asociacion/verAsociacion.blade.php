@@ -11,6 +11,7 @@
             <h2>Nombre: {{$asociacion->nombre}}</h2>
             <h2>Dirección: {{$asociacion->direccion}}</h2>
             <h3>Email: <a href="mailto:{{$asociacion->email}}">{{$asociacion->email}}</a></h3>
+            <h3>Telefono: <a href="tel:{{$asociacion->telefono}}">{{$asociacion->telefono}}</a></h3>
 
             <br>
 
@@ -27,7 +28,6 @@
            role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
 
         @include('ganaderia.tablaGanaderias');
-
 
     @endif
 @endsection

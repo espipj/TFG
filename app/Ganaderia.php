@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ganaderia extends Model
 {
     //
-    protected $fillable = ['nombre', 'direccion'];
+    protected $fillable = ['nombre', 'sigla','email','telefono'];
 
 
     public function asociacion()
@@ -18,6 +18,11 @@ class Ganaderia extends Model
     public function ganados()
     {
         return $this->hasMany(Ganado::class);
+    }
+
+    public function explotaciones()
+    {
+        return $this->hasMany(Explotacion::class);
     }
 
     public function ganaderos()

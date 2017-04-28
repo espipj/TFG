@@ -24,9 +24,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Dirección postal</label>
+                            <label class="col-md-4 control-label">Sigla</label>
                             <div class="col-md-6">
-                                {!! Form::text('direccion', $ganaderia->direccion, ['class' => 'form-control', 'placeholder'=>'Direccion','required']) !!}
+                                {!! Form::text('sigla', $ganaderia->sigla, ['class' => 'form-control', 'placeholder'=>$ganaderia->sigla,'required']) !!}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Email</label>
+                            <div class="col-md-6">
+                                {!! Form::text('email', $ganaderia->email, ['class' => 'form-control', 'placeholder'=>$ganaderia->email,'required']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Teléfono</label>
+                            <div class="col-md-6">
+                                {!! Form::text('telefono', $ganaderia->telefono, ['class' => 'form-control', 'placeholder'=>$ganaderia->telefono,'required']) !!}
                             </div>
                         </div>
 

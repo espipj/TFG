@@ -3,9 +3,10 @@
 
 @section('contenido')
 
+
     @if (Auth::guest())
         @include('partials.permission')
     @else
-        @include('explotacion.tablaExplotacion')
+        @include('ganadero.tablaGanaderos')
     @endif
 @endsection

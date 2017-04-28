@@ -17,6 +17,7 @@ class CreateAsociacionesTable extends Migration
             $table->string('nombre');
             $table->mediumText('direccion');
             $table->string('email');
+            $table->string('telefono');
             $table->timestamps();
         });
     }

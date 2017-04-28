@@ -26,10 +26,25 @@
               </div>
 
               <div class="form-group">
-                <label class="col-md-4 control-label">Dirección postal</label>
+                <label class="col-md-4 control-label">Sigla</label>
                 <div class="col-md-6">
-                  {!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder'=>'Direccion','required']) !!}
+                  {!! Form::text('sigla', null, ['class' => 'form-control', 'placeholder'=>'Sigla','required']) !!}
                 </div>
+              </div>
+
+
+              <div class="form-group">
+                  <label class="col-md-4 control-label">Email</label>
+                  <div class="col-md-6">
+                      {!! Form::text('email', null, ['class' => 'form-control', 'placeholder'=>'Email','required']) !!}
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label class="col-md-4 control-label">Teléfono</label>
+                  <div class="col-md-6">
+                      {!! Form::text('telefono', null, ['class' => 'form-control', 'placeholder'=>'Teléfono','required']) !!}
+                  </div>
               </div>
 
               <div class="form-group">
