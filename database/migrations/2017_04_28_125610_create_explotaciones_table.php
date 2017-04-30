@@ -14,9 +14,9 @@ class CreateExplotacionesTable extends Migration
     {
         Schema::create('explotaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cod_explotacion');
+            $table->string('codigo_explotacion');
             $table->string('municipio');
-            $table->integer('asociacion_id');
+            $table->integer('ganaderia_id');
         });
     }
 

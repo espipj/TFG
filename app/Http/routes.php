@@ -67,6 +67,16 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::post('/editar/ganado/completed', 'GanadosController@edit');
     Route::delete('/eliminar/ganado/{ganado}', 'GanadosController@delete');
 
+    //Explotacion
+    Route::get('/registrar/explotacion/{explotacion?}', 'ExplotacionesController@registrar');
+    Route::post('/registrar/explotacion', 'ExplotacionesController@guardar');
+    Route::get('/ver/explotacion/{explotacion?}', [
+        'uses'  =>  'ExplotacionesController@show',
+        'as'    =>  'verexplotacion']);
+    Route::get('/editar/explotacion/{explotacion}', 'ExplotacionesController@show_edit');
+    Route::post('/editar/explotacion/completed', 'ExplotacionesController@edit');
+    Route::delete('/eliminar/explotacion/{explotacion}', 'ExplotacionesController@delete');
+
 
     Route::get('importExport', 'MaatwebsiteDemoController@importExport');
     Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

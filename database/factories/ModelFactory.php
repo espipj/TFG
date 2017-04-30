@@ -20,46 +20,60 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Ganado::class, function (Faker\Generator $faker){
+$factory->define(App\Ganado::class, function (Faker\Generator $faker) {
 
     return [
-        'crotal'=>$faker->numberBetween(2000,9999),
-        'fecha_nacimiento'=>$faker->dateTime
+        'crotal' => $faker->numberBetween(2000, 9999),
+        'fecha_nacimiento' => $faker->dateTime,
+        'capa' => array_rand(['Cárdena', 'Negra'])
     ];
 
 
 });
 
-$factory->define(App\Ganaderia::class, function (Faker\Generator $faker){
+$factory->define(App\Ganaderia::class, function (Faker\Generator $faker) {
 
     return [
-        'nombre'=> $faker->name,
-        'direccion'=> $faker->address
+        'nombre' => $faker->name,
+        'sigla' => $faker->countryCode,
+        'email' => $faker->email,
+        'telefono' => $faker->phoneNumber
     ];
 
 
 });
 
-$factory->define(App\Ganadero::class, function (Faker\Generator $faker){
+$factory->define(App\Ganadero::class, function (Faker\Generator $faker) {
 
     return [
-        'nombre'=> $faker->name,
-        'apellido1'=>$faker->word,
-        'apellido2'=>$faker->word,
-        'dni'=>$faker->numberBetween(0,9999999),
-        'email'=>$faker->email,
-        'telefono'=>$faker->phoneNumber
+        'nombre' => $faker->name,
+        'apellido1' => $faker->word,
+        'apellido2' => $faker->word,
+        'dni' => $faker->numberBetween(0, 9999999),
+        'email' => $faker->email,
+        'telefono' => $faker->phoneNumber
     ];
 
 
 });
 
-$factory->define(App\Asociacion::class, function (Faker\Generator $faker){
+$factory->define(App\Asociacion::class, function (Faker\Generator $faker) {
 
     return [
-        'nombre'=>$faker->word,
-        'direccion'=>$faker->address,
-        'email'=>$faker->email
+        'nombre' => $faker->name,
+        'direccion' => $faker->address,
+        'email' => $faker->email,
+        'telefono' => $faker->phoneNumber
+    ];
+
+
+});
+
+$factory->define(App\Explotacion::class, function (Faker\Generator $faker) {
+
+    return [
+        'municipio' => $faker->city,
+        'codigo_explotacion' => $faker->text(15),
     ];
 
 

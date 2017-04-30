@@ -41,13 +41,14 @@ class GanaderiasController extends Controller
         $ganaderia=Ganaderia::create($datos);
         $asociacion=Asociacion::find($request->input('asociacion_id'));
         $asociacion->ganaderias()->save($ganaderia);
-        return redirect()->to('/ver/ganaderia');
+        return redirect()->route('verganaderia',[$ganaderia]);
     }
 
     public function show($Ganaderia=null){
         if($Ganaderia==null){
             $ganaderias=Ganaderia::all();
-            return view('ganaderia.verGanaderias',compact('ganaderias'));
+            $explotaciones=Ganaderia::all();
+            return view('ganaderia.verGanaderias',compact('ganaderias','explotaciones'));
         }else{
             return $this->show_detail($Ganaderia);
         }
@@ -57,7 +58,8 @@ class GanaderiasController extends Controller
         $ganaderia=Ganaderia::find($Ganaderia);
         $ganados=$ganaderia->ganados;
         $ganaderos=$ganaderia->ganaderos;
-        return view('ganaderia.verGanaderia', compact('ganaderia','ganados','ganaderos'));
+        $explotaciones=$ganaderia->explotaciones;
+        return view('ganaderia.verGanaderia', compact('ganaderia','ganados','ganaderos','explotaciones'));
 
     }
 

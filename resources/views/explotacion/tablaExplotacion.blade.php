@@ -13,7 +13,7 @@
 
 
             <tr class="clickable-row" data-href="{{route('verexplotacion',[$explotacion])}}" data-id="{{$explotacion->id}}">
-                <td style="width:30%;">{{$explotacion->id}}</td>
+                <td style="width:30%;">{{$explotacion->codigo_explotacion}}</td>
                 <td style="width:40%;">{{$explotacion->municipio}}</td>
                 <td style="width:30%;">
                     <div class="btn-group">

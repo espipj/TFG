@@ -7,6 +7,6 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
-        @include('ganadero.tablaGanaderos')
+        @include('explotacion.tablaExplotacion')
     @endif
 @endsection

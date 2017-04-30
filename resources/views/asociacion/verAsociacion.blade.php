@@ -27,7 +27,7 @@
         <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-sm"
            role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
 
-        @include('ganaderia.tablaGanaderias');
+        @include('ganaderia.tablaGanaderias')
 
     @endif
 @endsection

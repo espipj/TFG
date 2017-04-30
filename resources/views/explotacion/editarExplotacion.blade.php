@@ -11,65 +11,34 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Editar Ganadero</div>
+                    <div class="panel-heading">Editar Explotacion</div>
                     <div class="panel-body">
                         @include('partials.errors')
 
 
 
-                        {!! Form::open(['url' => 'editar/ganadero/completed','class' =>'form-horizontal']) !!}
+                        {!! Form::open(['url' => 'editar/explotacion/completed','class' =>'form-horizontal']) !!}
                             {!! csrf_field() !!}
-                            {!! Form::hidden('ganadero_id',$ganadero->id) !!}
+                            {!! Form::hidden('explotacion_id',$explotacion->id) !!}
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Nombre</label>
+                                <label class="col-md-4 control-label">Código de Explotación</label>
                                 <div class="col-md-6">
-                                    {!! Form::text('nombre', $ganadero->nombre, ['class' => 'form-control', 'placeholder'=>$ganadero->nombre,'required']) !!}
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Primer Apellido</label>
-                                <div class="col-md-6">
-                                    {!! Form::text('apellido1', $ganadero->apellido1, ['class' => 'form-control', 'placeholder'=>$ganadero->apellido1,'required']) !!}
+                                    {!! Form::text('codigo_explotacion', $explotacion->codigo_explotacion, ['class' => 'form-control', 'placeholder'=>$explotacion->codigo_explotacion,'required']) !!}
                                 </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Segundo Apellido</label>
+                                <label class="col-md-4 control-label">Municipio</label>
                                 <div class="col-md-6">
-                                    {!! Form::text('apellido2', $ganadero->apellido2, ['class' => 'form-control', 'placeholder'=>$ganadero->apellido2,'required']) !!}
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">DNI</label>
-                                <div class="col-md-6">
-                                    {!! Form::text('dni', $ganadero->dni, ['class' => 'form-control', 'placeholder'=>$ganadero->dni,'required']) !!}
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">E-Mail</label>
-                                <div class="col-md-6">
-                                    {!! Form::email('email', $ganadero->email, ['class' => 'form-control', 'placeholder'=>$ganadero->email,'required']) !!}
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Teléfono</label>
-                                <div class="col-md-6">
-                                    {!! Form::text('telefono', $ganadero->telefono, ['class' => 'form-control', 'placeholder'=>$ganadero->email,'required']) !!}
+                                    {!! Form::text('municipio', $explotacion->municipio, ['class' => 'form-control', 'placeholder'=>$explotacion->municipio,'required']) !!}
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Ganadería</label>
                                 <div class="col-md-6">
-                                    {!! Form::select('ganaderia_id',$ganaderias,$ganadero->ganaderia->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    {!! Form::select('ganaderia_id',$ganaderias,$explotacion->ganaderia_id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                                 </div>
                             </div>
 
@@ -82,7 +51,7 @@
                                     </button>
                                 </div>
                             </div>
-                        {!! Form::close(); !!}
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

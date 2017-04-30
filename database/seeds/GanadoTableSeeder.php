@@ -18,12 +18,19 @@ class GanadoTableSeeder extends Seeder
 
         $ganaderias= Ganaderia::all();
         $sexos= Sexo::all();
-        $ganados = factory(Ganado::class)->times(400)->make();
+        $ganados = factory(Ganado::class)->times(200)->make();
 
         foreach ($ganados as $ganado){
             $ganaderia = $ganaderias->random();
             $ganaderia->ganados()->save($ganado);
             $sexos->random()->ganados()->save($ganado);
+            $padre=$ganados->random();
+            $madre=$ganados->random();
+            $ganado->madre()->associate($madre);
+            $ganado->padre()->associate($padre);
+            //$madre->hijosM()->save($ganado);
+            //$padre->hijosP()->save($ganado);
+
         }
     }
 }

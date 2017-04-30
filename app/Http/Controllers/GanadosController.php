@@ -18,7 +18,7 @@ class GanadosController extends Controller
     }
     public function registrar($Ganaderia=null){
 
-        $ganaderias=Ganaderia::lists('nombre','id');
+        $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
         $sexos=Sexo::all();
         if($Ganaderia==null){
             return view('ganado.registrarGanado',compact('ganaderias','sexos'));

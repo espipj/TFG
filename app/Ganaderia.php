@@ -29,4 +29,9 @@ class Ganaderia extends Model
     {
         return $this->hasMany(Ganadero::class);
     }
+
+    //Attribute Acessor Laravel
+    public function getSelectOptionAttribute(){
+        return $this->attributes['sigla'].' - '.$this->attributes['nombre'];
+    }
 }

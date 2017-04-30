@@ -13,59 +13,28 @@
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-          <div class="panel-heading">Registrar Ganadero</div>
+          <div class="panel-heading">Registrar Explotación</div>
           <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['url' => 'registrar/ganadero','class' =>'form-horizontal']) !!}
+            {!! Form::open(['url' => 'registrar/explotacion','class' =>'form-horizontal']) !!}
 
               {!! csrf_field() !!}
 
               <div class="form-group">
-                <label class="col-md-4 control-label">Nombre</label>
-                <div class="col-md-6">
-                  {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder'=>'Nombre','required']) !!}
-                </div>
+                  <label class="col-md-4 control-label">Código de Explotación</label>
+                  <div class="col-md-6">
+                      {!! Form::text('codigo_explotacion', null, ['class' => 'form-control', 'placeholder'=>'CEA','required']) !!}
+                  </div>
               </div>
 
               <div class="form-group">
-                <label class="col-md-4 control-label">Primer Apellido</label>
-                <div class="col-md-6">
-                  {!! Form::text('apellido1', null, ['class' => 'form-control', 'placeholder'=>'Primer Apellido','required']) !!}
-                </div>
+                  <label class="col-md-4 control-label">Municipio</label>
+                  <div class="col-md-6">
+                      {!! Form::text('municipio', null, ['class' => 'form-control', 'placeholder'=>'Municipio','required']) !!}
+                  </div>
               </div>
 
-
-              <div class="form-group">
-                <label class="col-md-4 control-label">Segundo Apellido</label>
-                <div class="col-md-6">
-                  {!! Form::text('apellido2', null, ['class' => 'form-control', 'placeholder'=>'Segundo Apellido','required']) !!}
-                </div>
-              </div>
-
-
-              <div class="form-group">
-                <label class="col-md-4 control-label">DNI</label>
-                <div class="col-md-6">
-                  {!! Form::text('dni', null, ['class' => 'form-control', 'placeholder'=>'DNI','required']) !!}
-                </div>
-              </div>
-
-
-
-              <div class="form-group">
-                <label class="col-md-4 control-label">E-Mail</label>
-                <div class="col-md-6">
-                  {!! Form::email('email', null, ['class' => 'form-control', 'placeholder'=>'E-Mail','required']) !!}
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="col-md-4 control-label">Teléfono</label>
-                <div class="col-md-6">
-                  {!! Form::text('telefono', null, ['class' => 'form-control', 'placeholder'=>'Teléfono','required']) !!}
-                </div>
-              </div>
 
               <div class="form-group">
                 <label class="col-md-4 control-label">Ganadería</label>
@@ -83,7 +52,7 @@
               <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                   <button type="submit" class="btn btn-primary" style="margin-right: 15px;">
-                    Crear
+                    Registrar
                   </button>
                 </div>
               </div>
