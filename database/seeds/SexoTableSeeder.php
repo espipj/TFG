@@ -13,7 +13,11 @@ class SexoTableSeeder extends Seeder
     public function run()
     {
         //
-        Sexo::create(['nombre'=>'Macho']);
-        Sexo::create(['nombre'=>'Hembra']);
+        Sexo::create([
+            'nombre'    =>  'Macho',
+            'alias'     =>  'M']);
+        Sexo::create([
+            'nombre'    =>  'Hembra',
+            'alias'     =>  'H']);
     }
 }

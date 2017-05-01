@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sexo extends Model
 {
     //
-    protected $fillable=['nombre'];
+    protected $fillable=['nombre','alias'];
 
     public function ganados()
     {

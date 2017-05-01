@@ -257,6 +257,17 @@ body {
 	margin-bottom: 12px; /* Add some space below the input */
 	background-size: 24px auto;
 }
+.buscadorjs {
+	background-image: url('../images/search.png'); /* Add a search icon to input */
+	background-position: 10px 12px; /* Position the search icon */
+	background-repeat: no-repeat; /* Do not repeat the icon image */
+	width: 100%;
+	font-size: 16px; /* Increase font-size */
+	padding: 12px 20px 12px 40px; /* Add some padding */
+	border: 1px solid #ddd; /* Add a grey border */
+	/* margin-bottom: 12px; Add some space below the input */
+	background-size: 24px auto;
+}
 /*#miTabla tbody {
 	display: block;
 	width: 100%;
@@ -296,6 +307,29 @@ body {
 .header-fixed > thead > tr > th {
 /*    width: 20%;
 */    float: left;
+}
+
+table.pariente{
+	border-collapse: collapse; /* Collapse borders */
+	width: 100%; /* Full-width */
+	border: 1px solid #ddd; /* Add a grey border */
+	font-size: 18px; /* Increase font-size */
+
+}
+
+.pariente.header-fixed > tbody {
+	overflow-y: auto;
+	height: 200px;
+}
+
+table.pariente th,table.pariente tr{
+	text-align: center; /* Left-align text */
+	/*padding: 12px; Add padding */
+
+}
+
+table.pariente tr.header,table.pariente tr:hover{
+	background-color: #f1f1f1;
 }
 #miTabla {
 	border-collapse: collapse; /* Collapse borders */

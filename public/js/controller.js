@@ -22,12 +22,12 @@
 	}
 	
 	/*Funcion filtro en la tabla/buscador*/
-	function buscar() {
+	function buscar(buscador,tabla) {
 	//Declaramos variables
 		  var input, filter, table, tr, td, i,ac;
-		  input = document.getElementById("mibuscador");
+		  input = document.getElementById(buscador);
 		  filter = input.value.toUpperCase();
-		  table = document.getElementById("miTabla");
+		  table = document.getElementById(tabla);
 		  tr = table.getElementsByTagName("tr");
 
 		  // Loop through all table rows, and hide those who don't match the search query
@@ -49,8 +49,17 @@
 //Lo utilizamos para que los scripts no se ejecuten antes del document ready
 $(document).ready(function(){
 	
-	
-	
+	/*
+
+    $(".buscadorjs").onkeyup(function () {
+        buscar($(this).id,$(this).data('tabla'));
+    });
+    */
+    $(".buscadorjs").keyup(function () {
+        //alert($(this).data('tabla'));
+        buscar($(this).attr('id'),$(this).data('tabla'));
+
+    });
 
 	//Filas de las tablas clickables
 	$(".clickable-row").click(function() {
@@ -62,7 +71,9 @@ $(document).ready(function(){
         event.stopPropagation();
     });
 
-
+    $(".pariente").click(function(event){
+        event.stopPropagation();
+    });
     function initMap() {
 
         var location = new google.maps.LatLng(40.978583, -5.714722);

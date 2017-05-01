@@ -20,8 +20,16 @@ class Ganado extends Model
         return $this->belongsTo(Ganado::class,'madre_id');
     }
 
+    public function hijosM(){
+        return $this->hasMany(Ganado::class, 'madre_id');
+    }
+
     public function padre()
     {
         return $this->belongsTo(Ganado::class, 'padre_id');
+    }
+
+    public function hijosP(){
+        return $this->hasMany(Ganado::class, 'padre_id');
     }
 }

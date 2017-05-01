@@ -25,7 +25,7 @@ $factory->define(App\Ganado::class, function (Faker\Generator $faker) {
     return [
         'crotal' => $faker->numberBetween(2000, 9999),
         'fecha_nacimiento' => $faker->dateTime,
-        'capa' => array_rand(['Cárdena', 'Negra'])
+        'capa' => array_rand(['C', 'N'],1)
     ];
 
 

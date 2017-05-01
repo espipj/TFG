@@ -26,10 +26,8 @@ class GanadoTableSeeder extends Seeder
             $sexos->random()->ganados()->save($ganado);
             $padre=$ganados->random();
             $madre=$ganados->random();
-            $ganado->madre()->associate($madre);
-            $ganado->padre()->associate($padre);
-            //$madre->hijosM()->save($ganado);
-            //$padre->hijosP()->save($ganado);
+            $madre->hijosM()->save($ganado);
+            $padre->hijosP()->save($ganado);
 
         }
     }
