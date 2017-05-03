@@ -24,8 +24,12 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Ganadería</label>
                                 <div class="col-md-6">
+                                    @if(!empty($ganadoe->ganaderia->id))
                                     {!! Form::select('ganaderia_id',$ganaderias,$ganadoe->ganaderia->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    @else
+                                        {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
 
+                                    @endif
                                 </div>
                             </div>
 

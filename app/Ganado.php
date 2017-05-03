@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Ganado extends Model
 {
     //Capa Morucha Cárdena Morucha Negra
-    protected $fillable=['crotal','fecha_nacimiento','capa'];
+    protected $fillable=['crotal','capa','vivo'];
+    protected $dates=['fecha_nacimiento'];
 
     public function ganaderia(){
         return $this->belongsTo(Ganaderia::class);

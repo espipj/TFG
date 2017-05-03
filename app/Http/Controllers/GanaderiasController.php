@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Asociacion;
+use App\Explotacion;
 use App\Ganaderia;
 use App\Ganado;
 use Illuminate\Http\Request;
@@ -47,8 +48,7 @@ class GanaderiasController extends Controller
     public function show($Ganaderia=null){
         if($Ganaderia==null){
             $ganaderias=Ganaderia::all();
-            $explotaciones=Ganaderia::all();
-            return view('ganaderia.verGanaderias',compact('ganaderias','explotaciones'));
+            return view('ganaderia.verGanaderias',compact('ganaderias'));
         }else{
             return $this->show_detail($Ganaderia);
         }
@@ -56,7 +56,7 @@ class GanaderiasController extends Controller
 
     public function show_detail($Ganaderia){
         $ganaderia=Ganaderia::find($Ganaderia);
-        $ganados=$ganaderia->ganados;
+        $ganados=$ganaderia->ganados->sortBy('crotal')->sortByDesc('vivo');
         $ganaderos=$ganaderia->ganaderos;
         $explotaciones=$ganaderia->explotaciones;
         return view('ganaderia.verGanaderia', compact('ganaderia','ganados','ganaderos','explotaciones'));

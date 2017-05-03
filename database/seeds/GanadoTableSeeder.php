@@ -24,11 +24,14 @@ class GanadoTableSeeder extends Seeder
             $ganaderia = $ganaderias->random();
             $ganaderia->ganados()->save($ganado);
             $sexos->random()->ganados()->save($ganado);
-            $padre=$ganados->random();
-            $madre=$ganados->random();
+
+        }
+
+        foreach ($ganados as $ganado) {
+            $padre = $ganados->where('sexo_id', 1)->random();
+            $madre = $ganados->where('sexo_id', 2)->random();
             $madre->hijosM()->save($ganado);
             $padre->hijosP()->save($ganado);
-
         }
     }
 }

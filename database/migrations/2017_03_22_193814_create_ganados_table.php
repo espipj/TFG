@@ -14,13 +14,14 @@ class CreateGanadosTable extends Migration
     {
         Schema::create('ganados', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('crotal');
+            $table->string('crotal')->unique();
             $table->date('fecha_nacimiento');
             $table->string('capa');
             $table->integer('ganaderia_id');
             $table->integer('padre_id');
             $table->integer('madre_id');
             $table->integer('sexo_id');
+            $table->integer('vivo')->default(1);
             $table->timestamps();
         });
     }

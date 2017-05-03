@@ -14,7 +14,7 @@ class GanadosController extends Controller
 {
     //
     public function index(){
-        return Ganado::all();
+        return Ganado::all()->sortBy('crotal');
     }
     public function registrar($Ganaderia=null){
 
@@ -37,7 +37,7 @@ class GanadosController extends Controller
             'fecha_nacimiento'=>['required'],
             'ganaderia_id'=>['required'],
         ]);
-        $datos = $request->except(['ganaderia_id','sexo_id']);
+        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento']);
         $ganado=Ganado::create($datos);
         $padre=Ganado::find($request->input('padre_id'));
         $madre=Ganado::find($request->input('madre_id'));
@@ -45,7 +45,8 @@ class GanadosController extends Controller
         $madre->hijosM()->save($ganado);
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
         $sexo=Sexo::find($request->input('sexo_id'));
-        //$ganaderia=$request->input('ganaderia_id');
+        $ganado->fecha_nacimiento=$request->input('fecha_nacimiento');
+        $ganado->save();
         $ganaderia->ganados()->save($ganado);
         $sexo->ganados()->save($ganado);
         return redirect()->to('/ver/ganado');
@@ -53,10 +54,25 @@ class GanadosController extends Controller
 
     public function show($Ganado=null){
         if($Ganado==null){
-            $ganados=Ganado::all();
+            $ganados=Ganado::all()->sortBy('crotal')->sortByDesc('vivo');
+            //$ganados=Ganado::where('vivo',1)->orderBy('crotal')->get();
             return view('ganado.verGanados',compact('ganados'));
         }else{
             return $this->show_detail($Ganado);
+        }
+    }
+
+    public function showMuertos($Ganaderia=null){
+
+        if($Ganaderia==null){
+            $ganados=Ganado::where('vivo',0)->orderBy('crotal')->get();
+
+            //dd($ganados);
+            return view('ganado.verGanados',compact('ganados'));
+
+        }else{
+           // return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia','ganados'));
+
         }
     }
 
@@ -91,13 +107,15 @@ class GanadosController extends Controller
             'ganaderia_id'=>['required'],
             'ganado_id'=>['required'],
         ]);
-        $datos = $request->except(['ganaderia_id','sexo_id','ganado_id']);
+        $datos = $request->except(['ganaderia_id','sexo_id','ganado_id','fecha_nacimiento']);
         $ganado=Ganado::find($request->input('ganado_id'));
         $padre=Ganado::find($request->input('padre_id'));
         $madre=Ganado::find($request->input('madre_id'));
         $padre->hijosP()->save($ganado);
         $madre->hijosM()->save($ganado);
         $ganado->fill($datos)->save();
+        $ganado->fecha_nacimiento=$request->input('fecha_nacimiento');
+        $ganado->save();
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
         $sexo=Sexo::find($request->input('sexo_id'));
         $ganaderia->ganados()->save($ganado);
@@ -109,7 +127,7 @@ class GanadosController extends Controller
         if($request->ajax()){
 
             $ganado=Ganado::find($id);
-            $ganado->delete();
+            $ganado->fill(['vivo'=>0])->save();
             return $id;
 
         }

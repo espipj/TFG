@@ -63,6 +63,9 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/ver/ganado/{ganado?}', [
         'uses'  =>  'GanadosController@show',
         'as'    =>  'verganado']);
+    Route::get('/ver/muertos/{ganaderia?}', [
+        'uses'  =>  'GanadosController@showMuertos',
+        'as'    =>  'verganadomuerto']);
     Route::get('/editar/ganado/{ganado}', 'GanadosController@show_edit');
     Route::post('/editar/ganado/completed', 'GanadosController@edit');
     Route::delete('/eliminar/ganado/{ganado}', 'GanadosController@delete');

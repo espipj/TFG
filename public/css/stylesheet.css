@@ -268,6 +268,10 @@ body {
 	/* margin-bottom: 12px; Add some space below the input */
 	background-size: 24px auto;
 }
+.buscadorjs.noform{
+	margin-top: 25px;
+
+}
 /*#miTabla tbody {
 	display: block;
 	width: 100%;
@@ -331,6 +335,31 @@ table.pariente th,table.pariente tr{
 table.pariente tr.header,table.pariente tr:hover{
 	background-color: #f1f1f1;
 }
+
+table.ganados{
+	border-collapse: collapse; /* Collapse borders */
+	width: 100%; /* Full-width */
+	border: 1px solid #ddd; /* Add a grey border */
+	font-size: 18px; /* Increase font-size */
+	margin-top: 10px;
+
+}
+
+.ganados.header-fixed > tbody {
+	overflow-y: auto;
+	height: 450px;
+}
+
+table.ganados th,table.ganados tr{
+	text-align: center; /* Left-align text */
+	/*padding: 12px; Add padding */
+
+}
+
+table.ganados tr.header,table.ganados tr:hover{
+	background-color: #f1f1f1;
+}
+
 #miTabla {
 	border-collapse: collapse; /* Collapse borders */
 	width: 100%; /* Full-width */
