@@ -78,14 +78,19 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Hembra' && $ganado->fecha_nacimiento && $ganado->ganaderia->nombre)
+                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Hembra' && $ganado->fecha_nacimiento)
 
 
 
                                             <tr class="clickable-row" data-href="{{route('verganado',[$ganado])}}"
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
-                                                <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
+
+                                                @if(!empty($ganado->ganaderia))
+                                                    <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>
+                                                @else
+                                                    <td style="width:25%;">No definida</td>
+                                                @endif
                                                 <td style="width:34%;">{!! Form::radio('madre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
 
                                             </tr>
@@ -108,14 +113,18 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Macho' && $ganado->fecha_nacimiento && $ganado->ganaderia->nombre)
+                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Macho' && $ganado->fecha_nacimiento)
 
 
 
                                             <tr class="clickable-row" data-href="{{route('verganado',[$ganado])}}"
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
-                                                <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
+                                                @if(!empty($ganado->ganaderia))
+                                                    <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>
+                                                @else
+                                                    <td style="width:25%;">No definida</td>
+                                                @endif
                                                 <td style="width:34%;">{!! Form::radio('padre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
 
                                             </tr>

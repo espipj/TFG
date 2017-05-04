@@ -37,18 +37,7 @@ class GanadosController extends Controller
             'fecha_nacimiento'=>['required'],
             'ganaderia_id'=>['required'],
         ]);
-        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento']);
-        $ganado=Ganado::create($datos);
-        $padre=Ganado::find($request->input('padre_id'));
-        $madre=Ganado::find($request->input('madre_id'));
-        $padre->hijosP()->save($ganado);
-        $madre->hijosM()->save($ganado);
-        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        $sexo=Sexo::find($request->input('sexo_id'));
-        $ganado->fecha_nacimiento=$request->input('fecha_nacimiento');
-        $ganado->save();
-        $ganaderia->ganados()->save($ganado);
-        $sexo->ganados()->save($ganado);
+        Ganado::guardarNuevo($request);
         return redirect()->to('/ver/ganado');
     }
 

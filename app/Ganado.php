@@ -2,6 +2,10 @@
 
 namespace App;
 
+
+use App\Ganaderia;
+use App\Ganado;
+use App\Sexo;
 use Illuminate\Database\Eloquent\Model;
 
 class Ganado extends Model
@@ -32,5 +36,51 @@ class Ganado extends Model
 
     public function hijosP(){
         return $this->hasMany(Ganado::class, 'padre_id');
+    }
+
+    public function muestra(){
+        return $this->hasOne(Muestra::class);
+    }
+
+
+    public function setHijoP($hijo){
+        return $this->hijosP()->save($hijo);
+
+    }
+
+    public function setHijoM($hijo){
+        return $this->hijosM()->save($hijo);
+
+    }
+
+    public function setFechaNacimiento($date){
+        $this->fecha_nacimiento=$date;
+
+        $this->save();
+        return $this->fecha_nacimiento;
+    }
+
+    public function setSexo($sexo){
+
+        return $sexo->ganados()->save($this);
+    }
+
+    public function setGanaderia($ganaderia){
+        $ganaderia->ganados()->save($this);
+
+    }
+
+    public static function guardarNuevo($request){
+        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento']);
+        $ganado=self::create($datos);
+        $padre=Ganado::find($request->input('padre_id'));
+        $madre=Ganado::find($request->input('madre_id'));
+        $padre->setHijoP($ganado);
+        $madre->setHijoM($ganado);
+        $ganado->setSexo(Sexo::find($request->input('sexo_id')));
+        $ganado->setGanaderia(Ganaderia::find($request->input('ganaderia_id')));
+        $ganado->setFechaNacimiento($request->input('fecha_nacimiento'));
+        return $ganado;
+
     }
 }
