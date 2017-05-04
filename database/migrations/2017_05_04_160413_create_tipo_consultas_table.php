@@ -14,6 +14,7 @@ class CreateTipoConsultasTable extends Migration
     {
         Schema::create('tipo_consultas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ class CreateTipoMuestrasTable extends Migration
     {
         Schema::create('tipo_muestras', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
