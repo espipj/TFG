@@ -81,14 +81,14 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::delete('/eliminar/explotacion/{explotacion}', 'ExplotacionesController@delete');
 
     //Muestra
-    Route::get('/registrar/muestra/{ganado?}', 'ExplotacionesController@registrar');
-    Route::post('/registrar/explotacion', 'ExplotacionesController@guardar');
-    Route::get('/ver/explotacion/{explotacion?}', [
-        'uses'  =>  'ExplotacionesController@show',
-        'as'    =>  'verexplotacion']);
-    Route::get('/editar/explotacion/{explotacion}', 'ExplotacionesController@show_edit');
-    Route::post('/editar/explotacion/completed', 'ExplotacionesController@edit');
-    Route::delete('/eliminar/explotacion/{explotacion}', 'ExplotacionesController@delete');
+    Route::get('/registrar/muestra/{ganado?}', 'MuestrasController@registrar');
+    Route::post('/registrar/muestra', 'MuestrasController@guardar');
+    Route::get('/ver/muestra/{muestra?}', [
+        'uses'  =>  'MuestrasController@show',
+        'as'    =>  'vermuestra']);
+    Route::get('/editar/muestra/{muestra}', 'MuestrasController@show_edit');
+    Route::post('/editar/muestra/completed', 'MuestrasController@edit');
+    Route::delete('/eliminar/muestra/{muestra}', 'MuestrasController@delete');
 
 
     Route::get('importExport', 'MaatwebsiteDemoController@importExport');

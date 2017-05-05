@@ -87,9 +87,9 @@
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
 
                                                 @if(!empty($ganado->ganaderia))
-                                                    <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>
+                                                    <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
                                                 @else
-                                                    <td style="width:25%;">No definida</td>
+                                                    <td style="width:33%;">No definida</td>
                                                 @endif
                                                 <td style="width:34%;">{!! Form::radio('madre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
 
@@ -121,9 +121,9 @@
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
                                                 @if(!empty($ganado->ganaderia))
-                                                    <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>
+                                                    <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
                                                 @else
-                                                    <td style="width:25%;">No definida</td>
+                                                    <td style="width:33%;">No definida</td>
                                                 @endif
                                                 <td style="width:34%;">{!! Form::radio('padre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
 

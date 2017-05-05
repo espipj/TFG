@@ -11,7 +11,7 @@ class Laboratorio extends Model
     protected $fillable=['nombre','direccion','email','telefono'];
 
     protected function muestras(){
-        return $this->hasMany(Muestra::class);
+        return $this->hasMany(Muestra::class,'laboratorio_id');
     }
 
 

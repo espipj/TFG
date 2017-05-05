@@ -50,11 +50,11 @@
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
 
                                                 @if(!empty($ganado->ganaderia))
-                                                    <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>
+                                                    <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
                                                 @else
-                                                    <td style="width:25%;">No definida</td>
+                                                    <td style="width:33%;">No definida</td>
                                                 @endif
-                                                <td style="width:34%;">{!! Form::radio('madre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
+                                                <td style="width:34%;">{!! Form::radio('ganado_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
 
                                             </tr>
                                         @endif
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tipo de muestra</label>
                                 <div class="col-md-6">
-                                    {!! Form::select('tipomuestra_id',$tipomuestras,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    {!! Form::select('tipo_muestra_id',$tipomuestras,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
 
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Tipo de consulta</label>
                                 <div class="col-md-6">
-                                    {!! Form::select('tipoconsulta_id',$tipoconsultas,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    {!! Form::select('tipo_consulta_id',$tipoconsultas,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
 
                                 </div>
                             </div>

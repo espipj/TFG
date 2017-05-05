@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Ganaderia;
+use App\Ganado;
 use App\Laboratorio;
+use App\Muestra;
 use App\TipoConsulta;
 use App\TipoMuestra;
 use Illuminate\Http\Request;
@@ -21,9 +24,9 @@ class MuestrasController extends Controller
 
         $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
         $ganados=Ganado::all()->sortBy('crotal');
-        $tipomuestras=TipoMuestra::all()->sortBy('select_option')->lists('select_option',id);
-        $tipoconsultas=TipoConsulta::all()->sortBy('select_option')->lists('select_option',id);
-        $laboratorios=Laboratorio::all()->sortBy('select_option')->lists('select_option',id);
+        $tipomuestras=TipoMuestra::all()->sortBy('select_option')->lists('select_option','id');
+        $tipoconsultas=TipoConsulta::all()->sortBy('select_option')->lists('select_option','id');
+        $laboratorios=Laboratorio::all()->sortBy('select_option')->lists('select_option','id');
         if($Ganado==null){
             return view('muestra.registrarMuestra',compact('ganaderias','ganados','tipomuestras','tipoconsultas','laboratorios'));
 
@@ -35,49 +38,31 @@ class MuestrasController extends Controller
 
     public function guardar(Request $request){
         $this->validate($request,[
-            'crotal'=>['required','max:256'],
-            'sexo_id'=>['required'],
-            'fecha_nacimiento'=>['required'],
-            'ganaderia_id'=>['required'],
+            'tubo'=>['required'],
+            'fecha_extraccion'=>['required'],
+            'ganado_id'=>['required'],
+            'tipo_muestra_id'=>['required'],
+            'tipo_consulta_id'=>['required'],
+            'laboratorio_id'=>['required'],
         ]);
-        Ganado::guardarNuevo($request);
-        return redirect()->to('/ver/ganado');
+        $muestra=Muestra::guardarNueva($request);
+        return redirect()->route('vermuestra',[$muestra]);
     }
 
-    public function show($Ganado=null){
-        if($Ganado==null){
-            $ganados=Ganado::all()->sortBy('crotal')->sortByDesc('vivo');
-            //$ganados=Ganado::where('vivo',1)->orderBy('crotal')->get();
-            return view('ganado.verGanados',compact('ganados'));
+    public function show($Muestra=null){
+        if($Muestra==null){
+            $muestras=Muestra::all()->sortBy('tubo');
+            return view('muestra.verMuestras',compact('muestras'));
         }else{
-            return $this->show_detail($Ganado);
+            return $this->show_detail($Muestra);
         }
     }
 
-    public function showMuertos($Ganaderia=null){
-
-        if($Ganaderia==null){
-            $ganados=Ganado::where('vivo',0)->orderBy('crotal')->get();
-
-            //dd($ganados);
-            return view('ganado.verGanados',compact('ganados'));
-
-        }else{
-            // return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia','ganados'));
-
-        }
+    public function show_detail($Muestra){
+        $muestra=Muestra::find($Muestra);
+        return view('muestra.verMuestra', compact('muestra'));
     }
 
-    public function show_detail($Ganado){
-        $ganado=Ganado::find($Ganado);
-        if($ganado->sexo->nombre=='Macho'){
-            $ganados=$ganado->hijosP;
-        }else{
-            $ganados=$ganado->hijosM;
-
-        }
-        return view('ganado.verGanado', compact('ganado','ganados'));
-    }
 
     public function show_edit($Ganado){
 

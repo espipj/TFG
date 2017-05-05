@@ -1,5 +1,6 @@
 <?php
 
+use App\TipoMuestra;
 use Illuminate\Database\Seeder;
 
 class TipoMuestraTableSeeder extends Seeder
@@ -12,5 +13,28 @@ class TipoMuestraTableSeeder extends Seeder
     public function run()
     {
         //
+        TipoMuestra::create([
+            'nombre'    =>  'Sangre'
+        ]);
+
+        TipoMuestra::create([
+            'nombre'    =>  'Pelo'
+        ]);
+
+        TipoMuestra::create([
+            'nombre'    =>  'Semen Fresco'
+        ]);
+
+        TipoMuestra::create([
+            'nombre'    =>  'Semen Congelado'
+        ]);
+
+        TipoMuestra::create([
+            'nombre'    =>  'Lana'
+        ]);
+
+        TipoMuestra::create([
+            'nombre'    =>  'Otro'
+        ]);
     }
 }

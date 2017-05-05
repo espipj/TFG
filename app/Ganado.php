@@ -66,7 +66,7 @@ class Ganado extends Model
     }
 
     public function setGanaderia($ganaderia){
-        $ganaderia->ganados()->save($this);
+        return $ganaderia->ganados()->save($this);
 
     }
 

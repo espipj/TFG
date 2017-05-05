@@ -26,7 +26,7 @@ $factory->define(App\Ganado::class, function (Faker\Generator $faker) {
         'crotal' => $faker->unique()->numberBetween(2000, 9999),
         'fecha_nacimiento' => $faker->date(),
         'vivo' => $faker->numberBetween(0, 1),
-        'capa' => array_rand(['C'=>'Cardena', 'N'=>'Negra'])
+        'capa' => array_rand(['C' => 'Cardena', 'N' => 'Negra'])
     ];
 
 
@@ -75,6 +75,18 @@ $factory->define(App\Explotacion::class, function (Faker\Generator $faker) {
     return [
         'municipio' => $faker->city,
         'codigo_explotacion' => $faker->text(15),
+    ];
+
+
+});
+
+$factory->define(App\Laboratorio::class, function (Faker\Generator $faker) {
+
+    return [
+        'nombre' => $faker->name,
+        'direccion' => $faker->streetName,
+        'email' => $faker->email,
+        'telefono' => $faker->phoneNumber,
     ];
 
 
