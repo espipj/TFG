@@ -21,6 +21,10 @@ class Ganado extends Model
     return $this->belongsTo(Sexo::class);
     }
 
+    public function estado(){
+        return  $this->belongsTo(Estado::class);
+    }
+
     public function madre(){
         return $this->belongsTo(Ganado::class,'madre_id');
     }

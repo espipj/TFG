@@ -1,5 +1,6 @@
 <?php
 
+use App\Estado;
 use App\Ganaderia;
 use App\Ganado;
 use App\Sexo;
@@ -18,12 +19,14 @@ class GanadoTableSeeder extends Seeder
 
         $ganaderias= Ganaderia::all();
         $sexos= Sexo::all();
+        $estados= Estado::all();
         $ganados = factory(Ganado::class)->times(200)->make();
 
         foreach ($ganados as $ganado){
             $ganaderia = $ganaderias->random();
             $ganaderia->ganados()->save($ganado);
             $sexos->random()->ganados()->save($ganado);
+            $estados->random()->ganados()->save($ganado);
 
         }
 
