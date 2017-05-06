@@ -9,7 +9,9 @@ class TipoConsulta extends Model
     //
     protected $fillable=['nombre'];
 
-    protected function muestras(){
+    public $timestamps=false;
+
+    public function muestras(){
         return $this->hasMany(Muestra::class);
     }
 

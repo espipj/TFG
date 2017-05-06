@@ -545,3 +545,49 @@ table.ganados tr.header,table.ganados tr:hover{
 .form-control {
   /*border-radius: 0px;*/
 }
+
+.btn-excel {
+	color: #ffffff;
+	background-color: #23673D;
+	border-color: #19942B;
+}
+
+.btn-excel:hover,
+.btn-excel:focus,
+.btn-excel:active,
+.btn-excel.active,
+.open .dropdown-toggle.btn-excel {
+	color: #ffffff;
+	background-color: #287D49;
+	border-color: #19942B;
+}
+
+.btn-excel:active,
+.btn-excel.active,
+.open .dropdown-toggle.btn-excel {
+	background-image: none;
+}
+
+.btn-excel.disabled,
+.btn-excel[disabled],
+fieldset[disabled] .btn-excel,
+.btn-excel.disabled:hover,
+.btn-excel[disabled]:hover,
+fieldset[disabled] .btn-excel:hover,
+.btn-excel.disabled:focus,
+.btn-excel[disabled]:focus,
+fieldset[disabled] .btn-excel:focus,
+.btn-excel.disabled:active,
+.btn-excel[disabled]:active,
+fieldset[disabled] .btn-excel:active,
+.btn-excel.disabled.active,
+.btn-excel[disabled].active,
+fieldset[disabled] .btn-excel.active {
+	background-color: #23673D;
+	border-color: #19942B;
+}
+
+.btn-excel .badge {
+	color: #23673D;
+	background-color: #ffffff;
+}

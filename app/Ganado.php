@@ -83,4 +83,23 @@ class Ganado extends Model
         return $ganado;
 
     }
+
+    public static function generateArrayForExport(){
+        $ganados=Ganado::all();
+        $array=array();
+        foreach ($ganados as $ganado){
+            $aux=[
+                'fecha de nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
+                'crotal'                =>  $ganado->crotal,
+                'padre'                 =>  $ganado->padre->crotal,
+                'madre'                 =>  $ganado->madre->crotal,
+                'capa'                  =>  $ganado->capa,
+                'sexo'                  =>  $ganado->sexo->alias,
+                'vivo'                  =>  $ganado->vivo,
+
+            ];
+            array_push($array,$aux);
+        }
+        return $array;
+    }
 }

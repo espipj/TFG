@@ -90,6 +90,16 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::post('/editar/muestra/completed', 'MuestrasController@edit');
     Route::delete('/eliminar/muestra/{muestra}', 'MuestrasController@delete');
 
+    //Laboratorio
+    Route::get('/ver/laboratorio/{laboratorio?}', [
+        'uses'  =>  'LaboratorioController@show',
+        'as'    =>  'verlaboratorio']);
+
+    //Importar
+    Route::get('/importar/{opcion}','ImportExportController@importar');
+
+    //Exportar
+    Route::get('/exportar/{opcion}/{formato}','ImportExportController@exportar');
 
     Route::get('importExport', 'MaatwebsiteDemoController@importExport');
     Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

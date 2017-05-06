@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoMuestrasTable extends Migration
+class CreateEstadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateTipoMuestrasTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_muestras', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('alias');
         });
     }
 
@@ -25,6 +26,6 @@ class CreateTipoMuestrasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_muestras');
+        Schema::drop('estados');
     }
 }

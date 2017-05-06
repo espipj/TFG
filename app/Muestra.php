@@ -15,14 +15,14 @@ class Muestra extends Model
         return $this->belongsTo(Ganado::class);
     }
 
-    public function tipo_muestra()
+    public function tipoMuestra()
     {
-        return $this->belongsTo(TipoMuestra::class ,'tipo_muestra_id');
+        return $this->belongsTo(TipoMuestra::class);
     }
 
-    public function tipo_consulta()
+    public function tipoConsulta()
     {
-        return $this->belongsTo(TipoConsulta::class,'tipo_muestra_id');
+        return $this->belongsTo(TipoConsulta::class);
     }
 
     public function laboratorio()
@@ -61,8 +61,9 @@ class Muestra extends Model
         $muestra=self::create($datos);
         $muestra->setFechaExtraccion($request->input('fecha_extraccion'));
         $muestra->setGanado(Ganado::find($request->input('ganado_id')));
-        //$muestra->setLaboratorio(Laboratorio::find($request->input('laboratorio_id')));
-        $muestra->setTipoConsulta(TipoConsulta::find($request->input('tipo_consulta_id')));
+        $muestra->setLaboratorio(Laboratorio::find($request->input('laboratorio_id')));
+        $tconsulta=TipoConsulta::find($request->input('tipo_consulta_id'));
+        $muestra->setTipoConsulta($tconsulta);
         $muestra->setTipoMuestra(TipoMuestra::find($request->input('tipo_muestra_id')));
         return $muestra;
 

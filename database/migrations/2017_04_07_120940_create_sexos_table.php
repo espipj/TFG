@@ -16,7 +16,6 @@ class CreateSexosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('alias');
-            $table->timestamps();
         });
     }
 

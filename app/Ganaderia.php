@@ -10,6 +10,7 @@ class Ganaderia extends Model
     protected $fillable = ['nombre', 'sigla','email','telefono'];
 
 
+
     public function asociacion()
     {   //Se pone la clave al haber editado en Asociacion el nombre de la tabla que contiene la migración
         return $this->belongsTo(Asociacion::class,'asociacion_id');
@@ -34,4 +35,31 @@ class Ganaderia extends Model
     public function getSelectOptionAttribute(){
         return $this->attributes['sigla'].' - '.$this->attributes['nombre'];
     }
+
+    public static function generateArrayForExport()
+    {
+
+        $ganaderias=Ganaderia::all();
+        $array=array();
+        foreach ($ganaderias as $ganaderia){
+            $explotaciones=$ganaderia->explotaciones;
+            foreach ($explotaciones as $explotacion) {
+
+
+                $aux = [
+                    'nombre' => $ganaderia->nombre,
+                    'id' => $ganaderia->id,
+                    'sigla' => $ganaderia->sigla,
+                    'email' => $ganaderia->email,
+                    'explotacion codigo' => $explotacion->codigo_explotacion,
+                    'explotacion municipio' => $explotacion->municipio,
+                    'asociacion'            => $ganaderia->asociacion->nombre,
+
+                ];
+                array_push($array, $aux);
+            }
+        }
+        return $array;
+    }
+
 }
