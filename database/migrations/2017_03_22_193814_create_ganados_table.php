@@ -21,6 +21,7 @@ class CreateGanadosTable extends Migration
             $table->integer('padre_id');
             $table->integer('madre_id');
             $table->integer('sexo_id');
+            $table->integer('capa_id');
             $table->integer('estado_id')->default(1);
             $table->timestamps();
         });

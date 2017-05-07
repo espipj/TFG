@@ -25,6 +25,10 @@ class Ganado extends Model
         return  $this->belongsTo(Estado::class);
     }
 
+    public function capa(){
+        return  $this->belongsTo(Capa::class);
+    }
+
     public function madre(){
         return $this->belongsTo(Ganado::class,'madre_id');
     }
@@ -97,7 +101,7 @@ class Ganado extends Model
                 'crotal'                =>  $ganado->crotal,
                 'padre'                 =>  $ganado->padre->crotal,
                 'madre'                 =>  $ganado->madre->crotal,
-                'capa'                  =>  $ganado->capa,
+                'capa'                  =>  $ganado->capa->alias,
                 'sexo'                  =>  $ganado->sexo->alias,
                 'vivo'                  =>  $ganado->estado->nombre,
 

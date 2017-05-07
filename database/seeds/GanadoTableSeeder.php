@@ -1,5 +1,6 @@
 <?php
 
+use App\Capa;
 use App\Estado;
 use App\Ganaderia;
 use App\Ganado;
@@ -20,6 +21,7 @@ class GanadoTableSeeder extends Seeder
         $ganaderias= Ganaderia::all();
         $sexos= Sexo::all();
         $estados= Estado::all();
+        $capas= Capa::all();
         $ganados = factory(Ganado::class)->times(200)->make();
 
         foreach ($ganados as $ganado){
@@ -27,6 +29,8 @@ class GanadoTableSeeder extends Seeder
             $ganaderia->ganados()->save($ganado);
             $sexos->random()->ganados()->save($ganado);
             $estados->random()->ganados()->save($ganado);
+            $capas->random()->ganados()->save($ganado);
+
 
         }
 
