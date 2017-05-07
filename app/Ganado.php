@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ganado extends Model
 {
     //Capa Morucha Cárdena Morucha Negra
-    protected $fillable=['crotal','capa','vivo'];
+    protected $fillable=['crotal','capa'];
     protected $dates=['fecha_nacimiento'];
 
     public function ganaderia(){
@@ -99,7 +99,7 @@ class Ganado extends Model
                 'madre'                 =>  $ganado->madre->crotal,
                 'capa'                  =>  $ganado->capa,
                 'sexo'                  =>  $ganado->sexo->alias,
-                'vivo'                  =>  $ganado->vivo,
+                'vivo'                  =>  $ganado->estado->nombre,
 
             ];
             array_push($array,$aux);

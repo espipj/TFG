@@ -1,8 +1,8 @@
 <input type="text" id="buscadorGanados" class="buscadorjs noform" data-tabla="tablaGanados"
        placeholder="Buscar res por crotal...">
 
-<label class="checkbox-inline"><input type="checkbox" rel="vivo" value="1" class="tick" data-tabla="tablaGanados">Vivas</label>
-<label class="checkbox-inline"><input type="checkbox" rel="vivo" value="0" class="tick" data-tabla="tablaGanados">Muertas</label>
+<label class="checkbox-inline"><input type="checkbox" rel="vivo" value="V" class="tick" data-tabla="tablaGanados">Vivas</label>
+<label class="checkbox-inline"><input type="checkbox" rel="vivo" value="M" class="tick" data-tabla="tablaGanados">Muertas</label>
 <table id="tablaGanados" class="table header-fixed ganados">
     <thead>
     <tr class="header">
@@ -20,7 +20,7 @@
 
 
             <tr class="clickable-row vacas" data-href="{{route('verganado',[$ganado])}}" data-id="{{$ganado->id}}">
-                <td style="width:12%;" class="vivo" rel="{{$ganado->vivo}}">{{$ganado->crotal}}</td>
+                <td style="width:12%;" class="vivo" rel="{{$ganado->estado->alias}}">{{$ganado->crotal}}</td>
                 <td style="width:15%;">{{$ganado->sexo->nombre}}</td>
                 <td style="width:20%;">{{$ganado->fecha_nacimiento->format('d-m-Y')}}</td>
                 @if(!empty($ganado->ganaderia))
@@ -34,11 +34,11 @@
                            role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
                         <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
                            role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                        @if($ganado->vivo==1)
-                        <a href="#!" class="btn btn-danger btn-sm eliminar"
+                        @if($ganado->estado->alias=='V')
+                        <a href="#!" class="btn btn-danger btn-sm eliminar-ganado"
                            role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                         @else
-                            <a href="#!" class="btn btn-danger btn-sm eliminar disabled"
+                            <a href="#!" class="btn btn-danger btn-sm eliminar-ganado disabled"
                                role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                         @endif
                     </div>

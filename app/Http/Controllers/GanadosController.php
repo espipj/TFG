@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Estado;
 use App\Ganaderia;
 use App\Ganado;
 use App\Sexo;
@@ -43,7 +44,7 @@ class GanadosController extends Controller
 
     public function show($Ganado=null){
         if($Ganado==null){
-            $ganados=Ganado::all()->sortBy('crotal')->sortByDesc('vivo');
+            $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
             //$ganados=Ganado::where('vivo',1)->orderBy('crotal')->get();
             return view('ganado.verGanados',compact('ganados'));
         }else{
@@ -54,7 +55,7 @@ class GanadosController extends Controller
     public function showMuertos($Ganaderia=null){
 
         if($Ganaderia==null){
-            $ganados=Ganado::where('vivo',0)->orderBy('crotal')->get();
+            $ganados=Ganado::where('estado_id',2)->orderBy('crotal')->get();
 
             //dd($ganados);
             return view('ganado.verGanados',compact('ganados'));
@@ -116,7 +117,8 @@ class GanadosController extends Controller
         if($request->ajax()){
 
             $ganado=Ganado::find($id);
-            $ganado->fill(['vivo'=>0])->save();
+            $muerto=Estado::where('nombre','Muerto')->first();
+            $muerto->ganados()->save($ganado);
             return $id;
 
         }

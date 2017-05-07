@@ -22,11 +22,7 @@
             <h3>Capa: Morucha Negra</h3>
             @endif
             <h3>Fecha de Nacimiento: {{$ganado->fecha_nacimiento->format('d-m-Y')}}</h3>
-            @if($ganado->vivo==1)
-            <h3>Estado: Vivo</h3>
-            @else
-            <h3>Estado: Muerto</h3>
-            @endif
+            <h3>Estado: {{$ganado->estado->nombre}}</h3>
             @if(!empty($ganado->padre))
                 <h3>Padre: <a href="{{route('verganado',[$ganado->padre])}}">{{$ganado->padre->crotal}}</a></h3>
             @else
