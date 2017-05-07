@@ -14,10 +14,10 @@
                     class="glyphicon glyphicon-cloud-download"></span> Exportar Ganado en XLSX</a>
         <a href="{{url('exportar/ganado/csv')}}" class="btn btn-excel btn-md" role="button"><span
                     class="glyphicon glyphicon-cloud-download"></span> Exportar Ganado en CSV</a>
-        {!! Form::open(['url' => 'importar/ganado','id'=>'file','class'=>'form-inline']) !!}
+        {!! Form::open(['url' => 'importar/ganado','id'=>'file','class'=>'form-inline','files'=>'true']) !!}
         {!! csrf_field() !!}
             <label class="btn btn-excel btn-md"><span class="glyphicon glyphicon-cloud-upload"></span> Importar desde Excel
-                {!! Form::file('file',['hidden','id'=>'file']) !!}
+                {!! Form::file('import_file',['hidden','id'=>'file']) !!}
             </label>
         {!! Form::close() !!}
         {{-- <a href="{{route('verganadomuerto')}}" class="btn btn-danger btn-md" role="button"><span class="glyphicon glyphicon-minus"></span> Muertas</a>

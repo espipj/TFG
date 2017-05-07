@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Ganadería</label>
                                 <div class="col-md-6">
-                                    @if(!empty($ganadoe->ganaderia->id))
+                                    @if(!empty($ganadoe->ganaderia))
                                         {!! Form::select('ganaderia_id',$ganaderias,$ganadoe->ganaderia->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                                     @else
                                         {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
@@ -95,7 +95,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Hembra' && $ganado->fecha_nacimiento && $ganado->ganaderia->nombre)
+                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Hembra' && $ganado->fecha_nacimiento && $ganado->ganaderia)
 
 
 
@@ -128,7 +128,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Macho' && $ganado->fecha_nacimiento && $ganado->ganaderia->nombre)
+                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Macho' && $ganado->fecha_nacimiento && $ganado->ganaderia)
 
 
 

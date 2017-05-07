@@ -82,6 +82,7 @@ class GanaderosController extends Controller
             'ganadero_id'=>['required'],
             'ganaderia_id'=>['required'],
         ]);
+
         $datos = $request->except(['ganaderia_id','ganadero_id']);
         $ganadero=Ganadero::find($request->input('ganadero_id'));
         $ganadero->fill($datos)->save();

@@ -6,13 +6,15 @@ namespace App;
 use App\Ganaderia;
 use App\Ganado;
 use App\Sexo;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 
 class Ganado extends Model
 {
     //Capa Morucha Cárdena Morucha Negra
-    protected $fillable=['crotal','capa'];
+    protected $fillable=['crotal'];
     protected $dates=['fecha_nacimiento'];
+
 
     public function ganaderia(){
         return $this->belongsTo(Ganaderia::class);
@@ -82,6 +84,10 @@ class Ganado extends Model
         return $capa->ganados()->save($this);
     }
 
+    public function setEstado($estado){
+        return $estado->ganados()->save($this);
+    }
+
     public static function guardarNuevo($request){
         $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento','capa_id']);
         $ganado=self::create($datos);
@@ -97,6 +103,54 @@ class Ganado extends Model
 
     }
 
+    public static function guardarNuevoXLS($array){
+        /* array
+
+      "fecha_de_nacimiento" => "16/11/2006"
+      "crotal" => "6828"
+      "padre" => "9466"
+      "madre" => "4126"
+      "capa" => "N"
+      "sexo" => "M"
+      "estado" => "Vivo"
+        */
+
+        $ganado=self::create([
+            'crotal'    =>  $array->crotal,
+        ]);
+        $padre=Ganado::where('crotal',$array->padre)->first();
+        if(empty($padre)){
+            $padre=Ganado::create([
+                'crotal'    =>  $array->padre,
+            ]);
+            $madre->setSexo(Sexo::find(1));
+        }
+        $madre=Ganado::where('crotal',$array->madre)->first();
+        if(empty($madre)){
+            $madre=Ganado::create([
+                'crotal'    =>  $array->madre,
+            ]);
+            $madre->setSexo(Sexo::find(2));
+        }
+        $padre->setHijoP($ganado);
+        $madre->setHijoM($ganado);
+        $ganado->setSexo(Sexo::where('alias',$array->sexo)->first());
+        $ganado->setCapa(Capa::where('alias',$array->capa)->first());
+        $ganado->setEstado(Estado::where('nombre',$array->estado)->first());
+        if(!empty($array->ganaderia)){
+            $ganaderia=Ganaderia::where('nombre',$array->ganaderia)->first();
+            if(!empty($ganaderia)){
+
+                $ganado->setGanaderia($ganaderia);
+            }
+
+        }
+
+        $ganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
+        return $ganado;
+
+    }
+
     public static function generateArrayForExport(){
         $ganados=Ganado::all();
         $array=array();
@@ -108,11 +162,36 @@ class Ganado extends Model
                 'madre'                 =>  $ganado->madre->crotal,
                 'capa'                  =>  $ganado->capa->alias,
                 'sexo'                  =>  $ganado->sexo->alias,
-                'vivo'                  =>  $ganado->estado->nombre,
+                'estado'                =>  $ganado->estado->nombre,
+                'ganaderia'             =>  $ganado->ganaderia->nombre,
 
             ];
             array_push($array,$aux);
         }
         return $array;
+    }
+
+
+    public static function importarXLS($reader)
+    {
+        $insert=array();
+        foreach ($reader->get() as $ganado) {
+            $oganado=Ganado::where('crotal',$ganado->crotal)->first();
+            if(empty($oganado)){
+                /*Ganado::create([
+                    'crotal'=>
+                ]);*/
+
+                array_push($insert,self::guardarNuevoXLS($ganado));
+            }else{
+
+            }
+            /*Explotacion::create([
+                'cod_explotacion'   => $explotacion->cod_explotacion,
+                'municipio'         => $explotacion->municipio
+            ]);*/
+        }
+
+        return $insert;
     }
 }

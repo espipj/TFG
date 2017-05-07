@@ -32,6 +32,22 @@ class ImportExportController extends Controller
         }
     }
 
+    public function importar($opcion){
+        switch ($opcion){
+            case 'ganado':
+                if(Input::hasFile('import_file')){
+                    $path = Input::file('import_file')->getRealPath();
+                    $reader=Excel::load($path);
+                    Ganado::importarXLS($reader);
+
+
+                }
+
+                return back();
+                break;
+        }
+
+    }
     public function show_importar($opcion){
         switch ($opcion){
             case 'ganado':
