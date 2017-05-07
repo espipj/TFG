@@ -115,6 +115,11 @@ $(document).ready(function () {
      buscar($(this).id,$(this).data('tabla'));
      });
      */
+    //Subir el archivo nada mas seleccionado
+    document.getElementById("file").onchange = function() {
+        document.getElementById("file").submit();
+    }
+
     $(".buscadorjs").keyup(function () {
         //alert($(this).data('tabla'));
         buscar($(this).attr('id'), $(this).data('tabla'));

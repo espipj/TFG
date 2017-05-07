@@ -22,7 +22,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Ganado::class, function (Faker\Generator $faker) {
 
-//    TODO Crear modelo capas
 
     return [
         'crotal' => $faker->unique()->numberBetween(2000, 9999),

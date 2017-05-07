@@ -96,7 +96,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'verlaboratorio']);
 
     //Importar
-    Route::get('/importar/{opcion}','ImportExportController@importar');
+    Route::post('/importar/{opcion}','ImportExportController@importar');
 
     //Exportar
     Route::get('/exportar/{opcion}/{formato}','ImportExportController@exportar');

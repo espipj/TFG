@@ -55,7 +55,7 @@
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                      <li><a href="{{route('logout')}}">Logout</a></li>
+                      <li><a href="{{route('logout')}}">Cerrar sesión</a></li>
                   </ul>
               </li>
           @endif
@@ -66,7 +66,7 @@
   <!-- /.container-fluid -->
 </nav>
 
-<!-- Cambiar imagenes a carousel para que ocupen todo el ancho, 1600*600-->
+<!-- Cambiar imagenes a carousel para que ocupen el ancho, 1600*600-->
 <div class="container">
       @yield('contenido')
 

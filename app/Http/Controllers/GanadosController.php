@@ -84,9 +84,10 @@ class GanadosController extends Controller
 
         $ganadoe=Ganado::find($Ganado);
         $ganados=Ganado::all()->sortBy('crotal');
+        $capas=Capa::all()->sortBy('select_option')->lists('select_option','id');
         $sexos=Sexo::all();
         $ganaderias=Ganaderia::lists('nombre','id');
-        return view('ganado.editarGanado', compact('ganados','ganadoe','sexos','ganaderias'));
+        return view('ganado.editarGanado', compact('ganados','ganadoe','sexos','ganaderias','capas'));
 
 
 
@@ -114,6 +115,7 @@ class GanadosController extends Controller
         $sexo=Sexo::find($request->input('sexo_id'));
         $ganaderia->ganados()->save($ganado);
         $sexo->ganados()->save($ganado);
+        $ganado->setCapa(Capa::find($request->input('capa_id')));
         return redirect()->route('verganado',[$ganado]);
     }
 

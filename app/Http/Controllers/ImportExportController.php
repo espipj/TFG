@@ -32,6 +32,14 @@ class ImportExportController extends Controller
         }
     }
 
+    public function show_importar($opcion){
+        switch ($opcion){
+            case 'ganado':
+                return view('ganado.importarGanado');
+                break;
+        }
+
+    }
     public function downloadExcel($type,$data,$nombre)
     {
         return Excel::create($nombre, function($excel) use ($data) {

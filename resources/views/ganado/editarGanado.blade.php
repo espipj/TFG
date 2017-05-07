@@ -25,7 +25,7 @@
                                 <label class="col-md-4 control-label">Ganadería</label>
                                 <div class="col-md-6">
                                     @if(!empty($ganadoe->ganaderia->id))
-                                    {!! Form::select('ganaderia_id',$ganaderias,$ganadoe->ganaderia->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                        {!! Form::select('ganaderia_id',$ganaderias,$ganadoe->ganaderia->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                                     @else
                                         {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
 
@@ -70,11 +70,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Capa</label>
                                 <div class="col-md-6">
-                                    <select class="form-control" name="capa">
-                                        <option value="C" @if($ganadoe->capa=='C') selected @endif>Morucha Cárdena
-                                        </option>
-                                        <option value="N" @if($ganadoe->capa=='N') selected @endif>Morucha Negra</option>
-                                    </select>
+
+                                    @if(!empty($ganadoe->capa->id))
+                                        {!! Form::select('capa_id',$capas,$ganadoe->capa->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    @else
+                                        {!! Form::select('capa_id',$capas,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    @endif
+
                                 </div>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">

@@ -22,7 +22,6 @@
 
         </div>
 
-        <!--TODO ¿Meterlo en un collapsible panel?-->
         <h2>Ganaderías</h2>
         <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-sm"
            role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>

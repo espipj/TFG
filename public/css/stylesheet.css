@@ -591,3 +591,11 @@ fieldset[disabled] .btn-excel.active {
 	color: #23673D;
 	background-color: #ffffff;
 }
+
+input[type="file"] {
+	display: none;
+}
+
+.form-inline{
+	display: inline;
+}
