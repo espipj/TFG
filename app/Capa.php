@@ -13,4 +13,9 @@ class Capa extends Model
     public function ganados(){
         return $this->hasMany(Ganado::class);
     }
+
+    public function getSelectOptionAttribute(){
+        return $this->attributes['alias'].' - '.$this->attributes['nombre'];
+    }
+
 }

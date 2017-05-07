@@ -16,7 +16,6 @@ class CreateGanadosTable extends Migration
             $table->increments('id');
             $table->string('crotal')->unique();
             $table->date('fecha_nacimiento');
-            $table->string('capa');
             $table->integer('ganaderia_id');
             $table->integer('padre_id');
             $table->integer('madre_id');

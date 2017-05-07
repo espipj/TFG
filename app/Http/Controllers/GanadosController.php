@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Capa;
 use App\Estado;
 use App\Ganaderia;
 use App\Ganado;
@@ -20,13 +21,14 @@ class GanadosController extends Controller
     public function registrar($Ganaderia=null){
 
         $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
+        $capas=Capa::all()->sortBy('select_option')->lists('select_option','id');
         $ganados=Ganado::all()->sortBy('crotal');
         $sexos=Sexo::all();
         if($Ganaderia==null){
-            return view('ganado.registrarGanado',compact('ganaderias','sexos','ganados'));
+            return view('ganado.registrarGanado',compact('ganaderias','sexos','ganados','capas'));
 
         }else{
-            return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia','ganados'));
+            return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia','ganados','capas'));
 
         }
     }
@@ -37,6 +39,7 @@ class GanadosController extends Controller
             'sexo_id'=>['required'],
             'fecha_nacimiento'=>['required'],
             'ganaderia_id'=>['required'],
+            'capa_id'=>['required'],
         ]);
         Ganado::guardarNuevo($request);
         return redirect()->to('/ver/ganado');
@@ -95,6 +98,7 @@ class GanadosController extends Controller
             'sexo_id'=>['required'],
             'fecha_nacimiento'=>['required'],
             'ganaderia_id'=>['required'],
+            'capa_id'=>['required'],
             'ganado_id'=>['required'],
         ]);
         $datos = $request->except(['ganaderia_id','sexo_id','ganado_id','fecha_nacimiento']);

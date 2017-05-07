@@ -16,11 +16,7 @@
             @endif
             </h2>
             <h3>Sexo: {{$ganado->sexo->nombre}}</h3>
-            @if($ganado->capa=='C')
-            <h3>Capa: Morucha Cárdena</h3>
-            @else
-            <h3>Capa: Morucha Negra</h3>
-            @endif
+            <h3>Capa: {{$ganado->capa->nombre}}</h3>
             <h3>Fecha de Nacimiento: {{$ganado->fecha_nacimiento->format('d-m-Y')}}</h3>
             <h3>Estado: {{$ganado->estado->nombre}}</h3>
             @if(!empty($ganado->padre))

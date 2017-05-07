@@ -56,10 +56,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Capa</label>
                                 <div class="col-md-6">
-                                    {!! Form::select('capa',[
-                                                                'C' =>  'Morucha Cárdena',
-                                                                'N' =>  'Morucha Negra'
-                                                            ],null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
+                                    {!! Form::select('capa_id',$capas,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                                 </div>
                             </div>
                             <div class="col-xs-10 col-xs-offset-1">

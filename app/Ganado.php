@@ -78,14 +78,19 @@ class Ganado extends Model
 
     }
 
+    public function setCapa($capa){
+        return $capa->ganados()->save($this);
+    }
+
     public static function guardarNuevo($request){
-        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento']);
+        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento','capa_id']);
         $ganado=self::create($datos);
         $padre=Ganado::find($request->input('padre_id'));
         $madre=Ganado::find($request->input('madre_id'));
         $padre->setHijoP($ganado);
         $madre->setHijoM($ganado);
         $ganado->setSexo(Sexo::find($request->input('sexo_id')));
+        $ganado->setCapa(Capa::find($request->input('capa_id')));
         $ganado->setGanaderia(Ganaderia::find($request->input('ganaderia_id')));
         $ganado->setFechaNacimiento($request->input('fecha_nacimiento'));
         return $ganado;
@@ -101,7 +106,7 @@ class Ganado extends Model
                 'crotal'                =>  $ganado->crotal,
                 'padre'                 =>  $ganado->padre->crotal,
                 'madre'                 =>  $ganado->madre->crotal,
-                'capa'                  =>  $ganado->capa->alias,
+                'capa'                  =>  $ganado->capa,
                 'sexo'                  =>  $ganado->sexo->alias,
                 'vivo'                  =>  $ganado->estado->nombre,
 

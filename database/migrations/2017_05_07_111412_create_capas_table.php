@@ -15,7 +15,7 @@ class CreateCapasTable extends Migration
         Schema::create('capas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('alias');a
+            $table->string('alias');
         });
     }
 
