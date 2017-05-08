@@ -35,16 +35,10 @@
     <div class="collapse navbar-collapse" id="topFixedNavbar1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{{route('home')}}">Inicio<span class="sr-only">(pagina actual)</span></a></li>
-        <li class="dropdown">
-         	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios<span class="caret"></span></a>
-			  <ul class="dropdown-menu">
-				<li><a href="/#analisishumanos">División Análisis Humanos</a></li>
-				<li><a href="/#analisisagroalim">División Análisis Agroalimentarios</a></li>
-				<li><a href="/buscador">Buscador de patologías</a></li>
-			  </ul>
-        </li>
-        <li><a href="/#sobre">Quienes somos</a></li>
-        <li><a href="/#agro">AgroInnova</a></li>
+          <li><a href="{{route('verasociacion')}}">Asociación</a></li>
+          <li><a href="{{route('verganaderia')}}">Ganadería</a></li>
+          <li><a href="{{route('verganado')}}">Ganado</a></li>
+          <li><a href="{{route('verexplotacion')}}">Explotación</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

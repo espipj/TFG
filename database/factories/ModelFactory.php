@@ -24,7 +24,7 @@ $factory->define(App\Ganado::class, function (Faker\Generator $faker) {
 
 
     return [
-        'crotal' => $faker->unique()->numberBetween(2000, 9999),
+        'crotal' => $faker->countryCode . $faker->numberBetween(100000000000, 999999999999),
         'fecha_nacimiento' => $faker->date(),
     ];
 

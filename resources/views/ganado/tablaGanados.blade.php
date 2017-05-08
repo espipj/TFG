@@ -3,12 +3,13 @@
 
 <label class="checkbox-inline"><input type="checkbox" rel="vivo" value="V" class="tick" data-tabla="tablaGanados">Vivas</label>
 <label class="checkbox-inline"><input type="checkbox" rel="vivo" value="M" class="tick" data-tabla="tablaGanados">Muertas</label>
+<div class="table-responsive">
 <table id="tablaGanados" class="table header-fixed ganados">
     <thead>
     <tr class="header">
-        <th style="width:12%;">Crotal</th>
-        <th style="width:15%;">Sexo</th>
-        <th style="width:20%;">Fecha de Nacimiento</th>
+        <th style="width:18%;">Crotal</th>
+        <th style="width:10%;">Sexo</th>
+        <th style="width:19%;">Nacimiento</th>
         <th style="width:25%;">Ganadería</th>
         <th style="width:28%;">Acciones</th>
     </tr>
@@ -20,9 +21,9 @@
 
 
             <tr class="clickable-row vacas" data-href="{{route('verganado',[$ganado])}}" data-id="{{$ganado->id}}">
-                <td style="width:12%;" class="vivo" rel="{{$ganado->estado->alias}}">{{$ganado->crotal}}</td>
-                <td style="width:15%;">{{$ganado->sexo->nombre}}</td>
-                <td style="width:20%;">{{$ganado->fecha_nacimiento->format('d-m-Y')}}</td>
+                <td style="width:18%;" class="vivo" rel="{{$ganado->estado->alias}}">{{$ganado->crotal}}</td>
+                <td style="width:10%;">{{$ganado->sexo->nombre}}</td>
+                <td style="width:19%;">{{$ganado->fecha_nacimiento->format('d-m-Y')}}</td>
                 @if(!empty($ganado->ganaderia))
                 <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>
                 @else
@@ -48,7 +49,7 @@
     @endforeach
     </tbody>
 </table>
-
+</div>
 {!! Form::open(['url' => ['eliminar/ganado/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
 {!! Form::close() !!}
 

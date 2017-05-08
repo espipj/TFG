@@ -114,11 +114,17 @@ $(document).ready(function () {
      $(".buscadorjs").onkeyup(function () {
      buscar($(this).id,$(this).data('tabla'));
      });
-     */
+
     //Subir el archivo nada mas seleccionado
     document.getElementById("file").onchange = function() {
         document.getElementById("file").submit();
     }
+    */
+
+    //Subir el archivo nada mas seleccionado
+    $("#file").change(function () {
+        document.getElementById("file").submit();
+    });
 
     $(".buscadorjs").keyup(function () {
         //alert($(this).data('tabla'));

@@ -16,6 +16,7 @@ class Ganado extends Model
     protected $dates=['fecha_nacimiento'];
 
 
+
     public function ganaderia(){
         return $this->belongsTo(Ganaderia::class);
     }
@@ -123,7 +124,7 @@ class Ganado extends Model
             $padre=Ganado::create([
                 'crotal'    =>  $array->padre,
             ]);
-            $madre->setSexo(Sexo::find(1));
+            $padre->setSexo(Sexo::find(1));
         }
         $madre=Ganado::where('crotal',$array->madre)->first();
         if(empty($madre)){
@@ -148,6 +149,42 @@ class Ganado extends Model
 
         $ganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
         return $ganado;
+
+    }
+
+
+    private static function actualizarXLS($array, $oganado)
+    {
+        $padre=Ganado::where('crotal',$array->padre)->first();
+        if(empty($padre)){
+            $padre=Ganado::create([
+                'crotal'    =>  $array->padre,
+            ]);
+            $padre->setSexo(Sexo::find(1));
+        }
+        $madre=Ganado::where('crotal',$array->madre)->first();
+        if(empty($madre)){
+            $madre=Ganado::create([
+                'crotal'    =>  $array->madre,
+            ]);
+            $madre->setSexo(Sexo::find(2));
+        }
+        $padre->setHijoP($oganado);
+        $madre->setHijoM($oganado);
+        $oganado->setSexo(Sexo::where('alias',$array->sexo)->first());
+        $oganado->setCapa(Capa::where('alias',$array->capa)->first());
+        $oganado->setEstado(Estado::where('nombre',$array->estado)->first());
+        if(!empty($array->ganaderia)){
+            $ganaderia=Ganaderia::where('nombre',$array->ganaderia)->first();
+            if(!empty($ganaderia)){
+
+                $oganado->setGanaderia($ganaderia);
+            }
+
+        }
+
+        $oganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
+        return $oganado;
 
     }
 
@@ -178,18 +215,14 @@ class Ganado extends Model
         foreach ($reader->get() as $ganado) {
             $oganado=Ganado::where('crotal',$ganado->crotal)->first();
             if(empty($oganado)){
-                /*Ganado::create([
-                    'crotal'=>
-                ]);*/
 
                 array_push($insert,self::guardarNuevoXLS($ganado));
+
             }else{
 
+                array_push($insert,self::actualizarXLS($ganado,$oganado));
+
             }
-            /*Explotacion::create([
-                'cod_explotacion'   => $explotacion->cod_explotacion,
-                'municipio'         => $explotacion->municipio
-            ]);*/
         }
 
         return $insert;

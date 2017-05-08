@@ -36,6 +36,21 @@ class Ganaderia extends Model
         return $this->attributes['sigla'].' - '.$this->attributes['nombre'];
     }
 
+    public static function GanaderiaVacia(){
+        $ganaderia=Ganaderia::where('nombre','Ganadería Vacia')->first();
+        if(empty($ganaderia)){
+            $nganaderia= self::Create([
+                'nombre'    =>  'Ganadería Vacia',
+                'sigla'     =>  'VACI',
+                'email'     =>  'vacia@vacia.es',
+                'telefono'  =>  '000-000-000'
+            ]);
+            return $nganaderia;
+
+        }else{
+            return $ganaderia;
+        }
+    }
     public static function generateArrayForExport()
     {
 
