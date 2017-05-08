@@ -10,8 +10,12 @@ use App\Http\Controllers\Controller;
 
 class InicioController extends Controller
 {
-    //
+
     public function index(){
         return view('home.main');
+    }
+
+    public function land(){
+        return view('index');
     }
 }

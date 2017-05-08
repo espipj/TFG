@@ -599,3 +599,13 @@ input[type="file"] {
 .form-inline{
 	display: inline;
 }
+
+.dropzone{
+
+}
+.dropzone.dragover{
+	border: 2px dashed #19942B;
+	border-color: #19942B;
+	/*color: #19942B;*/
+
+}

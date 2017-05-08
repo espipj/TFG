@@ -6,6 +6,7 @@ use App\Asociacion;
 use App\Explotacion;
 use App\Ganaderia;
 use App\Ganado;
+use App\Util;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -92,7 +93,10 @@ class GanaderiasController extends Controller
     public function delete($id, Request $request){
 
         if($request->ajax()){
+
             $ganaderia=Ganaderia::find($id);
+            Util::eliminarArray($ganaderia->ganados);
+            Util::eliminarArray($ganaderia->explotaciones);
             $ganaderia->delete();
             return $id;
 

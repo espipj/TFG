@@ -139,14 +139,21 @@ class Ganado extends Model
         $ganado->setCapa(Capa::where('alias',$array->capa)->first());
         $ganado->setEstado(Estado::where('nombre',$array->estado)->first());
         if(!empty($array->ganaderia)){
-            $ganaderia=Ganaderia::where('nombre',$array->ganaderia)->first();
+            $ganaderia=Ganaderia::where([
+                'nombre'    =>  $array->ganaderia,
+                'sigla'     =>  $array->sigla
+            ])->first();
             if(!empty($ganaderia)){
 
                 $ganado->setGanaderia($ganaderia);
+            }else{
+
+                $ganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia,$array->sigla));
             }
 
+        }else{
+            $ganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia","VACI"));
         }
-
         $ganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
         return $ganado;
 
@@ -175,12 +182,20 @@ class Ganado extends Model
         $oganado->setCapa(Capa::where('alias',$array->capa)->first());
         $oganado->setEstado(Estado::where('nombre',$array->estado)->first());
         if(!empty($array->ganaderia)){
-            $ganaderia=Ganaderia::where('nombre',$array->ganaderia)->first();
+            $ganaderia=Ganaderia::where([
+                'nombre'    =>  $array->ganaderia,
+                'sigla'     =>  $array->sigla
+            ])->first();
             if(!empty($ganaderia)){
 
                 $oganado->setGanaderia($ganaderia);
+            }else{
+
+                $oganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia,$array->sigla));
             }
 
+        }else{
+            $oganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia","VACI"));
         }
 
         $oganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
@@ -201,6 +216,7 @@ class Ganado extends Model
                 'sexo'                  =>  $ganado->sexo->alias,
                 'estado'                =>  $ganado->estado->nombre,
                 'ganaderia'             =>  $ganado->ganaderia->nombre,
+                'sigla'                 =>  $ganado->ganaderia->sigla,
 
             ];
             array_push($array,$aux);

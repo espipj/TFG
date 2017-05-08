@@ -26,22 +26,28 @@ class ImportExportController extends Controller
                 break;
             case 'ganaderia':
                 $nombre='Ganaderias'. '_' .Carbon::now()->format('d-m-Y');
-                dd(Ganaderia::generateArrayForExport());
+                //dd(Ganaderia::generateArrayForExport());
                 $this->downloadExcel($formato,Ganaderia::generateArrayForExport(),$nombre);
                 break;
         }
     }
 
     public function importar($opcion){
+
+        if(Input::hasFile('import_file')) {
+            $path = Input::file('import_file')->getRealPath();
+            $reader = Excel::load($path);
+        }else {
+            return  back();
+        }
         switch ($opcion){
             case 'ganado':
-                if(Input::hasFile('import_file')){
-                    $path = Input::file('import_file')->getRealPath();
-                    $reader=Excel::load($path);
                     Ganado::importarXLS($reader);
 
-
-                }
+                return back();
+                break;
+            case 'ganaderia':
+                    Ganaderia::importarXLS($reader);
 
                 return back();
                 break;

@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/inicio',[
-    'uses'  =>  'InicioController@Index',
-    'as'    =>  'home'
+Route::get('/',[
+    'uses'  => 'InicioController@land',
+    'as'    =>  'landing'
 ]);
+
 
 Route::get('/registrar', function(){
   return view('registrar');
@@ -26,6 +23,8 @@ Route::get('/registrar', function(){
 Route::group(['middleware' => 'revalidate'], function()
 {
     // Grupos de rutas que tienen que revalidarse (boton atras en el navegador) RevalidateBackHistory y Kernel
+
+
 
     //Asociaciones
     Route::get('/registrar/asociacion', 'AsociacionesController@registrar');
@@ -104,6 +103,13 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('importExport', 'MaatwebsiteDemoController@importExport');
     Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
     Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
+
+
+    //Panel de Inicio
+    Route::get('/panel',[
+        'uses'  =>  'InicioController@Index',
+        'as'    =>  'home'
+    ]);
 });
 
 

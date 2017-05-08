@@ -121,6 +121,57 @@ $(document).ready(function () {
     }
     */
 
+
+    var dropzone =document.getElementById('dropzone');
+    if(dropzone!=null){
+
+        var  upload = function (file) {
+            var metas = document.getElementsByTagName('meta');
+
+
+            var formData=new FormData(),xhr = new XMLHttpRequest();
+            formData.append('import_file',file[0]);
+
+            xhr.open('post','/importar/ganaderia');
+            //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            for (i=0; i<metas.length; i++) {
+                if (metas[i].getAttribute("name") == "csrf-token") {
+                    var token=metas[i].getAttribute("content");
+                }
+            }
+
+            xhr.setRequestHeader("X-CSRF-Token", token);
+            xhr.send(formData);
+
+            //setTimeout(function(){}, 1000);
+            location.reload();
+
+            
+        }
+        dropzone.ondragover = function () {
+            this.className='dropzone dragover';
+            return false;
+            
+        }
+
+        dropzone.ondragleave=function () {
+            this.className='dropzone';
+            return false;
+            
+        }
+        
+        dropzone.ondrop=function (e) {
+            e.preventDefault();
+            this.className='dropzone';
+            console.log(e.dataTransfer.files);
+            upload(e.dataTransfer.files);
+            //var file = this.files[0];
+            //console.log(file);
+            
+        }
+    }
+
     //Subir el archivo nada mas seleccionado
     $("#file").change(function () {
         document.getElementById("file").submit();

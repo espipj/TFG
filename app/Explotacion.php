@@ -16,4 +16,20 @@ class Explotacion extends Model
     public function ganaderia(){
         return $this->belongsTo(Ganaderia::class,'ganaderia_id');
     }
+
+
+    public static function crearExplotacion($codigo,$municipio){
+        $explotacion=Explotacion::where([
+            'codigo_explotacion'    =>  $codigo,
+            'municipio'             =>  $municipio
+        ])->first();
+        if(!empty($explotacion)){
+            return  $explotacion;
+        }else{
+            return self::create([
+                'codigo_explotacion'    =>  $codigo,
+                'municipio'             =>  $municipio
+            ]);
+        }
+    }
 }

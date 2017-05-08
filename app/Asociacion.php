@@ -16,11 +16,11 @@ class Asociacion extends Model
         return $this->hasMany(Ganaderia::class);
     }
 
-    public static function AsociacionVacia(){
-        $asociacion=Asociacion::where('nombre','Asociación Vacia')->first();
+    public static function AsociacionVacia($nombre){
+        $asociacion=Asociacion::where('nombre',$nombre)->first();
         if(empty($asociacion)){
             $nasociacion= self::Create([
-                'nombre'    =>  'Asociación Vacia',
+                'nombre'    =>  $nombre,
                 'direccion'     =>  'No existe',
                 'email'     =>  'vacia@vacia.es',
                 'telefono'  =>  '000-000-000'
@@ -28,7 +28,7 @@ class Asociacion extends Model
             return $nasociacion;
 
         }else{
-            return $ganaderia;
+            return $asociacion;
         }
     }
 
