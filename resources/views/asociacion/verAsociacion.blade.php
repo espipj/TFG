@@ -17,8 +17,9 @@
 
             <a href="{{url('editar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-success btn-sm"
                role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-            <a href="{{url('eliminar/asociacion',['asociacion'=>$asociacion])}}" class="btn btn-danger btn-sm"
-               role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+
+            <a href="" class="btn btn-danger btn-sm eliminar-detail"
+               role="button" data-id="{{$asociacion->id}}"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
 
         </div>
 
@@ -29,4 +30,13 @@
         @include('ganaderia.tablaGanaderias')
 
     @endif
+@endsection
+
+{!! Form::open(['url' => ['eliminar/explotacion/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
+{!! Form::close() !!}
+
+@section('scripts')
+
+    <script src="{{asset('js/controller-model.js')}}" type="text/javascript"></script>
+
 @endsection

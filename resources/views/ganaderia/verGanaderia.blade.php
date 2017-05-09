@@ -14,8 +14,9 @@
     <h3>Asociación: {{$ganaderia->asociacion->nombre}} </h3>
         <br>
         <a href="{{url('editar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-success btn-sm" role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-        <a href="{{url('eliminar/ganaderia',['ganaderia'=>$ganaderia])}}" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
 
+        <a href="" class="btn btn-danger btn-sm eliminar-detail"
+           role="button" data-id="{{$ganaderia->id}}"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
     </div>
     <h2>Ganado</h2>
     <a href="{{url('registrar/ganado',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-sm" role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganado</a>
@@ -30,4 +31,14 @@
     @include('ganadero.tablaGanaderos')
 --}}
     @endif
+@endsection
+
+
+{!! Form::open(['url' => ['eliminar/ganaderia/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
+{!! Form::close() !!}
+
+@section('scripts')
+
+    <script src="{{asset('js/controller-model.js')}}" type="text/javascript"></script>
+
 @endsection

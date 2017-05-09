@@ -16,8 +16,8 @@
                role="button"><span
                         class="glyphicon glyphicon-edit"></span> Editar</a>
 
-            <a href="" class="btn btn-danger btn-sm eliminar"
-               role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+            <a href="" class="btn btn-danger btn-sm eliminar-detail"
+               role="button" data-id="{{$explotacion->id}}"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
         </div>
     @endif
 
