@@ -307,6 +307,7 @@ table.table {
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
     background-size: 24px auto;
+    border-radius: 10px;
 }
 
 .buscadorjs {
@@ -319,6 +320,7 @@ table.table {
     border: 1px solid #ddd; /* Add a grey border */
     /* margin-bottom: 12px; Add some space below the input */
     background-size: 24px auto;
+    border-radius: 10px;
 }
 
 .buscadorjs.noform {
@@ -369,10 +371,14 @@ table.table {
 }
 
 table.pariente {
-    border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full-width */
     border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
+
+
+    border-collapse:separate;
+    border-radius:7px;
+    -moz-border-radius:7px;
 
 }
 
@@ -392,11 +398,14 @@ table.pariente tr.header, table.pariente tr:hover {
 }
 
 table.ganados {
-    border-collapse: collapse; /* Collapse borders */
     width: 100%; /* Full-width */
     border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
     margin-top: 10px;
+
+    border-collapse:separate;
+    border-radius:7px;
+    -moz-border-radius:7px;
 
 }
 
@@ -416,15 +425,19 @@ table.ganados tr.header, table.ganados tr:hover {
 }
 
 #miTabla {
-    border-collapse: collapse; /* Collapse borders */
+    /* border-collapse: collapse; Collapse borders */
     width: 100%; /* Full-width */
     border: 1px solid #ddd; /* Add a grey border */
     font-size: 18px; /* Increase font-size */
+
+
+    border-collapse:separate;
+    border-radius:7px;
+    -moz-border-radius:7px;
 }
 
 #miTabla th, #miTabla td {
-    text-align: left; /* Left-align text */
-    padding: 12px; /* Add padding */
+    text-align: center; /* Left-align text */
 }
 
 #miTabla tr {
