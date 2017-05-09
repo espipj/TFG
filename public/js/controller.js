@@ -20,6 +20,35 @@ function quitarAcentos(str) {
     return str;
 }
 
+function upload(file) {
+
+    var tipo = $("#dropzone").data('tipo');
+    var metas = document.getElementsByTagName('meta');
+
+    console.log(tipo);
+
+
+    var formData=new FormData(),xhr = new XMLHttpRequest();
+    formData.append('import_file',file[0]);
+
+    xhr.open('post','/importar/'.concat(tipo));
+    //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    for (i=0; i<metas.length; i++) {
+        if (metas[i].getAttribute("name") == "csrf-token") {
+            var token=metas[i].getAttribute("content");
+        }
+    }
+
+    xhr.setRequestHeader("X-CSRF-Token", token);
+    xhr.send(formData);
+
+    //setTimeout(function(){}, 1000);
+    location.reload();
+
+
+}
+
 /*Funcion filtro en la tabla/buscador*/
 function buscar(buscador, tabla) {
     //Declaramos variables
@@ -109,68 +138,49 @@ function recorrerFiltrarD(tr, condicion) {
 //Lo utilizamos para que los scripts no se ejecuten antes del document ready
 $(document).ready(function () {
 
-    /*
-
-     $(".buscadorjs").onkeyup(function () {
-     buscar($(this).id,$(this).data('tabla'));
-     });
-
-    //Subir el archivo nada mas seleccionado
-    document.getElementById("file").onchange = function() {
-        document.getElementById("file").submit();
-    }
-    */
 
 
-    var dropzone =document.getElementById('dropzone');
-    if(dropzone!=null){
-
-        var  upload = function (file) {
-            var metas = document.getElementsByTagName('meta');
-
-
-            var formData=new FormData(),xhr = new XMLHttpRequest();
-            formData.append('import_file',file[0]);
-
-            xhr.open('post','/importar/ganaderia');
-            //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-            for (i=0; i<metas.length; i++) {
-                if (metas[i].getAttribute("name") == "csrf-token") {
-                    var token=metas[i].getAttribute("content");
-                }
-            }
-
-            xhr.setRequestHeader("X-CSRF-Token", token);
-            xhr.send(formData);
-
-            //setTimeout(function(){}, 1000);
-            location.reload();
-
-            
-        }
-        dropzone.ondragover = function () {
+    $("#dropzone").on('dragenter',function (event) {
+            console.log('dragenter');
             this.className='dropzone dragover';
-            return false;
-            
+            $(".in-dropzone").css('visibility','hidden');
+            $("#titulodrop").show();
+            $("#imagedrop").show();
+
+
+    });
+
+
+    $("#dropzone").on('dragover',function (event) {
+        event.preventDefault();
+
+
+    });
+
+    $("#dropzone").on('dragleave',function (event) {
+        if(event.target === this) {
+            console.log('SALDA');
+            this.className='dropzone';
+            $(".in-dropzone").css('visibility','visible');
+            $("#titulodrop").hide();
+            $("#imagedrop").hide();
         }
 
-        dropzone.ondragleave=function () {
-            this.className='dropzone';
-            return false;
-            
-        }
-        
-        dropzone.ondrop=function (e) {
-            e.preventDefault();
-            this.className='dropzone';
-            console.log(e.dataTransfer.files);
-            upload(e.dataTransfer.files);
-            //var file = this.files[0];
-            //console.log(file);
-            
-        }
-    }
+    });
+
+    $("#dropzone").on('drop',function (e) {
+        console.log('dropeo');
+        e.preventDefault();
+        this.className='dropzone';
+        $(".in-dropzone").css('visibility','visible');
+        $("#titulodrop").hide();
+        $("#imagedrop").hide();
+        console.log(e.originalEvent.dataTransfer.files);
+        upload(e.originalEvent.dataTransfer.files);
+
+    });
+
+
 
     //Subir el archivo nada mas seleccionado
     $("#file").change(function () {

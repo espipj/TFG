@@ -207,11 +207,21 @@ class Ganado extends Model
         $ganados=Ganado::all();
         $array=array();
         foreach ($ganados as $ganado){
+            if (empty($ganado->padre->crotal)){
+                $padre="no definido";
+            }else{
+                $padre=$ganado->padre->crotal;
+            }
+            if (empty($ganado->madre->crotal)){
+                $madre="no definido";
+            }else{
+                $madre=$ganado->madre->crotal;
+            }
             $aux=[
                 'fecha de nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
                 'crotal'                =>  $ganado->crotal,
-                'padre'                 =>  $ganado->padre->crotal,
-                'madre'                 =>  $ganado->madre->crotal,
+                'padre'                 =>  $padre,
+                'madre'                 =>  $madre,
                 'capa'                  =>  $ganado->capa->alias,
                 'sexo'                  =>  $ganado->sexo->alias,
                 'estado'                =>  $ganado->estado->nombre,

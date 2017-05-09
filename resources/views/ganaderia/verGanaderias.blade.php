@@ -11,7 +11,7 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
-        <div class="dropzone" id="dropzone">
+        <div class="dropzone" id="dropzone" data-tipo="ganaderia">
             <h1>Ganaderías</h1>
             <p>Desde esta página puedes registrar una nueva ganadería o editar las ya existentes y listadas.</p>
             <a href="{{url('registrar/ganaderia')}}" class="btn btn-primary btn-md" role="button"><span
@@ -34,3 +34,4 @@
 
     @endif
 @endsection
+

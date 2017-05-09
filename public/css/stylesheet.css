@@ -1,277 +1,331 @@
 html {
-	position: relative;
-	min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
+
 body {
-	font-family: 'Raleway', sans-serif;
-	padding-top: 65px;
-	padding-bottom: 285px;
+    font-family: 'Raleway', sans-serif;
+    padding-top: 65px;
+    padding-bottom: 285px;
 }
+
 .footer {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	/* Set the fixed height of the footer here */
-	height: 285px;
-	background-image: -webkit-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	background-image: -moz-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	background-image: -o-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	background-image: linear-gradient(180deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	/* [disabled]margin: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 285px;
+    background-image: -webkit-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+    background-image: -moz-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+    background-image: -o-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+    background-image: linear-gradient(180deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+    /* [disabled]margin: auto;
 */
-	color: #FFFFFF;
+    color: #FFFFFF;
 }
+
 .navbar ul {
-	text-align: left;
+    text-align: left;
 }
+
 #topFixedNavbar1 {
 }
-table.table{
-	margin-top: 30px;
+
+table.table {
+    margin-top: 30px;
 }
+
 .navbar-default {
-	background-color: hsla(0,0%,98%,0.93);
-	border-color: #e1e1e1;
+    background-color: hsla(0, 0%, 98%, 0.93);
+    border-color: #e1e1e1;
 }
+
 .navbar-default .navbar-brand {
-	color: #3c873e;
-	background-image: url(../images/innovalogo3solocoloreado.png);
-	background-repeat: no-repeat;
-	background-position: 8px 6px;
-	background-size: auto 40px;
-	min-width: 150px;
+    color: #3c873e;
+    background-image: url(../images/innovalogo3solocoloreado.png);
+    background-repeat: no-repeat;
+    background-position: 8px 6px;
+    background-size: auto 40px;
+    min-width: 150px;
 }
+
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-	color: #672121;
+    color: #672121;
 }
+
 .navbar-default .navbar-text {
-	color: #3c873e;
+    color: #3c873e;
 }
+
 .navbar-default .navbar-nav > li > a {
-	color: #3c873e;
+    color: #3c873e;
 }
+
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-	color: #672121;
+    color: #672121;
 }
+
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	color: #672121;
-	background-color: #e1e1e1;
+    color: #672121;
+    background-color: #e1e1e1;
 }
+
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-	color: #672121;
-	background-color: #e1e1e1;
+    color: #672121;
+    background-color: #e1e1e1;
 }
+
 .navbar-default .navbar-toggle {
-	border-color: #e1e1e1;
+    border-color: #e1e1e1;
 }
+
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-	background-color: #e1e1e1;
+    background-color: #e1e1e1;
 }
+
 .navbar-default .navbar-toggle .icon-bar {
-	background-color: #3c873e;
+    background-color: #3c873e;
 }
+
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-	border-color: #3c873e;
+    border-color: #3c873e;
 }
+
 .navbar-default .navbar-link {
-	color: #3c873e;
+    color: #3c873e;
 }
+
 .navbar-default .navbar-link:hover {
-	color: #672121;
+    color: #672121;
 }
-
-
-
-
 
 @media (max-width: 767px) {
-.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-	color: #3c873e;
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #3c873e;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #672121;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+        color: #672121;
+        background-color: #e1e1e1;
+    }
+
+    #informacion1 {
+        text-align: center;
+    }
+
+    #informacion1 .vacio p {
+        min-height: 800px;
+    }
+
+    #informacion1 ul {
+        display: table;
+        margin: 0 auto;
+    }
+
+    h1 span {
+        display: block;
+    }
+
+    body {
+        padding-top: 70px;
+        padding-bottom: 23em;
+    }
+
+    .navbar ul {
+        /* [disabled]list-style-position:outside;
+    */
+        text-align: center; /*list-style:none;*/
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 21em;
+        background-image: -webkit-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+        background-image: -moz-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+        background-image: -o-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+        background-image: linear-gradient(180deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
+        margin: auto;
+        color: #FFFFFF;
+        text-align: center;
+    }
+
+    .footer ul {
+        display: table;
+        margin: 0 auto;
+    }
+
+    #mapa {
+        display: none;
+    }
 }
-.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-	color: #672121;
-}
-.navbar-default .navbar-nav .open .dropdown-menu > .active > a,  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-	color: #672121;
-	background-color: #e1e1e1;
-}
-#informacion1 {
-	text-align: center;
-}
-#informacion1 .vacio p {
-	min-height: 800px;
-}
-#informacion1 ul {
-	display: table;
-	margin: 0 auto;
-}
-h1 span {
-	display: block;
-}
-body {
-	padding-top: 70px;
-	padding-bottom: 23em;
-}
-.navbar ul {
-	/* [disabled]list-style-position:outside;
-*/
-	text-align: center;	/*list-style:none;*/
-}
-.footer {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	/* Set the fixed height of the footer here */
-	height: 21em;
-	background-image: -webkit-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	background-image: -moz-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	background-image: -o-linear-gradient(270deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	background-image: linear-gradient(180deg, rgba(0,84,124,1.00) 0%, rgba(60,124,166,1.00) 100%);
-	margin: auto;
-	color: #FFFFFF;
-	text-align: center;
-}
-.footer ul {
-	display: table;
-	margin: 0 auto;
-}
-#mapa {
-	display: none;
-}
-}
+
 #hereditarias .unidadimg {
-	content: '';
-	background-image: url("/images/log-verde.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    content: '';
+    background-image: url("/images/log-verde.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
 #neoplasticas .unidadimg {
-	content: '';
-	background-image: url("/images/log-naranja.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    content: '';
+    background-image: url("/images/log-naranja.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
 #cmolecular .unidadimg {
-	content: '';
-	background: url("/images/log-azul.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    content: '';
+    background: url("/images/log-azul.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
 #hmalignas .unidadimg {
-	content: '';
-	background: url("/images/log-rojo.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    content: '';
+    background: url("/images/log-rojo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
 #aptidi .unidadimg {
-	content: '';
-	background: url("/images/log-gris.png");
-	background-size: contain;
-	background-repeat: no-repeat;
+    content: '';
+    background: url("/images/log-gris.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
 #unidad {
 }
+
 #hereditarias {
 }
+
 #informacion1 {
 }
+
 #informacion1 li {
-	text-align: left;
+    text-align: left;
 }
+
 #informacion1 h2 {
-	font-weight: 400;
-	font-size: 36px;
-	text-align: center;
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
 }
+
 #informacion1 p {
-	font-size: 12px;
-	text-align: justify;
+    font-size: 12px;
+    text-align: justify;
 }
+
 #informacion1 article {
-	padding: 40px 0px;
+    padding: 40px 0px;
 }
+
 #informacion1 h1 {
-	font-weight: 600;
-	font-size: 48px;
-	text-align: center;
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
 }
+
 #informacion2 h1 {
-	font-weight: 600;
-	font-size: 48px;
-	text-align: center;
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
 }
+
 #informacion2 h2 {
-	font-weight: 400;
-	font-size: 36px;
-	text-align: center;
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
 }
+
 .unidad {
 }
+
 .unidadimg {
-	height: 60px;
-	width: 62px;
-	margin: 10px auto;
-	display: block;
+    height: 60px;
+    width: 62px;
+    margin: 10px auto;
+    display: block;
 }
+
 #contacto p {
-	margin: auto;
-	font-size: 16px;
+    margin: auto;
+    font-size: 16px;
 }
+
 #contacto .h2 {
-	margin: auto;
+    margin: auto;
 }
+
 #contacto .h3 {
-	margin: auto;
+    margin: auto;
 }
+
 #contacto a {
-	color: white;
+    color: white;
 }
+
 .google-maps {
-	position: relative;
-	padding-bottom: 66%; /*Aspect Ratio*/
-	height: 0;
-	overflow: hidden;
+    position: relative;
+    padding-bottom: 66%; /*Aspect Ratio*/
+    height: 0;
+    overflow: hidden;
 }
+
 .google-maps iframe {
-	position: absolute;
-	top: 5%;
-	left: 5%;
-	width: 100% !important;
-	height: 100% !important;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 100% !important;
+    height: 100% !important;
 }
+
 #mapa {
-	margin-top: 1em;
-	width: 100%;
-	height: 17em;
+    margin-top: 1em;
+    width: 100%;
+    height: 17em;
 }
+
 #mibuscador {
-	background-image: url('../images/search.png'); /* Add a search icon to input */
-	background-position: 10px 12px; /* Position the search icon */
-	background-repeat: no-repeat; /* Do not repeat the icon image */
-	width: 100%;
-	font-size: 16px; /* Increase font-size */
-	padding: 12px 20px 12px 40px; /* Add some padding */
-	border: 1px solid #ddd; /* Add a grey border */
-	margin-bottom: 12px; /* Add some space below the input */
-	background-size: 24px auto;
+    background-image: url('../images/search.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%;
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+    background-size: 24px auto;
 }
+
 .buscadorjs {
-	background-image: url('../images/search.png'); /* Add a search icon to input */
-	background-position: 10px 12px; /* Position the search icon */
-	background-repeat: no-repeat; /* Do not repeat the icon image */
-	width: 100%;
-	font-size: 16px; /* Increase font-size */
-	padding: 12px 20px 12px 40px; /* Add some padding */
-	border: 1px solid #ddd; /* Add a grey border */
-	/* margin-bottom: 12px; Add some space below the input */
-	background-size: 24px auto;
+    background-image: url('../images/search.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%;
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    /* margin-bottom: 12px; Add some space below the input */
+    background-size: 24px auto;
 }
-.buscadorjs.noform{
-	margin-top: 25px;
+
+.buscadorjs.noform {
+    margin-top: 25px;
 
 }
+
 /*#miTabla tbody {
 	display: block;
 	width: 100%;
@@ -309,128 +363,135 @@ body {
 
 .header-fixed > tbody > tr > td,
 .header-fixed > thead > tr > th {
-/*    width: 20%;
-*/    float: left;
+    /*    width: 20%;
+    */
+    float: left;
 }
 
-table.pariente{
-	border-collapse: collapse; /* Collapse borders */
-	width: 100%; /* Full-width */
-	border: 1px solid #ddd; /* Add a grey border */
-	font-size: 18px; /* Increase font-size */
+table.pariente {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
 
 }
 
 .pariente.header-fixed > tbody {
-	overflow-y: auto;
-	height: 200px;
+    overflow-y: auto;
+    height: 200px;
 }
 
-table.pariente th,table.pariente tr{
-	text-align: center; /* Left-align text */
-	/*padding: 12px; Add padding */
+table.pariente th, table.pariente tr {
+    text-align: center; /* Left-align text */
+    /*padding: 12px; Add padding */
 
 }
 
-table.pariente tr.header,table.pariente tr:hover{
-	background-color: #f1f1f1;
+table.pariente tr.header, table.pariente tr:hover {
+    background-color: #f1f1f1;
 }
 
-table.ganados{
-	border-collapse: collapse; /* Collapse borders */
-	width: 100%; /* Full-width */
-	border: 1px solid #ddd; /* Add a grey border */
-	font-size: 18px; /* Increase font-size */
-	margin-top: 10px;
+table.ganados {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+    margin-top: 10px;
 
 }
 
 .ganados.header-fixed > tbody {
-	overflow-y: auto;
-	height: 450px;
+    overflow-y: auto;
+    height: 450px;
 }
 
-table.ganados th,table.ganados tr{
-	text-align: center; /* Left-align text */
-	/*padding: 12px; Add padding */
+table.ganados th, table.ganados tr {
+    text-align: center; /* Left-align text */
+    /*padding: 12px; Add padding */
 
 }
 
-table.ganados tr.header,table.ganados tr:hover{
-	background-color: #f1f1f1;
+table.ganados tr.header, table.ganados tr:hover {
+    background-color: #f1f1f1;
 }
 
 #miTabla {
-	border-collapse: collapse; /* Collapse borders */
-	width: 100%; /* Full-width */
-	border: 1px solid #ddd; /* Add a grey border */
-	font-size: 18px; /* Increase font-size */
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
 }
+
 #miTabla th, #miTabla td {
-	text-align: left; /* Left-align text */
-	padding: 12px; /* Add padding */
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
 }
+
 #miTabla tr {
-	/* Add a bottom border to all table rows */
-	border-bottom: 1px solid #ddd;
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
 }
+
 #miTabla tr.header, #miTabla tr:hover {
-	/* Add a grey background color to the table header and on hover */
-	background-color: #f1f1f1;
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
 }
-#enfermedad h1{
-	text-align: center;
-	font-size: 48px;
-	font-weight: 600;
 
+#enfermedad h1 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 600;
 
 }
-#enfermedad h2{
-	font-weight: 400;
-	font-size: 36px;
+
+#enfermedad h2 {
+    font-weight: 400;
+    font-size: 36px;
 }
-#enfermedad p{
-	font-size: 15px;
-	text-align: justify;
+
+#enfermedad p {
+    font-size: 15px;
+    text-align: justify;
 }
 
 /* LOGIN STYLE*/
 
 #login-form {
-	padding-top: 60px;
-	padding-right: 35px;
-	padding-left: 35px;
-	padding-bottom: 110px;
+    padding-top: 60px;
+    padding-right: 35px;
+    padding-left: 35px;
+    padding-bottom: 110px;
 }
 
 #login-form .modal-body #div-login-msg {
-	padding-bottom: 40px;
+    padding-bottom: 40px;
 }
 
 #login-form .login-img {
-	content: '';
-	background: url("/images/logo.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	height: 200px;
-	width: 200px;
-	margin: 10px auto;
-	display: block;
+    content: '';
+    background: url("/images/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 200px;
+    margin: 10px auto;
+    display: block;
 }
 
 #login-modal input[type=text], input[type=password] {
-	margin-top: 10px;
+    margin-top: 10px;
 }
+
 #register-form input[type=text], input[type=password] {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 #div-login-msg,
 #div-lost-msg,
 #div-register-msg {
-/*    border: 1px solid #dadfe1;
-*/
-	height: 30px;
+    /*    border: 1px solid #dadfe1;
+    */
+    height: 30px;
     line-height: 28px;
     transition: all ease-in-out 500ms;
 }
@@ -486,7 +547,7 @@ table.ganados tr.header,table.ganados tr:hover{
 .modal-content {
     background-color: #ececec;
     border: 1px solid #bdc3c7;
-	/*border-radius: 0px;*/
+    /*border-radius: 0px;*/
     outline: 0;
 }
 
@@ -524,7 +585,7 @@ table.ganados tr.header,table.ganados tr:hover{
     outline: none;
 }
 
-.btn-lg, .btn-group-lg>.btn {
+.btn-lg, .btn-group-lg > .btn {
     /*border-radius: 0px;*/
 }
 
@@ -543,13 +604,13 @@ table.ganados tr.header,table.ganados tr:hover{
 }
 
 .form-control {
-  /*border-radius: 0px;*/
+    /*border-radius: 0px;*/
 }
 
 .btn-excel {
-	color: #ffffff;
-	background-color: #23673D;
-	border-color: #19942B;
+    color: #ffffff;
+    background-color: #23673D;
+    border-color: #19942B;
 }
 
 .btn-excel:hover,
@@ -557,15 +618,15 @@ table.ganados tr.header,table.ganados tr:hover{
 .btn-excel:active,
 .btn-excel.active,
 .open .dropdown-toggle.btn-excel {
-	color: #ffffff;
-	background-color: #287D49;
-	border-color: #19942B;
+    color: #ffffff;
+    background-color: #287D49;
+    border-color: #19942B;
 }
 
 .btn-excel:active,
 .btn-excel.active,
 .open .dropdown-toggle.btn-excel {
-	background-image: none;
+    background-image: none;
 }
 
 .btn-excel.disabled,
@@ -583,29 +644,51 @@ fieldset[disabled] .btn-excel:active,
 .btn-excel.disabled.active,
 .btn-excel[disabled].active,
 fieldset[disabled] .btn-excel.active {
-	background-color: #23673D;
-	border-color: #19942B;
+    background-color: #23673D;
+    border-color: #19942B;
 }
 
 .btn-excel .badge {
-	color: #23673D;
-	background-color: #ffffff;
+    color: #23673D;
+    background-color: #ffffff;
 }
 
 input[type="file"] {
-	display: none;
+    display: none;
 }
 
-.form-inline{
-	display: inline;
+.form-inline {
+    display: inline;
 }
 
-.dropzone{
+.dropzone {
 
 }
-.dropzone.dragover{
-	border: 2px dashed #19942B;
-	border-color: #19942B;
-	/*color: #19942B;*/
+
+.dropzone.dragover {
+    border-radius: 15px;
+    border: 4px dashed #19942B;
+    border-color: #19942B;
+    background-color: #dadfe1;
+
+    /*color: #19942B;*/
+
+}
+
+.dropzone.dragover img {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+}
+
+.titulodrop {
+
+    text-align: center;
+    align-content: center;
+    vertical-align: middle;
 
 }
