@@ -1,4 +1,8 @@
-<table id="miTabla" class="table header-fixed">
+<input type="text" id="buscadorGanaderias" class="buscadorjs noform" data-tabla="tablaGanaderias"
+       placeholder="Buscar ganadería por nombre...">
+
+<div class="table-responsive">
+<table id="tablaGanaderias" class="table header-fixed ganados">
     <thead>
     <tr class="header">
         <th style="width:20%;">Nombre</th>
@@ -32,7 +36,7 @@
     </tbody>
 </table>
 
-
+</div>
 {!! Form::open(['url' => ['eliminar/ganaderia/:ID_ELIMINAR'], 'method' => 'DELETE','id'=>'form-delete']) !!}
 {!! Form::close() !!}
 
