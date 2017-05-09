@@ -12,6 +12,10 @@
         @include('partials.permission')
     @else
         <div class="dropzone" id="dropzone" data-tipo="ganaderia">
+
+                <h2 id='titulodrop' class='titulodrop' hidden>Deposita el fichero Excel a importar.</h2>
+                <img id='imagedrop' src="{{asset('images/excel.png')}}" height="50%" width="50%" hidden>
+                <div class="in-dropzone">
             <h1>Ganaderías</h1>
             <p>Desde esta página puedes registrar una nueva ganadería o editar las ya existentes y listadas.</p>
             <a href="{{url('registrar/ganaderia')}}" class="btn btn-primary btn-md" role="button"><span
@@ -29,7 +33,7 @@
             {!! Form::close() !!}
             {{--TODO Buscador Ganaderias y Asociaciones--}}
             @include('ganaderia.tablaGanaderias')
-
+                </div>
         </div>
 
     @endif
