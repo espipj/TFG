@@ -41,17 +41,17 @@
                 <li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{route('landing')}}">Inicio</a></li>
                 @if(!Auth::guest())
                     <li {{{ (Request::is('panel') ? 'class=active' : '') }}}><a href="{{route('home')}}">Panel</a></li>
-                    <li {{{ (Request::is('ver/asociacion') ? 'class=active' : '') }}}><a
+                    <li {{{ (Request::is('ver/asociacion*') ? 'class=active' : '') }}}><a
                                 href="{{route('verasociacion')}}">Asociación</a>
                     </li>
-                    <li {{{ (Request::is('ver/ganaderia') ? 'class=active' : '') }}}><a
+                    <li {{{ (Request::is('ver/ganaderia*') ? 'class=active' : '') }}}><a
                                 href="{{route('verganaderia')}}">Ganadería</a>
                     </li>
-                    <li {{{ (Request::is('ver/ganado') ? 'class=active' : '') }}}><a
+                    <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
                                 href="{{route('verganado')}}">Ganado</a></li>
-                    <li {{{ (Request::is('ver/explotacion') ? 'class=active' : '') }}}><a
+                    <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
                                 href="{{route('verexplotacion')}}">Explotación</a></li>
-                    <li {{{ (Request::is('ver/muestra') ? 'class=active' : '') }}}><a
+                    <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                 href="{{route('vermuestra')}}">Muestra</a></li>
                 @endif
                 <li><a href="#contacto">Contacto</a></li>
