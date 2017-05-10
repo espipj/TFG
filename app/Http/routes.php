@@ -27,78 +27,196 @@ Route::group(['middleware' => 'revalidate'], function()
 
 
     //Asociaciones
-    Route::get('/registrar/asociacion', 'AsociacionesController@registrar');
-    Route::post('/registrar/asociacion', 'AsociacionesController@guardar');
+    Route::get('/registrar/asociacion', [
+        'uses'          =>  'AsociacionesController@registrar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+
+    Route::post('/registrar/asociacion', [
+        'uses'          =>  'AsociacionesController@guardar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+
     Route::get('/ver/asociacion/{asociacion?}', [
         'uses'=>'AsociacionesController@show',
-        'as'=>'verasociacion']);
-    Route::get('/editar/asociacion/{asociacion}', 'AsociacionesController@show_edit');
-    Route::post('/editar/asociacion/completed', 'AsociacionesController@edit');
-    Route::delete('/eliminar/asociacion/{asociacion}', 'AsociacionesController@delete');
+        'as'=>'verasociacion',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+
+    Route::get('/editar/asociacion/{asociacion}', [
+        'uses'          =>  'AsociacionesController@show_edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']
+    ]);
+
+    Route::post('/editar/asociacion/completed', [
+        'uses'          =>  'AsociacionesController@edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']
+    ]);
+
+    Route::delete('/eliminar/asociacion/{asociacion}', [
+        'uses'          =>  'AsociacionesController@delete',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Ganaderos
-    Route::get('/registrar/ganadero/{ganaderia?}', 'GanaderosController@registrar');
-    Route::post('/registrar/ganadero', 'GanaderosController@guardar');
+    Route::get('/registrar/ganadero/{ganaderia?}', [
+        'uses'          =>  'GanaderosController@registrar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/registrar/ganadero', [
+        'uses'          =>  'GanaderosController@guardar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
     Route::get('/ver/ganadero/{ganadero?}', [
-        'uses'  =>  'GanaderosController@show',
-        'as'    =>  'verganadero']);
-    Route::get('/editar/ganadero/{ganadero}', 'GanaderosController@show_edit');
-    Route::post('/editar/ganadero/completed/', 'GanaderosController@edit');
-    Route::delete('/eliminar/ganadero/{ganadero}', 'GanaderosController@delete');
+        'uses'          =>  'GanaderosController@show',
+        'as'            =>  'verganadero',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::get('/editar/ganadero/{ganadero}', [
+        'uses'          =>  'GanaderosController@show_edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/editar/ganadero/completed/', [
+        'uses'          =>  'GanaderosController@edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::delete('/eliminar/ganadero/{ganadero}', [
+        'uses'          =>  'GanaderosController@delete',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Ganaderia
-    Route::get('/registrar/ganaderia/{asociacion?}', 'GanaderiasController@registrar');
-    Route::post('/registrar/ganaderia', 'GanaderiasController@guardar');
+    Route::get('/registrar/ganaderia/{asociacion?}', [
+        'uses'          =>  'GanaderiasController@registrar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/registrar/ganaderia',[
+        'uses'          =>  'GanaderiasController@guardar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
     Route::get('/ver/ganaderia/{ganaderia?}', [
-        'uses'  =>  'GanaderiasController@show',
-        'as'    =>  'verganaderia']);
-    Route::get('/editar/ganaderia/{ganaderia}', 'GanaderiasController@show_edit');
-    Route::post('/editar/ganaderia/completed', 'GanaderiasController@edit');
-    Route::delete('/eliminar/ganaderia/{ganaderia}', 'GanaderiasController@delete');
+        'uses'          =>  'GanaderiasController@show',
+        'as'            =>  'verganaderia',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::get('/editar/ganaderia/{ganaderia}', [
+        'uses'          =>  'GanaderiasController@show_edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/editar/ganaderia/completed', [
+        'uses'          =>  'GanaderiasController@edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::delete('/eliminar/ganaderia/{ganaderia}',[
+        'uses'          =>  'GanaderiasController@delete',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Ganado
-    Route::get('/registrar/ganado/{ganaderia?}', 'GanadosController@registrar');
-    Route::post('/registrar/ganado', 'GanadosController@guardar');
+    Route::get('/registrar/ganado/{ganaderia?}', [
+        'uses'          =>  'GanadosController@registrar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/registrar/ganado', [
+        'uses'          =>  'GanadosController@guardar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
     Route::get('/ver/ganado/{ganado?}', [
         'uses'  =>  'GanadosController@show',
-        'as'    =>  'verganado']);
+        'as'    =>  'verganado',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
     Route::get('/ver/muertos/{ganaderia?}', [
         'uses'  =>  'GanadosController@showMuertos',
-        'as'    =>  'verganadomuerto']);
-    Route::get('/editar/ganado/{ganado}', 'GanadosController@show_edit');
-    Route::post('/editar/ganado/completed', 'GanadosController@edit');
-    Route::delete('/eliminar/ganado/{ganado}', 'GanadosController@delete');
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::get('/editar/ganado/{ganado}', [
+        'uses'          =>  'GanadosController@show_edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/editar/ganado/completed', [
+        'uses'          =>   'GanadosController@edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::delete('/eliminar/ganado/{ganado}', [
+        'uses'          =>   'GanadosController@delete',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Explotacion
-    Route::get('/registrar/explotacion/{explotacion?}', 'ExplotacionesController@registrar');
-    Route::post('/registrar/explotacion', 'ExplotacionesController@guardar');
+    Route::get('/registrar/explotacion/{explotacion?}', [
+        'uses'          =>    'ExplotacionesController@registrar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/registrar/explotacion', [
+        'uses'          =>    'ExplotacionesController@guardar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
     Route::get('/ver/explotacion/{explotacion?}', [
         'uses'  =>  'ExplotacionesController@show',
-        'as'    =>  'verexplotacion']);
-    Route::get('/editar/explotacion/{explotacion}', 'ExplotacionesController@show_edit');
-    Route::post('/editar/explotacion/completed', 'ExplotacionesController@edit');
-    Route::delete('/eliminar/explotacion/{explotacion}', 'ExplotacionesController@delete');
+        'as'    =>  'verexplotacion',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::get('/editar/explotacion/{explotacion}', [
+        'uses'          =>    'ExplotacionesController@show_edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/editar/explotacion/completed', [
+        'uses'          =>    'ExplotacionesController@edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::delete('/eliminar/explotacion/{explotacion}', [
+        'uses'          =>    'ExplotacionesController@delete',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Muestra
-    Route::get('/registrar/muestra/{ganado?}', 'MuestrasController@registrar');
-    Route::post('/registrar/muestra', 'MuestrasController@guardar');
+    Route::get('/registrar/muestra/{ganado?}', [
+        'uses'          =>    'MuestrasController@registrar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/registrar/muestra', [
+        'uses'          =>    'MuestrasController@guardar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
     Route::get('/ver/muestra/{muestra?}', [
         'uses'  =>  'MuestrasController@show',
-        'as'    =>  'vermuestra']);
-    Route::get('/editar/muestra/{muestra}', 'MuestrasController@show_edit');
-    Route::post('/editar/muestra/completed', 'MuestrasController@edit');
-    Route::delete('/eliminar/muestra/{muestra}', 'MuestrasController@delete');
+        'as'    =>  'vermuestra',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::get('/editar/muestra/{muestra}', [
+        'uses'          =>    'MuestrasController@show_edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::post('/editar/muestra/completed', [
+        'uses'          =>    'MuestrasController@edit',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
+    Route::delete('/eliminar/muestra/{muestra}', [
+        'uses'          =>    'MuestrasController@delete',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Laboratorio
     Route::get('/ver/laboratorio/{laboratorio?}', [
         'uses'  =>  'LaboratorioController@show',
-        'as'    =>  'verlaboratorio']);
+        'as'    =>  'verlaboratorio',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Importar
-    Route::post('/importar/{opcion}','ImportExportController@importar');
+    Route::post('/importar/{opcion}', [
+        'uses'          =>   'ImportExportController@importar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     //Exportar
-    Route::get('/exportar/{opcion}/{formato}','ImportExportController@exportar');
+    Route::get('/exportar/{opcion}/{formato}', [
+        'uses'          =>   'ImportExportController@exportar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador']]);
 
     Route::get('importExport', 'MaatwebsiteDemoController@importExport');
     Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

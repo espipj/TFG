@@ -51,8 +51,10 @@
                                 href="{{route('verganado')}}">Ganado</a></li>
                     <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
                                 href="{{route('verexplotacion')}}">Explotación</a></li>
+                    @if(Auth::user()->hasAnyRole(array('Administrador')))
                     <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                 href="{{route('vermuestra')}}">Muestra</a></li>
+                    @endif
                 @endif
                 <li><a href="#contacto">Contacto</a></li>
             </ul>

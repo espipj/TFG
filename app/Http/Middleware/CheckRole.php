@@ -16,7 +16,7 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if($request->user()==null){
-            return response("No tienes los suficientes permisos",201);
+            return response(view('partials.permission'));
         }
         $actions=$request->route()->getAction();
         $roles=isset($actions['roles']) ? $actions['roles'] : null;
@@ -26,6 +26,7 @@ class CheckRole
         }
 
 
-        return response("No tienes los suficientes permisos",201);
+
+        return response(view('partials.role-permission'));
     }
 }
