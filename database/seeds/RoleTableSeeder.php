@@ -19,7 +19,7 @@ class RoleTableSeeder extends Seeder
         $role_user->save();
 
         $role_admin=new Role();
-        $role_admin->name='Admin';
+        $role_admin->name='Administrador';
         $role_admin->description='El administrador';
         $role_admin->save();
 

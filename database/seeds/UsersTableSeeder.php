@@ -1,5 +1,6 @@
 <?php
 
+use App\Role;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -13,25 +14,33 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         //
-        User::create([
+        $role_gana= Role::where('name','Ganadero')->first();
+        $role_admin= Role::where('name','Administrador')->first();
+        $role_labo= Role::where('name','Laboratorio')->first();
+        $admin=User::create([
             'name' => 'admin',
             'email' => 'admin',
             'password' => bcrypt('admin'),
         ]);
-        User::create([
+        $admin->roles()->attach($role_admin);
+        $ganadero=User::create([
             'name' => 'ganadero',
             'email' => 'ganadero',
             'password' => bcrypt('ganadero'),
         ]);
-        User::create([
+        $ganadero->roles()->attach($role_gana);
+        $asociacion=User::create([
             'name' => 'asociacion',
             'email' => 'asociacion',
             'password' => bcrypt('asociacion'),
         ]);
-        User::create([
+        $asociacion->roles()->attach($role_admin);
+        $laboratorio=User::create([
             'name' => 'laboratorio',
             'email' => 'laboratorio',
             'password' => bcrypt('laboratorio'),
         ]);
+
+        $laboratorio->roles()->attach($role_labo);
     }
 }
