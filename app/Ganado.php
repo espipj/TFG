@@ -217,6 +217,15 @@ class Ganado extends Model
             }else{
                 $madre=$ganado->madre->crotal;
             }
+            // Arreglar fallo exportar a veces
+            if (isset($ganado->ganaderia->nombre)){
+                $ganaderianombre=$ganado->ganaderia->nombre;
+                $ganaderiasigla=$ganado->ganaderia->sigla;
+            }else{
+                $ganaderianombre="Ganadería Vacia";
+                $ganaderiasigla="VACI";
+
+            }
             $aux=[
                 'fecha de nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
                 'crotal'                =>  $ganado->crotal,
@@ -225,10 +234,11 @@ class Ganado extends Model
                 'capa'                  =>  $ganado->capa->alias,
                 'sexo'                  =>  $ganado->sexo->alias,
                 'estado'                =>  $ganado->estado->nombre,
-                'ganaderia'             =>  $ganado->ganaderia->nombre,
-                'sigla'                 =>  $ganado->ganaderia->sigla,
+                'ganaderia'             =>  $ganaderianombre,
+                'sigla'                 =>  $ganaderiasigla,
 
             ];
+
             array_push($array,$aux);
         }
         return $array;

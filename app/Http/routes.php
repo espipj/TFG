@@ -127,7 +127,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'uses'  =>  'GanadosController@show',
         'as'    =>  'verganado',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador']]);
+        'roles'         =>  ['Administrador','Ganadero']]);
     Route::get('/ver/muertos/{ganaderia?}', [
         'uses'  =>  'GanadosController@showMuertos',
         'middleware'    =>  'roles',
@@ -158,7 +158,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'uses'  =>  'ExplotacionesController@show',
         'as'    =>  'verexplotacion',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador']]);
+        'roles'         =>  ['Administrador','Ganadero']]);
     Route::get('/editar/explotacion/{explotacion}', [
         'uses'          =>    'ExplotacionesController@show_edit',
         'middleware'    =>  'roles',
@@ -180,12 +180,12 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::post('/registrar/muestra', [
         'uses'          =>    'MuestrasController@guardar',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador']]);
+        'roles'         =>  ['Administrador',]]);
     Route::get('/ver/muestra/{muestra?}', [
         'uses'  =>  'MuestrasController@show',
         'as'    =>  'vermuestra',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador']]);
+        'roles'         =>  ['Administrador','Laboratorio']]);
     Route::get('/editar/muestra/{muestra}', [
         'uses'          =>    'MuestrasController@show_edit',
         'middleware'    =>  'roles',
@@ -225,9 +225,10 @@ Route::group(['middleware' => 'revalidate'], function()
 
     //Panel de Inicio
     Route::get('/panel',[
-        'uses'  =>  'InicioController@Index',
-        'as'    =>  'home'
-    ]);
+        'uses'          =>  'InicioController@Index',
+        'as'            =>  'home',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador','Laboratorio','Ganadero']]);
 });
 
 
