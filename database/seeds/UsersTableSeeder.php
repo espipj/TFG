@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         //
         $role_gana= Role::where('name','Ganadero')->first();
         $role_admin= Role::where('name','Administrador')->first();
+        $role_sadmin= Role::where('name','SuperAdmin')->first();
         $role_labo= Role::where('name','Laboratorio')->first();
         $admin=User::create([
             'name' => 'admin',
@@ -23,6 +24,12 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('admin'),
         ]);
         $admin->roles()->attach($role_admin);
+        $sadmin=User::create([
+            'name' => 'superadmin',
+            'email' => 'superadmin',
+            'password' => bcrypt('superadmin'),
+        ]);
+        $sadmin->roles()->attach($role_sadmin);
         $ganadero=User::create([
             'name' => 'ganadero',
             'email' => 'ganadero',

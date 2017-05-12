@@ -43,7 +43,7 @@
 
                     <li {{{ (Request::is('panel') ? 'class=active' : '') }}}><a href="{{route('home')}}">Panel</a></li>
 
-                    @if(Auth::user()->hasAnyRole(array('Administrador','Laboratorio')))
+                    @if(Auth::user()->hasAnyRole(array('Administrador','Laboratorio','SuperAdmin')))
                         <li {{{ (Request::is('ver/asociacion*') ? 'class=active' : '') }}}><a
                                     href="{{route('verasociacion')}}">Asociación</a>
 
@@ -53,16 +53,20 @@
                         </li>
 
                     @endif
-                    @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero')))
+                    @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin')))
                     <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
                                 href="{{route('verganado')}}">Ganado</a></li>
                     <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
                                 href="{{route('verexplotacion')}}">Explotación</a></li>
                     @endif
 
-                    @if(Auth::user()->hasAnyRole(array('Laboratorio')))
+                    @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))
                         <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                     href="{{route('vermuestra')}}">Muestra</a></li>
+                    @endif
+                    @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
+                        <li {{{ (Request::is('ver/usuario*') ? 'class=active' : '') }}}><a
+                                    href="{{route('verusuario')}}">Usuarios</a></li>
                     @endif
                 @endif
                 <li><a href="#contacto">Contacto</a></li>

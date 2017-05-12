@@ -194,7 +194,7 @@ $(document).ready(function () {
     });
 
     //Checkboxes que filtran
-    $("input:checkbox").click(function () {
+    $(".tick").click(function () {
         var showAll = true;
         $('tr').not('.header').hide();
         $('input[type=checkbox]').each(function () {
@@ -221,6 +221,10 @@ $(document).ready(function () {
     });
 
     $(".pariente").click(function (event) {
+        event.stopPropagation();
+    });
+
+    $(".role-tick").click(function (event) {
         event.stopPropagation();
     });
     function initMap() {

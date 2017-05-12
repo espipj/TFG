@@ -2,37 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Capa;
-use App\Estado;
-use App\Ganaderia;
-use App\Ganado;
-use App\Sexo;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class GanadosController extends Controller
+class UsuariosController extends Controller
 {
     //
     public function index(){
-        return Ganado::all()->sortBy('crotal');
+        return User::all()->sortBy('crotal');
     }
-    public function registrar($Ganaderia=null){
-
-        $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
-        $capas=Capa::all()->sortBy('select_option')->lists('select_option','id');
-        $ganados=Ganado::all()->sortBy('crotal');
-        $sexos=Sexo::all();
-        if($Ganaderia==null){
-            return view('ganado.registrarGanado',compact('ganaderias','sexos','ganados','capas'));
-
-        }else{
-            return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia','ganados','capas'));
-
-        }
-    }
-
     public function guardar(Request $request){
         $this->validate($request,[
             'crotal'=>['required','max:256'],
@@ -45,49 +27,26 @@ class GanadosController extends Controller
         return redirect()->to('/ver/ganado');
     }
 
-    public function show($Ganado=null){
-        if($Ganado==null){
-            $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
-            //$ganados=Ganado::where('vivo',1)->orderBy('crotal')->get();
-            return view('ganado.verGanados',compact('ganados'));
+    public function show($Usuario=null){
+        if($Usuario==null){
+            $usuarios=User::all()->sortBy('name');
+            return view('usuario.verUsuarios',compact('usuarios'));
         }else{
-            return $this->show_detail($Ganado);
+            return $this->show_detail($Usuario);
         }
     }
 
-    public function showMuertos($Ganaderia=null){
 
-        if($Ganaderia==null){
-            $ganados=Ganado::where('estado_id',2)->orderBy('crotal')->get();
-
-            //dd($ganados);
-            return view('ganado.verGanados',compact('ganados'));
-
-        }else{
-           // return view('ganado.registrarGanado',compact('ganaderias','sexos','Ganaderia','ganados'));
-
-        }
+    public function show_detail($Usuario){
+        $usuario=Ganado::find($Usuario);
+        return view('usuario.verUsuario', compact('usuario'));
     }
 
-    public function show_detail($Ganado){
-        $ganado=Ganado::find($Ganado);
-        if($ganado->sexo->nombre=='Macho'){
-            $ganados=$ganado->hijosP;
-        }else{
-            $ganados=$ganado->hijosM;
+    public function show_edit($Usuario){
 
-        }
-        return view('ganado.verGanado', compact('ganado','ganados'));
-    }
-
-    public function show_edit($Ganado){
-
-        $ganadoe=Ganado::find($Ganado);
-        $ganados=Ganado::all()->sortBy('crotal');
-        $capas=Capa::all()->sortBy('select_option')->lists('select_option','id');
-        $sexos=Sexo::all();
+        $usuario=User::find($Usuario);
         $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
-        return view('ganado.editarGanado', compact('ganados','ganadoe','sexos','ganaderias','capas'));
+        return view('usuario.editarUsuario', compact('usuario','ganaderias'));
 
 
 
@@ -130,5 +89,21 @@ class GanadosController extends Controller
         }
 
 
+    }
+
+    public function asignar(Request $request){
+        $user=User::where('email',$request['email'])->first();
+        $user->roles()->detach();
+
+        if ($request['role_ganad']){
+            $user->roles()->attach(Role::where('name','Ganadero')->first());
+        }
+        if ($request['role_labo']){
+            $user->roles()->attach(Role::where('name','Laboratorio')->first());
+        }
+        if ($request['role_admin']){
+            $user->roles()->attach(Role::where('name','Administrador')->first());
+        }
+        return redirect()->back();
     }
 }
