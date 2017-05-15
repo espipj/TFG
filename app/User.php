@@ -41,6 +41,14 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany(Role::class, 'role_user','user_id','role_id');
     }
 
+    public function ganaderias(){
+        return $this->belongsToMany(Ganaderia::class, 'ganaderia_usuario','user_id','ganaderia_id');
+    }
+
+    public function asociaciones(){
+        return $this->belongsToMany(Asociacion::class, 'asociacion_usuario','user_id','asociacion_id');
+    }
+
     public function hasAnyRole($roles){
         if(is_array($roles)){
             foreach ($roles as $role){

@@ -64,7 +64,7 @@
                         <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                     href="{{route('vermuestra')}}">Muestra</a></li>
                     @endif
-                    @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
+                    @if(Auth::user()->hasAnyRole(array('SuperAdmin','Administrador')))
                         <li {{{ (Request::is('ver/usuario*') ? 'class=active' : '') }}}><a
                                     href="{{route('verusuario')}}">Usuarios</a></li>
                     @endif
@@ -92,6 +92,10 @@
 </nav>
 
 <!-- Cambiar imagenes a carousel para que ocupen el ancho, 1600*600-->
+<div class="container-fluid">
+
+    @yield('contenido-fluid')
+</div>
 <div class="container">
     @yield('contenido')
 

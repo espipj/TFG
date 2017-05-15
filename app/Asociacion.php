@@ -16,6 +16,12 @@ class Asociacion extends Model
         return $this->hasMany(Ganaderia::class);
     }
 
+
+    public function asociaciones(){
+        return $this->belongsToMany(User::class, 'asociacion_usuario','asociacion_id','user_id');
+    }
+
+
     public static function AsociacionVacia($nombre){
         $asociacion=Asociacion::where('nombre',$nombre)->first();
         if(empty($asociacion)){

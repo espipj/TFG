@@ -30,6 +30,11 @@ class Ganaderia extends Model
         return $this->hasMany(Ganadero::class);
     }
 
+
+    public function ganaderias(){
+        return $this->belongsTo(User::class, 'ganaderia_usuario','ganaderia_id','user_id');
+    }
+
     //Attribute Acessor Laravel
     public function getSelectOptionAttribute()
     {
