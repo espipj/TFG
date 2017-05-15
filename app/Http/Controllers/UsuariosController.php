@@ -13,7 +13,7 @@ class UsuariosController extends Controller
 {
     //
     public function index(){
-        return User::all()->sortBy('crotal');
+        return User::all()->sortBy('name');
     }
     public function guardar(Request $request){
         $this->validate($request,[
@@ -24,7 +24,7 @@ class UsuariosController extends Controller
             'capa_id'=>['required'],
         ]);
         Ganado::guardarNuevo($request);
-        return redirect()->to('/ver/ganado');
+        return redirect()->to('/ver/usuario');
     }
 
     public function show($Usuario=null){
