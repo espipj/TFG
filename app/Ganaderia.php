@@ -31,8 +31,8 @@ class Ganaderia extends Model
     }
 
 
-    public function ganaderias(){
-        return $this->belongsTo(User::class, 'ganaderia_usuario','ganaderia_id','user_id');
+    public function usuarios(){
+        return $this->hasMany(User::class);
     }
 
     //Attribute Acessor Laravel

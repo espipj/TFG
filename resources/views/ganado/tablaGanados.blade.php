@@ -33,6 +33,7 @@
                     <div class="btn-group">
                         <a href="{{url('ver/ganado',['ganado'=>$ganado])}}" class="btn btn-info btn-sm"
                            role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
+                        @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                         <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
                            role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                         @if($ganado->estado->alias=='V')
@@ -42,6 +43,7 @@
                             <a href="#!" class="btn btn-danger btn-sm eliminar-ganado disabled"
                                role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
                         @endif
+                            @endif
                     </div>
                 </td>
             </tr>

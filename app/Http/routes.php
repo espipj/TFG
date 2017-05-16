@@ -97,7 +97,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'uses'          =>  'UsuariosController@show_edit',
         'middleware'    =>  'roles',
         'roles'         =>  ['Administrador','SuperAdmin']]);
-    Route::post('/editar/ganadero/completed/', [
+    Route::post('/editar/usuario/completed/', [
         'uses'          =>  'UsuariosController@edit',
         'middleware'    =>  'roles',
         'roles'         =>  ['Administrador','SuperAdmin']]);
@@ -240,7 +240,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/exportar/{opcion}/{formato}', [
         'uses'          =>   'ImportExportController@exportar',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['Administrador','SuperAdmin','Ganadero']]);
 
     Route::get('importExport', 'MaatwebsiteDemoController@importExport');
     Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

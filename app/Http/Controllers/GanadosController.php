@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GanadosController extends Controller
 {
@@ -47,8 +48,20 @@ class GanadosController extends Controller
 
     public function show($Ganado=null){
         if($Ganado==null){
-            $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
-            //$ganados=Ganado::where('vivo',1)->orderBy('crotal')->get();
+            if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin'))){
+                $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
+            }else{
+
+                if(Auth::user()->ganaderia){
+                    $ganados=Auth::user()->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
+                }else{
+                    $ganados=collect(new Ganado);
+
+                }
+
+            }
+
+
             return view('ganado.verGanados',compact('ganados'));
         }else{
             return $this->show_detail($Ganado);

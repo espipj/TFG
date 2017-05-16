@@ -8,6 +8,7 @@ use App\Ganado;
 use App\Sexo;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Ganado extends Model
 {
@@ -203,8 +204,24 @@ class Ganado extends Model
 
     }
 
+    public static function ganadosAExportar(){
+        if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin'))){
+            $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
+        }else{
+
+            if(Auth::user()->ganaderia){
+                $ganados=Auth::user()->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
+            }else{
+                $ganados=collect(new Ganado);
+
+            }
+
+        }
+        return $ganados;
+    }
+
     public static function generateArrayForExport(){
-        $ganados=Ganado::all();
+        $ganados=Ganado::ganadosAExportar();
         $array=array();
         foreach ($ganados as $ganado){
             if (empty($ganado->padre->crotal)){

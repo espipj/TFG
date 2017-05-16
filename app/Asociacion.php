@@ -17,8 +17,8 @@ class Asociacion extends Model
     }
 
 
-    public function asociaciones(){
-        return $this->belongsToMany(User::class, 'asociacion_usuario','asociacion_id','user_id');
+    public function usuarios(){
+        return $this->hasMany(User::class);
     }
 
 
