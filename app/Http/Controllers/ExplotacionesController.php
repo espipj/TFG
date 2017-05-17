@@ -36,8 +36,7 @@ class ExplotacionesController extends Controller
         $datos = $request->except('ganaderia_id');
         $explotacion=Explotacion::create($datos);
         $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        $ganaderia->ganados()->save($ganado);
-        $sexo->explotaciones()->save($explotacion);
+        $ganaderia->explotaciones()->save($explotacion);
         return redirect()->route('verexplotacion',[$explotacion]);
     }
 
