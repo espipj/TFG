@@ -100,13 +100,58 @@ class Ganado extends Model
         return $ganados;
 
     }
+
+    public function arbol($h,$p,$s){
+        if($h==0 || $h==2){
+
+            $s.="<ul>";
+
+        }
+        $s.="<li><a href='". route('verganado',[$this])."'>". $this->crotal ."</a>";
+
+        if($p>0) {
+            if (null!=$this->hijos()) {
+                $hijos=$this->hijos();
+                $length=count($hijos);
+                $s.=$p;
+                //$last_key = end(array_keys($hijos));
+                foreach ($hijos as $key => $hijo) {
+                    if ($key == 0) {
+                        $s.=$hijo->arbol(2, --$p,"");
+                    }else if ($length==($key+1)){
+                        //ultimo elemento
+                        $s.=$hijo->arbol(3, --$p,"");
+
+                    }else{
+
+                        $s.=$hijo->arbol(1, --$p,"");
+                    }
+
+
+                }
+            }
+
+                $s .= "</li>";
+
+        }
+        if($h==0 || $h==3){
+           $s.="</ul>";
+        }
+
+        return $s;
+    }
     public static function guardarNuevo($request){
         $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento','capa_id']);
         $ganado=self::create($datos);
-        $padre=Ganado::find($request->input('padre_id'));
-        $madre=Ganado::find($request->input('madre_id'));
-        $padre->setHijoP($ganado);
-        $madre->setHijoM($ganado);
+        if(null!=$request->input('padre_id')){
+            $padre=Ganado::find($request->input('padre_id'));
+            $padre->setHijoP($ganado);
+
+        }
+        if(null!=$request->input('madre_id')) {
+            $madre = Ganado::find($request->input('madre_id'));
+            $madre->setHijoM($ganado);
+        }
         $ganado->setSexo(Sexo::find($request->input('sexo_id')));
         $ganado->setCapa(Capa::find($request->input('capa_id')));
         $ganado->setGanaderia(Ganaderia::find($request->input('ganaderia_id')));

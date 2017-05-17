@@ -83,21 +83,29 @@ class GanadosController extends Controller
     }
 
     public function show_detail($Ganado){
+        $ganado=Ganado::find($Ganado);
+        $arbol=$ganado->arbol(0,3,"");
+
         $i=0;
 
-        $ganado=Ganado::find($Ganado);
-        $aux=$ganado->padre;
-        while ($aux->padre){
-            $i++;
-            $aux=$aux->padre;
-            if ($i>3){
-                $padre=$aux->padre;
-                break;
-            }
-        }
 
+        if(null!=$ganado->padre()) {
+            $aux=$ganado->padre();
+
+            while (null!=$aux->padre()) {
+                $i++;
+                $aux = $aux->padre();
+                if ($i > 3) {
+                    $padre = $aux->padre();
+                    break;
+                }
+            }
+        }else{
+            $padre=$ganado;
+        }
         $ganados=$ganado->hijos();
-        return view('ganado.verGanado', compact('ganado','ganados','padre'));
+
+        return view('ganado.verGanado', compact('ganado','ganados','padre','arbol'));
     }
 
     public function show_edit($Ganado){
