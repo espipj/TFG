@@ -83,14 +83,21 @@ class GanadosController extends Controller
     }
 
     public function show_detail($Ganado){
-        $ganado=Ganado::find($Ganado);
-        if($ganado->sexo->nombre=='Macho'){
-            $ganados=$ganado->hijosP;
-        }else{
-            $ganados=$ganado->hijosM;
+        $i=0;
 
+        $ganado=Ganado::find($Ganado);
+        $aux=$ganado->padre;
+        while ($aux->padre){
+            $i++;
+            $aux=$aux->padre;
+            if ($i>3){
+                $padre=$aux->padre;
+                break;
+            }
         }
-        return view('ganado.verGanado', compact('ganado','ganados'));
+
+        $ganados=$ganado->hijos();
+        return view('ganado.verGanado', compact('ganado','ganados','padre'));
     }
 
     public function show_edit($Ganado){

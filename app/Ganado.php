@@ -90,6 +90,16 @@ class Ganado extends Model
         return $estado->ganados()->save($this);
     }
 
+    public function hijos(){
+        if($this->sexo->nombre=='Macho'){
+            $ganados=$this->hijosP;
+        }else{
+            $ganados=$this->hijosM;
+
+        }
+        return $ganados;
+
+    }
     public static function guardarNuevo($request){
         $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento','capa_id']);
         $ganado=self::create($datos);

@@ -1,4 +1,6 @@
-<table id="miTabla" class="table header-fixed">
+<input type="text" id="buscadorExplotaciones" class="buscadorjs noform" data-tabla="tablaExplotaciones"
+       placeholder="Buscar res por CEA...">
+<table id="tablaExplotaciones" class="table header-fixed ganados">
     <thead>
     <tr class="header">
         <th style="width:30%;">CEA</th>
