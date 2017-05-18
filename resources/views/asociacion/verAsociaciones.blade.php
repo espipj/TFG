@@ -4,6 +4,8 @@
 @section('contenido')
     @if (Auth::guest())
         @include('partials.permission')
+    @elseif(!Auth::user()->hasAnyRole(array('SuperAdmin')))
+        @include('partials.role-permission')
     @else
         <h1>Asociaciones</h1>
         <p>Desde esta página puedes registrar una nueva asociación o editar las ya existentes y listadas.</p>

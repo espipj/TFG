@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Asociacion;
+use Illuminate\Support\Facades\Auth;
 
 class AsociacionesController extends Controller
 {
@@ -36,6 +37,12 @@ class AsociacionesController extends Controller
     }
 
     public function show($Asociacion=null){
+        $usuario=Auth::user();
+        if ($usuario->asociacion!=null){
+
+            $Asociacion=$usuario->asociacion->id;
+            //dd($Asociacion);
+        }
         if($Asociacion==null){
 
             $asociaciones=Asociacion::all();

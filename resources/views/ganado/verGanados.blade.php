@@ -10,6 +10,8 @@
 
     @if (Auth::guest())
         @include('partials.permission')
+    @elseif($ganados=="sing")
+        @include('partials.role-permission')
     @else
 
 

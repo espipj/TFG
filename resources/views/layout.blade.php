@@ -64,7 +64,7 @@
                         <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                     href="{{route('vermuestra')}}">Muestra</a></li>
                     @endif
-                    @if(Auth::user()->hasAnyRole(array('SuperAdmin','Administrador')))
+                    @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
                         <li {{{ (Request::is('ver/usuario*') ? 'class=active' : '') }}}><a
                                     href="{{route('verusuario')}}">Usuarios</a></li>
                     @endif

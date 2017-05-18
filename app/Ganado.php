@@ -102,7 +102,7 @@ class Ganado extends Model
     }
 
     public function arbol($h,$p,$s){
-        if($h==0 || $h==2){
+        if($h==0 || $h==2 || $h==4){
 
             $s.="<ul>";
 
@@ -113,13 +113,16 @@ class Ganado extends Model
             if (null!=$this->hijos()) {
                 $hijos=$this->hijos();
                 $length=count($hijos);
-                $s.=$p;
+                //$s.=$p;
                 //$last_key = end(array_keys($hijos));
                 foreach ($hijos as $key => $hijo) {
-                    if ($key == 0) {
-                        $s.=$hijo->arbol(2, --$p,"");
-                    }else if ($length==($key+1)){
+                    if ($length==($key+1) && $key == 0) {
+                        $s.=$hijo->arbol(4, --$p,"");
+                    }else if ($key == 0){
                         //ultimo elemento
+                        $s.=$hijo->arbol(2, --$p,"");
+
+                    }else if($length==($key+1)){
                         $s.=$hijo->arbol(3, --$p,"");
 
                     }else{
@@ -134,7 +137,7 @@ class Ganado extends Model
                 $s .= "</li>";
 
         }
-        if($h==0 || $h==3){
+        if($h==0 || $h==3 || $h==4){
            $s.="</ul>";
         }
 

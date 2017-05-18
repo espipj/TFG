@@ -92,24 +92,24 @@ Route::group(['middleware' => 'revalidate'], function()
         'uses'          =>  'UsuariosController@show',
         'as'            =>  'verusuario',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['SuperAdmin']]);
     Route::get('/editar/usuario/{usuario}', [
         'uses'          =>  'UsuariosController@show_edit',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['SuperAdmin']]);
     Route::post('/editar/usuario/completed/', [
         'uses'          =>  'UsuariosController@edit',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['SuperAdmin']]);
     Route::delete('/eliminar/usuario/{usuario}', [
         'uses'          =>  'UsuariosController@delete',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['SuperAdmin']]);
 
     Route::post('/asignar/usuario/', [
         'uses'          =>  'UsuariosController@asignar',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['SuperAdmin']]);
 
     //Ganaderia
     Route::get('/registrar/ganaderia/{asociacion?}', [

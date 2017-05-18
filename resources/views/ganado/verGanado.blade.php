@@ -8,8 +8,9 @@
     @else
         <div class="jumbotron">
             <div class="row">
-                <div class="col-sm-6">
-                    <h1>Datos de la res:</h1>
+                <h1>Datos de la res:</h1></div>
+            <div class="row">
+                <div class="col-sm-9">
                     <h2>Crotal: {{$ganado->crotal}}</h2>
                     @if(!empty($ganado->ganaderia))
                         <h2>Ganadería: <a
@@ -36,30 +37,33 @@
                                 @else
                                     <h3>Madre: no definida</h3>
                                 @endif
-                                <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
-                                   role="button"><span
-                                            class="glyphicon glyphicon-edit"></span> Editar</a>
-                                @if($ganado->estado->alias=='V')
-                                    <a href="" class="btn btn-danger btn-sm eliminar-detail"
-                                       role="button" data-id="{{$ganado->id}}"><span
-                                                class="glyphicon glyphicon-remove"></span>
-                                        Eliminar</a>
-                                @else
-                                    <a href="" class="btn btn-danger btn-sm eliminar-detail disabled"
-                                       role="button" data-id="{{$ganado->id}}"><span
-                                                class="glyphicon glyphicon-remove"></span>
-                                        Eliminar</a>
 
-                    @endif
 
                 </div>
-                <div class="col-sm-6">
-                    <div class="tree">
+                <div class="col-sm-3">
+                    <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
+                       role="button"><span
+                                class="glyphicon glyphicon-edit"></span> Editar</a>
+                    @if($ganado->estado->alias=='V')
+                        <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                           role="button" data-id="{{$ganado->id}}"><span
+                                    class="glyphicon glyphicon-remove"></span>
+                            Eliminar</a>
+                    @else
+                        <a href="" class="btn btn-danger btn-sm eliminar-detail disabled"
+                           role="button" data-id="{{$ganado->id}}"><span
+                                    class="glyphicon glyphicon-remove"></span>
+                            Eliminar</a>
+
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="tree scrollable">
 
 
-                        {!! $arbol !!}
+                    {!! $arbol !!}
 
-                    </div>
                 </div>
             </div>
         </div>
