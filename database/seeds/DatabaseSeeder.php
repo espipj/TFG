@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
         $this->call(CapaTableSeeder::class);
         $this->call(EstadoTableSeeder::class);
         $this->call(TipoMuestraTableSeeder::class);
-        $this->call(MuestraTableSeeder::class);
         $this->call(LaboratorioTableSeeder::class);
         $this->call(AsociacionTableSeeder::class);
         $this->call(SexoTableSeeder::class);
         $this->call(GanaderiaTableSeeder::class);
         $this->call(ExplotacionTableSeeder::class);
         $this->call(GanadoTableSeeder::class);
+        $this->call(MuestraTableSeeder::class);
         //$this->call(GanaderoTableSeeder::class);
 
         Model::reguard();

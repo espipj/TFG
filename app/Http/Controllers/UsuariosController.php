@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Asociacion;
 use App\Ganaderia;
+use App\Laboratorio;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -49,9 +50,8 @@ class UsuariosController extends Controller
         $usuario=User::find($Usuario);
         $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
         $asociaciones=Asociacion::all()->sortBy('nombre')->lists('nombre','id');
-        return view('usuario.editarUsuario', compact('usuario','ganaderias','asociaciones'));
-
-
+        $laboratorios=Laboratorio::all()->sortBy('select_option')->lists('select_option','id');
+        return view('usuario.editarUsuario', compact('usuario','ganaderias','asociaciones','laboratorios'));
 
     }
 
@@ -71,6 +71,11 @@ class UsuariosController extends Controller
         if($request['ganaderia_id']){
             //dd('hola');
             $user->ganaderia()->associate(Ganaderia::where('id',$request->input('ganaderia_id'))->first());
+
+        }
+        if($request['laboratorio_id']){
+            //dd('hola');
+            $user->laboratorio()->associate(Laboratorio::where('id',$request->input('laboratorio_id'))->first());
 
         }
         $user->save();

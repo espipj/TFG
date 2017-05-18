@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GanaderiasController extends Controller
 {
@@ -47,6 +48,12 @@ class GanaderiasController extends Controller
     }
 
     public function show($Ganaderia=null){
+        $usuario=Auth::user();
+        if ($usuario->ganaderia!=null){
+
+            $Ganaderia=$usuario->ganaderia->id;
+            //dd($Asociacion);
+        }
         if($Ganaderia==null){
             $ganaderias=Ganaderia::all();
             return view('ganaderia.verGanaderias',compact('ganaderias'));

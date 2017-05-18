@@ -115,7 +115,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/registrar/ganaderia/{asociacion?}', [
         'uses'          =>  'GanaderiasController@registrar',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['Administrador','SuperAdmin','Ganadero']]);
     Route::post('/registrar/ganaderia',[
         'uses'          =>  'GanaderiasController@guardar',
         'middleware'    =>  'roles',
@@ -124,7 +124,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'uses'          =>  'GanaderiasController@show',
         'as'            =>  'verganaderia',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['Administrador','SuperAdmin','Ganadero']]);
     Route::get('/editar/ganaderia/{ganaderia}', [
         'uses'          =>  'GanaderiasController@show_edit',
         'middleware'    =>  'roles',

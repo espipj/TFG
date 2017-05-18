@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ExplotacionesController extends Controller
 {
@@ -41,8 +42,35 @@ class ExplotacionesController extends Controller
     }
 
     public function show($Explotacion=null){
+        $usuario=Auth::user();
         if($Explotacion==null){
-            $explotaciones=Explotacion::all();
+            if($usuario->hasAnyRole(array('SuperAdmin'))){
+                $explotaciones=Explotacion::all();
+
+            }elseif ($usuario->hasAnyRole(array('Administrador'))){
+                if ($usuario->asociacion != null) {
+
+                    $asociacion = $usuario->asociacion;
+
+                    $explotaciones = $asociacion->explotaciones;
+                }else{
+                    $explotaciones="noexp";
+
+                }
+
+            }elseif ($usuario->hasAnyRole(array('Ganadero'))){
+                if ($usuario->ganaderia != null) {
+
+                    $explotaciones=$usuario->ganaderia->explotaciones;
+                }else{
+                    $explotaciones="noexp";
+
+                }
+
+            }else{
+                $explotaciones="noexp";
+            }
+
             return view('explotacion.verExplotaciones',compact('explotaciones'));
         }else{
             return $this->show_detail($Explotacion);

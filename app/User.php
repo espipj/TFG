@@ -49,6 +49,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo(Asociacion::class, 'asociacion_id');
     }
 
+    public function laboratorio(){
+        return $this->belongsTo(Laboratorio::class, 'laboratorio_id');
+    }
+
     public function hasAnyRole($roles){
         if(is_array($roles)){
             foreach ($roles as $role){

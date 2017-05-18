@@ -24,6 +24,10 @@ class Asociacion extends Model
     public function ganados(){
         return $this->hasManyThrough(Ganado::class,Ganaderia::class,'asociacion_id','ganaderia_id');
     }
+
+    public function explotaciones(){
+        return $this->hasManyThrough(Explotacion::class,Ganaderia::class,'asociacion_id','ganaderia_id');
+    }
     public static function AsociacionVacia($nombre){
         $asociacion=Asociacion::where('nombre',$nombre)->first();
         if(empty($asociacion)){

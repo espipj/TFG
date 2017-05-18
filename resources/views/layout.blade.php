@@ -43,21 +43,23 @@
 
                     <li {{{ (Request::is('panel') ? 'class=active' : '') }}}><a href="{{route('home')}}">Panel</a></li>
 
-                    @if(Auth::user()->hasAnyRole(array('Administrador','Laboratorio','SuperAdmin')))
+                    @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                         <li {{{ (Request::is('ver/asociacion*') ? 'class=active' : '') }}}><a
                                     href="{{route('verasociacion')}}">Asociación</a>
 
                         </li>
+                    @endif
+                    @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin','Ganadero')))
                         <li {{{ (Request::is('ver/ganaderia*') ? 'class=active' : '') }}}><a
                                     href="{{route('verganaderia')}}">Ganadería</a>
                         </li>
 
                     @endif
                     @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin')))
-                    <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
-                                href="{{route('verganado')}}">Ganado</a></li>
-                    <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
-                                href="{{route('verexplotacion')}}">Explotación</a></li>
+                        <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
+                                    href="{{route('verganado')}}">Ganado</a></li>
+                        <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
+                                    href="{{route('verexplotacion')}}">Explotación</a></li>
                     @endif
 
                     @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))

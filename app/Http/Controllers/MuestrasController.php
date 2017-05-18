@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MuestrasController extends Controller
 {
@@ -50,9 +51,23 @@ class MuestrasController extends Controller
     }
 
     public function show($Muestra=null){
+        $usuario=Auth::user();
         if($Muestra==null){
-            $muestras=Muestra::all()->sortBy('tubo');
-            return view('muestra.verMuestras',compact('muestras'));
+            if ($usuario->hasAnyRole('Laboratorio')){
+                if($usuario->laboratorio!=null){
+                    $laboratorio=$usuario->laboratorio;
+                    $muestras=$laboratorio->muestras->sortBy('tubo');
+                    return view('muestra.verMuestras', compact('muestras'));
+                }else{
+                    $muestras="nomuest";
+                    return view('muestra.verMuestras', compact('muestras'));
+
+                }
+
+            }else {
+                $muestras = Muestra::all()->sortBy('tubo');
+                return view('muestra.verMuestras', compact('muestras'));
+            }
         }else{
             return $this->show_detail($Muestra);
         }

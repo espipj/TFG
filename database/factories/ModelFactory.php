@@ -90,3 +90,13 @@ $factory->define(App\Laboratorio::class, function (Faker\Generator $faker) {
 
 
 });
+$factory->define(App\Muestra::class, function (Faker\Generator $faker) {
+
+    return [
+        'tubo'  =>  $faker->numberBetween(000000,128379183434),
+        'fecha_extraccion'  =>  $faker->date(),
+
+    ];
+
+
+});

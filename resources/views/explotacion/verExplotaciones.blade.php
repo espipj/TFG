@@ -6,6 +6,8 @@
 
     @if (Auth::guest())
         @include('partials.permission')
+    @elseif($explotaciones=="noexp")
+        @include('partials.role-permission')
     @else
 
         <h1>Explotaciones</h1>

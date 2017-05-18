@@ -21,6 +21,7 @@
                             {!! Form::hidden('usuario_id',$usuario->id) !!}
                             {!! csrf_field() !!}
 
+                            @if($usuario->hasAnyRole(array('Ganadero')))
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Ganadería</label>
                                 <div class="col-md-6">
@@ -32,19 +33,34 @@
                                     @endif
                                 </div>
                             </div>
+                            @endif
+                            @if($usuario->hasAnyRole(array('Administrador')))
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Asociación</label>
+                                    <div class="col-md-6">
+                                        @if(!empty($usuario->asociacion->id))
+                                            {!! Form::select('asociacion_id',$asociaciones,$usuario->asociacion->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control']) !!}
+                                        @else
+                                            {!! Form::select('asociacion_id',$asociaciones,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control']) !!}
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Asociación</label>
-                                <div class="col-md-6">
-                                    @if(!empty($usuario->asociacion->id))
-                                        {!! Form::select('asociacion_id',$asociaciones,$usuario->asociacion->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control']) !!}
-                                    @else
-                                        {!! Form::select('asociacion_id',$asociaciones,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control']) !!}
-
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
 
+                            @if($usuario->hasAnyRole(array('Laboratorio')))
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Laboratorio</label>
+                                    <div class="col-md-6">
+                                        @if(!empty($usuario->laboratorio->id))
+                                            {!! Form::select('laboratorio_id',$laboratorios,$usuario->laboratorio->id,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control']) !!}
+                                        @else
+                                            {!! Form::select('laboratorio_id',$laboratorios,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control']) !!}
+
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
 
 
 

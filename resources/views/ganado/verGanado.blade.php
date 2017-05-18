@@ -41,6 +41,7 @@
 
                 </div>
                 <div class="col-sm-3">
+                    @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                     <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
                        role="button"><span
                                 class="glyphicon glyphicon-edit"></span> Editar</a>
@@ -56,6 +57,7 @@
                             Eliminar</a>
 
                     @endif
+                        @endif
                 </div>
             </div>
             <div class="row">

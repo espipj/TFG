@@ -19,6 +19,12 @@ class AsociacionTableSeeder extends Seeder
             'email' => 'morucha@morucha.com',
             'telefono' => '923 28 08 92',
         ]);
+        Asociacion::create([
+            'nombre' => 'Otra',
+            'direccion' => 'Calle Piruleta',
+            'email' => 'masda@usal.es',
+            'telefono' => '923 29 22 21',
+        ]);
         //factory(Asociacion::class)->times(50)->create();
     }
 }

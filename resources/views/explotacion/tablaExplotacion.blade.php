@@ -14,17 +14,21 @@
 
 
 
-            <tr class="clickable-row" data-href="{{route('verexplotacion',[$explotacion])}}" data-id="{{$explotacion->id}}">
+            <tr class="clickable-row" data-href="{{route('verexplotacion',[$explotacion])}}"
+                data-id="{{$explotacion->id}}">
                 <td style="width:30%;">{{$explotacion->codigo_explotacion}}</td>
                 <td style="width:40%;">{{$explotacion->municipio}}</td>
                 <td style="width:30%;">
                     <div class="btn-group">
                         <a href="{{url('ver/explotacion',['explotacion'=>$explotacion])}}" class="btn btn-info btn-sm"
                            role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
-                        <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}" class="btn btn-success btn-sm"
-                           role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
-                        <a href="" class="btn btn-danger btn-sm eliminar"
-                           role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                        @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                            <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}"
+                               class="btn btn-success btn-sm"
+                               role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+                            <a href="" class="btn btn-danger btn-sm eliminar"
+                               role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                        @endif
                     </div>
                 </td>
             </tr>
