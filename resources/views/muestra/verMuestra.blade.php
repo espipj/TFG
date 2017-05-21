@@ -8,6 +8,7 @@
     @else
         <div class="jumbotron">
             <h1>Datos de la Muestra:</h1>
+            <h2>Ganado: <a href="{{route('verganado',[$muestra->ganado])}}">{{$muestra->ganado->crotal}}</a></h2>
             <h2>Código de Extracción: {{$muestra->tubo}}</h2>
             <h2>Res: <a href="{{route('vermuestra',[$muestra->ganado])}}">{{$muestra->ganado->crotal}}</a></h2>
             <h3>Tipo de muestra: {{$muestra->tipomuestra->nombre}}</h3>
