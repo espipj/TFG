@@ -54,6 +54,10 @@ class Ganado extends Model
         return $this->hasOne(Muestra::class);
     }
 
+    public function gen(){
+        return $this->hasOne(Gen::class);
+    }
+
 
     public function setHijoP($hijo){
         return $this->hijosP()->save($hijo);
