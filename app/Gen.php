@@ -23,5 +23,14 @@ class Gen extends Model
 
     public function calcularProbabilidad($genP,$genM,$genH){
 
+        return $probabilidad;
+    }
+
+    public function calcularFrecuenciaAlelo($alelo,$marcador){
+
+
+
+
+        return $frecuencia;
     }
 }
