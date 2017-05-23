@@ -15,19 +15,19 @@ class CreateGenesTable extends Migration
         //
         Schema::create('genes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('TGLA227');
-            $table->integer('BM2113');
-            $table->integer('TGLA53');
-            $table->integer('ETH10');
-            $table->integer('SPS115');
-            $table->integer('TGLA126');
-            $table->integer('TGLA122');
-            $table->integer('INRA23');
-            $table->integer('BM1818');
-            $table->integer('ETH3');
-            $table->integer('ETH225');
-            $table->integer('BM1824');
-            $table->integer('ganado_id');
+            $table->json('TGLA227');
+            $table->json('BM2113');
+            $table->json('TGLA53');
+            $table->json('ETH10');
+            $table->json('SPS115');
+            $table->json('TGLA126');
+            $table->json('TGLA122');
+            $table->json('INRA23');
+            $table->json('BM1818');
+            $table->json('ETH3');
+            $table->json('ETH225');
+            $table->json('BM1824');
+            $table->json('ganado_id');
             $table->timestamps();
         });
     }
