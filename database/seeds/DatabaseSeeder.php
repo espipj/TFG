@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GanaderiaTableSeeder::class);
         $this->call(ExplotacionTableSeeder::class);
         $this->call(GanadoTableSeeder::class);
+        $this->call(GenTableSeeder::class);
         $this->call(MuestraTableSeeder::class);
         //$this->call(GanaderoTableSeeder::class);
 
