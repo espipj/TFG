@@ -242,10 +242,18 @@ Route::group(['middleware' => 'revalidate'], function()
         'middleware'    =>  'roles',
         'roles'         =>  ['Administrador','SuperAdmin','Ganadero']]);
 
-    Route::get('importExport', 'MaatwebsiteDemoController@importExport');
-    Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
-    Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
+    //Genes
 
+
+    Route::get('/ver/genes', [
+        'uses'  =>  'GenesController@show',
+        'as'    =>  'vergen',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['Administrador','SuperAdmin','Laboratorio']]);
+
+    Route::get('marcador/{marcador}','GenesController@Marcador');
+    Route::get('frecuencia/{alelo}/{marcador}','GenesController@Frecuencia');
+    Route::get('filiacion','GenesController@Filiar');
 
     //Panel de Inicio
     Route::get('/panel',[

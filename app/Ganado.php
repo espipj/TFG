@@ -306,7 +306,7 @@ class Ganado extends Model
 
             }
             $aux=[
-                'fecha de nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
+                'fecha_de_nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
                 'crotal'                =>  $ganado->crotal,
                 'padre'                 =>  $padre,
                 'madre'                 =>  $madre,
@@ -327,6 +327,9 @@ class Ganado extends Model
     public static function importarXLS($reader)
     {
         $insert=array();
+
+        ini_set('memory_limit','256M');
+        return dd($reader->get());
         foreach ($reader->get() as $ganado) {
             $oganado=Ganado::where('crotal',$ganado->crotal)->first();
             if(empty($oganado)){

@@ -21,16 +21,199 @@ class Gen extends Model
         return $ganado->gen()->save($this);
     }
 
-    public function calcularProbabilidad($genP,$genM,$genH){
+    /**
+     * @param $genP
+     * @param $genM
+     * @param $genH
+     * @return mixed
+     * Calcula la probabilidad del genH de ser descendiente del genP dada la madre genM
+     */
+    public static function calcularProbabilidad($genP,$genM,$genH){
+        $resultados=array();
 
-        return $probabilidad;
+        foreach ($genH->marcadores as $key=>$marcador){
+            array_push($resultados,Gen::aplicarFormula($genP->marcadores[$key],$genM->marcadores[$key],$marcador,$key));
+            if ($key==0){
+                $resultado=Gen::aplicarFormula($genP->marcadores[$key],$genM->marcadores[$key],$marcador,$key);
+            }else{
+                $resultado*=Gen::aplicarFormula($genP->marcadores[$key],$genM->marcadores[$key],$marcador,$key);
+            }
+        }
+        return [$resultados,$resultado,($resultado/($resultado+1))];
     }
 
-    public function calcularFrecuenciaAlelo($alelo,$marcador){
+    /**
+     * Aplicamos la formula según el algoritmo
+     */
+    public static function aplicarFormula($aP,$aM,$aH,$marcador){
+        $P=0;
+
+
+        if ($aH[0]==$aH[1]){
+            $nigualM=0;
+            foreach ($aM as $key => $alM){
+                if (in_array($alM,$aH)){
+                    $igualM=$key;
+                    $nigualM++;
+                }
+            }
+            if($nigualM!=0){
+                $nigualP=0;
+                foreach ($aP as $key => $alP){
+                    if (in_array($alP,$aH)){
+                        $igualP=$key;
+                        $nigualP++;
+                    }
+                }
+                if ($nigualP==1){
+                    return 1/(2*(self::calcularFrecuenciaAlelo($aP[$igualP],$marcador)));
+                }elseif ($nigualP==2){
+                    return 1/self::calcularFrecuenciaAlelo($aP[0],$marcador);
+                }else{
+                    return 0;
+                }
+
+            }else{
+                return "Error, la madre no tiene ningun alelo igual en el marcador:". $aP;
+            }
+        }else{
+            $nigualM=0;
+            $aux=-1;
+            foreach ($aM as $key => $alM){
+                if (in_array($alM,$aH)){
+                    $igualM=$key;
+                    if($alM!=$aux) {
+                        $nigualM++;
+                    }
+                    $aux=$alM;
+                }
+            }
+
+            if($nigualM==2){
+                $nigualP=0;
+                foreach ($aP as $key => $alP){
+                    if (in_array($alP,$aH)){
+                        $igualP=$key;
+                        $nigualP++;
+                    }
+                }
+                if ($nigualP==1){
+                    return 1/(2*(self::calcularFrecuenciaAlelo($aH[0],$marcador) + self::calcularFrecuenciaAlelo($aH[1],$marcador)));
+                }elseif ($nigualP==2){
+                    return 1/(self::calcularFrecuenciaAlelo($aH[0],$marcador) + self::calcularFrecuenciaAlelo($aH[1],$marcador));
+                }else{
+                    return 0;
+                }
+
+            }elseif ($nigualM==1){
+                $nigualP=0;
+                $aux=-1;
+                foreach ($aP as $key => $alP){
+                    if (in_array($alP,$aH)){
+                        $nigualP++;
+                        $igualP=$key;
+                        break;
+                    }
+                }
+
+                if ($nigualP>0){
+                    if ($aP[0]==$aP[1]){
+
+                        return 1/(self::calcularFrecuenciaAlelo($aP[0],$marcador));
+
+                    }else{
+                        return 1/(self::calcularFrecuenciaAlelo($aP[$igualP],$marcador));
+                    }
+
+                }else{
+                    return 0;
+                }
+
+            }else{
+                return "Error, la madre no tiene ningun alelo igual en el marcador:". $aP;
+            }
+
+        }
 
 
 
 
-        return $frecuencia;
+
+
+    }
+    /**
+     * @param $alelo
+     * @param $marcador
+     * @return mixed
+     * Calcula la frecuencia con la que se repite un Alelo en un dataset
+     */
+    public static function calcularFrecuenciaAlelo($alelo,$marcador){
+        $pos=$marcador;
+        if(!is_numeric($marcador)) {
+            $pos = self::posicionMarcador($marcador);
+        }
+        $genes=Gen::all();
+        $n=0;
+        $total=count($genes);
+        foreach ($genes as $gen){
+            $marcador=$gen->marcadores[$pos];
+            foreach ($marcador as $malelo){
+                if($alelo==$malelo){
+                    $n++;
+                    break;
+                }
+            }
+        }
+
+        return $n/$total;
+    }
+
+    /**
+     * @param $alelo
+     * Calcula la posicion del marcador en el array de marcadores
+     */
+    public static function posicionMarcador($marcador){
+        $gen=Gen::find(1);
+        $nombres=$gen->nombres;
+        return array_search($marcador,$nombres);
+    }
+
+    public static function guardarNuevoXLS($gen){
+
+        $gen=Gen::create([
+            'nombres'   =>  array('TGLA227','BM2113','TGLA53','ETH10','SPS115','TGLA126','TGLA122','INRA23','BM1818','ETH3','ETH225','BM1824'),
+            'marcadores'=>  array(
+                array($gen->tgla227_1,$gen->tgla227_1),
+                array($gen->bm2113_1,$gen->bm2113_1),
+                array($gen->tgla53_1,$gen->tgla53_1),
+                array($gen->eth10_1,$gen->eth10_1),
+                array($gen->sps115_1,$gen->sps115_1),
+                array($gen->tgla126_1,$gen->tgla126_1),
+                array($gen->tgla122_1,$gen->tgla122_1),
+                array($gen->inra23_1,$gen->inra23_1),
+                array($gen->bm1818_1,$gen->bm1818_1),
+                array($gen->eth3_1,$gen->eth3_1),
+                array($gen->eth225_1,$gen->eth225_1),
+                array($gen->bm1824_1,$gen->bm1824_1),)
+
+        ]);
+        return $gen;
+    }
+
+    public function actualizarXLS($ganado,$oganado){
+
+    }
+    public static function importarXLS($reader){
+        $insert=array();
+        //return dd($reader->get());
+        foreach ($reader->get() as $gen) {
+            //$oganado=Ganado::where('crotal',$ganado->crotal)->first();
+                return dd($gen);
+                array_push($insert,self::guardarNuevoXLS($gen));
+
+
+        }
+
+        return $insert;
     }
 }

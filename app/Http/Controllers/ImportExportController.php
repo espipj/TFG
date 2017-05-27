@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ganaderia;
 use App\Ganado;
+use App\Gen;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -21,13 +22,20 @@ class ImportExportController extends Controller
             case 'ganado':
                 $nombre='Ganados'. '_' .Carbon::now()->format('d-m-Y');
                 //$array=Ganado::get(['fecha_nacimiento','crotal','padre_id','madre_id','capa','sexo_id'])->toArray();
-
-                $this->downloadExcel($formato,Ganado::generateArrayForExport(),$nombre);
+                $hoja="Ganados";
+                $this->downloadExcel($formato,Ganado::generateArrayForExport(),$nombre,$hoja);
                 break;
             case 'ganaderia':
                 $nombre='Ganaderias'. '_' .Carbon::now()->format('d-m-Y');
                 //dd(Ganaderia::generateArrayForExport());
-                $this->downloadExcel($formato,Ganaderia::generateArrayForExport(),$nombre);
+                $hoja="Ganaderias";
+                $this->downloadExcel($formato,Ganaderia::generateArrayForExport(),$nombre,$hoja);
+                break;
+            case 'genes':
+                $nombre='Genes'. '_' .Carbon::now()->format('d-m-Y');
+                //dd(Ganaderia::generateArrayForExport());
+                $hoja="Genes";
+                $this->downloadExcel($formato,Gen::generateArrayForExport(),$nombre,$hoja);
                 break;
         }
     }
@@ -35,6 +43,7 @@ class ImportExportController extends Controller
     public function importar($opcion){
 
         if(Input::hasFile('import_file')) {
+            ini_set('memory_limit','256M');
             $path = Input::file('import_file')->getRealPath();
             $reader = Excel::load($path);
         }else {
@@ -47,8 +56,12 @@ class ImportExportController extends Controller
                 return back();
                 break;
             case 'ganaderia':
-                    Ganaderia::importarXLS($reader);
+                Ganaderia::importarXLS($reader);
 
+                return back();
+                break;
+            case 'genes':
+                Gen::importarXLS($reader);
                 return back();
                 break;
         }
@@ -62,10 +75,10 @@ class ImportExportController extends Controller
         }
 
     }
-    public function downloadExcel($type,$data,$nombre)
+    public function downloadExcel($type,$data,$nombre,$hoja)
     {
-        return Excel::create($nombre, function($excel) use ($data) {
-            $excel->sheet('mySheet', function($sheet) use ($data)
+        return Excel::create($nombre, function($excel) use ($data,$hoja) {
+            $excel->sheet($hoja, function($sheet) use ($data)
             {
                 $sheet->fromArray($data);
             });
