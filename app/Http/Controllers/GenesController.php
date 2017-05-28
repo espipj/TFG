@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class GenesController extends Controller
 {
@@ -18,9 +19,13 @@ class GenesController extends Controller
      */
     public function show()
     {
-        //
-        $permiso="conpermiso";
-        return view('genes.importarGenes',compact('permiso'));
+        $usuario=Auth::user();
+        if ($usuario->hasAnyRole(array('Administrador','SuperAdmin','Laboratorio'))){
+            $permiso="conpermiso";
+        }else{
+            $permiso="sinpermiso";
+        }
+        return view('genes.verGenes',compact('permiso'));
     }
 
 
@@ -33,6 +38,13 @@ class GenesController extends Controller
     }
 
     public function Filiar(){
-        dd(Gen::calcularProbabilidad(Ganado::find(202)->gen,Ganado::find(201)->gen,Ganado::find(203)->gen));
+
+        $usuario=Auth::user();
+        if ($usuario->hasAnyRole(array('SuperAdmin','Laboratorio'))){
+            $permiso="conpermiso";
+        }else{
+            $permiso="sinpermiso";
+        }
+        return view('genes.filiarGanado',compact('permiso','ganado'));
     }
 }

@@ -250,6 +250,11 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'vergen',
         'middleware'    =>  'roles',
         'roles'         =>  ['Administrador','SuperAdmin','Laboratorio']]);
+    Route::get('/filiar/ganado', [
+        'uses'  =>  'GenesController@filiar',
+        'as'    =>  'filiar',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Laboratorio']]);
 
     Route::get('marcador/{marcador}','GenesController@Marcador');
     Route::get('frecuencia/{alelo}/{marcador}','GenesController@Frecuencia');

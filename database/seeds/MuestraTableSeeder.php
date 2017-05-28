@@ -81,5 +81,77 @@ class MuestraTableSeeder extends Seeder
         ]);
         $gen->asignarGanado($padre);
 
+
+    //Segunda
+
+        $madre=Ganado::create([
+            'crotal'    => 'MADRE1',
+        ]);
+        $madre->setSexo(Sexo::find(2));
+        $padre=Ganado::create([
+            'crotal'    => 'PADRE1',
+        ]);
+        $padre->setSexo(Sexo::find(1));
+        $hijo=Ganado::create([
+            'crotal'    => 'HIJO1',
+        ]);
+
+
+        $padre->setHijoP($hijo);
+        $madre->setHijoM($hijo);
+
+        $gen=Gen::create([
+            'nombres'   =>  array('TGLA227','BM2113','TGLA53','ETH10','SPS115','TGLA126','TGLA122','INRA23','BM1818','ETH3','ETH225','BM1824'),
+            'marcadores'=>  array(
+                array(89,97),
+                array(137,137),
+                array(160,162),
+                array(217,219),
+                array(248,248),
+                array(119,121),
+                array(153,153),
+                array(214,214),
+                array(266,266),
+                array(125,125),
+                array(148,148),
+                array(178,182)),
+        ]);
+        $gen->asignarGanado($hijo);
+
+        $gen=Gen::create([
+            'nombres'   =>  array('TGLA227','BM2113','TGLA53','ETH10','SPS115','TGLA126','TGLA122','INRA23','BM1818','ETH3','ETH225','BM1824'),
+            'marcadores'=>  array(
+                array(91,97),
+                array(125,137),
+                array(160,164),
+                array(217,219),
+                array(248,248),
+                array(121,123),
+                array(149,153),
+                array(214,214),
+                array(266,266),
+                array(117,125),
+                array(148,150),
+                array(180,182)),
+        ]);
+        $gen->asignarGanado($padre);
+
+        $gen=Gen::create([
+            'nombres'   =>  array('TGLA227','BM2113','TGLA53','ETH10','SPS115','TGLA126','TGLA122','INRA23','BM1818','ETH3','ETH225','BM1824'),
+            'marcadores'=>  array(
+                array(89,93),
+                array(135,137),
+                array(160,162),
+                array(209,217),
+                array(248,248),
+                array(119,121),
+                array(153,153),
+                array(214,214),
+                array(262,266),
+                array(125,127),
+                array(140,148),
+                array(178,190)),
+        ]);
+        $gen->asignarGanado($madre);
     }
 }

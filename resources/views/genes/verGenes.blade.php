@@ -29,15 +29,15 @@
         <a href="{{url('exportar/ganado/csv')}}" class="btn btn-excel btn-md" role="button"><span
                     class="glyphicon glyphicon-cloud-download"></span> Exportar Genes en CSV</a>
 
-                @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))
         {!! Form::open(['url' => 'importar/genes','id'=>'file','class'=>'form-inline','files'=>'true']) !!}
         {!! csrf_field() !!}
             <label class="btn btn-excel btn-md"><span class="glyphicon glyphicon-cloud-upload"></span> Importar desde Excel
                 {!! Form::file('import_file',['hidden','id'=>'file']) !!}
             </label>
         {!! Form::close() !!}
-        {{-- <a href="{{route('verganadomuerto')}}" class="btn btn-danger btn-md" role="button"><span class="glyphicon glyphicon-minus"></span> Muertas</a>
-        --}}
+        <a href="{{route('filiar')}}" class="btn btn-md" role="button"><span class="glyphicon glyphicon-indent-left"></span> Filiar</a>
+
                 @endif
             </div>
         </div>

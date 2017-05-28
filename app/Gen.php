@@ -122,7 +122,7 @@ class Gen extends Model
                         return 1/(self::calcularFrecuenciaAlelo($aP[0],$marcador));
 
                     }else{
-                        return 1/(self::calcularFrecuenciaAlelo($aP[$igualP],$marcador));
+                        return 1/(2*(self::calcularFrecuenciaAlelo($aP[$igualP],$marcador)));
                     }
 
                 }else{
@@ -179,22 +179,22 @@ class Gen extends Model
     }
 
     public static function guardarNuevoXLS($gen){
-
+        //return dd(Gen::all());
         $gen=Gen::create([
             'nombres'   =>  array('TGLA227','BM2113','TGLA53','ETH10','SPS115','TGLA126','TGLA122','INRA23','BM1818','ETH3','ETH225','BM1824'),
             'marcadores'=>  array(
-                array($gen->tgla227_1,$gen->tgla227_1),
-                array($gen->bm2113_1,$gen->bm2113_1),
-                array($gen->tgla53_1,$gen->tgla53_1),
-                array($gen->eth10_1,$gen->eth10_1),
-                array($gen->sps115_1,$gen->sps115_1),
-                array($gen->tgla126_1,$gen->tgla126_1),
-                array($gen->tgla122_1,$gen->tgla122_1),
-                array($gen->inra23_1,$gen->inra23_1),
-                array($gen->bm1818_1,$gen->bm1818_1),
-                array($gen->eth3_1,$gen->eth3_1),
-                array($gen->eth225_1,$gen->eth225_1),
-                array($gen->bm1824_1,$gen->bm1824_1),)
+                array($gen->tgla227_1,$gen->tgla227_2),
+                array($gen->bm2113_1,$gen->bm2113_2),
+                array($gen->tgla53_1,$gen->tgla53_2),
+                array($gen->eth10_1,$gen->eth10_2),
+                array($gen->sps115_1,$gen->sps115_2),
+                array($gen->tgla126_1,$gen->tgla126_2),
+                array($gen->tgla122_1,$gen->tgla122_2),
+                array($gen->inra023_1,$gen->inra023_2),
+                array($gen->bm1818_1,$gen->bm1818_2),
+                array($gen->eth3_1,$gen->eth3_2),
+                array($gen->eth225_1,$gen->eth225_2),
+                array($gen->bm1824_1,$gen->bm1824_2)),
 
         ]);
         return $gen;
@@ -208,7 +208,7 @@ class Gen extends Model
         //return dd($reader->get());
         foreach ($reader->get() as $gen) {
             //$oganado=Ganado::where('crotal',$ganado->crotal)->first();
-                return dd($gen);
+                //return dd($gen);
                 array_push($insert,self::guardarNuevoXLS($gen));
 
 
