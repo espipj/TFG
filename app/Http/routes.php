@@ -256,6 +256,24 @@ Route::group(['middleware' => 'revalidate'], function()
         'middleware'    =>  'roles',
         'roles'         =>  ['SuperAdmin','Laboratorio']]);
 
+    Route::get('/anadir/genes/{ganado}', [
+        'uses'  =>  'GenesController@anadirGenes',
+        'as'    =>  'anadirGenes',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Laboratorio']]);
+
+    Route::post('/anadir/genes', [
+        'uses'  =>  'GenesController@anadirGenesPost',
+        'as'    =>  'anadirGenesPost',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Laboratorio']]);
+
+    Route::post('/solicitar/padremadre/{ganado}', [
+        'uses'  =>  'GenesController@solicitudFiliacion',
+        'as'    =>  'solicitudFiliacion',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Laboratorio']]);
+
     Route::get('marcador/{marcador}','GenesController@Marcador');
     Route::get('frecuencia/{alelo}/{marcador}','GenesController@Frecuencia');
     Route::get('filiacion','GenesController@Filiar');

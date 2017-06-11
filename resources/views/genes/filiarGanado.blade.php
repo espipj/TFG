@@ -1,5 +1,4 @@
-@endsection
-
+@extends('layout')
 @section('contenido')
 
     @if (Auth::guest())
@@ -72,4 +71,5 @@
                 </div>
             </div>
         </div>
+    @endif
 @endsection

@@ -18,15 +18,17 @@
             <h3>Fecha de la extracción: {{$muestra->fecha_extraccion->format('d-m-Y')}}</h3>
 
             @if(Auth::user()->hasAnyRole(array('Laboratorio')))
+                {{--
                 <a href="{{url('solicitar/padremadre',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
                    role="button"><span
                             class="glyphicon glyphicon-edit"></span> Filiar Padre y Madre</a>
+
                 <a href="{{url('solicitar/padremadre',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
                    role="button"><span
-                            class="glyphicon glyphicon-edit"></span> Filiar Madre</a>
+                            class="glyphicon glyphicon-edit"></span> Filiar Madre</a>--}}
                 <a href="{{url('solicitar/padremadre',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
                    role="button"><span
-                            class="glyphicon glyphicon-edit"></span> Filiar Padre</a>
+                            class="glyphicon glyphicon-indent-right"></span> Filiar Padre</a>
 
 
             @endif
