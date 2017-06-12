@@ -13,7 +13,7 @@
                     <div class="panel-heading">Solicitar Filiación</div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4 col-lg-offset-2">
+                            <div class="col-md-6 text-center">
                                 <div class="cuadro-gan">
                                     <img src="{{asset('images/female.png')}}"/>
                                     @if($ganado->madre)
@@ -40,7 +40,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-4 cuadro-gan">
+                            <div class="col-md-6 text-center cuadro-gan">
 
                                 <img src="{{asset('images/male.png')}}"/>
                                 @if($ganado->padre)
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-offset-4 col-md-4 cuadro-gan">
+                            <div class="col-lg-offset-3 col-md-6 cuadro-gan text-center">
 
                                 <img src="{{asset('images/ternero.png')}}"/>
                                 <h2><a href="{{route('verganado',[$ganado])}}">{{$ganado->crotal}}</a></h2>
