@@ -39,7 +39,24 @@ class Gen extends Model
                 $resultado*=Gen::aplicarFormula($genP->marcadores[$key],$genM->marcadores[$key],$marcador,$key);
             }
         }
+
         return [$resultados,$resultado,($resultado/($resultado+1))];
+    }
+
+    public static function calcularProbabilidadSP($genM,$genH){
+        $resultado=array();
+        $machos=Ganado::where('sexo_id',1)->get();
+        foreach ($machos as $padre){
+            if(isset($padre->gen)){
+                array_push($resultado,array(self::calcularProbabilidad($padre->gen,$genM,$genH),$padre));
+            }
+        }
+
+        //Ordenamos por probabilidad
+        usort($resultado, function($a, $b) {
+            return $b[0][2] <=> $a[0][2];
+        });
+        return $resultado;
     }
 
     /**
@@ -74,7 +91,7 @@ class Gen extends Model
                 }
 
             }else{
-                return "Error, la madre no tiene ningun alelo igual en el marcador:". $aP;
+                return "Error, la madre no tiene ningun alelo igual en el marcador:". $marcador;
             }
         }else{
             $nigualM=0;
@@ -130,7 +147,7 @@ class Gen extends Model
                 }
 
             }else{
-                return "Error, la madre no tiene ningun alelo igual en el marcador:". $aP;
+                return "Error, la madre no tiene ningun alelo igual en el marcador:". $marcador;
             }
 
         }

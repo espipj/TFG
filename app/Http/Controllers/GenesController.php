@@ -41,8 +41,12 @@ class GenesController extends Controller
         dd(Gen::calcularFrecuenciaAlelo($alelo, $marcador));
     }
 
-    public function Filiar()
+    public function Filiar(Request $request)
     {
+        $this->validate($request, [
+            'ganado_id' => ['required'],
+            'consulta' => ['required'],
+        ]);
 
         $usuario = Auth::user();
         if ($usuario->hasAnyRole(array('SuperAdmin', 'Laboratorio'))) {
@@ -50,6 +54,17 @@ class GenesController extends Controller
         } else {
             $permiso = "sinpermiso";
         }
+
+
+        $ganado=Ganado::find($request->input('ganado_id'));
+
+        if ($request->input('consulta')=="sinpadre"){
+
+            dd(Gen::calcularProbabilidadSP($ganado->madre->gen,$ganado->gen));
+        }else{
+            dd(Gen::calcularProbabilidad($ganado->padre->gen,$ganado->madre->gen,$ganado->gen));
+        }
+
         return view('genes.filiarGanado', compact('permiso', 'ganado'));
     }
 
@@ -61,6 +76,7 @@ class GenesController extends Controller
         } else {
             $permiso = "sinpermiso";
         }
+
         $ganado = Ganado::find($Ganado);
         session()->put('url.intended', URL::previous());
         return view('genes.inputGenes', compact('ganado', 'permiso'));

@@ -75,7 +75,7 @@
                                         genético del hijo.</p>
                                 @endif
                                 <a
-                                        href="{{url('anadir/genes',['ganado'=>$ganado->padre])}}"
+                                        href="{{url('anadir/genes',['ganado'=>$ganado])}}"
                                         class="btn btn-success btn-sm"
                                         role="button"><span
                                             class="glyphicon glyphicon-pencil"></span> Editar Perfil Genético</a>
@@ -83,16 +83,19 @@
 
                             </div>
                         </div>
-                        <div class="row">
-                            @if(isset($ganado->madre->gen) && isset($ganado->gen) && !isset($ganado->padre))
+
+                        <div class="row" style="margin-top: 30px">
+                            <div class="col-md-6 col-md col-lg-offset-6">
+                            @if(isset($ganado->madre->gen) && isset($ganado->gen))
 
                                 {!! Form::open(['url' => 'filiar/ganado','class' =>'form-horizontal']) !!}
                                 {!! csrf_field() !!}
                                 {!! Form::hidden('ganado_id',$ganado->id) !!}
+                                {!! Form::hidden('consulta',"sinpadre") !!}
 
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-warning pull-right btn-lg" style="float: right;margin-left: 10px;">
                                     <span
-                                            class="glyphicon glyphicon-indent-right"></span> Filiacion sin padre
+                                            class="glyphicon glyphicon-indent-right"></span> Filiación sin padre
                                 </button>
                                 {!! Form::close() !!}
                             @endif
@@ -100,14 +103,15 @@
                                 {!! Form::open(['url' => 'filiar/ganado','class' =>'form-horizontal']) !!}
                                 {!! csrf_field() !!}
                                 {!! Form::hidden('ganado_id',$ganado->id) !!}
+                                {!! Form::hidden('consulta',"conpadre") !!}
 
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-lg" style="float: right;margin-left: 10px;">
                                     <span
-                                            class="glyphicon glyphicon-indent-right"></span> Filiacion sin padre
+                                            class="glyphicon glyphicon-indent-right"></span> Filiación con padre
                                 </button>
                                 {!! Form::close() !!}
                             @endif
-
+                            </div>
                         </div>
                     </div>
                 </div>
