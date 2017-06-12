@@ -250,7 +250,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'vergen',
         'middleware'    =>  'roles',
         'roles'         =>  ['Administrador','SuperAdmin','Laboratorio']]);
-    Route::get('/filiar/ganado', [
+    Route::post('/filiar/ganado', [
         'uses'  =>  'GenesController@filiar',
         'as'    =>  'filiar',
         'middleware'    =>  'roles',
@@ -268,7 +268,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'middleware'    =>  'roles',
         'roles'         =>  ['SuperAdmin','Laboratorio']]);
 
-    Route::post('/solicitar/padremadre/{ganado}', [
+    Route::get('/solicitar/filiacion/{ganado}', [
         'uses'  =>  'GenesController@solicitudFiliacion',
         'as'    =>  'solicitudFiliacion',
         'middleware'    =>  'roles',

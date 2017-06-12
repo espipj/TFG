@@ -135,6 +135,6 @@ class GenesController extends Controller
         }
         $ganado = Ganado::find($Ganado);
         //session()->put('url.intended', URL::previous());
-        return view('genes.inputGenes', compact('ganado', 'permiso'));
+        return view('genes.solicitudFiliacion', compact('ganado', 'permiso'));
     }
 }

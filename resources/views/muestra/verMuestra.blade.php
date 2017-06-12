@@ -26,12 +26,14 @@
                 <a href="{{url('solicitar/padremadre',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
                    role="button"><span
                             class="glyphicon glyphicon-edit"></span> Filiar Madre</a>--}}
-                <a href="{{url('solicitar/padremadre',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
+            @if($muestra->tipoconsulta->nombre == "Filiación Padre" || $muestra->tipoconsulta->nombre == "Filiación Progenitores")
+                <a href="{{url('solicitar/filiacion',['ganado'=>$muestra->ganado])}}" class="btn btn-success btn-sm"
                    role="button"><span
-                            class="glyphicon glyphicon-indent-right"></span> Filiar Padre</a>
+                            class="glyphicon glyphicon-indent-right"></span> Filiar</a>
 
 
             @endif
+                @endif
         </div>
 
     @endif

@@ -21,150 +21,258 @@
                             {!! Form::hidden('ganado_id',$ganado->id) !!}
 
 
-
                             <div class="form-group">
                                 <label class="col-md-4 control-label">TGLA227</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla227_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla227_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla227_1', $ganado->gen->marcadores[0][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[0][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla227_2', $ganado->gen->marcadores[0][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[0][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla227_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla227_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">BM2113</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('bm2113_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('bm2113_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm2113_1', $ganado->gen->marcadores[1][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[1][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm2113_2', $ganado->gen->marcadores[1][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[1][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm2113_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm2113_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">TGLA53</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla53_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla53_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla53_1', $ganado->gen->marcadores[2][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[2][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla53_2', $ganado->gen->marcadores[2][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[2][1],'required']) !!}
+                                    </div>
 
+                                @else
+
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla53_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla53_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">ETH10</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('eth10_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('eth10_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth10_1', $ganado->gen->marcadores[3][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[3][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth10_2', $ganado->gen->marcadores[3][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[3][1],'required']) !!}
+                                    </div>
 
+                                @else
+
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth10_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth10_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">SPS115</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('sps115_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('sps115_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('sps115_1', $ganado->gen->marcadores[4][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[4][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('sps115_2', $ganado->gen->marcadores[4][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[4][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('sps115_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('sps115_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">TGLA126</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla126_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla126_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla126_1', $ganado->gen->marcadores[5][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[5][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla126_2', $ganado->gen->marcadores[5][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[5][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla126_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla126_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">TGLA122</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla122_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('tgla122_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla122_1', $ganado->gen->marcadores[6][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[6][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla122_2', $ganado->gen->marcadores[6][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[6][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla122_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('tgla122_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">INRA23</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('inra023_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('inra023_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('inra023_1', $ganado->gen->marcadores[7][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[7][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('inra023_2', $ganado->gen->marcadores[7][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[7][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('inra023_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('inra023_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">BM1818</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('bm1818_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('bm1818_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1818_1', $ganado->gen->marcadores[8][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[8][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1818_2', $ganado->gen->marcadores[8][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[8][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1818_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1818_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">ETH3</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('eth3_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('eth3_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth3_1', $ganado->gen->marcadores[9][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[9][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth3_2', $ganado->gen->marcadores[9][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[9][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth3_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth3_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">ETH225</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('eth225_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('eth225_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
-                            </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth225_1', $ganado->gen->marcadores[10][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[10][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth225_2', $ganado->gen->marcadores[10][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[10][1],'required']) !!}
+                                    </div>
 
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth225_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('eth225_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
+                            </div>
 
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label">BM1824</label>
-                                <div class="col-md-3">
-                                    {!! Form::text('bm1824_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
-                                </div>
-                                <div class="col-md-3">
-                                    {!! Form::text('bm1824_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
-                                </div>
+                                @if(isset($ganado->gen))
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1824_1', $ganado->gen->marcadores[11][0], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[11][0],'required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1824_2', $ganado->gen->marcadores[11][1], ['class' => 'form-control', 'placeholder'=>$ganado->gen->marcadores[11][1],'required']) !!}
+                                    </div>
+
+                                @else
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1824_1', null, ['class' => 'form-control', 'placeholder'=>'Alelo 1','required']) !!}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {!! Form::text('bm1824_2', null, ['class' => 'form-control', 'placeholder'=>'Alelo 2','required']) !!}
+                                    </div>
+                                @endif
                             </div>
-
-
 
 
                             <div class="form-group">

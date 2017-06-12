@@ -810,3 +810,16 @@ right connector from last child*/
 .tree li a:hover+ul li::after,
 .tree li a:hover+ul li::before,
 .t
+
+div .cuadro-gan{
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+}
+
+div .cuadro-gan img{
+    width: 250px;
+}
+div .cuadro-gan h2{
+    display: block;
+}
