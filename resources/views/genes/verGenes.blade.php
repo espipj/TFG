@@ -36,8 +36,6 @@
                 {!! Form::file('import_file',['hidden','id'=>'file']) !!}
             </label>
         {!! Form::close() !!}
-        <a href="{{route('filiar')}}" class="btn btn-md" role="button"><span class="glyphicon glyphicon-indent-left"></span> Filiar</a>
-
                 @endif
             </div>
         </div>

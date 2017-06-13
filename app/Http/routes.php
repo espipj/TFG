@@ -274,9 +274,9 @@ Route::group(['middleware' => 'revalidate'], function()
         'middleware'    =>  'roles',
         'roles'         =>  ['SuperAdmin','Laboratorio']]);
 
-    Route::get('marcador/{marcador}','GenesController@Marcador');
-    Route::get('frecuencia/{alelo}/{marcador}','GenesController@Frecuencia');
-    Route::get('filiacion','GenesController@Filiar');
+    //Route::get('marcador/{marcador}','GenesController@Marcador');
+    //Route::get('frecuencia/{alelo}/{marcador}','GenesController@Frecuencia');
+    //Route::get('filiacion','GenesController@Filiar');
 
     //Panel de Inicio
     Route::get('/panel',[

@@ -65,6 +65,8 @@
                     @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))
                         <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                     href="{{route('vermuestra')}}">Muestra</a></li>
+                        <li {{{ (Request::is('ver/gen*') ? 'class=active' : '') }}}><a
+                                    href="{{route('vergen')}}">Genética</a></li>
                     @endif
                     @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
                         <li {{{ (Request::is('ver/usuario*') ? 'class=active' : '') }}}><a
