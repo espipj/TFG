@@ -823,3 +823,9 @@ div .cuadro-gan img{
 div .cuadro-gan h2{
     display: block;
 }
+.cuadropan{
+    margin-top: 25px;
+}
+.cuadropan img{
+    width: 250px;
+}
