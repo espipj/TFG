@@ -2,7 +2,7 @@
        placeholder="Buscar usuarios por nombre...">
 
 <div class="table-responsive">
-<table id="tablaUsuarios" class="table header-fixed ganados">
+<table id="tablaUsuarios" class="table header-fixed ganados ">
     <thead>
     <tr class="header">
         <th style="width:18%;">Nombre</th>

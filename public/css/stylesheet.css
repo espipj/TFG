@@ -824,12 +824,23 @@ div .cuadro-gan h2{
     display: block;
 }
 .cuadropan{
-    margin-top: 25px;
-    border: dashed;
+    margin: 0px;
+    /*border: groove;
     border-color: #dadfe1;
+    border-radius: 10px;
+    */
+}
+.cuadropanover{
+    margin: 12px 0px;
+
 }
 .cuadropan img{
-    width: 250px;
+    width: 200px;
+}
+
+.cuadropan svg{
+    width: 200px;
+    height: 200px;
 }
 
 tr{
