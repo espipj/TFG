@@ -825,7 +825,13 @@ div .cuadro-gan h2{
 }
 .cuadropan{
     margin-top: 25px;
+    border: dashed;
+    border-color: #dadfe1;
 }
 .cuadropan img{
     width: 250px;
+}
+
+tr{
+    cursor: pointer;
 }
