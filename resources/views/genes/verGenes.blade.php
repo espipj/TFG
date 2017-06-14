@@ -18,10 +18,9 @@
         @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
         <div class="dropzone" id="dropzone" data-tipo="ganado">
             <h2 id='titulodrop' class='titulodrop' hidden>Deposita el fichero Excel a importar.</h2>
-            <img id='imagedrop' src="{{asset('images/excel.png')}}" height="50%" width="50%" hidden>
             <div class="in-dropzone">
                 @endif
-        <h1>Genes:</h1>
+        <h1>Genes</h1>
         <p>Desde esta página puedes importar o exportar genes en formato Excel.</p>
 
         <a href="{{url('exportar/ganado/xlsx')}}" class="btn btn-excel btn-md" role="button"><span
