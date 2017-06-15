@@ -94,8 +94,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Hembra' && $ganado->fecha_nacimiento && $ganado->ganaderia)
+                                    @foreach($hembras as $ganado)
+                                        @if(isset($ganado->crotal) && isset($ganado->ganaderia))
 
 
 
@@ -127,8 +127,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Macho' && $ganado->fecha_nacimiento && $ganado->ganaderia)
+                                    @foreach($machos as $ganado)
+                                        @if(isset($ganado->crotal) && isset($ganado->ganaderia))
 
 
 

@@ -21,7 +21,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Ganadería</label>
                                 <div class="col-md-6">
-                                    @if(!empty($Ganaderia))
+                                    @if(isset($Ganaderia))
                                         {!! Form::select('ganaderia_id',$ganaderias,$Ganaderia,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
                                     @else
                                         {!! Form::select('ganaderia_id',$ganaderias,null,['placeholder'=>' -- Selecciona una opción -- ','class'=>'form-control','required']) !!}
@@ -74,8 +74,8 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Hembra' && $ganado->fecha_nacimiento)
+                                    @foreach($hembras as $ganado)
+                                        @if(isset($ganado->crotal) && isset($ganado->ganaderia))
 
 
 
@@ -83,7 +83,7 @@
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
 
-                                                @if(!empty($ganado->ganaderia))
+                                                @if(isset($ganado->ganaderia))
                                                     <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
                                                 @else
                                                     <td style="width:33%;">No definida</td>
@@ -109,15 +109,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($ganados as $ganado)
-                                        @if($ganado->crotal && $ganado->sexo->nombre == 'Macho' && $ganado->fecha_nacimiento)
+                                    @foreach($machos as $ganado)
+                                        @if(isset($ganado->crotal) && isset($ganado->ganaderia))
 
 
 
                                             <tr class="clickable-row" data-href="{{route('verganado',[$ganado])}}"
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
-                                                @if(!empty($ganado->ganaderia))
+                                                @if(isset($ganado->ganaderia))
                                                     <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
                                                 @else
                                                     <td style="width:33%;">No definida</td>

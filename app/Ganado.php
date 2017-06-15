@@ -22,7 +22,7 @@ class Ganado extends Model
         return $this->belongsTo(Ganaderia::class);
     }
     public function sexo(){
-    return $this->belongsTo(Sexo::class);
+        return $this->belongsTo(Sexo::class,'sexo_id');
     }
 
     public function estado(){
