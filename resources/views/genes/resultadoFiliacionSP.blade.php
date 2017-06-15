@@ -19,7 +19,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 text-center cuadro-gan">
-                                    <img src="{{asset('images/female.png')}}"/>
+                                    <img src="{{asset('images/hembra.png')}}"/>
 
                                         <h2>
                                             <a href="{{route('verganado',[$ganado->madre])}}">{{$ganado->madre->crotal}}</a>
@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-md-6 text-center cuadro-gan">
 
-                                <img src="{{asset('images/male.png')}}"/>
+                                <img src="{{asset('images/macho.png')}}"/>
 
                                 <div class="text-left">
                                 @foreach($resimp as $key => $resultado)
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-lg-offset-4 col-md-4 text-center cuadro-gan">
 
-                                <img src="{{asset('images/ternero.png')}}"/>
+                                <img src="{{asset('images/hijo.png')}}"/>
                                 <h2><a href="{{route('verganado',[$ganado])}}">{{$ganado->crotal}}</a></h2>
 
 
