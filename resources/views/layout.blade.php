@@ -96,13 +96,11 @@
 </nav>
 
 <!-- Cambiar imagenes a carousel para que ocupen el ancho, 1600*600-->
-<div class="container-fluid">
-
+<div>
     @yield('contenido-fluid')
 </div>
 <div class="container">
     @yield('contenido')
-
 </div>
 
 
