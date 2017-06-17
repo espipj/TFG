@@ -57,6 +57,19 @@ class GenesController extends Controller
 
 
         $ganado=Ganado::find($request->input('ganado_id'));
+        $ganadosf=array();
+
+        //dd($ganado->madre->gen);
+        if(isset($ganado->madre->gen)){
+            array_push($ganadosf,["Madre",$ganado->madre]);
+        }
+
+        if(isset($ganado->padre->gen)){
+            array_push($ganadosf,["Padre",$ganado->padre]);
+        }
+        if(isset($ganado->gen)){
+            array_push($ganadosf,["Hijo",$ganado]);
+        }
 
         if ($request->input('consulta')=="sinpadre"){
 
@@ -68,13 +81,14 @@ class GenesController extends Controller
                 if ($key==2) break;
             }
             //dd($resimp);
-            return view('genes.resultadoFiliacionSP',compact('permiso','resimp','ganado'));
+            return view('genes.resultadoFiliacionSP',compact('permiso','resimp','ganado','ganadosf'));
         }else{
 
             $resultado=Gen::calcularProbabilidad($ganado->padre->gen,$ganado->madre->gen,$ganado->gen);
             $porcentaje=$resultado[2]*100;
             $porcentaje=number_format($porcentaje,2,',','');
-            return view('genes.resultadoFiliacionP',compact('permiso','resultado','porcentaje','ganado'));
+
+            return view('genes.resultadoFiliacionP',compact('permiso','resultado','porcentaje','ganado','ganadosf'));
         }
 
         return view('genes.filiarGanado', compact('permiso', 'ganado'));

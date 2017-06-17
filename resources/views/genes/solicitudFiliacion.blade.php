@@ -9,7 +9,7 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
+                <div class="panel panel-info">
                     <div class="panel-heading">Solicitar Filiación</div>
                     <div class="panel-body">
                         <div class="row">
@@ -90,7 +90,7 @@
                             <div class="row dropgenes">
                                 <div class="col-xs-offset-1 col-xs-10">
                                     <div class="panel-group">
-                                        <div class="panel panel-default">
+                                        <div class="panel panel-info">
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
                                                     <a data-toggle="collapse" href="#genes">Ver perfiles genéticos</a>

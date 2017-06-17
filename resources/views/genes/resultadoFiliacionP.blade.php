@@ -9,7 +9,7 @@
 
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-default">
+                <div class="panel panel-success">
                     <div class="panel-heading">Resultado de la Filiación Con Padre</div>
                     <div class="panel-body">
                         <div class="row">
@@ -50,11 +50,32 @@
                             </div>
                         </div>
 
-                        <div class="row" style="margin-top: 30px">
-                            <div class="col-md-6 col-md col-lg-offset-6">
+                        @if(isset($ganadosf[0]))
+                            <div class="row dropgenes">
+                                <div class="col-xs-offset-1 col-xs-10">
+                                    <div class="panel-group">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a data-toggle="collapse" href="#genes">Ver perfiles genéticos</a>
+                                                </h4>
+                                            </div>
+                                            <div id="genes" class="panel-collapse collapse in">
+                                                <div class="panel-body">
 
+                                                    @foreach($ganadosf as $ganadoif)
+                                                        <div class="col-xs-4 text-center">
+                                                            <h3>{{$ganadoif[0]}}</h3>
+                                                            @include('genes.tablaInfo',['ganadoinfo'=>$ganadoif[1]])
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
