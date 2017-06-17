@@ -846,3 +846,14 @@ div .cuadro-gan h2{
 tr{
     cursor: pointer;
 }
+
+.dropgenes{
+    margin-top: 25px;
+}
+
+.edpgen{
+    margin-bottom: 25px;
+}
+.geninfo table{
+    margin-top: 5px;
+}

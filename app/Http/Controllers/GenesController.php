@@ -162,7 +162,21 @@ class GenesController extends Controller
             $permiso = "sinpermiso";
         }
         $ganado = Ganado::find($Ganado);
+        $ganadosf=array();
+
+        //dd($ganado->madre->gen);
+        if(isset($ganado->madre->gen)){
+            array_push($ganadosf,["Madre",$ganado->madre]);
+        }
+
+        if(isset($ganado->padre->gen)){
+            array_push($ganadosf,["Padre",$ganado->padre]);
+        }
+        if(isset($ganado->gen)){
+            array_push($ganadosf,["Hijo",$ganado]);
+        }
+        //dd($ganadosf);
         //session()->put('url.intended', URL::previous());
-        return view('genes.solicitudFiliacion', compact('ganado', 'permiso'));
+        return view('genes.solicitudFiliacion', compact('ganado', 'permiso','ganadosf'));
     }
 }
