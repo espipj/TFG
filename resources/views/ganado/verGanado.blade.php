@@ -68,6 +68,25 @@
 
                 </div>
             </div>
+            @if(Auth::user()->hasAnyRole(array('SuperAdmin')) && isset($ganado->gen))
+                <div class="row dropgenes">
+                    <div class="panel-group">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse1">Perfil genético</a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @include('genes.tablaInfo',['ganadoinfo'=>$ganado])
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            @endif
         </div>
 
         <h2>Hijos</h2>
