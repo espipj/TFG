@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 /**
  * Class ExplotacionesController.
@@ -75,7 +77,7 @@ class ExplotacionesController extends Controller
      *
      * Depending on if we've asked for a specific Explotacion or not, it will show us the details view or a listing of
      * all the elements in the Explotacion model.
-     * It check as well the role of the user in order to show the info it is allowed to see.
+     * It check as well the role of the user in order to show the info it must see.
      *
      * @param null $Explotacion This parameter appears when we ask for a specific Explotacion.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Explotacion listing.
