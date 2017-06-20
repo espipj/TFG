@@ -40,7 +40,7 @@ class GanadosController extends Controller
     /**
      * Function that returns the view to register a Ganado.
      *
-     * @param null $Ganaderia Optional: id of the Ganaderia which is owner of the Ganado.
+     * @param integer $Ganaderia Optional: id of the Ganaderia which is owner of the Ganado.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the Ganado registration form.
      */
     public function registrar($Ganaderia = null)
@@ -91,7 +91,7 @@ class GanadosController extends Controller
      * all the elements in the Ganado model.
      * It check as well the role of the user in order to show the info it is allowed to see.
      *
-     * @param null $Ganado This parameter appears when we ask for a specific Ganado.
+     * @param integer $Ganado This parameter appears when we ask for a specific Ganado.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Ganado listing.
      */
     public function show($Ganado = null)
@@ -144,7 +144,7 @@ class GanadosController extends Controller
      * Function that returns the view with the listing of the Ganados which status is "muertos"
      *
      * @deprecated no longer used
-     * @param null $Ganaderia
+     * @param integer $Ganaderia
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showMuertos($Ganaderia = null)
@@ -165,7 +165,7 @@ class GanadosController extends Controller
     /**
      * Function to show the details of a specific Ganado.
      *
-     * @param $Ganado id of the Ganado we want to see details.
+     * @param integer $Ganado id of the Ganado we want to see details.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Ganado.
      */
     public function show_detail($Ganado)
@@ -198,7 +198,7 @@ class GanadosController extends Controller
     /**
      * Function that show the edition form of an Ganado.
      *
-     * @param $Ganado id of the Ganado we want to edit.
+     * @param integer $Ganado id of the Ganado we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show_edit($Ganado)
@@ -257,7 +257,7 @@ class GanadosController extends Controller
     /**
      * Function that deletes a specific Ganado on our system.
      *
-     * @param $id id of the Ganado we want to delete.
+     * @param integer $id id of the Ganado we want to delete.
      * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */

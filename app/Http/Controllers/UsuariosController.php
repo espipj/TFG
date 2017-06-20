@@ -40,7 +40,7 @@ class UsuariosController extends Controller
      * Depending on if we've asked for a specific User or not, it will show us the details view or a listing of
      * all the elements in the User model.
      *
-     * @param null $Usuario id of the user we want to see detailed (optional)
+     * @param integer $Usuario id of the user we want to see detailed (optional)
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The view to see the user or the list of users
      */
     public function show($Usuario = null)
@@ -57,7 +57,7 @@ class UsuariosController extends Controller
     /**
      * Function to show the details of a specific User.
      *
-     * @param $Usuario id of the User we want to see details.
+     * @param integer $Usuario id of the User we want to see details.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the User.
      */
     public function show_detail($Usuario)
@@ -69,7 +69,7 @@ class UsuariosController extends Controller
     /**
      * Function that show the edition form of an User.
      *
-     * @param $Usuario id of the User we want to edit.
+     * @param integer $Usuario id of the User we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      */
@@ -124,7 +124,7 @@ class UsuariosController extends Controller
     /**
      * Function that deletes a specific User on our system.
      *
-     * @param $id id of the User we want to delete.
+     * @param integer $id id of the User we want to delete.
      * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */

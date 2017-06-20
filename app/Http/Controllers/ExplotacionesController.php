@@ -34,7 +34,7 @@ class ExplotacionesController extends Controller
     /**
      * Function that returns the view to register an Explotacion.
      *
-     * @param null $Ganaderia Optional: id of the Ganaderia which is owner of the Explotacion.
+     * @param integer $Ganaderia Optional: id of the Ganaderia which is owner of the Explotacion.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the Explotacion registration form.
      */
     public function registrar($Ganaderia=null){
@@ -79,7 +79,7 @@ class ExplotacionesController extends Controller
      * all the elements in the Explotacion model.
      * It check as well the role of the user in order to show the info it must see.
      *
-     * @param null $Explotacion This parameter appears when we ask for a specific Explotacion.
+     * @param integer $Explotacion This parameter appears when we ask for a specific Explotacion.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Explotacion listing.
      */
     public function show($Explotacion=null){

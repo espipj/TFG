@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\URL;
  * Class AsociacionesController.
  *
  * Controller class for Model Asociacion.
+ *
  * @package App\Http\Controllers
  * @author Pablo Espinosa <espipj@gmail.com>
  */
@@ -72,7 +73,7 @@ class AsociacionesController extends Controller
      * Depending on if we've asked for a specific Asociacion or not, it will show us the details view or a listing of
      * all the elements in the Asociacion model.
      *
-     * @param null $Asociacion This parameter appears when we ask for a specific Asociacion.
+     * @param integer $Asociacion This parameter appears when we ask for a specific Asociacion.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Asociacion listing.
      */
@@ -97,7 +98,7 @@ class AsociacionesController extends Controller
     /**
      * Function to show the details of a specific Asociacion.
      *
-     * @param $Asociacion id of the Asociacion we want to see details.
+     * @param integer $Asociacion id of the Asociacion we want to see details.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Asociacion.
      */
@@ -112,7 +113,7 @@ class AsociacionesController extends Controller
     /**
      * Function that show the edition form of an Asociacion.
      *
-     * @param $Asociacion id of the Asociacion we want to edit.
+     * @param integer $Asociacion id of the Asociacion we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of edition of an Asociacion.
      */
     public function show_edit($Asociacion){
@@ -152,7 +153,7 @@ class AsociacionesController extends Controller
     /**
      * Function that deletes a specific Asociacion on our system.
      *
-     * @param $id id of the Asociacion we want to delete.
+     * @param integer $id id of the Asociacion we want to delete.
      * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */

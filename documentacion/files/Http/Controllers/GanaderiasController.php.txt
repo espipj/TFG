@@ -38,7 +38,7 @@ class GanaderiasController extends Controller
     /**
      * Function that returns the view to register an Ganaderia.
      *
-     * @param null $Asociacion Optional: id of the Asociacion which is owner of the Ganaderia.
+     * @param integer $Asociacion Optional: id of the Asociacion which is owner of the Ganaderia.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the Ganaderia registration form.
      */
     public function registrar($Asociacion = null){
@@ -86,7 +86,7 @@ class GanaderiasController extends Controller
      * all the elements in the Ganaderia model.
      * It check as well the role of the user in order to show the info it is allowed to see.
      *
-     * @param null $Ganaderia This parameter appears when we ask for a specific Ganaderia.
+     * @param integer $Ganaderia This parameter appears when we ask for a specific Ganaderia.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Ganaderia listing.
      */
     public function show($Ganaderia=null){
@@ -107,7 +107,7 @@ class GanaderiasController extends Controller
     /**
      * Function to show the details of a specific Ganaderia.
      *
-     * @param $Ganaderia id of the Ganaderia we want to see details.
+     * @param integer $Ganaderia id of the Ganaderia we want to see details.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Ganaderia.
      */
     public function show_detail($Ganaderia){
@@ -122,7 +122,7 @@ class GanaderiasController extends Controller
     /**
      * Function that show the edition form of an Ganaderia.
      *
-     * @param $Ganaderia id of the Ganaderia we want to edit.
+     * @param integer $Ganaderia id of the Ganaderia we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show_edit($Ganaderia){
@@ -164,7 +164,7 @@ class GanaderiasController extends Controller
     /**
      * Function that deletes a specific Ganaderia on our system.
      *
-     * @param $id id of the Ganaderia we want to delete.
+     * @param integer $id id of the Ganaderia we want to delete.
      * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */

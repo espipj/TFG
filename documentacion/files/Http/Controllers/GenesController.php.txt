@@ -129,7 +129,7 @@ class GenesController extends Controller
     /**
      * This function show us the view to input genetic data to a Ganado.
      *
-     * @param null $Ganado id of the Ganado we want to add or edit genetic data
+     * @param integer $Ganado id of the Ganado we want to add or edit genetic data
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View with the form to input genetic data
      */
     public function anadirGenes($Ganado = null)
@@ -218,7 +218,7 @@ class GenesController extends Controller
     /**
      * This function returns the view to ask for a filiation.
      *
-     * @param null $Ganado id of the Ganado we want to as for the filiation.
+     * @param integer $Ganado id of the Ganado we want to as for the filiation.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View to see the data of the filiation we're going to request.
      */
     public function solicitudFiliacion($Ganado=null){

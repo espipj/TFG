@@ -30,7 +30,7 @@ class MuestrasController extends Controller
     /**
      * Function that returns the view to register a Muestra.
      *
-     * @param null $Ganado Optional: id of the Ganado which the Muestra is from.
+     * @param integer $Ganado Optional: id of the Ganado which the Muestra is from.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the Muestra registration form.
      */
     public function registrar($Ganado=null){
@@ -77,7 +77,7 @@ class MuestrasController extends Controller
      * all the elements in the Muestra model.
      * It check as well the role of the user in order to show the info it must see.
      *
-     * @param null $Explotacion This parameter appears when we ask for a specific Muestra.
+     * @param integer $Explotacion This parameter appears when we ask for a specific Muestra.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Muestra listing.
      */
     public function show($Muestra=null){
@@ -106,7 +106,7 @@ class MuestrasController extends Controller
     /**
      * Function to show the details of a specific Muestra.
      *
-     * @param $Explotacion id of the Muestra we want to see details.
+     * @param integer $Explotacion id of the Muestra we want to see details.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Muestra.
      */
     public function show_detail($Muestra){
@@ -118,7 +118,7 @@ class MuestrasController extends Controller
     /**
      * Function that show the edition form of an Muestra.
      *
-     * @param $Explotacion id of the Muestra we want to edit.
+     * @param integer $Explotacion id of the Muestra we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show_edit($Ganado){
@@ -169,7 +169,7 @@ class MuestrasController extends Controller
     /**
      * Function that deletes a specific Muestra on our system.
      *
-     * @param $id id of the Muestra we want to delete.
+     * @param integer $id id of the Muestra we want to delete.
      * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */
