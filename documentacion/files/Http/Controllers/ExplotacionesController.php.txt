@@ -10,12 +10,24 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class ExplotacionesController
+ * @package App\Http\Controllers
+ */
 class ExplotacionesController extends Controller
 {
-    //
+
+    /**
+     * @return mixed
+     */
     public function index(){
         return Ganado::all();
     }
+
+    /**
+     * @param null $Ganaderia
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function registrar($Ganaderia=null){
 
         $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
@@ -28,6 +40,10 @@ class ExplotacionesController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function guardar(Request $request){
         $this->validate($request,[
             'codigo_explotacion'=>['required'],
@@ -41,6 +57,10 @@ class ExplotacionesController extends Controller
         return redirect()->route('verexplotacion',[$explotacion]);
     }
 
+    /**
+     * @param null $Explotacion
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($Explotacion=null){
         $usuario=Auth::user();
         if($Explotacion==null){
@@ -77,11 +97,19 @@ class ExplotacionesController extends Controller
         }
     }
 
+    /**
+     * @param $Explotacion
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_detail($Explotacion){
         $explotacion=Explotacion::find($Explotacion);
         return view('explotacion.verExplotacion', compact('explotacion'));
     }
 
+    /**
+     * @param $Explotacion
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_edit($Explotacion){
 
         $explotacion=Explotacion::find($Explotacion);
@@ -92,6 +120,10 @@ class ExplotacionesController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function edit(Request $request){
         $this->validate($request,[
             'codigo_explotacion'=>['required'],
@@ -107,7 +139,12 @@ class ExplotacionesController extends Controller
         return redirect()->route('verexplotacion',[$explotacion]);
     }
 
-    public function delete($id,Request $request){
+    /**
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
+    public function delete($id, Request $request){
         if($request->ajax()){
 
             $explotacion=Explotacion::find($id);

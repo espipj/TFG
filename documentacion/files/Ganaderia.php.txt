@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\AsociacionesController;
 use Illuminate\Database\Eloquent\Model;
 
 class Ganaderia extends Model

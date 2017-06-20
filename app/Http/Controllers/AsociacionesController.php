@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 
 /**
- * Clase AsociacionesController.
+ * Class AsociacionesController.
  *
- * Es la clase controladora asociada al modelo Asociacion.
+ * Controller class for Model Asociacion.
  * @package App\Http\Controllers
  * @author Pablo Espinosa <espipj@gmail.com>
  */
@@ -21,9 +21,9 @@ class AsociacionesController extends Controller
 {
 
     /**
-     * Funcion utilizada para el testeo inicial de la aplicación.
+     * Used function for initial testing.
      *
-     * @return \Illuminate\Database\Eloquent\Collection|static[] Devuelve un array con el listado de todas las Asociaciones.
+     * @return \Illuminate\Database\Eloquent\Collection|static[] Returns an array with a every element of Asociaciones.
      *
      *
      */
@@ -35,9 +35,9 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Funcion que nos devuelve la vista para registrar una asociación.
-     * 
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Vista donde podemos registrar una asociación.
+     * Function that returns the view to register an Asociacion.     *
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The view where we can register an Asociacion.
      *
      */
     public function registrar(){
@@ -46,11 +46,11 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Funcion llamada desde una solicitud POST para guardar una asociación.
+     * Called function from a POST request in order to save an Asociacion.
      *
-     * Se comprueban los valores de entrada del formulario.
+     * It check the requests input values from the form.
      *
-     * @param Request $request los valores introducidos en el formulario de registro.
+     * @param Request $request Input values from the form.
      * @return \Illuminate\Http\RedirectResponse
      */
     public function guardar(Request $request){
@@ -66,14 +66,17 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Funcion que nos muestra la vista del Modelo Asociacion.
+     * This function shows us the view of Asociacion Model.
      *
      * Dependiendo de si hemos solicitado una asociación en concreto o no, nos mostrará la interfaz de detalle o
      * nos enseñara el listado de todas las asociaciones.
      *
-     * @param null $Asociacion Parametro que puede aparecer si se solicita una asociación en concreto.
+     * Depending on if we've asked for a specific Asociacion or not, it will show us the details view or a listing of
+     * all the elements in the Asociacion model.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Retorna la vista del listado de asociaciones.
+     * @param null $Asociacion This parameter appears when we ask for a specific Asociacion.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Asociacion listing.
      */
     public function show($Asociacion=null){
         $usuario=Auth::user();
@@ -94,11 +97,11 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Función para mostrar los detalles de una asociación en concreto.
+     * Function to show the details of a specific Asociacion.
      *
-     * @param $Asociacion El id de la asociación que queremos ver detalles.
+     * @param $Asociacion id of the Asociacion we want to see details
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View La vista de detalles de la asociación.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Asociacion.
      */
     public function show_detail($Asociacion){
 
@@ -109,10 +112,10 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Función que muestra el formulario de edición de una asociación.
+     * Function that show the edition form of an Asociacion.
      *
-     * @param $Asociacion El id de la asociación que queremos editar
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View La bista de edición de asociación.
+     * @param $Asociacion id of the asociacion we want to edit.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of edition of an Asociacion.
      */
     public function show_edit($Asociacion){
 
@@ -123,12 +126,12 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Función que guarda los datos de la asociación editada.
+     * Function that saves the changes of the edited Asociacion.
      *
-     * Recoge una solicitud POST, comprueba los valores y realiza la edicion de la asociación.
+     * Receives a POST request with the form input data, check the values and save the changes of the Asociacion.
      *
-     * @param Request $request Los valores introducidos en el formulario de edición.
-     * @return \Illuminate\Http\RedirectResponse Redirige a donde estaba el usuario antes de solicitar la edición.
+     * @param Request $request Input values in the edit Asociacion form.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before hitting the edit button.
      */
     public function edit(Request $request){
         $this->validate($request,[
@@ -149,10 +152,10 @@ class AsociacionesController extends Controller
     }
 
     /**
-     * Función utilizada para eliminar una Asociación de nuestro sistema.
+     * Function that deletes a specific Asociacion on our system.
      *
-     * @param $id El id de la asociación a eliminar.
-     * @param Request $request La petición POST que en este caso es posible que sea AJAX.
+     * @param $id id of the Asociacion we want to delete.
+     * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id, Request $request){
