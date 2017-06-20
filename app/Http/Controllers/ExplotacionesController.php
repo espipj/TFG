@@ -78,7 +78,7 @@ class ExplotacionesController extends Controller
      * It check as well the role of the user in order to show the info it is allowed to see.
      *
      * @param null $Explotacion This parameter appears when we ask for a specific Explotacion.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Asociacion listing.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Explotacion listing.
      */
     public function show($Explotacion=null){
         $usuario=Auth::user();
@@ -181,7 +181,7 @@ class ExplotacionesController extends Controller
             return $id;
 
         }
-        return redirect()->to('/ver/explotacion/');
+        return redirect()->to('/ver/explotacion');
 
 
     }

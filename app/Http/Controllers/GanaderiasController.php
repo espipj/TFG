@@ -127,6 +127,7 @@ class GanaderiasController extends Controller
 
         $ganaderia=Ganaderia::find($Ganaderia);
         $asociaciones= Asociacion::lists('nombre','id');
+        session()->put('url.intended', URL::previous());
         return view('ganaderia.editarGanaderia', compact('ganaderia','asociaciones'));
 
     }
@@ -153,13 +154,16 @@ class GanaderiasController extends Controller
         $ganaderia->fill($datos)->save();
         $asociacion=Asociacion::find($request->input('asociacion_id'));
         $asociacion->ganaderias()->save($ganaderia);
-        return redirect()->route('verganaderia',[$ganaderia]);
+        return Redirect::intended('/');
+        //return redirect()->route('verganaderia',[$ganaderia]);
         //return redirect()->to('/ver/ganaderia');
     }
 
     /**
-     * @param $id
-     * @param Request $request
+     * Function that deletes a specific Ganaderia on our system.
+     *
+     * @param $id id of the Ganaderia we want to delete.
+     * @param Request $request POST request that could be AJAX in this case.
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id, Request $request){

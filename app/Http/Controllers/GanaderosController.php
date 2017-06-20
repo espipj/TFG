@@ -9,12 +9,29 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+/**
+ * Class GanaderosController.
+ *
+ * Controller of Explotacion Model.
+ *
+ * @deprecated No longer used as clients changed their needs.
+ * @package App\Http\Controllers
+ */
 class GanaderosController extends Controller
 {
     //
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function index(){
         return Ganadero::all();
     }
+
+    /**
+     * @param null $Ganaderia
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function registrar($Ganaderia=null){
 
         $ganaderias=Ganaderia::lists('nombre','id');
@@ -27,6 +44,10 @@ class GanaderosController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function guardar(Request $request){
         $this->validate($request,[
             'nombre'=>['required','max:256'],
@@ -44,6 +65,10 @@ class GanaderosController extends Controller
         return redirect()->to('/ver/ganadero');
     }
 
+    /**
+     * @param null $Ganadero
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($Ganadero=null){
         if($Ganadero==null){
             $ganaderos=Ganadero::all();
@@ -54,6 +79,10 @@ class GanaderosController extends Controller
         }
     }
 
+    /**
+     * @param $Ganadero
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_detail($Ganadero){
 
         $ganadero=Ganadero::find($Ganadero);
@@ -62,6 +91,10 @@ class GanaderosController extends Controller
 
     }
 
+    /**
+     * @param $Ganadero
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_edit($Ganadero){
 
         $ganadero=Ganadero::find($Ganadero);
@@ -70,6 +103,10 @@ class GanaderosController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function edit(Request $request){
 
 
@@ -91,7 +128,12 @@ class GanaderosController extends Controller
         return redirect()->route('verganadero',[$ganadero]);
     }
 
-    public function delete($id,Request $request){
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id, Request $request){
 
         if($request->ajax()){
             $ganadero=Ganadero::find($id);
