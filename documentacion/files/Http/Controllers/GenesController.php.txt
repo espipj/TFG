@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
+
+/**
+ * Class GenesController.
+ *
+ * Controller of Gen Model.
+ *
+ * @package App\Http\Controllers
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class GenesController extends Controller
 {
     /**
@@ -31,16 +40,35 @@ class GenesController extends Controller
     }
 
 
+    /**
+     * Used function for initial testing.
+     * @param $marcador Genetic Marker
+     */
     public function Marcador($marcador)
     {
         dd(Gen::posicionMarcador($marcador));
     }
 
+    /**
+     * Used function for initial testing.
+     * @param $alelo Allele
+     * @param $marcador Genetic Marker
+     */
     public function Frecuencia($alelo, $marcador)
     {
         dd(Gen::calcularFrecuenciaAlelo($alelo, $marcador));
     }
 
+    /**
+     * Called function from a POST request in order to save an request a filiation.
+     *
+     * It check the requests input values from the form.
+     * It checks as well if the user is allowed, to ask a filiation.
+     * Calculates the filiation calling to the method at the Model Gen.
+     *
+     * @param Request $request Input values from the form.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function Filiar(Request $request)
     {
         $this->validate($request, [
@@ -74,13 +102,17 @@ class GenesController extends Controller
         if ($request->input('consulta')=="sinpadre"){
 
             $resultados=Gen::calcularProbabilidadSP($ganado->madre->gen,$ganado->gen);
-            //dd($resultados);
+
             $resimp=array();
+
+            /**
+             * Shows the three first results of the filiation.
+             */
             foreach ($resultados as $key=>$resultado){
                 array_push($resimp,array("ganado"=>$resultado[1],"porcentaje"=>number_format($resultado[0][2]*100,2,',','')));
                 if ($key==2) break;
             }
-            //dd($resimp);
+
             return view('genes.resultadoFiliacionSP',compact('permiso','resimp','ganado','ganadosf'));
         }else{
 
@@ -94,6 +126,12 @@ class GenesController extends Controller
         return view('genes.filiarGanado', compact('permiso', 'ganado'));
     }
 
+    /**
+     * This function show us the view to input genetic data to a Ganado.
+     *
+     * @param null $Ganado id of the Ganado we want to add or edit genetic data
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View with the form to input genetic data
+     */
     public function anadirGenes($Ganado = null)
     {
         $usuario = Auth::user();
@@ -108,6 +146,15 @@ class GenesController extends Controller
         return view('genes.inputGenes', compact('ganado', 'permiso'));
     }
 
+    /**
+     * Called function from a POST reques in order to save the genetic data added.
+     *
+     * It check every input value from the form.
+     *
+     *
+     * @param Request $request Input values from the genetic data.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before.
+     */
     public function anadirGenesPost(Request $request)
     {
         $this->validate($request, [
@@ -168,6 +215,12 @@ class GenesController extends Controller
         return Redirect::intended('/');
     }
 
+    /**
+     * This function returns the view to ask for a filiation.
+     *
+     * @param null $Ganado id of the Ganado we want to as for the filiation.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View to see the data of the filiation we're going to request.
+     */
     public function solicitudFiliacion($Ganado=null){
         $usuario = Auth::user();
         if ($usuario->hasAnyRole(array('SuperAdmin', 'Laboratorio'))) {
@@ -178,7 +231,6 @@ class GenesController extends Controller
         $ganado = Ganado::find($Ganado);
         $ganadosf=array();
 
-        //dd($ganado->madre->gen);
         if(isset($ganado->madre->gen)){
             array_push($ganadosf,["Madre",$ganado->madre]);
         }
@@ -189,7 +241,6 @@ class GenesController extends Controller
         if(isset($ganado->gen)){
             array_push($ganadosf,["Hijo",$ganado]);
         }
-        //dd($ganadosf);
         //session()->put('url.intended', URL::previous());
         return view('genes.solicitudFiliacion', compact('ganado', 'permiso','ganadosf'));
     }

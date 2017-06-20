@@ -67,10 +67,6 @@ class AuthController extends Controller
     }
 
     /**
-     * Añadimos ambos paths tanto para que funcione el login como para cambiar la ruta que queremos usar una vez el
-     * usuario se autentique
-     */
-    /**
      * Get the path to the login route.
      *
      * @return string

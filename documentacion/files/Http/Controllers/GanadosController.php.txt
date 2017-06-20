@@ -13,15 +13,36 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
+
+/**
+ * Class GanadosController.
+ *
+ * Controller of Ganado Model.
+ *
+ * @package App\Http\Controllers
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class GanadosController extends Controller
 {
-    //
+    /**
+     * Used function for initial testing.
+     *
+     * @return static
+     */
     public function index()
     {
         return Ganado::all()->sortBy('crotal');
     }
 
+    /**
+     * Function that returns the view to register a Ganado.
+     *
+     * @param null $Ganaderia Optional: id of the Ganaderia which is owner of the Ganado.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the Ganado registration form.
+     */
     public function registrar($Ganaderia = null)
     {
 
@@ -31,6 +52,7 @@ class GanadosController extends Controller
         $machos=Ganado::where('sexo_id',1)->orderBy('crotal')->get();
         //$ganados = Ganado::all()->sortBy('crotal');
         $sexos = Sexo::all();
+        session()->put('url.intended', URL::previous());
         if ($Ganaderia == null) {
             return view('ganado.registrarGanado', compact('ganaderias', 'sexos', 'machos','hembras', 'capas'));
 
@@ -40,6 +62,14 @@ class GanadosController extends Controller
         }
     }
 
+    /**
+     * Called function from a POST request in order to save a Ganado.
+     *
+     * It check the requests input values from the form.
+     *
+     * @param Request $request Input values from the form.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before hitting the register button.
+     */
     public function guardar(Request $request)
     {
         $this->validate($request, [
@@ -50,9 +80,20 @@ class GanadosController extends Controller
             'capa_id' => ['required'],
         ]);
         Ganado::guardarNuevo($request);
-        return redirect()->to('/ver/ganado');
+        return Redirect::intended('/');
+        //return redirect()->to('/ver/ganado');
     }
 
+    /**
+     * This function shows us the view of Ganado Model.
+     *
+     * Depending on if we've asked for a specific Ganado or not, it will show us the details view or a listing of
+     * all the elements in the Ganado model.
+     * It check as well the role of the user in order to show the info it is allowed to see.
+     *
+     * @param null $Ganado This parameter appears when we ask for a specific Ganado.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Ganado listing.
+     */
     public function show($Ganado = null)
     {
         if ($Ganado == null) {
@@ -99,6 +140,13 @@ class GanadosController extends Controller
         }
     }
 
+    /**
+     * Function that returns the view with the listing of the Ganados which status is "muertos"
+     *
+     * @deprecated no longer used
+     * @param null $Ganaderia
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showMuertos($Ganaderia = null)
     {
 
@@ -114,6 +162,12 @@ class GanadosController extends Controller
         }
     }
 
+    /**
+     * Function to show the details of a specific Ganado.
+     *
+     * @param $Ganado id of the Ganado we want to see details.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Ganado.
+     */
     public function show_detail($Ganado)
     {
         $ganado = Ganado::find($Ganado);
@@ -141,6 +195,12 @@ class GanadosController extends Controller
         return view('ganado.verGanado', compact('ganado', 'ganados', 'padre', 'arbol'));
     }
 
+    /**
+     * Function that show the edition form of an Ganado.
+     *
+     * @param $Ganado id of the Ganado we want to edit.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_edit($Ganado)
     {
 
@@ -152,11 +212,20 @@ class GanadosController extends Controller
         $capas = Capa::all()->sortBy('select_option')->lists('select_option', 'id');
         $sexos = Sexo::all();
         $ganaderias = Ganaderia::all()->sortBy('select_option')->lists('select_option', 'id');
+        session()->put('url.intended', URL::previous());
         return view('ganado.editarGanado', compact('machos','hembras', 'ganadoe', 'sexos', 'ganaderias', 'capas'));
 
 
     }
 
+    /**
+     * Function that saves the changes of the edited Ganado.
+     *
+     * Receives a POST request with the form input data, check the values and save the changes of the Ganado.
+     *
+     * @param Request $request Input values in the edit Ganado form.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before hitting the edit button.
+     */
     public function edit(Request $request)
     {
         $this->validate($request, [
@@ -181,9 +250,17 @@ class GanadosController extends Controller
         $ganaderia->ganados()->save($ganado);
         $sexo->ganados()->save($ganado);
         $ganado->setCapa(Capa::find($request->input('capa_id')));
-        return redirect()->route('verganado', [$ganado]);
+        return Redirect::intended('/');
+        //return redirect()->route('verganado', [$ganado]);
     }
 
+    /**
+     * Function that deletes a specific Ganado on our system.
+     *
+     * @param $id id of the Ganado we want to delete.
+     * @param Request $request POST request that could be AJAX in this case.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete($id, Request $request)
     {
         if ($request->ajax()) {

@@ -11,103 +11,154 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
+/**
+ * Class UsuariosController.
+ *
+ * Controller of the default User Model.
+ *
+ * @package App\Http\Controllers
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class UsuariosController extends Controller
 {
-    //
-    public function index(){
+    /**
+     * Used function for initial testing.
+     *
+     * @return static
+     */
+    public function index()
+    {
         return User::all()->sortBy('name');
     }
-    public function guardar(Request $request){
-        $this->validate($request,[
-            'crotal'=>['required','max:256'],
-            'sexo_id'=>['required'],
-            'fecha_nacimiento'=>['required'],
-            'ganaderia_id'=>['required'],
-            'capa_id'=>['required'],
-        ]);
-        Ganado::guardarNuevo($request);
-        return redirect()->to('/ver/usuario');
-    }
 
-    public function show($Usuario=null){
-        if($Usuario==null){
-            $usuarios=User::all()->sortBy('name');
-            return view('usuario.verUsuarios',compact('usuarios'));
-        }else{
+    /**
+     * This function shows us the view of User Model.
+     *
+     * Depending on if we've asked for a specific User or not, it will show us the details view or a listing of
+     * all the elements in the User model.
+     *
+     * @param null $Usuario id of the user we want to see detailed (optional)
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View The view to see the user or the list of users
+     */
+    public function show($Usuario = null)
+    {
+        if ($Usuario == null) {
+            $usuarios = User::all()->sortBy('name');
+            return view('usuario.verUsuarios', compact('usuarios'));
+        } else {
             return $this->show_detail($Usuario);
         }
     }
 
 
-    public function show_detail($Usuario){
-        $usuario=User::find($Usuario);
+    /**
+     * Function to show the details of a specific User.
+     *
+     * @param $Usuario id of the User we want to see details.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the User.
+     */
+    public function show_detail($Usuario)
+    {
+        $usuario = User::find($Usuario);
         return view('usuario.verUsuario', compact('usuario'));
     }
 
-    public function show_edit($Usuario){
+    /**
+     * Function that show the edition form of an User.
+     *
+     * @param $Usuario id of the User we want to edit.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     */
+    public function show_edit($Usuario)
+    {
 
-        $usuario=User::find($Usuario);
-        $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
-        $asociaciones=Asociacion::all()->sortBy('nombre')->lists('nombre','id');
-        $laboratorios=Laboratorio::all()->sortBy('select_option')->lists('select_option','id');
-        return view('usuario.editarUsuario', compact('usuario','ganaderias','asociaciones','laboratorios'));
+        $usuario = User::find($Usuario);
+        $ganaderias = Ganaderia::all()->sortBy('select_option')->lists('select_option', 'id');
+        $asociaciones = Asociacion::all()->sortBy('nombre')->lists('nombre', 'id');
+        $laboratorios = Laboratorio::all()->sortBy('select_option')->lists('select_option', 'id');
+        session()->put('url.intended', URL::previous());
+        return view('usuario.editarUsuario', compact('usuario', 'ganaderias', 'asociaciones', 'laboratorios'));
 
     }
 
-    public function edit(Request $request){
-        $this->validate($request,[
-            'usuario_id'=>['required'],
+    /**
+     * Function that saves the changes of the edited User.
+     *
+     * Receives a POST request with the form input data, check the values and save the changes of the User.
+     *
+     * @param Request $request Input values in the edit User form.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before hitting the edit button.
+     */
+    public function edit(Request $request)
+    {
+        $this->validate($request, [
+            'usuario_id' => ['required'],
         ]);
-        $user=User::find($request->input('usuario_id'));
+        $user = User::find($request->input('usuario_id'));
         $user->ganaderia()->dissociate();
         $user->asociacion()->dissociate();
 
-        if($request['asociacion_id']){
-            //dd('gal');
-            $user->asociacion()->associate(Asociacion::where('id',$request->input('asociacion_id'))->first());
+        if ($request['asociacion_id']) {
+
+            $user->asociacion()->associate(Asociacion::where('id', $request->input('asociacion_id'))->first());
         }
 
-        if($request['ganaderia_id']){
-            //dd('hola');
-            $user->ganaderia()->associate(Ganaderia::where('id',$request->input('ganaderia_id'))->first());
+        if ($request['ganaderia_id']) {
+
+            $user->ganaderia()->associate(Ganaderia::where('id', $request->input('ganaderia_id'))->first());
 
         }
-        if($request['laboratorio_id']){
-            //dd('hola');
-            $user->laboratorio()->associate(Laboratorio::where('id',$request->input('laboratorio_id'))->first());
+        if ($request['laboratorio_id']) {
+
+            $user->laboratorio()->associate(Laboratorio::where('id', $request->input('laboratorio_id'))->first());
 
         }
         $user->save();
-
-        return redirect()->route('verusuario',[$user]);
+        return Redirect::intended('/');
     }
 
-    public function delete($id,Request $request){
-        if($request->ajax()){
+    /**
+     * Function that deletes a specific User on our system.
+     *
+     * @param $id id of the User we want to delete.
+     * @param Request $request POST request that could be AJAX in this case.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id, Request $request)
+    {
+        if ($request->ajax()) {
 
-            $ganado=Ganado::find($id);
-            $muerto=Estado::where('nombre','Muerto')->first();
+            $ganado = Ganado::find($id);
+            $muerto = Estado::where('nombre', 'Muerto')->first();
             $muerto->ganados()->save($ganado);
             return $id;
 
         }
 
-
     }
 
-    public function asignar(Request $request){
-        $user=User::where('email',$request['email'])->first();
+    /**
+     * This function allows us to asign different roles to a user
+     * @param Request $request receives a POST request.
+     * @return \Illuminate\Http\RedirectResponse redirects back.
+     */
+    public function asignar(Request $request)
+    {
+        $user = User::where('email', $request['email'])->first();
         $user->roles()->detach();
 
-        if ($request['role_ganad']){
-            $user->roles()->attach(Role::where('name','Ganadero')->first());
+        if ($request['role_ganad']) {
+            $user->roles()->attach(Role::where('name', 'Ganadero')->first());
         }
-        if ($request['role_labo']){
-            $user->roles()->attach(Role::where('name','Laboratorio')->first());
+        if ($request['role_labo']) {
+            $user->roles()->attach(Role::where('name', 'Laboratorio')->first());
         }
-        if ($request['role_admin']){
-            $user->roles()->attach(Role::where('name','Administrador')->first());
+        if ($request['role_admin']) {
+            $user->roles()->attach(Role::where('name', 'Administrador')->first());
         }
         return redirect()->back();
     }
