@@ -13,13 +13,34 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Class AsociacionesController.
+ *
+ * Controller class for Model Ganaderia.
+ * @package App\Http\Controllers
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class GanaderiasController extends Controller
 {
-    //
+    /**
+     * Used function for initial testing.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[] Returns an array with a every element of Explotaciones.
+     *
+     *
+     */
     public function index(){
         return Ganaderia::all();
     }
+
+    /**
+     * Function that returns the view to register an Ganaderia.
+     *
+     * @param null $Asociacion Optional: id of the Asociacion which is owner of the Ganaderia.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the Ganaderia registration form.
+     */
     public function registrar($Asociacion = null){
+        session()->put('url.intended', URL::previous());
         if($Asociacion==null){
 
             $asociaciones= Asociacion::lists('nombre','id');
@@ -32,6 +53,14 @@ class GanaderiasController extends Controller
         }
     }
 
+    /**
+     * Called function from a POST request in order to save an Ganaderia.
+     *
+     * It check the requests input values from the form.
+     *
+     * @param Request $request Input values from the form.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before hitting the register button.
+     */
     public function guardar(Request $request){
         $this->validate($request,[
             'nombre'=>['required','max:256'],
@@ -44,9 +73,20 @@ class GanaderiasController extends Controller
         $ganaderia=Ganaderia::create($datos);
         $asociacion=Asociacion::find($request->input('asociacion_id'));
         $asociacion->ganaderias()->save($ganaderia);
-        return redirect()->route('verganaderia',[$ganaderia]);
+        return Redirect::intended('/');
+        //return redirect()->route('verganaderia',[$ganaderia]);
     }
 
+    /**
+     * This function shows us the view of Ganaderia Model.
+     *
+     * Depending on if we've asked for a specific Ganaderia or not, it will show us the details view or a listing of
+     * all the elements in the Ganaderia model.
+     * It check as well the role of the user in order to show the info it is allowed to see.
+     *
+     * @param null $Ganaderia This parameter appears when we ask for a specific Ganaderia.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Ganaderia listing.
+     */
     public function show($Ganaderia=null){
         $usuario=Auth::user();
         if ($usuario->ganaderia!=null){
@@ -62,6 +102,12 @@ class GanaderiasController extends Controller
         }
     }
 
+    /**
+     * Function to show the details of a specific Ganaderia.
+     *
+     * @param $Ganaderia id of the Ganaderia we want to see details.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Ganaderia.
+     */
     public function show_detail($Ganaderia){
         $ganaderia=Ganaderia::find($Ganaderia);
         $ganados=$ganaderia->ganados->sortBy('crotal')->sortByDesc('vivo');
@@ -71,6 +117,12 @@ class GanaderiasController extends Controller
 
     }
 
+    /**
+     * Function that show the edition form of an Ganaderia.
+     *
+     * @param $Ganaderia id of the Ganaderia we want to edit.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_edit($Ganaderia){
 
         $ganaderia=Ganaderia::find($Ganaderia);
@@ -79,6 +131,14 @@ class GanaderiasController extends Controller
 
     }
 
+    /**
+     * Function that saves the changes of the edited Ganaderia.
+     *
+     * Receives a POST request with the form input data, check the values and save the changes of the Ganaderia.
+     *
+     * @param Request $request Input values in the edit Ganaderia form.
+     * @return \Illuminate\Http\RedirectResponse Redirects to where the user was before hitting the edit button.
+     */
     public function edit(Request $request){
         $this->validate($request,[
             'nombre'=>['required','max:256'],
@@ -97,6 +157,11 @@ class GanaderiasController extends Controller
         //return redirect()->to('/ver/ganaderia');
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete($id, Request $request){
 
         if($request->ajax()){

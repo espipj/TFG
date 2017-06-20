@@ -68,9 +68,6 @@ class AsociacionesController extends Controller
     /**
      * This function shows us the view of Asociacion Model.
      *
-     * Dependiendo de si hemos solicitado una asociación en concreto o no, nos mostrará la interfaz de detalle o
-     * nos enseñara el listado de todas las asociaciones.
-     *
      * Depending on if we've asked for a specific Asociacion or not, it will show us the details view or a listing of
      * all the elements in the Asociacion model.
      *
@@ -99,7 +96,7 @@ class AsociacionesController extends Controller
     /**
      * Function to show the details of a specific Asociacion.
      *
-     * @param $Asociacion id of the Asociacion we want to see details
+     * @param $Asociacion id of the Asociacion we want to see details.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of the details of the Asociacion.
      */
@@ -114,7 +111,7 @@ class AsociacionesController extends Controller
     /**
      * Function that show the edition form of an Asociacion.
      *
-     * @param $Asociacion id of the asociacion we want to edit.
+     * @param $Asociacion id of the Asociacion we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View View of edition of an Asociacion.
      */
     public function show_edit($Asociacion){
