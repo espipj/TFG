@@ -3,12 +3,20 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateUserRoleTable
+ * Migration used to generate the pivot table to relate User with Role.
+ *
+ *
+ * @see \App\User
+ * @see \App\Role
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateUserRoleTable extends Migration
 {
     /**
      * Run the migrations.
      *
-     * @return void
      */
     public function up()
     {

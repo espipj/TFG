@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateTipoMuestrasTable
+ * @see \App\TipoMuestra
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateTipoMuestrasTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model TipoMuestra.
      *
      * @return void
      */
@@ -19,7 +24,7 @@ class CreateTipoMuestrasTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model TipoMuestra.
      *
      * @return void
      */

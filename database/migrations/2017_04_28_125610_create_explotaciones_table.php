@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateExplotacionesTable
+ * @see \App\Explotacion
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateExplotacionesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Explotacion.
      *
      * @return void
      */
@@ -21,7 +26,7 @@ class CreateExplotacionesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Explotacion.
      *
      * @return void
      */

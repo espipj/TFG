@@ -3,10 +3,17 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class DatabaseSeeder
+ * @author Pablo Espinosa <espipj@gmail.com>
+ * @link https://laravel.com/docs/5.1/seeding Some info about Database Seeding
+ */
 class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * DataBase seeders combined with Faker/ModelFactory allow us to create a quick dataset to start working.
      *
      * @return void
      */

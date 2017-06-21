@@ -3,10 +3,16 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateGanadosTable
+ *
+ * @see \App\Ganado
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateGanadosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Ganado.
      *
      * @return void
      */
@@ -27,7 +33,7 @@ class CreateGanadosTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Ganado.
      *
      * @return void
      */

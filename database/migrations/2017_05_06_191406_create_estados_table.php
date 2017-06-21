@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateEstadosTable
+ * @see \App\Estado
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateEstadosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Estado.
      *
      * @return void
      */
@@ -20,7 +25,7 @@ class CreateEstadosTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Estado.
      *
      * @return void
      */

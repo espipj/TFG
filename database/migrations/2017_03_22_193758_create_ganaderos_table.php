@@ -3,10 +3,17 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
+/**
+ * Class CreateGanaderosTable
+ * @deprecated Changes in the needs of the client
+ * @see \App\Ganadero
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateGanaderosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Ganadero.
      *
      * @return void
      */
@@ -26,7 +33,7 @@ class CreateGanaderosTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Ganadero.
      *
      * @return void
      */

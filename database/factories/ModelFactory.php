@@ -11,7 +11,14 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Users
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ * @link https://laravel.com/docs/5.1/testing#model-factories
+ */
+    App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -20,7 +27,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Ganado::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Ganado
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Ganado::class, function (Faker\Generator $faker) {
 
 
     return [
@@ -31,7 +44,13 @@ $factory->define(App\Ganado::class, function (Faker\Generator $faker) {
 
 });
 
-$factory->define(App\Ganaderia::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Ganaderia
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Ganaderia::class, function (Faker\Generator $faker) {
 
     return [
         'nombre' => $faker->name,
@@ -43,7 +62,13 @@ $factory->define(App\Ganaderia::class, function (Faker\Generator $faker) {
 
 });
 
-$factory->define(App\Ganadero::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Ganadero
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Ganadero::class, function (Faker\Generator $faker) {
 
     return [
         'nombre' => $faker->name,
@@ -57,7 +82,13 @@ $factory->define(App\Ganadero::class, function (Faker\Generator $faker) {
 
 });
 
-$factory->define(App\Asociacion::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Asociacion
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Asociacion::class, function (Faker\Generator $faker) {
 
     return [
         'nombre' => $faker->name,
@@ -69,7 +100,13 @@ $factory->define(App\Asociacion::class, function (Faker\Generator $faker) {
 
 });
 
-$factory->define(App\Explotacion::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Explotacion
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Explotacion::class, function (Faker\Generator $faker) {
 
     return [
         'municipio' => $faker->city,
@@ -79,7 +116,13 @@ $factory->define(App\Explotacion::class, function (Faker\Generator $faker) {
 
 });
 
-$factory->define(App\Laboratorio::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Laboratorio
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Laboratorio::class, function (Faker\Generator $faker) {
 
     return [
         'nombre' => $faker->name,
@@ -90,7 +133,13 @@ $factory->define(App\Laboratorio::class, function (Faker\Generator $faker) {
 
 
 });
-$factory->define(App\Muestra::class, function (Faker\Generator $faker) {
+$factory->define(/**
+ * We use faker to create random Muestra
+ * @param \Faker\Generator $faker
+ * @return array
+ * @link https://github.com/fzaninotto/Faker#basic-usage Info about how to work with faker
+ */
+    App\Muestra::class, function (Faker\Generator $faker) {
 
     return [
         'tubo'  =>  $faker->numberBetween(000000,128379183434),

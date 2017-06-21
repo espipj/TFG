@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateGanaderiasTable
+ * @see \App\Ganaderia
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateGanaderiasTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Ganaderia.
      *
      * @return void
      */
@@ -24,7 +29,7 @@ class CreateGanaderiasTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Ganaderia.
      *
      * @return void
      */

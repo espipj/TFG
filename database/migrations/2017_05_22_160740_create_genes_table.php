@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateGenesTable
+ * @see \App\Gen
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateGenesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Gen.
      *
      * @return void
      */
@@ -23,7 +28,7 @@ class CreateGenesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Gen.
      *
      * @return void
      */

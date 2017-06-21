@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateLaboratoriosTable
+ * @see \App\Laboratorio
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateLaboratoriosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Laboratorio.
      *
      * @return void
      */
@@ -23,7 +28,7 @@ class CreateLaboratoriosTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Laboratorio.
      *
      * @return void
      */

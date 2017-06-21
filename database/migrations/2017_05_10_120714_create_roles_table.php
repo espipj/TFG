@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateRolesTable
+ * @see \App\Role
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateRolesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Role.
      *
      * @return void
      */
@@ -21,7 +26,7 @@ class CreateRolesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Role.
      *
      * @return void
      */

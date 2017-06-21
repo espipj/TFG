@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateAsociacionesTable
+ * @see \App\Asociacion
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateAsociacionesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Asociacion.
      *
      * @return void
      */
@@ -23,7 +28,7 @@ class CreateAsociacionesTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Asociacion.
      *
      * @return void
      */

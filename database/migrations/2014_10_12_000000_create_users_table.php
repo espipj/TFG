@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateUsersTable
+ * @see \App\User
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateUsersTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model User.
      *
      * @return void
      */
@@ -26,7 +31,7 @@ class CreateUsersTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model User.
      *
      * @return void
      */

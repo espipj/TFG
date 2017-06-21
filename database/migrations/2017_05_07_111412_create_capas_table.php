@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateCapasTable
+ * @see \App\Capa
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateCapasTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Capa.
      *
      * @return void
      */
@@ -20,7 +25,7 @@ class CreateCapasTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Capa.
      *
      * @return void
      */

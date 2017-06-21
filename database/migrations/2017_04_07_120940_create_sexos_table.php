@@ -3,10 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateSexosTable
+ * @see \App\Sexo
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class CreateSexosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations of the Model Sexo.
      *
      * @return void
      */
@@ -20,7 +25,7 @@ class CreateSexosTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations of the Model Sexo.
      *
      * @return void
      */
