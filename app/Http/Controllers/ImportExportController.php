@@ -13,11 +13,26 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Input;
 
+
+/**
+ * Class ImportExportController.
+ *
+ * Controller used for the import and export of the data to/from our system.
+ *
+ * @package App\Http\Controllers
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class ImportExportController extends Controller
 {
 
 
-    public function exportar($opcion,$formato){
+    /**
+     * Function that checks the option (A model) we want to export and the format of file we want to generate (XLS/CSV)
+     *
+     * @param string $opcion Option with the Model we want to export.
+     * @param string $formato Format of the file we want to generate.
+     */
+    public function exportar($opcion, $formato){
         switch ($opcion){
             case 'ganado':
                 $nombre='Ganados'. '_' .Carbon::now()->format('d-m-Y');
@@ -40,10 +55,17 @@ class ImportExportController extends Controller
         }
     }
 
+    /**
+     * Function that call the function of each model to import data from a XLS file.
+     *
+     *
+     * @param string $opcion The string that names the Model we want to import.
+     * @return \Illuminate\Http\RedirectResponse Brings us back to the page the user was before.
+     */
     public function importar($opcion){
 
         if(Input::hasFile('import_file')) {
-            ini_set('memory_limit','256M');
+            //ini_set('memory_limit','256M');
             $path = Input::file('import_file')->getRealPath();
             $reader = Excel::load($path);
         }else {
@@ -67,6 +89,13 @@ class ImportExportController extends Controller
         }
 
     }
+
+    /**
+     * @deprecated Function no longer used, It was used for the initial development.
+     *
+     * @param string $opcion
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show_importar($opcion){
         switch ($opcion){
             case 'ganado':
@@ -75,7 +104,17 @@ class ImportExportController extends Controller
         }
 
     }
-    public function downloadExcel($type,$data,$nombre,$hoja)
+
+    /**
+     * Calls the function to create and download the file generated with the data.
+     *
+     * @param string $type The format of the file.
+     * @param array $data The array with all the data we want to export.
+     * @param string $nombre Name of the file we want to generate.
+     * @param string $hoja Name of the sheet.
+     * @return mixed It just downloads the file.
+     */
+    public function downloadExcel($type, $data, $nombre, $hoja)
     {
         return Excel::create($nombre, function($excel) use ($data,$hoja) {
             $excel->sheet($hoja, function($sheet) use ($data)

@@ -4,16 +4,41 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Capa
+ * Simple class just to make an enumeration.
+ * @package App
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class Capa extends Model
 {
-    //
+
+    /**
+     * Array with the fillable attributes of the class.
+     * @var array List of attributes of the class. Contains the name and an alias.
+     */
     protected $fillable=['nombre','alias'];
+    /**
+     * Used to disable timestamps at table database.
+     * @var bool
+     */
     public $timestamps=false;
 
+    /**
+     * Definition of the relationship hasMany Ganado.
+     *
+     * We need to define Eloquent our relationships in order to work with it. A Capa, hasMany Ganado.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
     public function ganados(){
         return $this->hasMany(Ganado::class);
     }
 
+    /**
+     * Function used to generate a string for the dropdown selectors to have both attributes displayed
+     * @return string The string that is going to be shown in a select dropdown.
+     */
     public function getSelectOptionAttribute(){
         return $this->attributes['alias'].' - '.$this->attributes['nombre'];
     }

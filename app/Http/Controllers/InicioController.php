@@ -21,6 +21,8 @@ class InicioController extends Controller
 
 
     /**
+     * Shows the home view.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
@@ -28,6 +30,8 @@ class InicioController extends Controller
     }
 
     /**
+     * Shows the landing view.
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function land(){
