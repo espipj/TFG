@@ -88,7 +88,7 @@ class Ganaderia extends Model
 
     /**
      * Function used to generate a string for the dropdown selectors to have both attributes displayed
-     * @return string The string that is going to be shown in a select dropdown.
+     * @return string The string that is going to be shown in a select option dropdown.
      */
     public function getSelectOptionAttribute()
     {
@@ -170,7 +170,7 @@ class Ganaderia extends Model
 
     /**
      * Helper function for importarXLS
-     * Saves a new Ganaderia with the data of an import.
+     * Saves a new Ganaderia with the data of an import file.
      * @param array $array The array with the data of a new Ganaderia.
      * @return Ganaderia|static The that has just been created.
      * @see Ganaderia::importarXLS()
@@ -207,7 +207,7 @@ class Ganaderia extends Model
      * Updates a Ganaderia with the data of an import
      * @param array $array The array with the data to update Ganaderia.
      * @param Ganaderia $oganaderia Ganaderia to be updated.
-     * @return Ganaderia|static The that has just been updated.
+     * @return Ganaderia|static The Ganaderia that has just been updated.
      * @see Ganaderia::importarXLS()
      */
     private static function actualizarXLS($array, $oganaderia)
@@ -233,13 +233,14 @@ class Ganaderia extends Model
     }
 
     /**
-     * Main function for import of the Model Ganaderia
+     * Main function for import of the Model Ganaderia.
      *
      * Checks if the Ganaderia already exists and if so it just updates it.
      * If not it creates a new one.
-     *
      * @uses Ganaderia::actualizarXLS()
      * @uses Ganaderia::guardarNuevoXLS()
+     * @see Ganaderia::actualizarXLS()
+     * @see Ganaderia::guardarNuevoXLS()
      * @param $reader
      * @return array With every Ganaderia updated or created.
      */

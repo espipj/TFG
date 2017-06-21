@@ -4,32 +4,67 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Gen
+ * @package App
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class Gen extends Model
 {
-    //
+    /**
+     * Array with the fillable attributes of the class.
+     *
+     * @var array List of attributes of the class. Contains the gen marker name, and the value of the marker.
+     */
     protected $fillable = ['marcadores', 'nombres'];
+
+    /**
+     * Name of the table/migration that is associated with this Model.
+     * @var string
+     */
     protected $table = 'genes'; //hemos cambiado el nombre por defecto de la tabla
+    /**
+     * A casting for our two arrays of Genetics markers and names we have.
+     * This way we can work in an easy way with them with Eloquent
+     * @var array
+     */
     protected $casts = [
         'marcadores' => 'array',
         'nombres' => 'array'
     ];
 
+    /**
+     * Definition of the relationship BelongsTo Ganado.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Gen, BelongsTo Ganado.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
     public function ganado()
     {
         return $this->belongsTo(Ganado::class);
     }
 
+    /**
+     * Function made in order to asign a gen to a ganado.
+     * @param $ganado
+     * @return mixed
+     */
     public function asignarGanado($ganado)
     {
         return $ganado->gen()->save($this);
     }
 
     /**
-     * @param $genP
-     * @param $genM
-     * @param $genH
-     * @return mixed
-     * Calcula la probabilidad del genH de ser descendiente del genP dada la madre genM
+     * Main function to calculate the probability of the filiation.
+     *
+     * Calculates the probability of the $genH of being descendant of $genP and $genM.
+     *
+     * @param Gen $genP Genetic Data of the father.
+     * @param Gen $genM Genetic Data of the mother.
+     * @param Gen $genH Genetic Data of the son.
+     * @return array Array with the results of the filiation.
+     * @see Gen::aplicarFormula()
      */
     public static function calcularProbabilidad($genP, $genM, $genH)
     {
@@ -47,6 +82,16 @@ class Gen extends Model
         return [$resultados, $resultado, ($resultado / ($resultado + 1))];
     }
 
+    /**
+     * Function to calculate the probability of the filiation without a known father.
+     *
+     * Calculates the probability of the $genH of being descendant evey male at our system and $genM.
+     *
+     * @param Gen $genM Genetic Data of the mother.
+     * @param Gen $genH Genetic Data of the son.
+     * @return array Array with the results of the filiation ordered by probability.
+     * @see Gen::calcularProbabilidad()
+     */
     public static function calcularProbabilidadSP($genM, $genH)
     {
         $resultado = array();
@@ -67,8 +112,16 @@ class Gen extends Model
         return $resultado;
     }
 
+
     /**
-     * Aplicamos la formula según el algoritmo
+     * Function that applies Evett and Weir formula in order to calculate the probability.
+     * @param integer $aP Allele from the father.
+     * @param integer $aM Allele from the mother.
+     * @param integer $aH Allele from the son.
+     * @param string $marcador Genetic Marker name.
+     * @return float|int|string Returns a coefficient.
+     * @see Gen::calcularFrecuenciaAlelo()
+     * @uses Gen::calcularFrecuenciaAlelo()
      */
     public static function aplicarFormula($aP, $aM, $aH, $marcador)
     {
@@ -165,10 +218,13 @@ class Gen extends Model
     }
 
     /**
-     * @param $alelo
+     * Function that calculates the frequency that a certain Allele is repeated on our database.
+     * @param integer $alelo The value of the Allele we are calculating
      * @param $marcador
-     * @return mixed
-     * Calcula la frecuencia con la que se repite un Alelo en un dataset
+     * @return mixed Returns the coefficient of probability of that Allele in our database
+     * @uses Gen::posicionMarcador()
+     * @see Gen::posicionMarcador()
+     *
      */
     public static function calcularFrecuenciaAlelo($alelo, $marcador)
     {
@@ -193,8 +249,9 @@ class Gen extends Model
     }
 
     /**
-     * @param $alelo
-     * Calcula la posicion del marcador en el array de marcadores
+     * Calculates the position of the Genetic Marker in the array
+     * @param string $marcador
+     * @return integer The position of the Genetic marker in the array
      */
     public static function posicionMarcador($marcador)
     {
@@ -203,6 +260,13 @@ class Gen extends Model
         return array_search($marcador, $nombres);
     }
 
+    /**
+     * Helper function for importarXLS
+     * Saves a new Gen with the data of an import file.
+     * @param array $gen The array with the data of a new Gen.
+     * @return Ganaderia|static The that has just been created.
+     * @see Gen::importarXLS()
+     */
     public static function guardarNuevoXLS($gen)
     {
         //return dd(Gen::all());
@@ -226,11 +290,32 @@ class Gen extends Model
         return $gen;
     }
 
-    public function actualizarXLS($ganado, $oganado)
+    /**
+     * Helper function for importarXLS
+     * Updates a Gen with the data of an import
+     * @param array $gen The array with the data to update Gen.
+     * @param Gen $ogen Gen to be updated.
+     * @return Gen|static The Gen that has just been updated.
+     * @see Gen::importarXLS()
+     * @TODO Develop the function
+     */
+    public function actualizarXLS($gen, $ogen)
     {
 
     }
 
+    /**
+     * Main function for import of the Model Gen.
+     *
+     * Checks if the Gen already exists and if so it just updates it.
+     * If not it creates a new one.
+     * @uses Gen::actualizarXLS()
+     * @uses Gen::guardarNuevoXLS()
+     * @see Gen::actualizarXLS()
+     * @see Gen::guardarNuevoXLS()
+     * @param $reader
+     * @return array With every Gen updated or created.
+     */
     public static function importarXLS($reader)
     {
         $insert = array();

@@ -25,7 +25,7 @@ class Ganado extends Model
      */
     protected $fillable=['crotal'];
     /**
-     * Array with atributes type Date.
+     * Array with atributes of the type Date.
      *
      * This is needed to use DateFormat.
      *
@@ -63,8 +63,6 @@ class Ganado extends Model
      *
      * We need to define Eloquent our relationships in order to work with it.
      * A Ganado, BelongsTo Estado.
-     * We define as well how it's going to be saved at our migration the foreign key of a Estado.
-     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
      */
     public function estado(){
@@ -159,7 +157,7 @@ class Ganado extends Model
 
 
     /**
-     * Set a son for a Ganado (Father)
+     * Sets a son for a Ganado (Father)
      * @param Ganado $hijo Son
      * @return false|Model
      */
@@ -169,7 +167,7 @@ class Ganado extends Model
     }
 
     /**
-     * Set a son for a Ganado (Father).
+     * Sets a son for a Ganado (Father).
      * @param Ganado $hijo Son.
      * @return false|Model
      */
@@ -179,7 +177,7 @@ class Ganado extends Model
     }
 
     /**
-     * Set birth date as its not fillable.
+     * Sets birth date as its not fillable.
      * @param Date $date Birth Date.
      * @return mixed
      */
@@ -191,7 +189,7 @@ class Ganado extends Model
     }
 
     /**
-     * Set a Sexo for this Ganado.
+     * Sets a Sexo for this Ganado.
      * @param Sexo $sexo Sex.
      * @return mixed
      */
@@ -201,7 +199,7 @@ class Ganado extends Model
     }
 
     /**
-     * Set a Ganaderia for this Ganado.
+     * Sets a Ganaderia for this Ganado.
      * @param Ganaderia $ganaderia
      * @return mixed
      */
@@ -211,7 +209,7 @@ class Ganado extends Model
     }
 
     /**
-     * Set a Capa for this Ganado.
+     * Sets a Capa for this Ganado.
      * @param Capa $capa
      * @return mixed
      */
@@ -220,7 +218,7 @@ class Ganado extends Model
     }
 
     /**
-     * Set a Estado for this Ganado.
+     * Sets a Estado for this Ganado.
      * @param Estado $estado
      * @return mixed
      */
