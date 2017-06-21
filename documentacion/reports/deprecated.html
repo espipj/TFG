@@ -67,7 +67,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">266</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">157</span>
                                 </a>
                             </li>
                             <li>
@@ -77,7 +77,7 @@
                             </li>
                             <li>
                                 <a href="../reports/deprecated.html">
-                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">2</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">5</span>
                                 </a>
                             </li>
                         </ul>
@@ -97,8 +97,11 @@
         <div class="span2 sidebar">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
-                                                            <li><a href="#Http/Controllers/GanaderosController.php"><i class="icon-file"></i> Http/Controllers/GanaderosController.php</a></li>
+                                                            <li><a href="#Ganaderia.php"><i class="icon-file"></i> Ganaderia.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/GanaderosController.php"><i class="icon-file"></i> Http/Controllers/GanaderosController.php</a></li>
                                                                                                     <li><a href="#Http/Controllers/GanadosController.php"><i class="icon-file"></i> Http/Controllers/GanadosController.php</a></li>
+                                                                                                    <li><a href="#Http/Controllers/ImportExportController.php"><i class="icon-file"></i> Http/Controllers/ImportExportController.php</a></li>
+                                                                                                    <li><a href="#Ganadero.php"><i class="icon-file"></i> Ganadero.php</a></li>
                                                                     </ul>
         </div>
 
@@ -109,7 +112,31 @@
             </ul>
 
             <div id="marker-accordion">
-                                                                            <a name="Http/Controllers/GanaderosController.php" id="Http/Controllers/GanaderosController.php"></a>
+                                                                            <a name="Ganaderia.php" id="Ganaderia.php"></a>
+                    <h3>
+                        <i class="icon-file"></i>
+                        Ganaderia.php
+                        <small style="float: right;padding-right: 10px;">1</small>
+                    </h3>
+                    <div>
+                        <table class="table markers table-bordered">
+                            <tr>
+                                <th>Element</th>
+                                <th>Line</th>
+                                <th>Description</th>
+                            </tr>
+                                                                                <tr>
+                                    <td>\App\Ganaderia::ganaderos()</td>
+                                    <td>71</td>
+                                    <td>Deprecated by the needs of the client.
+Definition of the relationship hasMany Ganadero.
+
+We need to define Eloquent our relationships in order to work with it.
+A Ganaderia, hasMany Ganadero.</td>
+                                </tr>
+                                                                                                                                </table>
+                    </div>
+                                        <a name="Http/Controllers/GanaderosController.php" id="Http/Controllers/GanaderosController.php"></a>
                     <h3>
                         <i class="icon-file"></i>
                         Http/Controllers/GanaderosController.php
@@ -146,6 +173,46 @@
                                     <td>\App\Http\Controllers\GanadosController::showMuertos()</td>
                                     <td>150</td>
                                     <td>no longer used</td>
+                                </tr>
+                                                                                                                                </table>
+                    </div>
+                                        <a name="Http/Controllers/ImportExportController.php" id="Http/Controllers/ImportExportController.php"></a>
+                    <h3>
+                        <i class="icon-file"></i>
+                        Http/Controllers/ImportExportController.php
+                        <small style="float: right;padding-right: 10px;">1</small>
+                    </h3>
+                    <div>
+                        <table class="table markers table-bordered">
+                            <tr>
+                                <th>Element</th>
+                                <th>Line</th>
+                                <th>Description</th>
+                            </tr>
+                                                                                <tr>
+                                    <td>\App\Http\Controllers\ImportExportController::show_importar()</td>
+                                    <td>99</td>
+                                    <td>Function no longer used, It was used for the initial development.</td>
+                                </tr>
+                                                                                                                                </table>
+                    </div>
+                                        <a name="Ganadero.php" id="Ganadero.php"></a>
+                    <h3>
+                        <i class="icon-file"></i>
+                        Ganadero.php
+                        <small style="float: right;padding-right: 10px;">1</small>
+                    </h3>
+                    <div>
+                        <table class="table markers table-bordered">
+                            <tr>
+                                <th>Element</th>
+                                <th>Line</th>
+                                <th>Description</th>
+                            </tr>
+                                                                                <tr>
+                                    <td>\App\Ganadero</td>
+                                    <td>13</td>
+                                    <td>This class is deprecated by the needs of the client.</td>
                                 </tr>
                                                                                     </table>
                 </div>
@@ -190,7 +257,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on June 20th, 2017 at 21:49.
+                    on June 21st, 2017 at 12:48.
                 </section>
             </section>
         </section>

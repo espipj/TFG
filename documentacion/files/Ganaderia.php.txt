@@ -5,49 +5,115 @@ namespace App;
 use App\Http\Controllers\AsociacionesController;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Ganaderia
+ * @package App
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
 class Ganaderia extends Model
 {
-    //
+    /**
+     * Array with the fillable attributes of the class.
+     * @var array List of attributes of the class. Contains the name, alias (aka sigla), email, and telephone.
+     */
     protected $fillable = ['nombre', 'sigla', 'email', 'telefono'];
 
 
+    /**
+     * Definition of the relationship BelongsTo Asociacion.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganaderia, BelongsTo Asociacion.
+     * We define as well how it's going to be saved at our migration the foreign key of an Asociacion.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
     public function asociacion()
     {   //Se pone la clave al haber editado en Asociacion el nombre de la tabla que contiene la migración
         return $this->belongsTo(Asociacion::class, 'asociacion_id');
     }
 
+    /**
+     * Definition of the relationship hasMany Ganado.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganaderia, hasMany Ganado.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
     public function ganados()
     {
         return $this->hasMany(Ganado::class);
     }
 
+    /**
+     * Definition of the relationship hasMany Explotacion.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganaderia, hasMany Explotacion.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
     public function explotaciones()
     {
         return $this->hasMany(Explotacion::class);
     }
 
+    /**
+     * @deprecated Deprecated by the needs of the client.
+     * Definition of the relationship hasMany Ganadero.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganaderia, hasMany Ganadero.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
     public function ganaderos()
     {
         return $this->hasMany(Ganadero::class);
     }
 
 
+    /**
+     * Definition of the relationship hasMany User.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganaderia, hasMany User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
     public function usuarios(){
         return $this->hasMany(User::class);
     }
 
-    //Attribute Acessor Laravel
+    /**
+     * Function used to generate a string for the dropdown selectors to have both attributes displayed
+     * @return string The string that is going to be shown in a select dropdown.
+     */
     public function getSelectOptionAttribute()
     {
         return $this->attributes['sigla'] . ' - ' . $this->attributes['nombre'];
     }
 
+    /**
+     * Sets an Asociacion that owns this Ganaderia.
+     * @param $asociacion Asociacion which owns the Ganaderia.
+     * @return mixed
+     */
     public function setAsociacion($asociacion)
     {
         return $asociacion->ganaderias()->save($this);
 
     }
 
+    /**
+     * Function used to create empty Ganaderia.
+     *
+     * If there's already an Ganaderia created with that name, returns it.
+     * @param string $nombre Name of the empty Ganaderia we want to create.
+     * @param string $sigla Alias of the Ganaderia we want to create.
+     * @return static The Ganaderia created.
+     */
     public static function GanaderiaVacia($nombre, $sigla)
     {
         $ganaderia = Ganaderia::where('nombre', $nombre)->first();
@@ -69,6 +135,11 @@ class Ganaderia extends Model
         }
     }
 
+    /**
+     * Generates the Array of Ganaderia to export it (as XLS/CSV)
+     *
+     * @return array Array with every Ganaderia in the system.
+     */
     public static function generateArrayForExport()
     {
 
@@ -97,20 +168,15 @@ class Ganaderia extends Model
     }
 
 
+    /**
+     * Helper function for importarXLS
+     * Saves a new Ganaderia with the data of an import.
+     * @param array $array The array with the data of a new Ganaderia.
+     * @return Ganaderia|static The that has just been created.
+     * @see Ganaderia::importarXLS()
+     */
     public static function guardarNuevoXLS($array)
     {
-        /* array
-
-                    'nombre' => $ganaderia->nombre,
-                    'id' => $ganaderia->id,
-                    'sigla' => $ganaderia->sigla,
-                    'explotacion_codigo' => $explotacion->codigo_explotacion,
-                    'explotacion_municipio' => $explotacion->municipio,
-                    'email' => $ganaderia->email,
-                    'telefono' => $ganaderia->telefono,
-                    'asociacion'            => $ganaderia->asociacion->nombre,
-        */
-
         if (!empty($array->email) && !empty($array->telefono)) {
             $ganaderia = self::create([
                 'nombre' => $array->nombre,
@@ -136,6 +202,14 @@ class Ganaderia extends Model
     }
 
 
+    /**
+     * Helper function for importarXLS
+     * Updates a Ganaderia with the data of an import
+     * @param array $array The array with the data to update Ganaderia.
+     * @param Ganaderia $oganaderia Ganaderia to be updated.
+     * @return Ganaderia|static The that has just been updated.
+     * @see Ganaderia::importarXLS()
+     */
     private static function actualizarXLS($array, $oganaderia)
     {
         if (!empty($array->email) && !empty($array->telefono)) {
@@ -158,6 +232,17 @@ class Ganaderia extends Model
 
     }
 
+    /**
+     * Main function for import of the Model Ganaderia
+     *
+     * Checks if the Ganaderia already exists and if so it just updates it.
+     * If not it creates a new one.
+     *
+     * @uses Ganaderia::actualizarXLS()
+     * @uses Ganaderia::guardarNuevoXLS()
+     * @param $reader
+     * @return array With every Ganaderia updated or created.
+     */
     public static function importarXLS($reader)
     {
         $insert = array();

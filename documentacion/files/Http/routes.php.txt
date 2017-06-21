@@ -11,10 +11,12 @@
 |
 */
 
+
 Route::get('/',[
     'uses'  => 'InicioController@land',
     'as'    =>  'landing'
 ]);
+
 
 
 Route::get('/registrar', function(){
@@ -288,7 +290,7 @@ Route::group(['middleware' => 'revalidate'], function()
 
 
 
-/* Authentication routes... Utilizamos uses-as para usar action=route('as') y no tenerno que preocupar de
+/* Authentication routes... Utilizamos uses-as para usar action=route('as') y no tenernos que preocupar de
 la url(puede que cambie en un futuro)*/
 Route::get('login', [
     'uses'=>'Auth\AuthController@getLogin',

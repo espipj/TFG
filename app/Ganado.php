@@ -441,6 +441,7 @@ class Ganado extends Model
      * Decides the Ganados collection it should export, depending on permissions/roles.
      *
      * @return \Illuminate\Support\Collection
+     * @see Ganado::generateArrayForExport()
      */
     public static function ganadosAExportar(){
         if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin'))){
