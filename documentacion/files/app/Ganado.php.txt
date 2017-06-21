@@ -1,0 +1,540 @@
+<?php
+
+namespace App;
+
+
+use App\Ganaderia;
+use App\Ganado;
+use App\Http\Requests\Request;
+use App\Sexo;
+use DateTime;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Validator\Constraints\Date;
+
+/**
+ * Class Ganado
+ * @package App
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
+class Ganado extends Model
+{
+    /**
+     * Fillable atributes of the class.
+     * @var array List of attributes of the class. Contains the crotal (kind of ID for the animal).
+     */
+    protected $fillable=['crotal'];
+    /**
+     * Array with atributes of the type Date.
+     *
+     * This is needed to use DateFormat.
+     *
+     * @var array List of attributes type Date. Contains the birth date.
+     */
+    protected $dates=['fecha_nacimiento'];
+
+
+    /**
+     * Definition of the relationship BelongsTo Ganaderia.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, BelongsTo Ganaderia.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function ganaderia(){
+        return $this->belongsTo(Ganaderia::class);
+    }
+
+    /**
+     * Definition of the relationship BelongsTo Sexo.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, BelongsTo Sexo.
+     * We define as well how it's going to be saved at our migration the foreign key of a Sexo.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function sexo(){
+        return $this->belongsTo(Sexo::class,'sexo_id');
+    }
+
+    /**
+     * Definition of the relationship BelongsTo Estado.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, BelongsTo Estado.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function estado(){
+        return  $this->belongsTo(Estado::class);
+    }
+
+    /**
+     * Definition of the relationship BelongsTo Capa.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, BelongsTo Capa.
+     * We define as well how it's going to be saved at our migration the foreign key of a Capa.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function capa(){
+        return  $this->belongsTo(Capa::class);
+    }
+
+    /**
+     * Definition of the relationship BelongsTo Ganado (mother).
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, BelongsTo Ganado.
+     * We define as well how it's going to be saved at our migration the foreign key of a Ganado.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function madre(){
+        return $this->belongsTo(Ganado::class,'madre_id');
+    }
+
+    /**
+     * Definition of the relationship hasMany Ganado (Mother's son/s).
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, hasMany Ganado.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
+    public function hijosM(){
+        return $this->hasMany(Ganado::class, 'madre_id');
+    }
+
+    /**
+     * Definition of the relationship BelongsTo Ganado (father).
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, BelongsTo Ganado.
+     * We define as well how it's going to be saved at our migration the foreign key of a Ganado.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function padre()
+    {
+        return $this->belongsTo(Ganado::class, 'padre_id');
+    }
+
+    /**
+     * Definition of the relationship hasMany Ganado (Father's son/s).
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, hasMany Ganado.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
+     */
+    public function hijosP(){
+        return $this->hasMany(Ganado::class, 'padre_id');
+    }
+
+    /**
+     * Definition of the relationship hasOne Muestra.
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, hasOne Muestra.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne Has one relationship
+     */
+    public function muestra(){
+        return $this->hasOne(Muestra::class);
+    }
+
+    /**
+     * Definition of the relationship hasOne Gen.
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Ganado, hasOne Gen.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne Has one relationship
+     */
+    public function gen(){
+        return $this->hasOne(Gen::class);
+    }
+
+
+    /**
+     * Sets a son for a Ganado (Father)
+     * @param Ganado $hijo Son
+     * @return false|Model
+     */
+    public function setHijoP($hijo){
+        return $this->hijosP()->save($hijo);
+
+    }
+
+    /**
+     * Sets a son for a Ganado (Father).
+     * @param Ganado $hijo Son.
+     * @return false|Model
+     */
+    public function setHijoM($hijo){
+        return $this->hijosM()->save($hijo);
+
+    }
+
+    /**
+     * Sets birth date as its not fillable.
+     * @param Date $date Birth Date.
+     * @return mixed
+     */
+    public function setFechaNacimiento($date){
+        $this->fecha_nacimiento=$date;
+
+        $this->save();
+        return $this->fecha_nacimiento;
+    }
+
+    /**
+     * Sets a Sexo for this Ganado.
+     * @param Sexo $sexo Sex.
+     * @return mixed
+     */
+    public function setSexo($sexo){
+
+        return $sexo->ganados()->save($this);
+    }
+
+    /**
+     * Sets a Ganaderia for this Ganado.
+     * @param Ganaderia $ganaderia
+     * @return mixed
+     */
+    public function setGanaderia($ganaderia){
+        return $ganaderia->ganados()->save($this);
+
+    }
+
+    /**
+     * Sets a Capa for this Ganado.
+     * @param Capa $capa
+     * @return mixed
+     */
+    public function setCapa($capa){
+        return $capa->ganados()->save($this);
+    }
+
+    /**
+     * Sets a Estado for this Ganado.
+     * @param Estado $estado
+     * @return mixed
+     */
+    public function setEstado($estado){
+        return $estado->ganados()->save($this);
+    }
+
+    /**
+     * Returns an array with the sons of this Ganado.
+     *
+     * Checks the Sex of the ganado and then calls the function dependending on thath.
+     * @uses Ganado::hijosM()
+     * @uses Ganado::hijosP()
+     * @return array Sons of this Ganado.
+     */
+    public function hijos(){
+        if($this->sexo->nombre=='Macho'){
+            $ganados=$this->hijosP;
+        }else{
+            $ganados=$this->hijosM;
+
+        }
+        return $ganados;
+
+    }
+
+    /**
+     * Function in order to automatize the way we make a tree in HTML.
+     *
+     * @param $h Flag value
+     * @param $p Depth of the tree
+     * @param $s String to return
+     * @return string String with the HTML code of the tree.
+     */
+    public function arbol($h, $p, $s){
+        if($h==0 || $h==2 || $h==4){
+
+            $s.="<ul>";
+
+        }
+        $s.="<li><a href='". route('verganado',[$this])."'>". $this->crotal ."</a>";
+
+        if($p>0) {
+            if (null!=$this->hijos()) {
+                $hijos=$this->hijos();
+                $length=count($hijos);
+                //$s.=$p;
+                //$last_key = end(array_keys($hijos));
+                foreach ($hijos as $key => $hijo) {
+                    if ($length==($key+1) && $key == 0) {
+                        $s.=$hijo->arbol(4, --$p,"");
+                    }else if ($key == 0){
+                        //ultimo elemento
+                        $s.=$hijo->arbol(2, --$p,"");
+
+                    }else if($length==($key+1)){
+                        $s.=$hijo->arbol(3, --$p,"");
+
+                    }else{
+
+                        $s.=$hijo->arbol(1, --$p,"");
+                    }
+
+
+                }
+            }
+
+                $s .= "</li>";
+
+        }
+        if($h==0 || $h==3 || $h==4){
+           $s.="</ul>";
+        }
+
+        return $s;
+    }
+
+    /**
+     * Helper function to save a new Ganado from a POST request.
+     * @param Request $request Request with the Data of a new Ganado.
+     * @return Ganado The new Ganado It has just created.
+     */
+    public static function guardarNuevo($request){
+        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento','capa_id']);
+        $ganado=self::create($datos);
+        if(null!=$request->input('padre_id')){
+            $padre=Ganado::find($request->input('padre_id'));
+            $padre->setHijoP($ganado);
+
+        }
+        if(null!=$request->input('madre_id')) {
+            $madre = Ganado::find($request->input('madre_id'));
+            $madre->setHijoM($ganado);
+        }
+        $ganado->setSexo(Sexo::find($request->input('sexo_id')));
+        $ganado->setCapa(Capa::find($request->input('capa_id')));
+        $ganado->setGanaderia(Ganaderia::find($request->input('ganaderia_id')));
+        $ganado->setFechaNacimiento($request->input('fecha_nacimiento'));
+        return $ganado;
+
+    }
+
+    /**
+     * Helper function for importarXLS
+     * Saves a new Ganado with the data of an import.
+     * @param array $array The array with the data of a new Ganado.
+     * @return Ganado|static The that has just been created.
+     * @see Ganado::importarXLS()
+     */
+    public static function guardarNuevoXLS($array){
+        /* array
+
+      "fecha_de_nacimiento" => "16/11/2006"
+      "crotal" => "6828"
+      "padre" => "9466"
+      "madre" => "4126"
+      "capa" => "N"
+      "sexo" => "M"
+      "estado" => "Vivo"
+        */
+
+        $ganado=self::create([
+            'crotal'    =>  $array->crotal,
+        ]);
+        $padre=Ganado::where('crotal',$array->padre)->first();
+        if(empty($padre)){
+            $padre=Ganado::create([
+                'crotal'    =>  $array->padre,
+            ]);
+            $padre->setSexo(Sexo::find(1));
+        }
+        $madre=Ganado::where('crotal',$array->madre)->first();
+        if(empty($madre)){
+            $madre=Ganado::create([
+                'crotal'    =>  $array->madre,
+            ]);
+            $madre->setSexo(Sexo::find(2));
+        }
+        $padre->setHijoP($ganado);
+        $madre->setHijoM($ganado);
+        $ganado->setSexo(Sexo::where('alias',$array->sexo)->first());
+        $ganado->setCapa(Capa::where('alias',$array->capa)->first());
+        $ganado->setEstado(Estado::where('nombre',$array->estado)->first());
+        if(!empty($array->ganaderia)){
+            $ganaderia=Ganaderia::where([
+                'nombre'    =>  $array->ganaderia,
+                'sigla'     =>  $array->sigla
+            ])->first();
+            if(!empty($ganaderia)){
+
+                $ganado->setGanaderia($ganaderia);
+            }else{
+
+                $ganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia,$array->sigla));
+            }
+
+        }else{
+            $ganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia","VACI"));
+        }
+        $ganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
+        return $ganado;
+
+    }
+
+
+    /**
+     * Helper function for importarXLS
+     * Updates a Ganado with the data of an import
+     * @param array $array The array with the data to update Ganado.
+     * @param Ganado $oganado Ganado to be updated.
+     * @return Ganado|static The that has just been updated.
+     * @see Ganado::importarXLS()
+     */
+    private static function actualizarXLS($array, $oganado)
+    {
+        $padre=Ganado::where('crotal',$array->padre)->first();
+        if(empty($padre)){
+            $padre=Ganado::create([
+                'crotal'    =>  $array->padre,
+            ]);
+            $padre->setSexo(Sexo::find(1));
+        }
+        $madre=Ganado::where('crotal',$array->madre)->first();
+        if(empty($madre)){
+            $madre=Ganado::create([
+                'crotal'    =>  $array->madre,
+            ]);
+            $madre->setSexo(Sexo::find(2));
+        }
+        $padre->setHijoP($oganado);
+        $madre->setHijoM($oganado);
+        $oganado->setSexo(Sexo::where('alias',$array->sexo)->first());
+        $oganado->setCapa(Capa::where('alias',$array->capa)->first());
+        $oganado->setEstado(Estado::where('nombre',$array->estado)->first());
+        if(!empty($array->ganaderia)){
+            $ganaderia=Ganaderia::where([
+                'nombre'    =>  $array->ganaderia,
+                'sigla'     =>  $array->sigla
+            ])->first();
+            if(!empty($ganaderia)){
+
+                $oganado->setGanaderia($ganaderia);
+            }else{
+
+                $oganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia,$array->sigla));
+            }
+
+        }else{
+            $oganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia","VACI"));
+        }
+
+        $oganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
+        return $oganado;
+
+    }
+
+    /**
+     * Decides the Ganados collection it should export, depending on permissions/roles.
+     *
+     * @return \Illuminate\Support\Collection
+     * @see Ganado::generateArrayForExport()
+     */
+    public static function ganadosAExportar(){
+        if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin'))){
+            $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
+        }else{
+
+            if(Auth::user()->ganaderia){
+                $ganados=Auth::user()->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
+            }else{
+                $ganados=collect(new Ganado);
+
+            }
+
+        }
+        return $ganados;
+    }
+
+    /**
+     * Generates the Array of Ganado to export it (as XLS/CSV)
+     *
+     * @return array Array with every Ganado in the system.
+     */
+    public static function generateArrayForExport(){
+        $ganados=Ganado::ganadosAExportar();
+        $array=array();
+        foreach ($ganados as $ganado){
+            if (empty($ganado->padre->crotal)){
+                $padre="no definido";
+            }else{
+                $padre=$ganado->padre->crotal;
+            }
+            if (empty($ganado->madre->crotal)){
+                $madre="no definido";
+            }else{
+                $madre=$ganado->madre->crotal;
+            }
+            // Arreglar fallo exportar a veces
+            if (isset($ganado->ganaderia->nombre)){
+                $ganaderianombre=$ganado->ganaderia->nombre;
+                $ganaderiasigla=$ganado->ganaderia->sigla;
+            }else{
+                $ganaderianombre="Ganadería Vacia";
+                $ganaderiasigla="VACI";
+
+            }
+            $aux=[
+                'fecha_de_nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
+                'crotal'                =>  $ganado->crotal,
+                'padre'                 =>  $padre,
+                'madre'                 =>  $madre,
+                'capa'                  =>  $ganado->capa->alias,
+                'sexo'                  =>  $ganado->sexo->alias,
+                'estado'                =>  $ganado->estado->nombre,
+                'ganaderia'             =>  $ganaderianombre,
+                'sigla'                 =>  $ganaderiasigla,
+
+            ];
+
+            array_push($array,$aux);
+        }
+        return $array;
+    }
+
+
+    /**
+     * Main function for import of the Model Ganado
+     *
+     * Checks if the Ganado already exists and if so it just updates it.
+     * If not it creates a new one.
+     *
+     * @uses Ganado::actualizarXLS()
+     * @uses Ganado::guardarNuevoXLS()
+     * @param $reader
+     * @return array With every Ganado updated or created.
+     */
+    public static function importarXLS($reader)
+    {
+        $insert=array();
+
+        //ini_set('memory_limit','256M');
+        return dd($reader->get());
+        foreach ($reader->get() as $ganado) {
+            $oganado=Ganado::where('crotal',$ganado->crotal)->first();
+            if(empty($oganado)){
+
+                array_push($insert,self::guardarNuevoXLS($ganado));
+
+            }else{
+
+                array_push($insert,self::actualizarXLS($ganado,$oganado));
+
+            }
+        }
+
+        return $insert;
+    }
+}
+
