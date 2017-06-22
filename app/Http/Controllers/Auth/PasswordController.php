@@ -28,5 +28,6 @@ class PasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->subject = 'Tu link para crear una nueva contraseña';
     }
 }

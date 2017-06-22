@@ -97,12 +97,12 @@
         <div class="span2 sidebar">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
-                                                            <li><a href="#database/migrations/2017_03_22_193758_create_ganaderos_table.php"><i class="icon-file"></i> database/migrations/2017_03_22_193758_create_ganaderos_table.php</a></li>
+                                                            <li><a href="#app/Ganadero.php"><i class="icon-file"></i> app/Ganadero.php</a></li>
+                                                                                                    <li><a href="#app/Http/Controllers/ImportExportController.php"><i class="icon-file"></i> app/Http/Controllers/ImportExportController.php</a></li>
+                                                                                                    <li><a href="#app/Ganaderia.php"><i class="icon-file"></i> app/Ganaderia.php</a></li>
                                                                                                     <li><a href="#app/Http/Controllers/GanaderosController.php"><i class="icon-file"></i> app/Http/Controllers/GanaderosController.php</a></li>
                                                                                                     <li><a href="#app/Http/Controllers/GanadosController.php"><i class="icon-file"></i> app/Http/Controllers/GanadosController.php</a></li>
-                                                                                                    <li><a href="#app/Http/Controllers/ImportExportController.php"><i class="icon-file"></i> app/Http/Controllers/ImportExportController.php</a></li>
-                                                                                                    <li><a href="#app/Ganadero.php"><i class="icon-file"></i> app/Ganadero.php</a></li>
-                                                                                                    <li><a href="#app/Ganaderia.php"><i class="icon-file"></i> app/Ganaderia.php</a></li>
+                                                                                                    <li><a href="#database/migrations/2017_03_22_193758_create_ganaderos_table.php"><i class="icon-file"></i> database/migrations/2017_03_22_193758_create_ganaderos_table.php</a></li>
                                                                     </ul>
         </div>
 
@@ -113,10 +113,10 @@
             </ul>
 
             <div id="marker-accordion">
-                                                                            <a name="database/migrations/2017_03_22_193758_create_ganaderos_table.php" id="database/migrations/2017_03_22_193758_create_ganaderos_table.php"></a>
+                                                                            <a name="app/Ganadero.php" id="app/Ganadero.php"></a>
                     <h3>
                         <i class="icon-file"></i>
-                        database/migrations/2017_03_22_193758_create_ganaderos_table.php
+                        app/Ganadero.php
                         <small style="float: right;padding-right: 10px;">1</small>
                     </h3>
                     <div>
@@ -127,9 +127,53 @@
                                 <th>Description</th>
                             </tr>
                                                                                 <tr>
-                                    <td>\CreateGanaderosTable</td>
+                                    <td>\App\Ganadero</td>
                                     <td>13</td>
-                                    <td>Changes in the needs of the client</td>
+                                    <td>This class is deprecated by the needs of the client.</td>
+                                </tr>
+                                                                                                                                </table>
+                    </div>
+                                        <a name="app/Http/Controllers/ImportExportController.php" id="app/Http/Controllers/ImportExportController.php"></a>
+                    <h3>
+                        <i class="icon-file"></i>
+                        app/Http/Controllers/ImportExportController.php
+                        <small style="float: right;padding-right: 10px;">1</small>
+                    </h3>
+                    <div>
+                        <table class="table markers table-bordered">
+                            <tr>
+                                <th>Element</th>
+                                <th>Line</th>
+                                <th>Description</th>
+                            </tr>
+                                                                                <tr>
+                                    <td>\App\Http\Controllers\ImportExportController::show_importar()</td>
+                                    <td>99</td>
+                                    <td>Function no longer used, It was used for the initial development.</td>
+                                </tr>
+                                                                                                                                </table>
+                    </div>
+                                        <a name="app/Ganaderia.php" id="app/Ganaderia.php"></a>
+                    <h3>
+                        <i class="icon-file"></i>
+                        app/Ganaderia.php
+                        <small style="float: right;padding-right: 10px;">1</small>
+                    </h3>
+                    <div>
+                        <table class="table markers table-bordered">
+                            <tr>
+                                <th>Element</th>
+                                <th>Line</th>
+                                <th>Description</th>
+                            </tr>
+                                                                                <tr>
+                                    <td>\App\Ganaderia::ganaderos()</td>
+                                    <td>71</td>
+                                    <td>Deprecated by the needs of the client.
+Definition of the relationship hasMany Ganadero.
+
+We need to define Eloquent our relationships in order to work with it.
+A Ganaderia, hasMany Ganadero.</td>
                                 </tr>
                                                                                                                                 </table>
                     </div>
@@ -173,10 +217,10 @@
                                 </tr>
                                                                                                                                 </table>
                     </div>
-                                        <a name="app/Http/Controllers/ImportExportController.php" id="app/Http/Controllers/ImportExportController.php"></a>
+                                        <a name="database/migrations/2017_03_22_193758_create_ganaderos_table.php" id="database/migrations/2017_03_22_193758_create_ganaderos_table.php"></a>
                     <h3>
                         <i class="icon-file"></i>
-                        app/Http/Controllers/ImportExportController.php
+                        database/migrations/2017_03_22_193758_create_ganaderos_table.php
                         <small style="float: right;padding-right: 10px;">1</small>
                     </h3>
                     <div>
@@ -187,53 +231,9 @@
                                 <th>Description</th>
                             </tr>
                                                                                 <tr>
-                                    <td>\App\Http\Controllers\ImportExportController::show_importar()</td>
-                                    <td>99</td>
-                                    <td>Function no longer used, It was used for the initial development.</td>
-                                </tr>
-                                                                                                                                </table>
-                    </div>
-                                        <a name="app/Ganadero.php" id="app/Ganadero.php"></a>
-                    <h3>
-                        <i class="icon-file"></i>
-                        app/Ganadero.php
-                        <small style="float: right;padding-right: 10px;">1</small>
-                    </h3>
-                    <div>
-                        <table class="table markers table-bordered">
-                            <tr>
-                                <th>Element</th>
-                                <th>Line</th>
-                                <th>Description</th>
-                            </tr>
-                                                                                <tr>
-                                    <td>\App\Ganadero</td>
+                                    <td>\CreateGanaderosTable</td>
                                     <td>13</td>
-                                    <td>This class is deprecated by the needs of the client.</td>
-                                </tr>
-                                                                                                                                </table>
-                    </div>
-                                        <a name="app/Ganaderia.php" id="app/Ganaderia.php"></a>
-                    <h3>
-                        <i class="icon-file"></i>
-                        app/Ganaderia.php
-                        <small style="float: right;padding-right: 10px;">1</small>
-                    </h3>
-                    <div>
-                        <table class="table markers table-bordered">
-                            <tr>
-                                <th>Element</th>
-                                <th>Line</th>
-                                <th>Description</th>
-                            </tr>
-                                                                                <tr>
-                                    <td>\App\Ganaderia::ganaderos()</td>
-                                    <td>71</td>
-                                    <td>Deprecated by the needs of the client.
-Definition of the relationship hasMany Ganadero.
-
-We need to define Eloquent our relationships in order to work with it.
-A Ganaderia, hasMany Ganadero.</td>
+                                    <td>Changes in the needs of the client</td>
                                 </tr>
                                                                                     </table>
                 </div>
@@ -278,7 +278,7 @@ A Ganaderia, hasMany Ganadero.</td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on June 21st, 2017 at 21:47.
+                    on June 21st, 2017 at 21:54.
                 </section>
             </section>
         </section>

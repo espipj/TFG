@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Send Password Reset Link
+                                        Enviar link para cambiar mi contraseña
                                     </button>
                                 </div>
                             </div>

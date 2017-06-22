@@ -39,7 +39,7 @@
                                     Login
                                 </button>
 
-                                <a href="/password/email">Forgot Your Password?</a>
+                                <a href="/password/email">¿Olvidaste tu contraseña?</a>
                             </div>
                         </div>
                     </form>
