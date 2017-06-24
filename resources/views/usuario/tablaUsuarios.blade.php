@@ -19,7 +19,6 @@
         @if($usuario->name && $usuario->email && !$usuario->hasAnyRole('SuperAdmin'))
 
 
-
             <tr class="clickable-row" data-href="{{route('verusuario',[$usuario])}}" data-id="{{$usuario->id}}">
 
                 {!! Form::open(['url' => ['asignar/usuario'], 'method' => 'POST','id'=>'form-asign']) !!}
