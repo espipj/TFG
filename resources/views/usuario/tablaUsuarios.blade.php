@@ -33,7 +33,7 @@
 
 
                 <td style="width:18%;">
-                    <button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+                    <button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Asignar</button>
 
                 </td>
                 <td style="width:24%;">
