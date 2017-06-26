@@ -99,9 +99,9 @@ class GanadosController extends Controller
         if ($Ganado == null) {
 
             $ganados = Ganado::all()->sortBy('crotal')->sortBy('estado_id');
-
+            $descripcion="Desde esta página puedes registrar una nueva res o editar las ya existentes y listadas.";
             if (Auth::user()->hasAnyRole(array('SuperAdmin'))) {
-                return view('ganado.verGanados', compact('ganados'));
+                return view('ganado.verGanados', compact('ganados','descripcion'));
 
 
             } else if (Auth::user()->hasAnyRole(array('Administrador'))) {
@@ -111,30 +111,52 @@ class GanadosController extends Controller
                     $asociacion = Asociacion::find(Auth::user()->asociacion->id);
 
                     $ganados = $asociacion->ganados->sortBy('crotal')->sortBy('estado_id');
-                    return view('ganado.verGanados', compact('ganados'));
+                    return view('ganado.verGanados', compact('ganados','descripcion'));
                 }else{
 
                     $ganados = "sing";
-                    return view('ganado.verGanados', compact('ganados'));
+                    return view('ganado.verGanados', compact('ganados','descripcion'));
                 }
 
 
 
             }else if (Auth::user()->hasAnyRole(array('Ganadero'))){
+
+                $descripcion="Desde esta página puedes ver las reses que pertenecen a tu ganadería y sus detalles.";
                 if (Auth::user()->ganaderia) {
                     $ganados = Auth::user()->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
-                    return view('ganado.verGanados', compact('ganados'));
+                    return view('ganado.verGanados', compact('ganados','descripcion'));
                 } else {
 
                     $ganados = "sing";
-                    return view('ganado.verGanados', compact('ganados'));
+                    return view('ganado.verGanados', compact('ganados','descripcion'));
+
+                }
+            }else if(Auth::user()->hasAnyRole(array('Laboratorio'))){
+
+                $descripcion="Desde esta página puedes ver las reses de las que tienes alguna consulta o muestra.";
+                if (Auth::user()->laboratorio) {
+                    //dd("si");
+                    $muestras = Auth::user()->laboratorio->muestras;
+                    $ganados=array();
+                    foreach ($muestras as $muestra){
+                        if(isset($muestra->ganado)) array_push($ganados,$muestra->ganado);
+                    }
+                    //$ganados->orderBy('crotal')->orderBy('estado_id');
+                    return view('ganado.verGanados', compact('ganados','descripcion'));
+
+                } else {
+
+                    //dd("no");
+                    $ganados = "sing";
+                    return view('ganado.verGanados', compact('ganados','descripcion'));
 
                 }
             }else{
                     $ganados="sing";
             }
 
-            return view('ganado.verGanados', compact('ganados'));
+            return view('ganado.verGanados', compact('ganados','descripcion'));
         } else {
             return $this->show_detail($Ganado);
         }

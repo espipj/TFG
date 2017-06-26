@@ -2,7 +2,7 @@
     <h1>Panel de Inicio:</h1>
 </div>
 <div class="row">
-    @if(Auth::user()->hasAnyRole(array('Administrador','Laboratorio','Superadmin')))
+    @if(Auth::user()->hasAnyRole(array('Administrador','Superadmin')))
         <div class="col-md-3 text-center cuadropanover">
             <a href="{{url('ver/asociacion')}}">
                 <div class="cuadropan">
@@ -41,6 +41,17 @@
                 </div>
             </a>
         </div>
+    @endif
+    @if(Auth::user()->hasAnyRole(array('Laboratorio')))
+            <div class="col-md-3 text-center cuadropanover">
+                <a href="{{url('ver/ganado')}}">
+                    <div class="cuadropan">
+
+                        <img src="{{asset('images/ganado.png')}}">
+                        <h2>Ganado</h2>
+                    </div>
+                </a>
+            </div>
     @endif
     @if(Auth::user()->hasAnyRole(array('Laboratorio','Superadmin')))
         <div class="col-md-3 text-center cuadropanover">

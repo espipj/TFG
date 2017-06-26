@@ -55,9 +55,11 @@
                         </li>
 
                     @endif
-                    @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin')))
+                    @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin','Laboratorio')))
                         <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
                                     href="{{route('verganado')}}">Ganado</a></li>
+                    @endif
+                    @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin')))
                         <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
                                     href="{{route('verexplotacion')}}">Explotación</a></li>
                     @endif

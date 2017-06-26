@@ -36,28 +36,35 @@
                                     </h3>
                                 @else
                                     <h3>Madre: no definida</h3>
-                                @endif
+                    @endif
 
 
                 </div>
                 <div class="col-sm-3">
                     @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
-                    <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
-                       role="button"><span
-                                class="glyphicon glyphicon-edit"></span> Editar</a>
-                    @if($ganado->estado->alias=='V')
-                        <a href="" class="btn btn-danger btn-sm eliminar-detail"
-                           role="button" data-id="{{$ganado->id}}"><span
-                                    class="glyphicon glyphicon-remove"></span>
-                            Eliminar</a>
-                    @else
-                        <a href="" class="btn btn-danger btn-sm eliminar-detail disabled"
-                           role="button" data-id="{{$ganado->id}}"><span
-                                    class="glyphicon glyphicon-remove"></span>
-                            Eliminar</a>
+                        <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
+                           role="button"><span
+                                    class="glyphicon glyphicon-edit"></span> Editar</a>
+                        @if($ganado->estado->alias=='V')
+                            <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                               role="button" data-id="{{$ganado->id}}"><span
+                                        class="glyphicon glyphicon-remove"></span>
+                                Eliminar</a>
+                        @else
+                            <a href="" class="btn btn-danger btn-sm eliminar-detail disabled"
+                               role="button" data-id="{{$ganado->id}}"><span
+                                        class="glyphicon glyphicon-remove"></span>
+                                Eliminar</a>
 
-                    @endif
                         @endif
+                    @endif
+                    @if(Auth::user()->hasAnyRole(array('Laboratorio')) && !isset($ganado->gen))
+                        <a
+                                href="{{url('anadir/genes',['ganado'=>$ganado])}}"
+                                class="btn btn-success btn-sm edpgen"
+                                role="button"><span
+                                    class="glyphicon glyphicon-pencil"></span> Crear Perfil Genético</a>
+                    @endif
                 </div>
             </div>
             <div class="row">
@@ -68,7 +75,7 @@
 
                 </div>
             </div>
-            @if(Auth::user()->hasAnyRole(array('SuperAdmin')) && isset($ganado->gen))
+            @if(Auth::user()->hasAnyRole(array('Laboratorio')) && isset($ganado->gen))
                 <div class="row dropgenes">
                     <div class="panel-group">
                         <div class="panel panel-info">
@@ -80,6 +87,13 @@
                             <div id="collapse1" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     @include('genes.tablaInfo',['ganadoinfo'=>$ganado])
+                                    <div class="text-center"><a
+                                                href="{{url('anadir/genes',['ganado'=>$ganado])}}"
+                                                class="btn btn-success btn-sm edpgen"
+                                                role="button"><span
+                                                    class="glyphicon glyphicon-pencil"></span> Editar Perfil
+                                            Genético</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

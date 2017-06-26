@@ -153,7 +153,7 @@ Route::group(['middleware' => 'revalidate'], function()
         'uses'  =>  'GanadosController@show',
         'as'    =>  'verganado',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin','Ganadero']]);
+        'roles'         =>  ['Administrador','SuperAdmin','Ganadero','Laboratorio']]);
     Route::get('/ver/muertos/{ganaderia?}', [
         'uses'  =>  'GanadosController@showMuertos',
         'middleware'    =>  'roles',
