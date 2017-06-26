@@ -159,7 +159,7 @@ $(document).ready(function () {
 
     $("#dropzone").on('dragleave',function (event) {
         if(event.target === this) {
-            console.log('SALDA');
+            console.log('SALIDA');
             this.className='dropzone';
             $(".in-dropzone").css('visibility','visible');
             $("#titulodrop").hide();

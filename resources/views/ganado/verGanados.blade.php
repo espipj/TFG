@@ -44,8 +44,6 @@
                             {!! Form::file('import_file',['hidden','id'=>'file']) !!}
                         </label>
                         {!! Form::close() !!}
-                        {{-- <a href="{{route('verganadomuerto')}}" class="btn btn-danger btn-md" role="button"><span class="glyphicon glyphicon-minus"></span> Muertas</a>
-                        --}}
                     @endif
                     @include('ganado.tablaGanados')
                 </div>

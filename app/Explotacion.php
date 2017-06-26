@@ -170,6 +170,7 @@ class Explotacion extends Model
     {
         $insert=array();
 
+        //dd($reader->get());
         foreach ($reader->get() as $explotacion) {
             $oexplotacion=Explotacion::where('codigo_explotacion',$explotacion->codigo_explotacion)->first();
             if(empty($oexplotacion)){
@@ -227,10 +228,36 @@ class Explotacion extends Model
 
     private static function guardarNuevoXLS($explotacion)
     {
+        if(isset($explotacion->codigo_explotacion)) $codigo=$explotacion->codigo_explotacion;
+        if(isset($explotacion->municipio)) $municipio=$explotacion->municipio;
+        $nexplotacion=New Explotacion([
+            'codigo_explotacion'    => $codigo,
+            'municipio'             => $municipio,
+        ]);
+        $nexplotacion->save();
+        //dd($explotacion->ganaderia);
+        if(isset($explotacion->ganaderia)){
+            $ganaderia=Ganaderia::where('nombre',$explotacion->ganaderia)->first();
+
+            $ganaderia->explotaciones()->save($nexplotacion);
+        }
+        //dd($nexplotacion);
+        return $nexplotacion;
     }
 
     private static function actualizarXLS($explotacion, $oexplotacion)
     {
+        if(isset($explotacion->codigo_explotacion)) $oexplotacion->codigo_explotacion=$explotacion->codigo_explotacion;
+        if(isset($explotacion->municipio)) $oexplotacion->municipio=$explotacion->municipio;
+        //dd($explotacion->ganaderia);
+        $oexplotacion->save();
+        if(isset($explotacion->ganaderia)){
+            $ganaderia=Ganaderia::where('nombre',$explotacion->ganaderia)->first();
+
+            $ganaderia->explotaciones()->save($oexplotacion);
+        }
+
+        return $oexplotacion;
     }
 
 

@@ -54,9 +54,9 @@ class ImportExportController extends Controller
                 $this->downloadExcel($formato,Gen::generateArrayForExport(),$nombre,$hoja);
                 break;
             case 'explotacion':
-                $nombre='Genes'. '_' .Carbon::now()->format('d-m-Y');
-                //dd(Ganaderia::generateArrayForExport());
-                $hoja="Genes";
+                $nombre='Explotaciones'. '_' .Carbon::now()->format('d-m-Y');
+                //dd(Explotacion::generateArrayForExport());
+                $hoja="Explotaciones";
                 $this->downloadExcel($formato,Explotacion::generateArrayForExport(),$nombre,$hoja);
                 break;
         }

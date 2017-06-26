@@ -33,6 +33,7 @@ class Gen extends Model
         'nombres' => 'array'
     ];
 
+
     /**
      * Definition of the relationship BelongsTo Ganado.
      *
@@ -330,4 +331,9 @@ class Gen extends Model
 
         return $insert;
     }
+
+    public static function generateArrayForExport()
+    {
+    }
+
 }
