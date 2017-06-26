@@ -7,6 +7,7 @@ use App\Ganaderia;
 use App\Ganado;
 use App\Http\Requests\Request;
 use App\Sexo;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class Ganado extends Model
      * Fillable atributes of the class.
      * @var array List of attributes of the class. Contains the crotal (kind of ID for the animal).
      */
-    protected $fillable=['crotal'];
+    protected $fillable = ['crotal'];
     /**
      * Array with atributes of the type Date.
      *
@@ -31,7 +32,7 @@ class Ganado extends Model
      *
      * @var array List of attributes type Date. Contains the birth date.
      */
-    protected $dates=['fecha_nacimiento'];
+    protected $dates = ['fecha_nacimiento'];
 
 
     /**
@@ -41,7 +42,8 @@ class Ganado extends Model
      * A Ganado, BelongsTo Ganaderia.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
      */
-    public function ganaderia(){
+    public function ganaderia()
+    {
         return $this->belongsTo(Ganaderia::class);
     }
 
@@ -54,8 +56,9 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
      */
-    public function sexo(){
-        return $this->belongsTo(Sexo::class,'sexo_id');
+    public function sexo()
+    {
+        return $this->belongsTo(Sexo::class, 'sexo_id');
     }
 
     /**
@@ -65,8 +68,9 @@ class Ganado extends Model
      * A Ganado, BelongsTo Estado.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
      */
-    public function estado(){
-        return  $this->belongsTo(Estado::class);
+    public function estado()
+    {
+        return $this->belongsTo(Estado::class);
     }
 
     /**
@@ -78,8 +82,9 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
      */
-    public function capa(){
-        return  $this->belongsTo(Capa::class);
+    public function capa()
+    {
+        return $this->belongsTo(Capa::class);
     }
 
     /**
@@ -91,8 +96,9 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
      */
-    public function madre(){
-        return $this->belongsTo(Ganado::class,'madre_id');
+    public function madre()
+    {
+        return $this->belongsTo(Ganado::class, 'madre_id');
     }
 
     /**
@@ -103,7 +109,8 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
      */
-    public function hijosM(){
+    public function hijosM()
+    {
         return $this->hasMany(Ganado::class, 'madre_id');
     }
 
@@ -129,7 +136,8 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany Relationship hasMany
      */
-    public function hijosP(){
+    public function hijosP()
+    {
         return $this->hasMany(Ganado::class, 'padre_id');
     }
 
@@ -140,7 +148,8 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne Has one relationship
      */
-    public function muestra(){
+    public function muestra()
+    {
         return $this->hasOne(Muestra::class);
     }
 
@@ -151,7 +160,8 @@ class Ganado extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne Has one relationship
      */
-    public function gen(){
+    public function gen()
+    {
         return $this->hasOne(Gen::class);
     }
 
@@ -161,7 +171,8 @@ class Ganado extends Model
      * @param Ganado $hijo Son
      * @return false|Model
      */
-    public function setHijoP($hijo){
+    public function setHijoP($hijo)
+    {
         return $this->hijosP()->save($hijo);
 
     }
@@ -171,7 +182,8 @@ class Ganado extends Model
      * @param Ganado $hijo Son.
      * @return false|Model
      */
-    public function setHijoM($hijo){
+    public function setHijoM($hijo)
+    {
         return $this->hijosM()->save($hijo);
 
     }
@@ -181,8 +193,9 @@ class Ganado extends Model
      * @param Date $date Birth Date.
      * @return mixed
      */
-    public function setFechaNacimiento($date){
-        $this->fecha_nacimiento=$date;
+    public function setFechaNacimiento($date)
+    {
+        $this->fecha_nacimiento = $date;
 
         $this->save();
         return $this->fecha_nacimiento;
@@ -193,7 +206,8 @@ class Ganado extends Model
      * @param Sexo $sexo Sex.
      * @return mixed
      */
-    public function setSexo($sexo){
+    public function setSexo($sexo)
+    {
 
         return $sexo->ganados()->save($this);
     }
@@ -203,7 +217,8 @@ class Ganado extends Model
      * @param Ganaderia $ganaderia
      * @return mixed
      */
-    public function setGanaderia($ganaderia){
+    public function setGanaderia($ganaderia)
+    {
         return $ganaderia->ganados()->save($this);
 
     }
@@ -213,7 +228,8 @@ class Ganado extends Model
      * @param Capa $capa
      * @return mixed
      */
-    public function setCapa($capa){
+    public function setCapa($capa)
+    {
         return $capa->ganados()->save($this);
     }
 
@@ -222,7 +238,8 @@ class Ganado extends Model
      * @param Estado $estado
      * @return mixed
      */
-    public function setEstado($estado){
+    public function setEstado($estado)
+    {
         return $estado->ganados()->save($this);
     }
 
@@ -234,15 +251,27 @@ class Ganado extends Model
      * @uses Ganado::hijosP()
      * @return array Sons of this Ganado.
      */
-    public function hijos(){
-        if($this->sexo->nombre=='Macho'){
-            $ganados=$this->hijosP;
-        }else{
-            $ganados=$this->hijosM;
+    public function hijos()
+    {
+        if (!isset($this->sexo)){
+            return null;
+        }else {
+            if ($this->sexo->nombre == 'Macho') {
+                if (count($this->hijosP)) {
+                    $ganados = $this->hijosP;
+                } else {
+                    $ganados = null;
+                }
+            } else {
+                if (count($this->hijosM)) {
+                    $ganados = $this->hijosM;
+                } else {
+                    $ganados = null;
+                }
 
+            }
+            return $ganados;
         }
-        return $ganados;
-
     }
 
     /**
@@ -253,44 +282,45 @@ class Ganado extends Model
      * @param $s String to return
      * @return string String with the HTML code of the tree.
      */
-    public function arbol($h, $p, $s){
-        if($h==0 || $h==2 || $h==4){
+    public function arbol($h, $p, $s)
+    {
+        if ($h == 0 || $h == 2 || $h == 4) {
 
-            $s.="<ul>";
+            $s .= "<ul>";
 
         }
-        $s.="<li><a href='". route('verganado',[$this])."'>". $this->crotal ."</a>";
+        $s .= "<li><a href='" . route('verganado', [$this]) . "'>" . $this->crotal . "</a>";
 
-        if($p>0) {
-            if (null!=$this->hijos()) {
-                $hijos=$this->hijos();
-                $length=count($hijos);
+        if ($p > 0) {
+            if (null != $this->hijos()) {
+                $hijos = $this->hijos();
+                $length = count($hijos);
                 //$s.=$p;
                 //$last_key = end(array_keys($hijos));
                 foreach ($hijos as $key => $hijo) {
-                    if ($length==($key+1) && $key == 0) {
-                        $s.=$hijo->arbol(4, --$p,"");
-                    }else if ($key == 0){
+                    if ($length == ($key + 1) && $key == 0) {
+                        $s .= $hijo->arbol(4, --$p, "");
+                    } else if ($key == 0) {
                         //ultimo elemento
-                        $s.=$hijo->arbol(2, --$p,"");
+                        $s .= $hijo->arbol(2, --$p, "");
 
-                    }else if($length==($key+1)){
-                        $s.=$hijo->arbol(3, --$p,"");
+                    } else if ($length == ($key + 1)) {
+                        $s .= $hijo->arbol(3, --$p, "");
 
-                    }else{
+                    } else {
 
-                        $s.=$hijo->arbol(1, --$p,"");
+                        $s .= $hijo->arbol(1, --$p, "");
                     }
 
 
                 }
             }
 
-                $s .= "</li>";
+            $s .= "</li>";
 
         }
-        if($h==0 || $h==3 || $h==4){
-           $s.="</ul>";
+        if ($h == 0 || $h == 3 || $h == 4) {
+            $s .= "</ul>";
         }
 
         return $s;
@@ -301,15 +331,16 @@ class Ganado extends Model
      * @param Request $request Request with the Data of a new Ganado.
      * @return Ganado The new Ganado It has just created.
      */
-    public static function guardarNuevo($request){
-        $datos = $request->except(['ganaderia_id','sexo_id','fecha_nacimiento','capa_id']);
-        $ganado=self::create($datos);
-        if(null!=$request->input('padre_id')){
-            $padre=Ganado::find($request->input('padre_id'));
+    public static function guardarNuevo($request)
+    {
+        $datos = $request->except(['ganaderia_id', 'sexo_id', 'fecha_nacimiento', 'capa_id']);
+        $ganado = self::create($datos);
+        if (null != $request->input('padre_id')) {
+            $padre = Ganado::find($request->input('padre_id'));
             $padre->setHijoP($ganado);
 
         }
-        if(null!=$request->input('madre_id')) {
+        if (null != $request->input('madre_id')) {
             $madre = Ganado::find($request->input('madre_id'));
             $madre->setHijoM($ganado);
         }
@@ -328,7 +359,8 @@ class Ganado extends Model
      * @return Ganado|static The that has just been created.
      * @see Ganado::importarXLS()
      */
-    public static function guardarNuevoXLS($array){
+    public static function guardarNuevoXLS($array)
+    {
         /* array
 
       "fecha_de_nacimiento" => "16/11/2006"
@@ -340,45 +372,45 @@ class Ganado extends Model
       "estado" => "Vivo"
         */
 
-        $ganado=self::create([
-            'crotal'    =>  $array->crotal,
+        $ganado = self::create([
+            'crotal' => $array->crotal,
         ]);
-        $padre=Ganado::where('crotal',$array->padre)->first();
-        if(empty($padre)){
-            $padre=Ganado::create([
-                'crotal'    =>  $array->padre,
+        $padre = Ganado::where('crotal', $array->padre)->first();
+        if (empty($padre)) {
+            $padre = Ganado::create([
+                'crotal' => $array->padre,
             ]);
             $padre->setSexo(Sexo::find(1));
         }
-        $madre=Ganado::where('crotal',$array->madre)->first();
-        if(empty($madre)){
-            $madre=Ganado::create([
-                'crotal'    =>  $array->madre,
+        $madre = Ganado::where('crotal', $array->madre)->first();
+        if (empty($madre)) {
+            $madre = Ganado::create([
+                'crotal' => $array->madre,
             ]);
             $madre->setSexo(Sexo::find(2));
         }
         $padre->setHijoP($ganado);
         $madre->setHijoM($ganado);
-        $ganado->setSexo(Sexo::where('alias',$array->sexo)->first());
-        $ganado->setCapa(Capa::where('alias',$array->capa)->first());
-        $ganado->setEstado(Estado::where('nombre',$array->estado)->first());
-        if(!empty($array->ganaderia)){
-            $ganaderia=Ganaderia::where([
-                'nombre'    =>  $array->ganaderia,
-                'sigla'     =>  $array->sigla
+        $ganado->setSexo(Sexo::where('alias', $array->sexo)->first());
+        $ganado->setCapa(Capa::where('alias', $array->capa)->first());
+        $ganado->setEstado(Estado::where('nombre', $array->estado)->first());
+        if (!empty($array->ganaderia)) {
+            $ganaderia = Ganaderia::where([
+                'nombre' => $array->ganaderia,
+                'sigla' => $array->sigla
             ])->first();
-            if(!empty($ganaderia)){
+            if (!empty($ganaderia)) {
 
                 $ganado->setGanaderia($ganaderia);
-            }else{
+            } else {
 
-                $ganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia,$array->sigla));
+                $ganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia, $array->sigla));
             }
 
-        }else{
-            $ganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia","VACI"));
+        } else {
+            $ganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia", "VACI"));
         }
-        $ganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
+        $ganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y', $array->fecha_de_nacimiento));
         return $ganado;
 
     }
@@ -394,43 +426,43 @@ class Ganado extends Model
      */
     private static function actualizarXLS($array, $oganado)
     {
-        $padre=Ganado::where('crotal',$array->padre)->first();
-        if(empty($padre)){
-            $padre=Ganado::create([
-                'crotal'    =>  $array->padre,
+        $padre = Ganado::where('crotal', $array->padre)->first();
+        if (empty($padre)) {
+            $padre = Ganado::create([
+                'crotal' => $array->padre,
             ]);
             $padre->setSexo(Sexo::find(1));
         }
-        $madre=Ganado::where('crotal',$array->madre)->first();
-        if(empty($madre)){
-            $madre=Ganado::create([
-                'crotal'    =>  $array->madre,
+        $madre = Ganado::where('crotal', $array->madre)->first();
+        if (empty($madre)) {
+            $madre = Ganado::create([
+                'crotal' => $array->madre,
             ]);
             $madre->setSexo(Sexo::find(2));
         }
         $padre->setHijoP($oganado);
         $madre->setHijoM($oganado);
-        $oganado->setSexo(Sexo::where('alias',$array->sexo)->first());
-        $oganado->setCapa(Capa::where('alias',$array->capa)->first());
-        $oganado->setEstado(Estado::where('nombre',$array->estado)->first());
-        if(!empty($array->ganaderia)){
-            $ganaderia=Ganaderia::where([
-                'nombre'    =>  $array->ganaderia,
-                'sigla'     =>  $array->sigla
+        $oganado->setSexo(Sexo::where('alias', $array->sexo)->first());
+        $oganado->setCapa(Capa::where('alias', $array->capa)->first());
+        $oganado->setEstado(Estado::where('nombre', $array->estado)->first());
+        if (!empty($array->ganaderia)) {
+            $ganaderia = Ganaderia::where([
+                'nombre' => $array->ganaderia,
+                'sigla' => $array->sigla
             ])->first();
-            if(!empty($ganaderia)){
+            if (!empty($ganaderia)) {
 
                 $oganado->setGanaderia($ganaderia);
-            }else{
+            } else {
 
-                $oganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia,$array->sigla));
+                $oganado->setGanaderia(Ganaderia::GanaderiaVacia($array->ganaderia, $array->sigla));
             }
 
-        }else{
-            $oganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia","VACI"));
+        } else {
+            $oganado->setGanaderia(Ganaderia::GanaderiaVacia("Ganadería Vacia", "VACI"));
         }
 
-        $oganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y',$array->fecha_de_nacimiento));
+        $oganado->setFechaNacimiento(DateTime::createFromFormat('d/m/Y', $array->fecha_de_nacimiento));
         return $oganado;
 
     }
@@ -440,7 +472,8 @@ class Ganado extends Model
      * @param User $user The user that is requesting the resource.
      * @return array|string Ganado the user can see or use.
      */
-    public static function ganadosUser($user){
+    public static function ganadosUser($user)
+    {
         $ganados = Ganado::all()->sortBy('crotal')->sortBy('estado_id');
         if ($user->hasAnyRole(array('SuperAdmin'))) {
             return $ganados;
@@ -453,14 +486,13 @@ class Ganado extends Model
                 $asociacion = Asociacion::find($user->asociacion->id);
 
                 return $ganados = $asociacion->ganados->sortBy('crotal')->sortBy('estado_id');
-            }else{
+            } else {
 
                 return $ganados = "sing";
             }
 
 
-
-        }else if ($user->hasAnyRole(array('Ganadero'))){
+        } else if ($user->hasAnyRole(array('Ganadero'))) {
 
             if ($user->ganaderia) {
                 return $ganados = $user->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
@@ -469,13 +501,13 @@ class Ganado extends Model
                 return $ganados = "sing";
 
             }
-        }else if($user->hasAnyRole(array('Laboratorio'))){
+        } else if ($user->hasAnyRole(array('Laboratorio'))) {
 
             if ($user->laboratorio) {
                 $muestras = $user->laboratorio->muestras;
-                $ganados=array();
-                foreach ($muestras as $muestra){
-                    if(isset($muestra->ganado)) array_push($ganados,$muestra->ganado);
+                $ganados = array();
+                foreach ($muestras as $muestra) {
+                    if (isset($muestra->ganado)) array_push($ganados, $muestra->ganado);
                 }
                 return $ganados;
 
@@ -484,8 +516,8 @@ class Ganado extends Model
                 return $ganados = "sing";
 
             }
-        }else{
-            return $ganados="sing";
+        } else {
+            return $ganados = "sing";
         }
     }
 
@@ -494,9 +526,10 @@ class Ganado extends Model
      * @param User $user The user that is requesting the resource.
      * @return string A description.
      */
-    public static function descriptionUser($user){
+    public static function descriptionUser($user)
+    {
 
-        $descripcion="Desde esta página puedes registrar una nueva res o editar las ya existentes y listadas, ver sus detalles o incluso exportarlas.";
+        $descripcion = "Desde esta página puedes registrar una nueva res o editar las ya existentes y listadas, ver sus detalles o incluso exportarlas.";
         if ($user->hasAnyRole(array('SuperAdmin'))) {
             return $descripcion;
 
@@ -504,14 +537,14 @@ class Ganado extends Model
         } else if ($user->hasAnyRole(array('Administrador'))) {
             return $descripcion;
 
-        }else if ($user->hasAnyRole(array('Ganadero'))){
-            return $descripcion="Desde esta página puedes ver las reses que pertenecen a tu ganadería, sus detalles y exportarlos a tu ordenador";
+        } else if ($user->hasAnyRole(array('Ganadero'))) {
+            return $descripcion = "Desde esta página puedes ver las reses que pertenecen a tu ganadería, sus detalles y exportarlos a tu ordenador";
 
-        }else if($user->hasAnyRole(array('Laboratorio'))){
+        } else if ($user->hasAnyRole(array('Laboratorio'))) {
 
-            return $descripcion="Desde esta página puedes ver las reses de las que tienes alguna consulta o muestra.";
-        }else{
-            return $descripcion="No tienes permiso.";
+            return $descripcion = "Desde esta página puedes ver las reses de las que tienes alguna consulta o muestra.";
+        } else {
+            return $descripcion = "No tienes permiso.";
         }
     }
 
@@ -519,19 +552,20 @@ class Ganado extends Model
      * Decides the Ganados collection it should export, depending on permissions/roles.
      *
      * @return \Illuminate\Support\Collection
-     * @see Ganado::generateArrayForExport()
-     * @see Ganado::ganadosUser()
+     * @see  Ganado::generateArrayForExport()
+     * @see  Ganado::ganadosUser()
      * @uses Ganado::ganadosUser()
      *
      */
-    public static function ganadosAExportar(){
+    public static function ganadosAExportar()
+    {
 
 
-        $ganados=Ganado::ganadosUser(Auth::user());
+        $ganados = Ganado::ganadosUser(Auth::user());
 
-        if($ganados=="sing"){
-            return $ganados=collect(new Ganado);
-        }else{
+        if ($ganados == "sing") {
+            return $ganados = collect(new Ganado);
+        } else {
             return $ganados;
         }
 
@@ -542,43 +576,44 @@ class Ganado extends Model
      *
      * @return array Array with every Ganado in the system.
      */
-    public static function generateArrayForExport(){
-        $ganados=Ganado::ganadosAExportar();
-        $array=array();
-        foreach ($ganados as $ganado){
-            if (empty($ganado->padre->crotal)){
-                $padre="no definido";
-            }else{
-                $padre=$ganado->padre->crotal;
+    public static function generateArrayForExport()
+    {
+        $ganados = Ganado::ganadosAExportar();
+        $array = array();
+        foreach ($ganados as $ganado) {
+            if (empty($ganado->padre->crotal)) {
+                $padre = "no definido";
+            } else {
+                $padre = $ganado->padre->crotal;
             }
-            if (empty($ganado->madre->crotal)){
-                $madre="no definido";
-            }else{
-                $madre=$ganado->madre->crotal;
+            if (empty($ganado->madre->crotal)) {
+                $madre = "no definido";
+            } else {
+                $madre = $ganado->madre->crotal;
             }
             // Arreglar fallo exportar a veces
-            if (isset($ganado->ganaderia->nombre)){
-                $ganaderianombre=$ganado->ganaderia->nombre;
-                $ganaderiasigla=$ganado->ganaderia->sigla;
-            }else{
-                $ganaderianombre="Ganadería Vacia";
-                $ganaderiasigla="VACI";
+            if (isset($ganado->ganaderia->nombre)) {
+                $ganaderianombre = $ganado->ganaderia->nombre;
+                $ganaderiasigla = $ganado->ganaderia->sigla;
+            } else {
+                $ganaderianombre = "Ganadería Vacia";
+                $ganaderiasigla = "VACI";
 
             }
-            $aux=[
-                'fecha_de_nacimiento'   =>  $ganado->fecha_nacimiento->format('d/m/Y'),
-                'crotal'                =>  $ganado->crotal,
-                'padre'                 =>  $padre,
-                'madre'                 =>  $madre,
-                'capa'                  =>  $ganado->capa->alias,
-                'sexo'                  =>  $ganado->sexo->alias,
-                'estado'                =>  $ganado->estado->nombre,
-                'ganaderia'             =>  $ganaderianombre,
-                'sigla'                 =>  $ganaderiasigla,
+            $aux = [
+                'fecha_de_nacimiento' => $ganado->fecha_nacimiento->format('d/m/Y'),
+                'crotal' => $ganado->crotal,
+                'padre' => $padre,
+                'madre' => $madre,
+                'capa' => $ganado->capa->alias,
+                'sexo' => $ganado->sexo->alias,
+                'estado' => $ganado->estado->nombre,
+                'ganaderia' => $ganaderianombre,
+                'sigla' => $ganaderiasigla,
 
             ];
 
-            array_push($array,$aux);
+            array_push($array, $aux);
         }
         return $array;
     }
@@ -597,23 +632,49 @@ class Ganado extends Model
      */
     public static function importarXLS($reader)
     {
-        $insert=array();
+        $insert = array();
 
         //ini_set('memory_limit','256M');
         //return dd($reader->get());
         foreach ($reader->get() as $ganado) {
-            $oganado=Ganado::where('crotal',$ganado->crotal)->first();
-            if(empty($oganado)){
+            $oganado = Ganado::where('crotal', $ganado->crotal)->first();
+            if (empty($oganado)) {
 
-                array_push($insert,self::guardarNuevoXLS($ganado));
+                array_push($insert, self::guardarNuevoXLS($ganado));
 
-            }else{
+            } else {
 
-                array_push($insert,self::actualizarXLS($ganado,$oganado));
+                array_push($insert, self::actualizarXLS($ganado, $oganado));
 
             }
         }
 
         return $insert;
+    }
+
+    public static function crearVacio($crotal, $fecha_nac)
+    {
+        if (isset($crotal) && isset($fecha_nac)) {
+            $ganado = Ganado::create([
+                'crotal' => $crotal,
+            ]);
+            $ganado->setFechaNacimiento($fecha_nac);
+            return $ganado;
+        }
+        if (isset($crotal)) {
+            return Ganado::create([
+                'crotal' => $crotal,
+            ]);
+        }
+
+        if (isset($fecha_nac)) {
+            $ganado = Ganado::create([
+                'crotal' => 'vacio' . Carbon::now()->timestamp,
+            ]);
+            $ganado->setFechaNacimiento($fecha_nac);
+
+            return $ganado;
+        }
+
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Gen
@@ -271,6 +273,49 @@ class Gen extends Model
     public static function guardarNuevoXLS($gen)
     {
         //return dd(Gen::all());
+
+        $aux = Gen::create([
+            'nombres' => array('TGLA227', 'BM2113', 'TGLA53', 'ETH10', 'SPS115', 'TGLA126', 'TGLA122', 'INRA23', 'BM1818', 'ETH3', 'ETH225', 'BM1824'),
+            'marcadores' => array(
+                array($gen->tgla227_1, $gen->tgla227_2),
+                array($gen->bm2113_1, $gen->bm2113_2),
+                array($gen->tgla53_1, $gen->tgla53_2),
+                array($gen->eth10_1, $gen->eth10_2),
+                array($gen->sps115_1, $gen->sps115_2),
+                array($gen->tgla126_1, $gen->tgla126_2),
+                array($gen->tgla122_1, $gen->tgla122_2),
+                array($gen->inra023_1, $gen->inra023_2),
+                array($gen->bm1818_1, $gen->bm1818_2),
+                array($gen->eth3_1, $gen->eth3_2),
+                array($gen->eth225_1, $gen->eth225_2),
+                array($gen->bm1824_1, $gen->bm1824_2)),
+
+        ]);
+
+        $ganado=Ganado::where('crotal',$gen->crotal)->first();
+        if(isset($ganado)){
+            $ganado->gen()->save($aux);
+        }else{
+
+            $ganado=Ganado::crearVacio($gen->crotal,Carbon::now());
+            $ganado->gen()->save($aux);
+        }
+
+        return $gen;
+    }
+
+    /**
+     * Helper function for importarXLS
+     * Updates a Gen with the data of an import
+     * @param array $gen The array with the data to update Gen.
+     * @param Gen $ogen Gen to be updated.
+     * @return Gen|static The Gen that has just been updated.
+     * @see Gen::importarXLS()
+     * @TODO Develop the function
+     */
+    public static function actualizarXLS($gen, $oganado)
+    {
+
         $gen = Gen::create([
             'nombres' => array('TGLA227', 'BM2113', 'TGLA53', 'ETH10', 'SPS115', 'TGLA126', 'TGLA122', 'INRA23', 'BM1818', 'ETH3', 'ETH225', 'BM1824'),
             'marcadores' => array(
@@ -288,20 +333,9 @@ class Gen extends Model
                 array($gen->bm1824_1, $gen->bm1824_2)),
 
         ]);
+        $oganado->gen->delete();
+        $oganado->gen()->save($gen);
         return $gen;
-    }
-
-    /**
-     * Helper function for importarXLS
-     * Updates a Gen with the data of an import
-     * @param array $gen The array with the data to update Gen.
-     * @param Gen $ogen Gen to be updated.
-     * @return Gen|static The Gen that has just been updated.
-     * @see Gen::importarXLS()
-     * @TODO Develop the function
-     */
-    public function actualizarXLS($gen, $ogen)
-    {
 
     }
 
@@ -322,9 +356,16 @@ class Gen extends Model
         $insert = array();
         //return dd($reader->get());
         foreach ($reader->get() as $gen) {
-            //$oganado=Ganado::where('crotal',$ganado->crotal)->first();
-            //return dd($gen);
-            array_push($insert, self::guardarNuevoXLS($gen));
+
+            $oganado=Ganado::where('crotal',$gen->crotal)->first();
+            if(isset($oganado) && isset($oganado->gen)){
+
+                array_push($insert, self::actualizarXLS($gen,$oganado));
+            }else{
+
+                //return dd($gen);
+                array_push($insert, self::guardarNuevoXLS($gen));
+            }
 
 
         }
@@ -334,6 +375,49 @@ class Gen extends Model
 
     public static function generateArrayForExport()
     {
+        //'nombres' => array('TGLA227', 'BM2113', 'TGLA53', 'ETH10', 'SPS115', 'TGLA126', 'TGLA122', 'INRA23', 'BM1818', 'ETH3', 'ETH225', 'BM1824'),
+
+        $ganados=Ganado::ganadosUser(Auth::user());
+        $array=array();
+        foreach ($ganados as $ganado){
+            if(isset($ganado->gen)){
+                $gen=$ganado->gen;
+
+                $aux=[
+                    'crotal'=>$ganado->crotal,
+                    'tgla227_1'=>$gen->marcadores[0][0],
+                    'tgla227_2'=>$gen->marcadores[0][1],
+                    'bm2113_1'=>$gen->marcadores[1][0],
+                    'bm2113_2'=>$gen->marcadores[1][1],
+                    'tgla53_1'=>$gen->marcadores[2][0],
+                    'tgla53_2'=>$gen->marcadores[2][1],
+                    'eth10_1'=>$gen->marcadores[3][0],
+                    'eth10_2'=>$gen->marcadores[3][1],
+                    'sps115_1'=>$gen->marcadores[4][0],
+                    'sps115_2'=>$gen->marcadores[4][1],
+                    'tgla126_1'=>$gen->marcadores[5][0],
+                    'tgla126_2'=>$gen->marcadores[5][1],
+                    'tgla122_1'=>$gen->marcadores[6][0],
+                    'tgla122_2'=>$gen->marcadores[6][1],
+                    'inra023_1'=>$gen->marcadores[7][0],
+                    'inra023_2'=>$gen->marcadores[7][1],
+                    'bm1818_1'=>$gen->marcadores[8][0],
+                    'bm1818_2'=>$gen->marcadores[8][1],
+                    'eth3_1'=>$gen->marcadores[9][0],
+                    'eth3_2'=>$gen->marcadores[9][1],
+                    'eth225_1'=>$gen->marcadores[10][0],
+                    'eth225_2'=>$gen->marcadores[10][1],
+                    'bm1824_1'=>$gen->marcadores[11][0],
+                    'bm1824_2'=>$gen->marcadores[11][1],
+
+
+                ];
+
+                array_push($array,$aux);
+            }
+        }
+        //dd($array);
+        return $array;
     }
 
 }

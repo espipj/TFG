@@ -16,16 +16,16 @@
 
 
         @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
-        <div class="dropzone" id="dropzone" data-tipo="ganado">
+        <div class="dropzone" id="dropzone" data-tipo="genes">
             <h2 id='titulodrop' class='titulodrop' hidden>Deposita el fichero Excel a importar.</h2>
             <div class="in-dropzone">
                 @endif
         <h1>Genes</h1>
         <p>Desde esta página puedes importar o exportar genes en formato Excel.</p>
 
-        <a href="{{url('exportar/ganado/xlsx')}}" class="btn btn-excel btn-md" role="button"><span
+        <a href="{{url('exportar/genes/xlsx')}}" class="btn btn-excel btn-md" role="button"><span
                     class="glyphicon glyphicon-cloud-download"></span> Exportar Genes en XLSX</a>
-        <a href="{{url('exportar/ganado/csv')}}" class="btn btn-excel btn-md" role="button"><span
+        <a href="{{url('exportar/genes/csv')}}" class="btn btn-excel btn-md" role="button"><span
                     class="glyphicon glyphicon-cloud-download"></span> Exportar Genes en CSV</a>
 
                 @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))

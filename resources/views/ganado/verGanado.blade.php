@@ -12,30 +12,33 @@
             <div class="row">
                 <div class="col-sm-9">
                     <h2>Crotal: {{$ganado->crotal}}</h2>
-                    @if(!empty($ganado->ganaderia))
+                    @if(isset($ganado->ganaderia))
                         <h2>Ganadería: <a
                                     href="{{route('verganaderia',[$ganado->ganaderia])}}">{{$ganado->ganaderia->nombre}}</a>
                             @else
                                 <h2>Ganadería: No definida</a>
-                                    @endif
+
                                 </h2>
+                            @endif
+                            @if(isset($ganado->sexo) && isset($ganado->capa) && isset($ganado->fecha_nacimiento))
                                 <h3>Sexo: {{$ganado->sexo->nombre}}</h3>
                                 <h3>Capa: {{$ganado->capa->nombre}}</h3>
                                 <h3>Fecha de Nacimiento: {{$ganado->fecha_nacimiento->format('d-m-Y')}}</h3>
                                 <h3>Estado: {{$ganado->estado->nombre}}</h3>
-                                @if(!empty($ganado->padre))
-                                    <h3>Padre: <a
-                                                href="{{route('verganado',[$ganado->padre])}}">{{$ganado->padre->crotal}}</a>
-                                    </h3>
-                                @else
-                                    <h3>Padre: no definido</h3>
-                                @endif
-                                @if(!empty($ganado->madre))
-                                    <h3>Madre: <a
-                                                href="{{route('verganado',[$ganado->madre])}}">{{$ganado->madre->crotal}}</a>
-                                    </h3>
-                                @else
-                                    <h3>Madre: no definida</h3>
+                            @endif
+                            @if(isset($ganado->padre))
+                                <h3>Padre: <a
+                                            href="{{route('verganado',[$ganado->padre])}}">{{$ganado->padre->crotal}}</a>
+                                </h3>
+                            @else
+                                <h3>Padre: no definido</h3>
+                            @endif
+                            @if(isset($ganado->madre))
+                                <h3>Madre: <a
+                                            href="{{route('verganado',[$ganado->madre])}}">{{$ganado->madre->crotal}}</a>
+                                </h3>
+                            @else
+                                <h3>Madre: no definida</h3>
                     @endif
 
 
@@ -67,6 +70,7 @@
                     @endif
                 </div>
             </div>
+            @if(isset($ganados))
             <div class="row">
                 <div class="tree scrollable">
 
@@ -75,6 +79,7 @@
 
                 </div>
             </div>
+            @endif
             @if(Auth::user()->hasAnyRole(array('Laboratorio')) && isset($ganado->gen))
                 <div class="row dropgenes">
                     <div class="panel-group">
@@ -103,9 +108,10 @@
             @endif
         </div>
 
-        <h2>Hijos</h2>
-        @include('ganado.tablaGanados')
-
+        @if(isset($ganados))
+            <h2>Hijos</h2>
+            @include('ganado.tablaGanados')
+        @endif
     @endif
 
 @endsection

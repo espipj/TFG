@@ -20,6 +20,8 @@ $(document).ready(function () {
             }).fail(function () {
                 alert('Se produjo un error al eliminar!');
                 row.show();
+
+                boton.removeClass("disabled");
             });
 
         }else {
@@ -58,16 +60,16 @@ $(document).ready(function () {
         var form=$("#form-delete");
         var url = form.attr('action').replace(':ID_ELIMINAR',id);
         var data = form.serialize();
-        //alert(url);
+        console.log(url);
         var r= confirm("¿Estas seguro de que deseas borrar el registro?");
         if(r==true){
             $.post(url,data,function (result) {
-                //boton.addClass("disabled");
-                //row.fadeOut();
+                boton.addClass("disabled");
                 history.back();
             }).fail(function () {
                 alert('Se produjo un error al eliminar!');
-                //row.show();
+
+                boton.removeClass("disabled");
             });
 
         }else {

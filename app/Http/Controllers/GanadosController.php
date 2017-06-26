@@ -48,16 +48,16 @@ class GanadosController extends Controller
 
         $ganaderias = Ganaderia::all()->sortBy('select_option')->lists('select_option', 'id');
         $capas = Capa::all()->sortBy('select_option')->lists('select_option', 'id');
-        $hembras=Ganado::where('sexo_id',2)->orderBy('crotal')->get();
-        $machos=Ganado::where('sexo_id',1)->orderBy('crotal')->get();
+        $hembras = Ganado::where('sexo_id', 2)->orderBy('crotal')->get();
+        $machos = Ganado::where('sexo_id', 1)->orderBy('crotal')->get();
         //$ganados = Ganado::all()->sortBy('crotal');
         $sexos = Sexo::all();
         session()->put('url.intended', URL::previous());
         if ($Ganaderia == null) {
-            return view('ganado.registrarGanado', compact('ganaderias', 'sexos', 'machos','hembras', 'capas'));
+            return view('ganado.registrarGanado', compact('ganaderias', 'sexos', 'machos', 'hembras', 'capas'));
 
         } else {
-            return view('ganado.registrarGanado', compact('ganaderias', 'sexos', 'machos','hembras', 'Ganaderia', 'capas'));
+            return view('ganado.registrarGanado', compact('ganaderias', 'sexos', 'machos', 'hembras', 'Ganaderia', 'capas'));
 
         }
     }
@@ -98,9 +98,9 @@ class GanadosController extends Controller
     {
         if ($Ganado == null) {
 
-            $ganados=Ganado::ganadosUser(Auth::user());
-            $descripcion=Ganado::descriptionUser(Auth::user());
-            return view('ganado.verGanados', compact('ganados','descripcion'));
+            $ganados = Ganado::ganadosUser(Auth::user());
+            $descripcion = Ganado::descriptionUser(Auth::user());
+            return view('ganado.verGanados', compact('ganados', 'descripcion'));
         } else {
             return $this->show_detail($Ganado);
         }
@@ -137,22 +137,13 @@ class GanadosController extends Controller
     public function show_detail($Ganado)
     {
         $ganado = Ganado::find($Ganado);
-        $ganados = $ganado->hijos();
-
-        $i = 0;
-
-
+        if ($ganado->hijos()!=null) {
+            $ganados = $ganado->hijos();
+        }
         if (null != $ganado->padre()) {
             $aux = $ganado->padre();
             $padre = $aux;
-            /*while (null!=$aux->padre()) {
-                $i++;
-                $aux = $aux->padre();
-                $padre = $aux->padre();
-                if ($i > 3) {
-                    break;
-                }
-            }*/
+
         } else {
             $padre = $ganado;
         }
@@ -173,13 +164,13 @@ class GanadosController extends Controller
         $ganadoe = Ganado::find($Ganado);
         //$ganados = Ganado::all()->sortBy('crotal')
 
-        $hembras=Ganado::where('sexo_id',2)->orderBy('crotal')->get();
-        $machos=Ganado::where('sexo_id',1)->orderBy('crotal')->get();
+        $hembras = Ganado::where('sexo_id', 2)->orderBy('crotal')->get();
+        $machos = Ganado::where('sexo_id', 1)->orderBy('crotal')->get();
         $capas = Capa::all()->sortBy('select_option')->lists('select_option', 'id');
         $sexos = Sexo::all();
         $ganaderias = Ganaderia::all()->sortBy('select_option')->lists('select_option', 'id');
         session()->put('url.intended', URL::previous());
-        return view('ganado.editarGanado', compact('machos','hembras', 'ganadoe', 'sexos', 'ganaderias', 'capas'));
+        return view('ganado.editarGanado', compact('machos', 'hembras', 'ganadoe', 'sexos', 'ganaderias', 'capas'));
 
 
     }
@@ -232,8 +223,12 @@ class GanadosController extends Controller
         if ($request->ajax()) {
 
             $ganado = Ganado::find($id);
-            $muerto = Estado::where('nombre', 'Muerto')->first();
+            $muerto = Estado::where('alias', 'M')->first();
             $muerto->ganados()->save($ganado);
+            if (isset($ganado->gen)){
+
+                $ganado->gen->delete();
+            }
             return $id;
 
         }

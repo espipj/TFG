@@ -48,7 +48,7 @@ class ImportExportController extends Controller
                 $this->downloadExcel($formato,Ganaderia::generateArrayForExport(),$nombre,$hoja);
                 break;
             case 'genes':
-                $nombre='Genes'. '_' .Carbon::now()->format('d-m-Y');
+                $nombre='Genes'. '_' .Carbon::now()->format('d-m-Y-s');
                 //dd(Ganaderia::generateArrayForExport());
                 $hoja="Genes";
                 $this->downloadExcel($formato,Gen::generateArrayForExport(),$nombre,$hoja);
