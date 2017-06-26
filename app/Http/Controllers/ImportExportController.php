@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Explotacion;
 use App\Ganaderia;
 use App\Ganado;
 use App\Gen;
@@ -52,6 +53,12 @@ class ImportExportController extends Controller
                 $hoja="Genes";
                 $this->downloadExcel($formato,Gen::generateArrayForExport(),$nombre,$hoja);
                 break;
+            case 'explotacion':
+                $nombre='Genes'. '_' .Carbon::now()->format('d-m-Y');
+                //dd(Ganaderia::generateArrayForExport());
+                $hoja="Genes";
+                $this->downloadExcel($formato,Explotacion::generateArrayForExport(),$nombre,$hoja);
+                break;
         }
     }
 
@@ -84,6 +91,10 @@ class ImportExportController extends Controller
                 break;
             case 'genes':
                 Gen::importarXLS($reader);
+                return back();
+                break;
+            case 'explotacion':
+                Explotacion::importarXLS($reader);
                 return back();
                 break;
         }

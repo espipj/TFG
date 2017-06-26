@@ -81,22 +81,23 @@ class MuestrasController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Returns the view of Muestra listing.
      */
     public function show($Muestra=null){
+        $descripcion="Desde esta página puedes registrar una nueva muestra o editar las ya existentes y listadas.";
         $usuario=Auth::user();
         if($Muestra==null){
             if ($usuario->hasAnyRole('Laboratorio')){
                 if($usuario->laboratorio!=null){
                     $laboratorio=$usuario->laboratorio;
                     $muestras=$laboratorio->muestras->sortBy('tubo');
-                    return view('muestra.verMuestras', compact('muestras'));
+                    return view('muestra.verMuestras', compact('muestras','descripcion'));
                 }else{
                     $muestras="nomuest";
-                    return view('muestra.verMuestras', compact('muestras'));
+                    return view('muestra.verMuestras', compact('muestras','descripcion'));
 
                 }
 
             }else {
                 $muestras = Muestra::all()->sortBy('tubo');
-                return view('muestra.verMuestras', compact('muestras'));
+                return view('muestra.verMuestras', compact('muestras','descripcion'));
             }
         }else{
             return $this->show_detail($Muestra);

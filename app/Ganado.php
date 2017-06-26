@@ -436,25 +436,105 @@ class Ganado extends Model
     }
 
     /**
+     * This function return us the array of Ganado that a User must see or can export.
+     * @param User $user The user that is requesting the resource.
+     * @return array|string Ganado the user can see or use.
+     */
+    public static function ganadosUser($user){
+        $ganados = Ganado::all()->sortBy('crotal')->sortBy('estado_id');
+        if ($user->hasAnyRole(array('SuperAdmin'))) {
+            return $ganados;
+
+
+        } else if ($user->hasAnyRole(array('Administrador'))) {
+
+            if ($user->asociacion != null) {
+
+                $asociacion = Asociacion::find($user->asociacion->id);
+
+                return $ganados = $asociacion->ganados->sortBy('crotal')->sortBy('estado_id');
+            }else{
+
+                return $ganados = "sing";
+            }
+
+
+
+        }else if ($user->hasAnyRole(array('Ganadero'))){
+
+            if ($user->ganaderia) {
+                return $ganados = $user->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
+            } else {
+
+                return $ganados = "sing";
+
+            }
+        }else if($user->hasAnyRole(array('Laboratorio'))){
+
+            if ($user->laboratorio) {
+                $muestras = $user->laboratorio->muestras;
+                $ganados=array();
+                foreach ($muestras as $muestra){
+                    if(isset($muestra->ganado)) array_push($ganados,$muestra->ganado);
+                }
+                return $ganados;
+
+            } else {
+
+                return $ganados = "sing";
+
+            }
+        }else{
+            return $ganados="sing";
+        }
+    }
+
+    /**
+     * This function return us the description for the view of Ganado that a User must see.
+     * @param User $user The user that is requesting the resource.
+     * @return string A description.
+     */
+    public static function descriptionUser($user){
+
+        $descripcion="Desde esta página puedes registrar una nueva res o editar las ya existentes y listadas, ver sus detalles o incluso exportarlas.";
+        if ($user->hasAnyRole(array('SuperAdmin'))) {
+            return $descripcion;
+
+
+        } else if ($user->hasAnyRole(array('Administrador'))) {
+            return $descripcion;
+
+        }else if ($user->hasAnyRole(array('Ganadero'))){
+            return $descripcion="Desde esta página puedes ver las reses que pertenecen a tu ganadería, sus detalles y exportarlos a tu ordenador";
+
+        }else if($user->hasAnyRole(array('Laboratorio'))){
+
+            return $descripcion="Desde esta página puedes ver las reses de las que tienes alguna consulta o muestra.";
+        }else{
+            return $descripcion="No tienes permiso.";
+        }
+    }
+
+    /**
      * Decides the Ganados collection it should export, depending on permissions/roles.
      *
      * @return \Illuminate\Support\Collection
      * @see Ganado::generateArrayForExport()
+     * @see Ganado::ganadosUser()
+     * @uses Ganado::ganadosUser()
+     *
      */
     public static function ganadosAExportar(){
-        if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin'))){
-            $ganados=Ganado::all()->sortBy('crotal')->sortBy('estado_id');
+
+
+        $ganados=Ganado::ganadosUser(Auth::user());
+
+        if($ganados=="sing"){
+            return $ganados=collect(new Ganado);
         }else{
-
-            if(Auth::user()->ganaderia){
-                $ganados=Auth::user()->ganaderia->ganados->sortBy('crotal')->sortBy('estado_id');
-            }else{
-                $ganados=collect(new Ganado);
-
-            }
-
+            return $ganados;
         }
-        return $ganados;
+
     }
 
     /**
@@ -520,7 +600,7 @@ class Ganado extends Model
         $insert=array();
 
         //ini_set('memory_limit','256M');
-        return dd($reader->get());
+        //return dd($reader->get());
         foreach ($reader->get() as $ganado) {
             $oganado=Ganado::where('crotal',$ganado->crotal)->first();
             if(empty($oganado)){

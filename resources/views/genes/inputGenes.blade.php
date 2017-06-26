@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Modificar datos genéticos</div>
+                        <div class="panel-heading">Datos genéticos</div>
                         <div class="panel-body">
                             @include('partials.errors')
 

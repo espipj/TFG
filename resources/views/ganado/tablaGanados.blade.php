@@ -1,8 +1,9 @@
 <input type="text" id="buscadorGanados" class="buscadorjs noform" data-tabla="tablaGanados"
        placeholder="Buscar res por crotal...">
-
-<label class="checkbox-inline"><input type="checkbox" rel="vivo" value="V" class="tick" data-tabla="tablaGanados">Vivas</label>
-<label class="checkbox-inline"><input type="checkbox" rel="vivo" value="M" class="tick" data-tabla="tablaGanados">Muertas</label>
+<div class="checkbox-div">
+    <label class="checkbox-inline"><input type="checkbox" rel="vivo" value="V" class="tick" data-tabla="tablaGanados">Vivas</label>
+    <label class="checkbox-inline"><input type="checkbox" rel="vivo" value="M" class="tick" data-tabla="tablaGanados">Muertas</label>
+</div>
 <div class="table-responsive">
     <table id="tablaGanados" class="table header-fixed ganados">
         <thead>
