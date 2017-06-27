@@ -2,8 +2,8 @@
     <table class="table table-bordered">
         <thead>
         <tr class="header text-center info">
-            <th>Marcador</th>
-            <th colspan="2">{{$ganadoinfo->crotal}}</th>
+            <th class="text-center">Marcador</th>
+            <th class="text-center" colspan="2">{{$ganadoinfo->crotal}}</th>
         </tr>
         </thead>
         <tbody>
