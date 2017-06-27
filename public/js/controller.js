@@ -43,8 +43,12 @@ function upload(file) {
     xhr.setRequestHeader("X-CSRF-Token", token);
     xhr.send(formData);
 
-    //setTimeout(function(){}, 1000);
-    location.reload();
+    if(tipo=="genes"){
+        var mensaje='<div class="alert alert-success alert-dismissable text-center col-sm-10 col-sm-offset-1"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>¡Perfecto!</strong> Los genes serán importados.</div>';
+        $("#dropzone").append(mensaje);
+    }else {location.reload();}
+
+
 
 
 }
@@ -177,6 +181,7 @@ $(document).ready(function () {
         $("#imagedrop").hide();
         console.log(e.originalEvent.dataTransfer.files);
         upload(e.originalEvent.dataTransfer.files);
+
 
     });
 
