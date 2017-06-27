@@ -162,8 +162,6 @@ class GanadosController extends Controller
     {
 
         $ganadoe = Ganado::find($Ganado);
-        //$ganados = Ganado::all()->sortBy('crotal')
-
         $hembras = Ganado::where('sexo_id', 2)->orderBy('crotal')->get();
         $machos = Ganado::where('sexo_id', 1)->orderBy('crotal')->get();
         $capas = Capa::all()->sortBy('select_option')->lists('select_option', 'id');

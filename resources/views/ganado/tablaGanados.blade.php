@@ -17,13 +17,18 @@
         </thead>
         <tbody>
         @foreach($ganados as $ganado)
-            @if($ganado->crotal && $ganado->sexo && $ganado->fecha_nacimiento)
+            @if($ganado->crotal && $ganado->fecha_nacimiento)
 
 
 
                 <tr class="clickable-row vacas" data-href="{{route('verganado',[$ganado])}}" data-id="{{$ganado->id}}">
                     <td style="width:18%;" class="vivo" rel="{{$ganado->estado->alias}}">{{$ganado->crotal}}</td>
+                    @if(isset($ganado->sexo->nombre))
                     <td style="width:10%;">{{$ganado->sexo->nombre}}</td>
+                    @else
+
+                        <td style="width:10%;">NC</td>
+                        @endif
                     <td style="width:19%;">{{$ganado->fecha_nacimiento->format('d-m-Y')}}</td>
                     @if(!empty($ganado->ganaderia))
                         <td style="width:25%;">{{$ganado->ganaderia->nombre}}</td>

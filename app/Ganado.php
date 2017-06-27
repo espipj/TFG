@@ -654,17 +654,23 @@ class Ganado extends Model
 
     public static function crearVacio($crotal, $fecha_nac)
     {
+        $ganaderia=Ganaderia::GanaderiaVacia("Vacia","VA");
+
         if (isset($crotal) && isset($fecha_nac)) {
             $ganado = Ganado::create([
                 'crotal' => $crotal,
             ]);
             $ganado->setFechaNacimiento($fecha_nac);
+            $ganado->setGanaderia($ganaderia);
             return $ganado;
         }
         if (isset($crotal)) {
-            return Ganado::create([
+            $ganado= Ganado::create([
                 'crotal' => $crotal,
             ]);
+
+            $ganado->setGanaderia($ganaderia);
+            return $ganado;
         }
 
         if (isset($fecha_nac)) {
@@ -673,8 +679,10 @@ class Ganado extends Model
             ]);
             $ganado->setFechaNacimiento($fecha_nac);
 
+            $ganado->setGanaderia($ganaderia);
             return $ganado;
         }
+
 
     }
 }

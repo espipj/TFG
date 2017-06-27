@@ -6,6 +6,8 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
+
+        @if(Auth::user()->hasAnyRole(array('Laboratorio')) && isset($ganado->gen))
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
@@ -13,41 +15,60 @@
                         <span class="card-title"><h1>Ficha de la res</h1></span>
                     </div>
                     <div class="card-content">
-                        <h2>Crotal: {{$ganado->crotal}}</h2>
+                        <h3 class="card-color-text">Crotal:
+                            <div class="card-color-text-normal"> {{$ganado->crotal}}</div>
+                        </h3>
                         @if(isset($ganado->ganaderia))
-                            <h2>Ganadería: <a
-                                        href="{{route('verganaderia',[$ganado->ganaderia])}}">{{$ganado->ganaderia->nombre}}</a>
-                                @else
-                                    <h2>Ganadería: No definida</a>
+                            <h3 class="card-color-text">Ganadería:
+                                <div class="card-color-text-normal"><a
+                                            href="{{route('verganaderia',[$ganado->ganaderia])}}">{{$ganado->ganaderia->nombre}}</a>
+                                </div>
+                            </h3>
+                        @else
+                            <h3 class="card-color-text">Ganadería:
+                                <div class="card-color-text-normal"> No definida</a>
 
-                                    </h2>
-                                @endif
-                                @if(isset($ganado->sexo) && isset($ganado->capa) && isset($ganado->fecha_nacimiento))
-                                    <h3>Sexo: {{$ganado->sexo->nombre}}</h3>
-                                    <h3>Capa: {{$ganado->capa->nombre}}</h3>
-                                    <h3>Fecha de Nacimiento: {{$ganado->fecha_nacimiento->format('d-m-Y')}}</h3>
-                                    <h3>Estado: {{$ganado->estado->nombre}}</h3>
-                                @endif
-                                @if(isset($ganado->padre))
-                                    <h3>Padre: <a
-                                                href="{{route('verganado',[$ganado->padre])}}">{{$ganado->padre->crotal}}</a>
-                                    </h3>
-                                @else
-                                    <h3>Padre: no definido</h3>
-                                @endif
-                                @if(isset($ganado->madre))
-                                    <h3>Madre: <a
-                                                href="{{route('verganado',[$ganado->madre])}}">{{$ganado->madre->crotal}}</a>
-                                    </h3>
-                                @else
-                                    <h3>Madre: no definida</h3>
+                                </div>
+                            </h3>
+                        @endif
+                        @if(isset($ganado->sexo) && isset($ganado->capa) && isset($ganado->fecha_nacimiento))
+                            <h3 class="card-color-text">Sexo:
+                                <div class="card-color-text-normal"> {{$ganado->sexo->nombre}}</div></h3>
+                            <h3 class="card-color-text">Capa:
+                                <div class="card-color-text-normal"> {{$ganado->capa->nombre}}</div></h3>
+                            <h3 class="card-color-text">Fecha de Nacimiento:
+                                <div class="card-color-text-normal"> {{$ganado->fecha_nacimiento->format('d-m-Y')}}
+                            </div></h3>
+                            <h3 class="card-color-text">Estado:
+                                <div class="card-color-text-normal"> {{$ganado->estado->nombre}}</div></h3>
+                        @endif
+                        @if(isset($ganado->padre))
+                            <h3 class="card-color-text">Padre:
+                                <div class="card-color-text-normal"><a
+                                            href="{{route('verganado',[$ganado->padre])}}">{{$ganado->padre->crotal}}</a>
+                            </div></h3>
+                        @else
+                            <h3 class="card-color-text">Padre:
+                                <div class="card-color-text-normal"> no definido
+                            </div></h3>
+                        @endif
+                        @if(isset($ganado->madre))
+                            <h3 class="card-color-text">Madre:
+                                <div class="card-color-text-normal"><a
+                                            href="{{route('verganado',[$ganado->madre])}}">{{$ganado->madre->crotal}}</a>
+                            </div></h3>
+                        @else
+                            <h3 class="card-color-text">Madre:
+                                <div class="card-color-text-normal"> no definida
+                            </div></h3>
                         @endif
 
 
                     </div>
                     <div class="row text-center card-content">
                         @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
-                            <a href="{{url('editar/ganado',['ganado'=>$ganado])}}" class="btn btn-success btn-sm"
+                            <a href="{{url('editar/ganado',['ganado'=>$ganado])}}"
+                               class="btn btn-success btn-sm"
                                role="button"><span
                                         class="glyphicon glyphicon-edit"></span> Editar</a>
                             @if($ganado->estado->alias=='V')
@@ -74,7 +95,6 @@
                 </div>
             </div>
 
-            @if(Auth::user()->hasAnyRole(array('Laboratorio')) && isset($ganado->gen))
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-content">
@@ -93,9 +113,103 @@
                     </div>
                 </div>
 
+        </div>
+            @else
+
+            <div class="row" style="margin-bottom: 30px">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title"><h1>Ficha de la res</h1></span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-color-text">Crotal:
+                                <div class="card-color-text-normal"> {{$ganado->crotal}}</div>
+                            </h3>
+                            @if(isset($ganado->ganaderia))
+                                <h3 class="card-color-text">Ganadería:
+                                    <div class="card-color-text-normal"><a
+                                                href="{{route('verganaderia',[$ganado->ganaderia])}}">{{$ganado->ganaderia->nombre}}</a>
+                                    </div>
+                                </h3>
+                            @else
+                                <h3 class="card-color-text">Ganadería:
+                                    <div class="card-color-text-normal"> No definida</a>
+
+                                    </div>
+                                </h3>
+                            @endif
+                            @if(isset($ganado->sexo) && isset($ganado->capa) && isset($ganado->fecha_nacimiento))
+                                <h3 class="card-color-text">Sexo:
+                                    <div class="card-color-text-normal"> {{$ganado->sexo->nombre}}</div></h3>
+                                <h3 class="card-color-text">Capa:
+                                    <div class="card-color-text-normal"> {{$ganado->capa->nombre}}</div></h3>
+                                <h3 class="card-color-text">Fecha de Nacimiento:
+                                    <div class="card-color-text-normal"> {{$ganado->fecha_nacimiento->format('d-m-Y')}}
+                                    </div></h3>
+                                <h3 class="card-color-text">Estado:
+                                    <div class="card-color-text-normal"> {{$ganado->estado->nombre}}</div></h3>
+                            @endif
+                            @if(isset($ganado->padre))
+                                <h3 class="card-color-text">Padre:
+                                    <div class="card-color-text-normal"><a
+                                                href="{{route('verganado',[$ganado->padre])}}">{{$ganado->padre->crotal}}</a>
+                                    </div></h3>
+                            @else
+                                <h3 class="card-color-text">Padre:
+                                    <div class="card-color-text-normal"> no definido
+                                    </div></h3>
+                            @endif
+                            @if(isset($ganado->madre))
+                                <h3 class="card-color-text">Madre:
+                                    <div class="card-color-text-normal"><a
+                                                href="{{route('verganado',[$ganado->madre])}}">{{$ganado->madre->crotal}}</a>
+                                    </div></h3>
+                            @else
+                                <h3 class="card-color-text">Madre:
+                                    <div class="card-color-text-normal"> no definida
+                                    </div></h3>
+                            @endif
+
+
+                        </div>
+                        <div class="row text-center card-content">
+                            @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                                <a href="{{url('editar/ganado',['ganado'=>$ganado])}}"
+                                   class="btn btn-success btn-sm"
+                                   role="button"><span
+                                            class="glyphicon glyphicon-edit"></span> Editar</a>
+                                @if($ganado->estado->alias=='V')
+                                    <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                                       role="button" data-id="{{$ganado->id}}"><span
+                                                class="glyphicon glyphicon-remove"></span>
+                                        Eliminar</a>
+                                @else
+                                    <a href="" class="btn btn-danger btn-sm eliminar-detail disabled"
+                                       role="button" data-id="{{$ganado->id}}"><span
+                                                class="glyphicon glyphicon-remove"></span>
+                                        Eliminar</a>
+
+                                @endif
+                            @endif
+                            @if(Auth::user()->hasAnyRole(array('Laboratorio')) && !isset($ganado->gen))
+                                <a
+                                        href="{{url('anadir/genes',['ganado'=>$ganado])}}"
+                                        class="btn btn-success btn-sm edpgen"
+                                        role="button"><span
+                                            class="glyphicon glyphicon-pencil"></span> Crear Perfil Genético</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             @endif
-        </div>
+
+
+
+
 
         @if(isset($ganados))
             <div class="row">
@@ -108,12 +222,6 @@
                 </div>
             </div>
         @endif
-
-
-
-
-
-
 
 
         <div class="row">

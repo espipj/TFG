@@ -51,18 +51,26 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Sexo</label>
                                 <div class="col-md-6">
-                                    @foreach($sexos as $sexo)
-                                        @if($sexo->nombre != $ganadoe->sexo->nombre)
-                                            <label class="radio-inline"><input type="radio" name="sexo_id"
-                                                                               value="{{$sexo->id}}">{{$sexo->nombre}}
-                                            </label>
-                                        @else
-                                            <label class="radio-inline"><input type="radio" name="sexo_id"
-                                                                               value="{{$sexo->id}}"
-                                                                               checked="checked">{{$sexo->nombre}}
-                                            </label>
-                                        @endif
-                                    @endforeach
+
+                                    @if(isset($ganadoe->sexo->nombre))
+                                        @foreach($sexos as $sexo)
+                                            @if($sexo->nombre != $ganadoe->sexo->nombre)
+                                                <label class="radio-inline"><input type="radio" name="sexo_id"
+                                                                                   value="{{$sexo->id}}">{{$sexo->nombre}}
+                                                </label>
+                                            @else
+                                                <label class="radio-inline"><input type="radio" name="sexo_id"
+                                                                                   value="{{$sexo->id}}"
+                                                                                   checked="checked">{{$sexo->nombre}}
+                                                </label>
+                                            @endif
+                                        @endforeach
+                                    @else
+
+                                        @foreach($sexos as $sexo)
+                                            <label class="radio-inline">{!! Form::radio('sexo_id',$sexo->id) !!} {{$sexo->nombre}}</label>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
 
@@ -79,6 +87,8 @@
 
                                 </div>
                             </div>
+
+
                             <div class="col-xs-10 col-xs-offset-1">
                                 <label>Seleccionar la posible madre</label>
 
@@ -103,7 +113,7 @@
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
                                                 <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
-                                                @if($ganadoe->madre->id==$ganado->id)
+                                                @if(isset($ganadoe->madre) && $ganadoe->madre->id==$ganado->id)
                                                     <td style="width:34%;">{!! Form::radio('madre_id',$ganado->id,true,['class'=>'pariente']) !!}</td>
                                                 @else
                                                     <td style="width:34%;">{!! Form::radio('madre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
@@ -111,6 +121,7 @@
                                             </tr>
                                         @endif
                                     @endforeach
+
                                     </tbody>
                                 </table>
 
@@ -136,7 +147,7 @@
                                                 data-id="{{$ganado->id}}">
                                                 <td style="width:33%;">{{$ganado->crotal}}</td>
                                                 <td style="width:33%;">{{$ganado->ganaderia->nombre}}</td>
-                                                @if($ganadoe->padre->id==$ganado->id)
+                                                @if(isset($ganadoe->padre) && $ganadoe->padre->id==$ganado->id)
                                                     <td style="width:34%;">{!! Form::radio('padre_id',$ganado->id,true,['class'=>'pariente']) !!}</td>
                                                 @else
                                                     <td style="width:34%;">{!! Form::radio('padre_id',$ganado->id,false,['class'=>'pariente']) !!}</td>
