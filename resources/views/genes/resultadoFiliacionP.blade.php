@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-1">
                                 <h1>Resultados:</h1>
-                                <p>Para la determinación del porcentaje de Probabilidad de Paternidad se emplean las fórmulas descritas por Evett y Weir2, obteniéndose un valor del {{$porcentaje}}%.</p>
+                                <p style="font-size: 16px;margin-bottom: 35px">Para la determinación del porcentaje de Probabilidad de Paternidad se emplean las fórmulas descritas por Evett y Weir2, obteniéndose un valor del <strong>{{$porcentaje}}%</strong>.</p>
 
                             </div>
                         </div>
