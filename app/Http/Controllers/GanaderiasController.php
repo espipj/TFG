@@ -67,7 +67,7 @@ class GanaderiasController extends Controller
         $this->validate($request,[
             'nombre'=>['required','max:256'],
             'sigla'=>['required'],
-            'email'=>['required'],
+            'email'=>['required','email'],
             'telefono'=>['required'],
             'asociacion_id'=>['required']
         ]);

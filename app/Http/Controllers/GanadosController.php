@@ -73,7 +73,7 @@ class GanadosController extends Controller
     public function guardar(Request $request)
     {
         $this->validate($request, [
-            'crotal' => ['required', 'max:256'],
+            'crotal' => ['required', 'max:256','unique:ganados'],
             'sexo_id' => ['required'],
             'fecha_nacimiento' => ['required'],
             'ganaderia_id' => ['required'],
