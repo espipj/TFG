@@ -80,8 +80,7 @@ class ImportExportController extends Controller
         }
         switch ($opcion){
             case 'ganado':
-                    Ganado::importarXLS($reader);
-
+                Ganado::importarXLS($reader);
                 return back();
                 break;
             case 'ganaderia':
