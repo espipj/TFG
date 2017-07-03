@@ -37,13 +37,19 @@
 
 
         </div>
-
-        <h2>Ganaderías</h2>
+<div class="row">
+            
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <h2>Ganaderías</h2>
+                        </span>
+        
         <a href="{{url('registrar/ganaderia',['asociacion'=>$asociacion])}}" class="btn btn-primary btn-sm"
            role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
 
         @include('ganaderia.tablaGanaderias')
-
+</div></div></div>
     @endif
 @endsection
 
