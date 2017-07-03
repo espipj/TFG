@@ -89,7 +89,7 @@ class Ganaderia extends Model
 
 
     /**
-     *Event handler triggered when deleting a Ganadería
+     *Event handler triggered when deleting a Ganaderia
      */
     protected static function boot() {
         parent::boot();

@@ -70,6 +70,16 @@ class Asociacion extends Model
     }
 
     /**
+     *Event handler triggered when deleting a Asociacion
+     */
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($asociacion) {
+            $asociacion->ganaderias()->delete();
+        });
+    }
+    /**
      * Function used to create empty Asociacion.
      *
      * If there's already an Asociacion created with that name, returns it.
