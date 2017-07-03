@@ -64,7 +64,7 @@
                                     href="{{route('verexplotacion')}}">Explotación</a></li>
                     @endif
 
-                    @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))
+                    @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin','Administrador')))
                         <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
                                     href="{{route('vermuestra')}}">Muestra</a></li>
                         <li {{{ (Request::is('ver/gen*') ? 'class=active' : '') }}}><a

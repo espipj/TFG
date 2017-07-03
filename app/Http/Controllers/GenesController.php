@@ -33,6 +33,14 @@ class GenesController extends Controller
         $usuario = Auth::user();
         if ($usuario->hasAnyRole(array('Administrador', 'SuperAdmin', 'Laboratorio'))) {
             $permiso = "conpermiso";
+            if ($usuario->hasAnyRole(array('Administrador')) && !isset($usuario->asociacion)){
+                $permiso = "sinpermiso";
+
+            }
+            if ($usuario->hasAnyRole(array('Laboratorio')) && !isset($usuario->laboratorio)){
+                $permiso = "sinpermiso";
+
+            }
         } else {
             $permiso = "sinpermiso";
         }

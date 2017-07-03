@@ -94,10 +94,10 @@ class GanaderiasController extends Controller
         if ($usuario->ganaderia!=null){
 
             $Ganaderia=$usuario->ganaderia->id;
-            //dd($Asociacion);
         }
         if($Ganaderia==null){
-            $ganaderias=Ganaderia::all();
+
+            $ganaderias=Ganaderia::ganaderiasUser($usuario);
             return view('ganaderia.verGanaderias',compact('ganaderias'));
         }else{
             return $this->show_detail($Ganaderia);

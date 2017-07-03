@@ -143,7 +143,7 @@ class Ganaderia extends Model
     public static function generateArrayForExport()
     {
 
-        $ganaderias = Ganaderia::all();
+        $ganaderias = Ganaderia::ganadosAExportar();
         $array = array();
         foreach ($ganaderias as $ganaderia) {
             $explotaciones = $ganaderia->explotaciones;
@@ -264,6 +264,54 @@ class Ganaderia extends Model
         }
 
         return $insert;
+    }
+
+    /**
+     * @param $user
+     * @return string|static
+     */
+    public static function ganaderiasUser($user)
+    {
+        $ganaderias = Ganaderia::all()->sortBy('nombre');
+        if ($user->hasAnyRole(array('SuperAdmin'))) {
+            return $ganaderias;
+
+
+        } else if ($user->hasAnyRole(array('Administrador'))) {
+
+            if ($user->asociacion != null) {
+
+                $asociacion = Asociacion::find($user->asociacion->id);
+
+                return $ganaderias = $asociacion->ganaderias->sortBy('nombre');
+            } else {
+
+                return $ganaderias = "sinpermiso";
+            }
+
+
+        } else {
+            return $ganaderias = "sinpermiso";
+        }
+    }
+
+    /**
+     * Returns Ganado that must be exported with a determined User.
+     *
+     * @return Ganaderia|\Illuminate\Support\Collection|string
+     */
+    public static function ganaderiasAExportar()
+    {
+
+
+        $ganaderias = Ganaderia::ganaderiasUser(Auth::user());
+
+        if ($ganaderias == "sinpermiso") {
+            return $ganaderias = collect(new Ganado);
+        } else {
+            return $ganaderias;
+        }
+
     }
 
 }

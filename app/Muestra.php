@@ -147,4 +147,25 @@ class Muestra extends Model
 
     }
 
+    /**
+     * Returns Muestras that an Asociacion has registered.
+     * @param Asociacion $asociacion
+     * @return array
+     */
+    public static function muestrasAsociacion($asociacion){
+        $muestras=Muestra::all();
+        $ganado=$asociacion->ganados;
+        //dd($ganado);
+        $array=array();
+        foreach ($muestras as $muestra){
+
+            if ($ganado->contains($muestra->ganado)){
+                array_push($array,$muestra);
+            }
+        }
+
+        return $array;
+    }
+
+
 }

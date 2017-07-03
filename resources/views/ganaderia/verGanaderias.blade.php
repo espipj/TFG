@@ -10,6 +10,8 @@
 
     @if (Auth::guest())
         @include('partials.permission')
+    @elseif($ganaderias=="sinpermiso")
+        @include('partials.role-permission')
     @else
         <div class="card" style="margin-bottom: 30px"><div class="card-content"><span class="card-title"><h1>Ganaderías</h1></span>
         <div class="dropzone" id="dropzone" data-tipo="ganaderia">
@@ -34,7 +36,6 @@
                     {!! Form::file('import_file',['hidden','id'=>'file']) !!}
                 </label>
                 {!! Form::close() !!}
-                {{--TODO Buscador Ganaderias y Asociaciones--}}
                 @include('ganaderia.tablaGanaderias')
             </div>
         </div>

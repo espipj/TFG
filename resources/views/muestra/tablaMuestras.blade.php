@@ -20,7 +20,11 @@
             <tr class="clickable-row" data-href="{{route('vermuestra',[$muestra])}}" data-id="{{$muestra->id}}">
                 <td style="width:12%;">{{$muestra->tubo}}</td>
                 <td style="width:15%;">{{$muestra->fecha_extraccion->format('d-m-Y')}}</td>
-                <td style="width:20%;">{{$muestra->tipoConsulta->nombre}}</td>
+                @if($muestra->tipoconsulta->nombre == "Filiación Padre" || $muestra->tipoconsulta->nombre == "Filiación Progenitores")
+                    <td style="width:20%;">{{$muestra->tipoConsulta->nombre}} <img src="{{asset('images/gen.png')}}" height="20px"></td>
+                @else
+                    <td style="width:20%;">{{$muestra->tipoConsulta->nombre}}</td>
+                @endif
                 <td style="width:25%;">{{$muestra->ganado->crotal}}</td>
                 <td style="width:28%;">
                     <div class="btn-group">

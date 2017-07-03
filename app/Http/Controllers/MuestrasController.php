@@ -96,7 +96,12 @@ class MuestrasController extends Controller
                 }
 
             }else {
-                $muestras = Muestra::all()->sortBy('tubo');
+                if (isset($usuario->asociacion)){
+                    $muestras = Muestra::muestrasAsociacion($usuario->asociacion);
+
+                }else{
+                    $muestras="nomuest";
+                }
                 return view('muestra.verMuestras', compact('muestras','descripcion'));
             }
         }else{

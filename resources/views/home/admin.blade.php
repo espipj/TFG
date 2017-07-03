@@ -10,7 +10,8 @@
                 </div>
             </a>
         </div>
-
+@endif
+    @if(Auth::user()->hasAnyRole(array('Administrador','Superadmin','Ganadero')))
         <div class="col-md-3 text-center cuadropanover">
             <a href="{{url('ver/ganaderia')}}">
                 <div class="cuadropan">
@@ -20,8 +21,6 @@
                 </div>
             </a>
         </div>
-    @endif
-    @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','Superadmin')))
         <div class="col-md-3 text-center cuadropanover">
             <a href="{{url('ver/ganado')}}">
                 <div class="cuadropan">
@@ -52,7 +51,7 @@
                 </a>
             </div>
     @endif
-    @if(Auth::user()->hasAnyRole(array('Laboratorio','Superadmin')))
+    @if(Auth::user()->hasAnyRole(array('Laboratorio','Superadmin','Administrador')))
         <div class="col-md-3 text-center cuadropanover">
             <a href="{{route('vermuestra')}}">
                 <div class="cuadropan">
