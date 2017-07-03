@@ -6,20 +6,25 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="card" style="margin-bottom: 30px">
+                <div class="card-content"><span class="card-title"><h1>Explotación</h1></span>
 
-        <div class="jumbotron">
-            <h1>Datos de la explotación:</h1>
-            <h2>Ganadería: <a
-                        href="{{route('verganaderia',[$explotacion->ganaderia])}}">{{$explotacion->ganaderia->nombre}}</a></h2>
-            <h2>CEA: {{$explotacion->codigo_explotacion}}</h2>
-            <h2>Municipio: {{$explotacion->municipio}}</h2>
-            <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}" class="btn btn-success btn-sm"
-               role="button"><span
-                        class="glyphicon glyphicon-edit"></span> Editar</a>
+                    <h2 class="card-color-text">CEA: <div class="card-color-text-normal">{{$explotacion->codigo_explotacion}}</div></h2>
+                    <h2 class="card-color-text">Municipio: <div class="card-color-text-normal">{{$explotacion->municipio}}</div></h2><h2 class="card-color-text">Ganadería: <div class="card-color-text-normal"><a
+                                    href="{{route('verganaderia',[$explotacion->ganaderia])}}">{{$explotacion->ganaderia->nombre}}</a></a>
+                    </h2>
+                    <div class="text-center">
+                        <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}"
+                           class="btn btn-success btn-sm"
+                           role="button"><span
+                                    class="glyphicon glyphicon-edit"></span> Editar</a>
 
-            <a href="" class="btn btn-danger btn-sm eliminar-detail"
-               role="button" data-id="{{$explotacion->id}}"><span class="glyphicon glyphicon-remove"></span>
-                Eliminar</a>
+                        <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                           role="button" data-id="{{$explotacion->id}}"><span class="glyphicon glyphicon-remove"></span>
+                            Eliminar</a></div>
+                </div>
+            </div>
         </div>
     @endif
 

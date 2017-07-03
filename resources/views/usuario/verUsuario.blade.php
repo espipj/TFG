@@ -6,17 +6,23 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
-        <div class="jumbotron">
-            <h1>Datos del usuario</h1>
-            <h2>Nombre: {{$usuario->name}}</h2>
-            <h3>E-Mail: <a href="mailto:{{$usuario->email}}">{{$usuario->email}}</a> </h3>
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="card" style="margin-bottom: 30px">
+                <div class="card-content"><span class="card-title"><h1>Usuario</h1></span>
 
+                    <h3 class="card-color-text">Nombre: <div class="card-color-text-normal">{{$usuario->name}}</div></h3>
+                    <h3 class="card-color-text">E-Mail: <div class="card-color-text-normal"><a href="mailto:{{$usuario->email}}">{{$usuario->email}}</a></div></h3>
+<div class="text-center">
 
-            <a href="{{url('editar/usuario',['usuario'=>$usuario])}}" class="btn btn-success btn-sm"
-               role="button"><span
-                        class="glyphicon glyphicon-user"></span> Asignar Responsabilidades</a>
-            <a href="" class="btn btn-danger btn-sm eliminar-detail"
-               role="button" data-id="{{$usuario->id}}"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                    <a href="{{url('editar/usuario',['usuario'=>$usuario])}}" class="btn btn-success btn-sm"
+                       role="button"><span
+                                class="glyphicon glyphicon-user"></span> Asignar Responsabilidades</a>
+                    <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                       role="button" data-id="{{$usuario->id}}"><span class="glyphicon glyphicon-remove"></span>
+                        Eliminar</a>
+</div>
+                </div>
+            </div>
         </div>
 
 

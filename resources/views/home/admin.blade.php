@@ -1,6 +1,5 @@
-<div class="row">
-    <h1>Panel de Inicio:</h1>
-</div>
+<div class="card" style="margin-bottom: 30px"><div class="card-content"><span class="card-title"><h1>Panel de Inicio:</h1></span>
+
 <div class="row">
     @if(Auth::user()->hasAnyRole(array('Administrador','Superadmin')))
         <div class="col-md-3 text-center cuadropanover">
@@ -85,4 +84,4 @@
         </div>
     @endif
 
-</div>
+</div></div> </div>

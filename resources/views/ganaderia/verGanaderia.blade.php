@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="card">
+            <div class="card" style="margin-bottom: 30px">
                 <div class="card-content">
                     <h2>Explotaciones Ganaderas</h2>
                     @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
