@@ -5,13 +5,13 @@
 <table id="tablaUsuarios" class="table header-fixed ganados ">
     <thead>
     <tr class="header">
-        <th style="width:18%;">Nombre</th>
-        <th style="width:10%;">Email</th>
+        <th style="width:16%;">Nombre</th>
+        <th style="width:18%;">Email</th>
         <th style="width:10%;">Ganadero</th>
         <th style="width:10%;">Laboratorio</th>
         <th style="width:10%;">Administrador</th>
         <th style="width:18%;">Roles</th>
-        <th style="width:24%;">Acciones</th>
+        <th style="width:18%;">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -23,8 +23,8 @@
 
                 {!! Form::open(['url' => ['asignar/usuario'], 'method' => 'POST','id'=>'form-asign']) !!}
                 {{ csrf_field() }}
-                <td style="width:18%;">{{$usuario->name}}</td>
-                <td style="width:10%;">{{$usuario->email}}<input type="hidden" name="email" value="{{ $usuario->email }}"></td>
+                <td style="width:16%;">{{$usuario->name}}</td>
+                <td style="width:18%;">{{$usuario->email}}<input type="hidden" name="email" value="{{ $usuario->email }}"></td>
 
                 <td style="width:10%;"><input type="checkbox" class="role-tick" {{ $usuario->hasAnyRole('Ganadero') ? 'checked' : '' }} name="role_ganad"></td>
                 <td style="width:10%;"><input type="checkbox" class="role-tick" {{ $usuario->hasAnyRole('Laboratorio') ? 'checked' : '' }} name="role_labo"></td>
@@ -35,7 +35,7 @@
                     <button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-floppy-disk"></span> Asignar</button>
 
                 </td>
-                <td style="width:24%;">
+                <td style="width:18%;">
                     <div class="btn-group">
                         <a href="{{url('editar/usuario',['usuario'=>$usuario])}}" class="btn btn-success btn-sm"
                            role="button"><span
