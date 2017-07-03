@@ -11,13 +11,15 @@
     @if (Auth::guest())
         @include('partials.permission')
     @else
+        <div class="card" style="margin-bottom: 30px"><div class="card-content"><span class="card-title"><h1>Ganaderías</h1></span>
         <div class="dropzone" id="dropzone" data-tipo="ganaderia">
 
             <h2 id='titulodrop' class='titulodrop' hidden>Deposita el fichero Excel a importar.</h2>
             <img id='imagedrop' src="{{asset('images/excel.png')}}" height="50%" width="50%" hidden>
             <div class="in-dropzone">
-                <h1>Ganaderías</h1>
+
                 <p>Desde esta página puedes registrar una nueva ganadería o editar las ya existentes y listadas.</p>
+                <br>
                 <a href="{{url('registrar/ganaderia')}}" class="btn btn-primary btn-md" role="button"><span
                             class="glyphicon glyphicon-plus"></span> Nueva Ganadería</a>
                 <a href="{{url('exportar/ganaderia/xlsx')}}" class="btn btn-excel btn-md" role="button"><span
@@ -36,7 +38,7 @@
                 @include('ganaderia.tablaGanaderias')
             </div>
         </div>
-
+            </div></div>
     @endif
 @endsection
 

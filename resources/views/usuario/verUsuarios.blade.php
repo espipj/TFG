@@ -12,10 +12,14 @@
         @include('partials.permission')
     @else
 
+        <div class="card" style="margin-bottom: 30px">
+            <div class="card-content"><span class="card-title"><h1>Usuarios</h1></span>
 
-        <h1>Usuarios</h1>
-        <p>Desde esta página puedes cambiar los permisos de cada usuario existente, asi como asignarle responsabilidades.</p>
+                <p>Desde esta página puedes cambiar los permisos de cada usuario existente, asi como asignarle
+                    responsabilidades.</p>
 
-        @include('usuario.tablaUsuarios')
+                @include('usuario.tablaUsuarios')
+            </div>
+        </div>
     @endif
 @endsection

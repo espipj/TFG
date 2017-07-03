@@ -13,7 +13,7 @@
     @elseif($ganados=="sing")
         @include('partials.role-permission')
     @else
-
+        <div class="card" style="margin-bottom: 30px"><div class="card-content"><span class="card-title"><h1>Ganado</h1></span>
 
         @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
             <div class="dropzone" id="dropzone" data-tipo="ganado">
@@ -22,9 +22,8 @@
                 <div class="in-dropzone">
         @endif
 
-                    <h1>Ganado</h1>
                     <p>{{$descripcion}}</p>
-
+<br>
                     @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                         <a href="{{url('registrar/ganado')}}" class="btn btn-primary btn-md" role="button"><span
                                     class="glyphicon glyphicon-plus"></span> Nueva res</a>
@@ -47,6 +46,6 @@
                     @endif
                     @include('ganado.tablaGanados')
                 </div>
-            </div>
+            </div></div></div>
         @endif
 @endsection

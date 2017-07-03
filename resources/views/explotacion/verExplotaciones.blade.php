@@ -14,7 +14,7 @@
     @elseif($explotaciones=="noexp")
         @include('partials.role-permission')
     @else
-
+        <div class="card" style="margin-bottom: 30px"><div class="card-content"><span class="card-title"><h1>Explotaciones</h1></span>
 
         @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
             <div class="dropzone" id="dropzone" data-tipo="explotacion">
@@ -22,8 +22,9 @@
                 <img id='imagedrop' src="{{asset('images/excel.png')}}" height="50%" width="50%" hidden>
                 <div class="in-dropzone">
                     @endif
-                    <h1>Explotaciones</h1>
+
                     <p>Desde esta página puedes registrar una nueva explotación o editar las ya existentes.</p>
+                    <br>
                     @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                         <a href="{{url('registrar/explotacion')}}" class="btn btn-primary btn-md" role="button"><span
                                     class="glyphicon glyphicon-plus"></span> Nueva explotación</a>
@@ -47,6 +48,6 @@
                     @endif
                     @include('explotacion.tablaExplotacion')
                 </div>
-            </div>
+            </div></div></div>
         @endif
 @endsection
