@@ -46,6 +46,6 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        return parent::render($request, $e);
+        return response()->view('errors.500');
     }
 }
