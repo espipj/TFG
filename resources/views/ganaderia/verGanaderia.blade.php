@@ -10,12 +10,19 @@
                 <div class="card">
                     <div class="card-content">
                     <span class="card-title">
-                        {{$ganaderia->nombre}}
+                        {{$ganaderia->nombre}} ({{$ganaderia->sigla}})
                     </span>
-                        <h3 class="card-color-text">Sigla: <div class="card-color-text-normal">{{$ganaderia->sigla}}</div></h3>
-                        <h4 class="card-color-text">Email: <div class="card-color-text-normal"><a href="mailto:{{$ganaderia->email}}">{{$ganaderia->email}}</a></div></h4>
-                        <h4 class="card-color-text">Telefono: <div class="card-color-text-normal"><a href="tel:{{$ganaderia->telefono}}">{{$ganaderia->telefono}}</a></div></h4>
-                        <h4 class="card-color-text">Asociación: <div class="card-color-text-normal">{{$ganaderia->asociacion->nombre}}</div></h4>
+                        <h4 class="card-color-text">Email:
+                            <div class="card-color-text-normal"><a
+                                        href="mailto:{{$ganaderia->email}}">{{$ganaderia->email}}</a></div>
+                        </h4>
+                        <h4 class="card-color-text">Telefono:
+                            <div class="card-color-text-normal"><a
+                                        href="tel:{{$ganaderia->telefono}}">{{$ganaderia->telefono}}</a></div>
+                        </h4>
+                        <h4 class="card-color-text">Asociación:
+                            <div class="card-color-text-normal">{{$ganaderia->asociacion->nombre}}</div>
+                        </h4>
                         <br>
                         @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                             <div class="text-center">
@@ -33,24 +40,32 @@
             </div>
 
         </div>
-        <h2>Ganado</h2>
-        @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
-            <a href="{{url('registrar/ganado',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-sm"
-               role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganado</a>
-        @endif
-        @include('ganado.tablaGanados')
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <h2>Ganado</h2>
+                    @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                        <a href="{{url('registrar/ganado',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-sm"
+                           role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganado</a>
+                    @endif
+                    @include('ganado.tablaGanados')
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <h2>Explotaciones Ganaderas</h2>
+                    @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                        <a href="{{url('registrar/explotacion',['ganaderia'=>$ganaderia])}}"
+                           class="btn btn-primary btn-sm"
+                           role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Explotación</a>
+                    @endif
+                    @include('explotacion.tablaExplotacion')
 
-
-        <h2>Explotaciones Ganaderas</h2>
-        @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
-            <a href="{{url('registrar/explotacion',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-sm"
-               role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Explotación</a>
-        @endif
-        @include('explotacion.tablaExplotacion')
-        {{--<h2>Ganaderos</h2>
-        <a href="{{url('registrar/ganadero',['ganaderia'=>$ganaderia])}}" class="btn btn-primary btn-sm" role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadero</a>
-        @include('ganadero.tablaGanaderos')
-    --}}
+                </div>
+            </div>
+        </div>
     @endif
 @endsection
 

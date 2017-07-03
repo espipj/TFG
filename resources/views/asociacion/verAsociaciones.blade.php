@@ -7,8 +7,10 @@
     @elseif(!Auth::user()->hasAnyRole(array('SuperAdmin')))
         @include('partials.role-permission')
     @else
-        <h1>Asociaciones</h1>
+        <div class="card" style="margin-bottom: 30px"><div class="card-content"><span class="card-title"><h1>Asociaciones</h1></span>
+
         <p>Desde esta página puedes registrar una nueva asociación o editar las ya existentes y listadas.</p>
+                <br>
         <a href="{{url('registrar/asociacion')}}" class="btn btn-primary btn-md" role="button"><span
                     class="glyphicon glyphicon-plus"></span> Nueva asociación</a>
 
@@ -56,7 +58,7 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
+        </div></div></div>
     @endif
 @endsection
 
