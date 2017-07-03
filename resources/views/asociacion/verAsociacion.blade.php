@@ -38,7 +38,7 @@
 
         </div>
 <div class="row">
-            
+            <div class="col-sm-12">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">
@@ -49,7 +49,7 @@
            role="button"><span class="glyphicon glyphicon-plus"></span> Registrar Ganadería</a>
 
         @include('ganaderia.tablaGanaderias')
-</div></div></div>
+</div></div></div></div>
     @endif
 @endsection
 
