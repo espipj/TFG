@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Controllers\AsociacionesController;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Ganaderia
@@ -86,6 +87,20 @@ class Ganaderia extends Model
         return $this->hasMany(User::class);
     }
 
+
+    /**
+     *Event handler triggered when deleting a Ganadería
+     */
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($ganaderia) {
+            $ganaderia->ganados()->delete();
+            $ganaderia->explotaciones()->delete();
+            //$ganaderia->usuarios()->delete();
+        });
+    }
+
     /**
      * Function used to generate a string for the dropdown selectors to have both attributes displayed
      * @return string The string that is going to be shown in a select option dropdown.
@@ -143,7 +158,7 @@ class Ganaderia extends Model
     public static function generateArrayForExport()
     {
 
-        $ganaderias = Ganaderia::ganadosAExportar();
+        $ganaderias = Ganaderia::ganaderiasAExportar();
         $array = array();
         foreach ($ganaderias as $ganaderia) {
             $explotaciones = $ganaderia->explotaciones;
