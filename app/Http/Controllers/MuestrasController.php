@@ -95,6 +95,9 @@ class MuestrasController extends Controller
 
                 }
 
+            }else if ($usuario->hasAnyRole('SuperAdmin')){
+                $muestras=Muestra::all();
+                return view('muestra.verMuestras', compact('muestras','descripcion'));
             }else {
                 if (isset($usuario->asociacion)){
                     $muestras = Muestra::muestrasAsociacion($usuario->asociacion);
