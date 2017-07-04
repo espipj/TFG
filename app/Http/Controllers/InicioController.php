@@ -37,4 +37,10 @@ class InicioController extends Controller
     public function land(){
         return view('index');
     }
+
+    public function manual(){
+        $file=public_path().'/docs/manual.pdf';
+        return response()->download($file, "ManualDeUsuario.pdf");
+    }
+
 }

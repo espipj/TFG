@@ -16,6 +16,10 @@ Route::get('/',[
     'uses'  => 'InicioController@land',
     'as'    =>  'landing'
 ]);
+Route::get('/manual',[
+    'uses'  => 'InicioController@manual',
+    'as'    =>  'manual'
+]);
 
 
 

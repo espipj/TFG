@@ -82,5 +82,14 @@
             </a>
         </div>
     @endif
+        <div class="col-md-3 text-center cuadropanover">
+            <a href="{{route('manual')}}">
+                <div class="cuadropan">
+
+                    <img src="{{asset('images/manual.png')}}">
+                    <h2>Manual</h2>
+                </div>
+            </a>
+        </div>
 
 </div></div> </div>
