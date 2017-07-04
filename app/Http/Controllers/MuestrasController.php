@@ -130,15 +130,17 @@ class MuestrasController extends Controller
      * @param integer $Explotacion id of the Muestra we want to edit.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show_edit($Ganado){
-
-        $ganadoe=Ganado::find($Ganado);
-        $ganados=Ganado::all()->sortBy('crotal');
-        $sexos=Sexo::all();
-        $ganaderias=Ganaderia::lists('nombre','id');
+    public function show_edit($Muestra){
         session()->put('url.intended', URL::previous());
+        $muestra=Muestra::find($Muestra);
+        $ganaderias=Ganaderia::all()->sortBy('select_option')->lists('select_option','id');
+        $ganados=Ganado::all()->sortBy('crotal');
+        $tipomuestras=TipoMuestra::all()->sortBy('select_option')->lists('select_option','id');
+        $tipoconsultas=TipoConsulta::all()->sortBy('select_option')->lists('select_option','id');
+        $laboratorios=Laboratorio::all()->sortBy('select_option')->lists('select_option','id');
 
-        return view('ganado.editarGanado', compact('ganados','ganadoe','sexos','ganaderias'));
+        return view('muestra.editarMuestra', compact('muestra','ganaderias','ganados','tipomuestras','tipoconsultas','laboratorios'));
+
 
     }
 
@@ -152,27 +154,27 @@ class MuestrasController extends Controller
      */
     public function edit(Request $request){
         $this->validate($request,[
-            'crotal'=>['required','max:256'],
-            'sexo_id'=>['required'],
-            'fecha_nacimiento'=>['required'],
-            'ganaderia_id'=>['required'],
+            'tubo'=>['required'],
+            'fecha_extraccion'=>['required'],
             'ganado_id'=>['required'],
+            'tipo_muestra_id'=>['required'],
+            'tipo_consulta_id'=>['required'],
+            'laboratorio_id'=>['required'],
+            'muestra_id'=>['required'],
         ]);
-        $datos = $request->except(['ganaderia_id','sexo_id','ganado_id','fecha_nacimiento']);
-        $ganado=Ganado::find($request->input('ganado_id'));
-        $padre=Ganado::find($request->input('padre_id'));
-        $madre=Ganado::find($request->input('madre_id'));
-        $padre->hijosP()->save($ganado);
-        $madre->hijosM()->save($ganado);
-        $ganado->fill($datos)->save();
-        $ganado->fecha_nacimiento=$request->input('fecha_nacimiento');
-        $ganado->save();
-        $ganaderia=Ganaderia::find($request->input('ganaderia_id'));
-        $sexo=Sexo::find($request->input('sexo_id'));
-        $ganaderia->ganados()->save($ganado);
-        $sexo->ganados()->save($ganado);
+        $datos = $request->except(['ganado_id','tipo_muestra_id','tipo_consulta_id','laboratorio_id','muestra_id','fecha_extraccion']);
+        $muestra=Muestra::find($request->input('muestra_id'));
+        $muestra->fill($datos)->save();
+
+
+
+        $muestra->setFechaExtraccion($request->input('fecha_extraccion'));
+        $muestra->setGanado(Ganado::find($request->input('ganado_id')));
+        $muestra->setLaboratorio(Laboratorio::find($request->input('laboratorio_id')));
+        $tconsulta=TipoConsulta::find($request->input('tipo_consulta_id'));
+        $muestra->setTipoConsulta($tconsulta);
+        $muestra->setTipoMuestra(TipoMuestra::find($request->input('tipo_muestra_id')));
         return Redirect::intended('/');
-        //return redirect()->route('verganado',[$ganado]);
     }
 
     /**

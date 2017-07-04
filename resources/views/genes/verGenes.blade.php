@@ -27,6 +27,8 @@
                                 Excel.</p>
 
                             <div class="text-center" style="margin: 30px auto">
+
+                                @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))
                                 <a href="{{url('exportar/genes/xlsx')}}" class="btn btn-excel btn-md text-center"
                                    role="button"><span
                                             class="glyphicon glyphicon-cloud-download"></span> Exportar Genes en
@@ -34,8 +36,7 @@
                                 <a href="{{url('exportar/genes/csv')}}" class="btn btn-excel btn-md text-center"
                                    role="button"><span
                                             class="glyphicon glyphicon-cloud-download"></span> Exportar Genes en CSV</a>
-
-                                @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin')))
+@endif
                                     {!! Form::open(['url' => 'importar/genes','id'=>'file','class'=>'form-inline','files'=>'true']) !!}
                                     {!! csrf_field() !!}
                                     <label class="btn btn-excel btn-md text-center"><span
@@ -43,7 +44,7 @@
                                         {!! Form::file('import_file',['hidden','id'=>'file']) !!}
                                     </label>
                                     {!! Form::close() !!}
-                                @endif
+
                             </div>
                         </div>
                     </div>
