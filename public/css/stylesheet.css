@@ -164,96 +164,6 @@ table.table {
     }
 }
 
-#hereditarias .unidadimg {
-    content: '';
-    background-image: url("/images/log-verde.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-#neoplasticas .unidadimg {
-    content: '';
-    background-image: url("/images/log-naranja.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-#cmolecular .unidadimg {
-    content: '';
-    background: url("/images/log-azul.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-#hmalignas .unidadimg {
-    content: '';
-    background: url("/images/log-rojo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-#aptidi .unidadimg {
-    content: '';
-    background: url("/images/log-gris.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-#unidad {
-}
-
-#hereditarias {
-}
-
-#informacion1 {
-}
-
-#informacion1 li {
-    text-align: left;
-}
-
-#informacion1 h2 {
-    font-weight: 400;
-    font-size: 36px;
-    text-align: center;
-}
-
-#informacion1 p {
-    font-size: 12px;
-    text-align: justify;
-}
-
-#informacion1 article {
-    padding: 40px 0px;
-}
-
-#informacion1 h1 {
-    font-weight: 600;
-    font-size: 48px;
-    text-align: center;
-}
-
-#informacion2 h1 {
-    font-weight: 600;
-    font-size: 48px;
-    text-align: center;
-}
-
-#informacion2 h2 {
-    font-weight: 400;
-    font-size: 36px;
-    text-align: center;
-}
-
-.unidad {
-}
-
-.unidadimg {
-    height: 60px;
-    width: 62px;
-    margin: 10px auto;
-    display: block;
-}
 
 #contacto p {
     margin: auto;
@@ -323,15 +233,6 @@ table.table {
     margin-top: 25px;
 
 }
-
-/*#miTabla tbody {
-	display: block;
-	width: 100%;
-}
-#miTabla tbody {
-	height: 400px;
-	overflow-y: auto;
-}*/
 
 .header-fixed {
     width: 100%
