@@ -1,18 +1,22 @@
 html {
     position: relative;
-    min-height: 100%;
+    height: 100%;
+    margin: 0;
 }
 
 body {
     font-family: 'Raleway', sans-serif;
     padding-top: 65px;
     padding-bottom: 285px;
+    min-height: 100%;
+    margin:0;
+    position: relative;
 }
-
 .footer {
     position: absolute;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 285px;
@@ -20,7 +24,6 @@ body {
 
     color: #FFFFFF;
 }
-
 .navbar ul {
     text-align: left;
 }

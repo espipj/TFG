@@ -104,8 +104,8 @@
     @yield('contenido')
 </div>
 
-
 <footer class="footer" id="contacto">
+    <div class="container">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
         <div class="col-sm-6">
             <h2>Innovagenomics S.L</h2>
@@ -123,6 +123,7 @@
         <div class="col-sm-6 col-xs-12">
             <div id="mapa"></div>
         </div>
+    </div>
     </div>
 </footer>
 
