@@ -1,13 +1,15 @@
 @extends('layout')
 
 @section('contenido-fluid')
-    <div class="row">
+    <div class="container-fluid">
+    <div class="row" style="margin-bottom: 20px">
         <div class="col-sm-6 col-sm-offset-3">
             <div class="text-center">
                 <h1>Software de Gestión Ganadera y Análisis Genético</h1>
             </div>
         </div>
     </div>
+        <div class="row">
     <div class="carousel slide" data-ride="carousel" style="margin-top: -15px">
 
         <div class="carousel-inner">
@@ -22,10 +24,12 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
     <div class="container" style="padding-bottom: 40px">
         <div class="row">
             <div class="col-sm-6">
-                    <h2>Participantes en el proyecto:</h2>
+                <h2>Participantes en el proyecto:</h2>
 
             </div>
         </div>

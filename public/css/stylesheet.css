@@ -7,7 +7,7 @@ html {
 body {
     font-family: 'Raleway', sans-serif;
     padding-top: 65px;
-    padding-bottom: 285px;
+    padding-bottom: 290px;
     min-height: 100%;
     margin:0;
     position: relative;
@@ -19,7 +19,7 @@ body {
     right: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 285px;
+    max-height: 290px;
     background-color: #09567B;
 
     color: #FFFFFF;
@@ -28,8 +28,6 @@ body {
     text-align: left;
 }
 
-#topFixedNavbar1 {
-}
 
 table.table {
     margin-top: 30px;
