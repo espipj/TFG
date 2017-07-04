@@ -10,10 +10,22 @@
             <div class="card" style="margin-bottom: 30px">
                 <div class="card-content"><span class="card-title"><h1>Explotación</h1></span>
 
-                    <h2 class="card-color-text">CEA: <div class="card-color-text-normal">{{$explotacion->codigo_explotacion}}</div></h2>
-                    <h2 class="card-color-text">Municipio: <div class="card-color-text-normal">{{$explotacion->municipio}}</div></h2><h2 class="card-color-text">Ganadería: <div class="card-color-text-normal"><a
-                                    href="{{route('verganaderia',[$explotacion->ganaderia])}}">{{$explotacion->ganaderia->nombre}}</a></a>
+                    <h2 class="card-color-text">CEA:
+                        <div class="card-color-text-normal">{{$explotacion->codigo_explotacion}}</div>
                     </h2>
+                    <h2 class="card-color-text">Municipio:
+                        <div class="card-color-text-normal">{{$explotacion->municipio}}</div>
+                    </h2>
+                    @if(isset($explotacion->ganaderia))
+                    <h2 class="card-color-text">Ganadería:
+                        <div class="card-color-text-normal"><a
+                                    href="{{route('verganaderia',[$explotacion->ganaderia])}}">{{$explotacion->ganaderia->nombre}}</a></div></a>
+                    </h2>
+                    @else
+                    <h2 class="card-color-text">Ganadería:
+                        <div class="card-color-text-normal">No definida</div></a>
+                    </h2>
+                    @endif
                     <div class="text-center">
                         <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}"
                            class="btn btn-success btn-sm"

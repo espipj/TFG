@@ -75,7 +75,7 @@ class GanadosController extends Controller
         $this->validate($request, [
             'crotal' => ['required', 'max:256','unique:ganados'],
             'sexo_id' => ['required'],
-            'fecha_nacimiento' => ['required'],
+            'fecha_nacimiento' => ['required','date'],
             'ganaderia_id' => ['required'],
             'capa_id' => ['required'],
         ]);
@@ -186,7 +186,7 @@ class GanadosController extends Controller
         $this->validate($request, [
             'crotal' => ['required', 'max:256'],
             'sexo_id' => ['required'],
-            'fecha_nacimiento' => ['required'],
+            'fecha_nacimiento' => ['required','date'],
             'ganaderia_id' => ['required'],
             'capa_id' => ['required'],
             'ganado_id' => ['required'],
@@ -195,8 +195,14 @@ class GanadosController extends Controller
         $ganado = Ganado::find($request->input('ganado_id'));
         $padre = Ganado::find($request->input('padre_id'));
         $madre = Ganado::find($request->input('madre_id'));
-        $padre->hijosP()->save($ganado);
-        $madre->hijosM()->save($ganado);
+        if(isset($padre)){
+
+            $padre->hijosP()->save($ganado);
+        }
+        if (isset($madre)){
+            $madre->hijosM()->save($ganado);
+
+        }
         $ganado->fill($datos)->save();
         $ganado->fecha_nacimiento = $request->input('fecha_nacimiento');
         $ganado->save();

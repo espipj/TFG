@@ -38,7 +38,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="topFixedNavbar1">
             <ul class="nav navbar-nav">
+                @if(Auth::guest())
                 <li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{route('landing')}}">Inicio</a></li>
+                @endif
                 @if(!Auth::guest())
 
                     <li {{{ (Request::is('panel') ? 'class=active' : '') }}}><a href="{{route('home')}}">Panel</a></li>
@@ -106,7 +108,7 @@
 
 <footer class="footer" id="contacto">
     <div class="container">
-    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-12">
         <div class="col-sm-6">
             <h2>Innovagenomics S.L</h2>
             <p><a href="https://goo.gl/maps/bW1paiWRDbF2">Parque Científico USAL<br>

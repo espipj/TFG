@@ -60,7 +60,7 @@ class MuestrasController extends Controller
     public function guardar(Request $request){
         $this->validate($request,[
             'tubo'=>['required'],
-            'fecha_extraccion'=>['required'],
+            'fecha_extraccion'=>['required','date'],
             'ganado_id'=>['required'],
             'tipo_muestra_id'=>['required'],
             'tipo_consulta_id'=>['required'],
@@ -155,7 +155,7 @@ class MuestrasController extends Controller
     public function edit(Request $request){
         $this->validate($request,[
             'tubo'=>['required'],
-            'fecha_extraccion'=>['required'],
+            'fecha_extraccion'=>['required','date'],
             'ganado_id'=>['required'],
             'tipo_muestra_id'=>['required'],
             'tipo_consulta_id'=>['required'],

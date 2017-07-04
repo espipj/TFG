@@ -143,9 +143,10 @@ table.table {
         position: absolute;
         bottom: 0;
         left: 0;
+        right: 0;
         width: 100%;
         /* Set the fixed height of the footer here */
-        height: 21em;
+        max-height: 290px;
         background-image: -webkit-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
         background-image: -moz-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);
         background-image: -o-linear-gradient(270deg, rgba(0, 84, 124, 1.00) 0%, rgba(60, 124, 166, 1.00) 100%);

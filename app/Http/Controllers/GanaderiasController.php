@@ -68,7 +68,7 @@ class GanaderiasController extends Controller
             'nombre'=>['required','max:256'],
             'sigla'=>['required'],
             'email'=>['required','email'],
-            'telefono'=>['required'],
+            'telefono'=>['required','numeric'],
             'asociacion_id'=>['required']
         ]);
         $datos = $request->except('asociacion_id');
@@ -146,8 +146,8 @@ class GanaderiasController extends Controller
         $this->validate($request,[
             'nombre'=>['required','max:256'],
             'sigla'=>['required'],
-            'email'=>['required'],
-            'telefono'=>['required'],
+            'email'=>['required','email'],
+            'telefono'=>['required','numeric'],
             'asociacion_id'=>['required'],
             'ganaderia_id' =>['required'],
         ]);
