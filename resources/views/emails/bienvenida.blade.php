@@ -1424,6 +1424,9 @@
                                                     </table>
                                                     <p class="text-center">Estamos contentos de que hayas decidido usar nuestros servicios.</p>
 
+                                                    <p class="text-center">Como eres un nuevo usuario aún no tienes ninguna responabilidad.</p>
+                                                   <p class="text-center"> Ponte en contacto con el administrador para que te los asigne respondiendo a este correo.</p>
+
                                                 </th>
                                                 <th class="expander"></th>
                                             </tr>
