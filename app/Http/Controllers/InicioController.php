@@ -43,4 +43,8 @@ class InicioController extends Controller
         return response()->download($file, "ManualDeUsuario.pdf");
     }
 
+    public function infoxls(){
+        return view('home.ayudaxls');
+    }
+
 }

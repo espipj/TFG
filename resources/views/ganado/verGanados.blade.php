@@ -44,6 +44,9 @@
                         </label>
                         {!! Form::close() !!}
                     @endif
+
+                    <a href="{{route('infoxls')}}" class="btn btn-info btn-md" role="button"><span
+                                class="glyphicon glyphicon-info-sign"></span> Ayuda Imporación/Exportación</a>
                     @include('ganado.tablaGanados')
                 </div>
             </div></div></div>

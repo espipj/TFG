@@ -70,24 +70,72 @@ class UsuariosController extends Controller
         return view('usuario.editarPerfil', compact('usuario'));
     }
 
-    public function editPerfilCompleto(Request $request){
+    public function editPerfilCompleto(Request $request)
+    {
         $this->validate($request, [
             'usuario_id' => ['required'],
-            'email'=>['required','email','unique:users'],
-            'name'=>['required']
+            'email' => ['required', 'email', 'unique:users'],
+            'name' => ['required']
         ]);
 
         $user = User::find($request->input('usuario_id'));
-        $user->email=$request->input('email');
-        $user->name=$request->input('name');
+        $user->email = $request->input('email');
+        $user->name = $request->input('name');
         $user->save();
-        Mail::send('emails.cambioDatos',compact('user'),function ($msj) use ($user){
+        Mail::send('emails.cambioDatos', compact('user'), function ($msj) use ($user) {
             $msj->subject('Se han editado tus datos.');
             $msj->to($user->email);
         });
-        $usuario=$user;
-        return view('usuario.verUsuario',compact('usuario'));
+        $usuario = $user;
+        return view('usuario.verUsuario', compact('usuario'));
     }
+
+    public function contactoRol(Request $request)
+    {
+        if ($request->ajax()) {
+            $this->validate($request, [
+                'usuario_id' => ['required'],
+                'solicitud' => ['required']
+            ]);
+            $user = User::find($request->input('usuario_id'));
+            $solicitud = $request->input('solicitud');
+
+            Mail::send('emails.solicitudRol', compact('user', 'solicitud'), function ($msj) use ($user) {
+                $msj->subject('Solicitud de cambio de Rol/Responsabilidad.');
+                $msj->to("gestionganadera.usal@gmail.com");
+            });
+
+
+            return 1;
+        }
+
+    }
+
+    public function mostrarContacto()
+    {
+        return view('home.contacto');
+    }
+
+    public function contacto(Request $request)
+    {
+        if ($request->ajax()) {
+            $this->validate($request, [
+                'solicitud' => ['required'],
+                'email' => ['required', 'email']
+            ]);
+            $solicitud = $request->input('solicitud');
+            $email = $request->input('email');
+
+            Mail::send('emails.contacto', compact('solicitud', 'email'), function ($msj) {
+                $msj->subject('Un usuario tiene algo que decirte.');
+                $msj->to("gestionganadera.usal@gmail.com");
+            });
+
+            return 1;
+        }
+
+    }
+
     /**
      * Function to show the details of a specific User.
      *

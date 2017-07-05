@@ -20,6 +20,22 @@ Route::get('/manual',[
     'uses'  => 'InicioController@manual',
     'as'    =>  'manual'
 ]);
+Route::post('/contactoRol',[
+    'uses'  => 'UsuariosController@contactoRol',
+    'as'    =>  'contactoRol'
+]);
+Route::post('/contacto',[
+    'uses'  => 'UsuariosController@contacto',
+    'as'    =>  'contacto'
+]);
+Route::get('/contacto',[
+    'uses'  => 'UsuariosController@mostrarContacto',
+    'as'    =>  'mcontacto'
+]);
+Route::get('/ayudaxls',[
+    'uses'  => 'InicioController@infoxls',
+    'as'    =>  'infoxls'
+]);
 
 
 

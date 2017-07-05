@@ -28,27 +28,27 @@ function upload(file) {
     console.log(tipo);
 
 
-    var formData=new FormData(),xhr = new XMLHttpRequest();
-    formData.append('import_file',file[0]);
+    var formData = new FormData(), xhr = new XMLHttpRequest();
+    formData.append('import_file', file[0]);
 
-    xhr.open('post','/importar/'.concat(tipo));
+    xhr.open('post', '/importar/'.concat(tipo));
     //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    for (i=0; i<metas.length; i++) {
+    for (i = 0; i < metas.length; i++) {
         if (metas[i].getAttribute("name") == "csrf-token") {
-            var token=metas[i].getAttribute("content");
+            var token = metas[i].getAttribute("content");
         }
     }
 
     xhr.setRequestHeader("X-CSRF-Token", token);
     xhr.send(formData);
 
-    if(tipo=="genes"){
-        var mensaje='<div class="alert alert-success alert-dismissable text-center col-sm-10 col-sm-offset-1"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>¡Perfecto!</strong> Los genes serán importados.</div>';
+    if (tipo == "genes") {
+        var mensaje = '<div class="alert alert-success alert-dismissable text-center col-sm-10 col-sm-offset-1"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <strong>¡Perfecto!</strong> Los genes serán importados.</div>';
         $("#dropzone").append(mensaje);
-    }else {location.reload();}
-
-
+    } else {
+        location.reload();
+    }
 
 
 }
@@ -79,25 +79,24 @@ function buscar(buscador, tabla) {
 
 function recorrerFiltrarA(tr, condicion) {
     var i;
-    if(condicion=="vivo"){
+    if (condicion == "vivo") {
         for (i = 0; i < tr.length; i++) {
 
             var td = tr[i].getElementsByTagName("td")[0];
 
 
-
-            if (td.data('vivo')==1) {
+            if (td.data('vivo') == 1) {
                 tr[i].show();
             }
         }
 
-    }else if(condicion=="muerto") {
+    } else if (condicion == "muerto") {
         for (i = 0; i < tr.length; i++) {
 
             var td = tr[i].getElementsByTagName("td")[0];
 
 
-            if (td.data('vivo')==0) {
+            if (td.data('vivo') == 0) {
                 tr[i].show();
             }
         }
@@ -109,31 +108,30 @@ function recorrerFiltrarA(tr, condicion) {
 
 function recorrerFiltrarD(tr, condicion) {
     var i;
-    if(condicion=="vivo"){
+    if (condicion == "vivo") {
         for (i = 0; i < tr.length; i++) {
 
             var td = tr[i].getElementsByTagName("td")[0];
 
 
-            if (td.data('vivo')==1) {
+            if (td.data('vivo') == 1) {
                 tr[i].hide();
             }
         }
 
-    }else if(condicion=="muerto") {
+    } else if (condicion == "muerto") {
         for (i = 0; i < tr.length; i++) {
 
 
             var td = tr[i].getElementsByTagName("td")[0];
 
 
-            if (td.data('vivo')==0) {
+            if (td.data('vivo') == 0) {
                 tr[i].hide();
             }
         }
 
     }
-
 
 
 }
@@ -143,40 +141,54 @@ function recorrerFiltrarD(tr, condicion) {
 $(document).ready(function () {
 
 
+    $('.contacto').click(function (e) {
+        e.preventDefault();
+        var boton = $(this);
+        var form = $("#contact-form");
+        var url = form.attr('action');
+        var data = form.serialize();
+        console.log(data);
+        $.post(url, data, function () {
+            $('.pcontacto').fadeOut();
+            $('.pcontacto').parent().append('<div class="alert alert-success"><strong>Perfecto!</strong> Se ha enviado el correo, en breve tendrás noticias de nosotros.</div>');
 
-    $("#dropzone").on('dragenter',function (event) {
-            console.log('dragenter');
-            this.className='dropzone dragover';
-            $(".in-dropzone").css('visibility','hidden');
-            $("#titulodrop").show();
-            $("#imagedrop").show();
+        });
+
+    });
+
+    $("#dropzone").on('dragenter', function (event) {
+        console.log('dragenter');
+        this.className = 'dropzone dragover';
+        $(".in-dropzone").css('visibility', 'hidden');
+        $("#titulodrop").show();
+        $("#imagedrop").show();
 
 
     });
 
 
-    $("#dropzone").on('dragover',function (event) {
+    $("#dropzone").on('dragover', function (event) {
         event.preventDefault();
 
 
     });
 
-    $("#dropzone").on('dragleave',function (event) {
-        if(event.target === this) {
+    $("#dropzone").on('dragleave', function (event) {
+        if (event.target === this) {
             console.log('SALIDA');
-            this.className='dropzone';
-            $(".in-dropzone").css('visibility','visible');
+            this.className = 'dropzone';
+            $(".in-dropzone").css('visibility', 'visible');
             $("#titulodrop").hide();
             $("#imagedrop").hide();
         }
 
     });
 
-    $("#dropzone").on('drop',function (e) {
+    $("#dropzone").on('drop', function (e) {
         console.log('dropeo');
         e.preventDefault();
-        this.className='dropzone';
-        $(".in-dropzone").css('visibility','visible');
+        this.className = 'dropzone';
+        $(".in-dropzone").css('visibility', 'visible');
         $("#titulodrop").hide();
         $("#imagedrop").hide();
         console.log(e.originalEvent.dataTransfer.files);
@@ -184,7 +196,6 @@ $(document).ready(function () {
 
 
     });
-
 
 
     //Subir el archivo nada mas seleccionado
@@ -210,7 +221,7 @@ $(document).ready(function () {
                 $('td.' + status + '[rel="' + value + '"]').parent('tr').show();
             }
         });
-        if(showAll){
+        if (showAll) {
             $('tr').show();
         }
     });

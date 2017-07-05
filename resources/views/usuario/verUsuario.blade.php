@@ -24,7 +24,7 @@
                            role="button"><span
                                     class="glyphicon glyphicon-edit"></span> Editar mi perfil</a>
                         @endif
-    @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
+    @if(Auth::user()->hasAnyRole(array('SuperAdmin')) && Auth::user()!=$usuario)
                         <a href="{{url('editar/usuario',['usuario'=>$usuario])}}" class="btn btn-success btn-sm"
                            role="button"><span
                                     class="glyphicon glyphicon-user"></span> Asignar Responsabilidades</a>

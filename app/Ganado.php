@@ -376,14 +376,14 @@ class Ganado extends Model
             'crotal' => $array->crotal,
         ]);
         $padre = Ganado::where('crotal', $array->padre)->first();
-        if (empty($padre)) {
+        if (isset($padre)) {
             $padre = Ganado::create([
                 'crotal' => $array->padre,
             ]);
             $padre->setSexo(Sexo::find(1));
         }
         $madre = Ganado::where('crotal', $array->madre)->first();
-        if (empty($madre)) {
+        if (isset($madre)) {
             $madre = Ganado::create([
                 'crotal' => $array->madre,
             ]);
@@ -394,12 +394,12 @@ class Ganado extends Model
         $ganado->setSexo(Sexo::where('alias', $array->sexo)->first());
         $ganado->setCapa(Capa::where('alias', $array->capa)->first());
         $ganado->setEstado(Estado::where('nombre', $array->estado)->first());
-        if (!empty($array->ganaderia)) {
+        if (isset($array->ganaderia)) {
             $ganaderia = Ganaderia::where([
                 'nombre' => $array->ganaderia,
                 'sigla' => $array->sigla
             ])->first();
-            if (!empty($ganaderia)) {
+            if (isset($ganaderia)) {
 
                 $ganado->setGanaderia($ganaderia);
             } else {
@@ -427,14 +427,14 @@ class Ganado extends Model
     private static function actualizarXLS($array, $oganado)
     {
         $padre = Ganado::where('crotal', $array->padre)->first();
-        if (empty($padre)) {
+        if (!isset($padre)) {
             $padre = Ganado::create([
                 'crotal' => $array->padre,
             ]);
             $padre->setSexo(Sexo::find(1));
         }
         $madre = Ganado::where('crotal', $array->madre)->first();
-        if (empty($madre)) {
+        if (!isset($madre)) {
             $madre = Ganado::create([
                 'crotal' => $array->madre,
             ]);
@@ -445,12 +445,12 @@ class Ganado extends Model
         $oganado->setSexo(Sexo::where('alias', $array->sexo)->first());
         $oganado->setCapa(Capa::where('alias', $array->capa)->first());
         $oganado->setEstado(Estado::where('nombre', $array->estado)->first());
-        if (!empty($array->ganaderia)) {
+        if (isset($array->ganaderia)) {
             $ganaderia = Ganaderia::where([
                 'nombre' => $array->ganaderia,
                 'sigla' => $array->sigla
             ])->first();
-            if (!empty($ganaderia)) {
+            if (isset($ganaderia)) {
 
                 $oganado->setGanaderia($ganaderia);
             } else {

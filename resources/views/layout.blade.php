@@ -39,45 +39,54 @@
         <div class="collapse navbar-collapse" id="topFixedNavbar1">
             <ul class="nav navbar-nav">
                 @if(Auth::guest())
-                <li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{route('landing')}}">Inicio</a></li>
+                    <li {{{ (Request::is('/') ? 'class=active' : '') }}}><a href="{{route('landing')}}">Inicio</a></li>
                 @endif
                 @if(!Auth::guest())
 
                     <li {{{ (Request::is('panel') ? 'class=active' : '') }}}><a href="{{route('home')}}">Panel</a></li>
 
                     @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
-                        <li {{{ (Request::is('ver/asociacion*') ? 'class=active' : '') }}}><a
-                                    href="{{route('verasociacion')}}">Asociación</a>
+                        @if(isset(Auth::user()->asociacion) || Auth::user()->hasAnyRole(array('SuperAdmin')))
+                            <li {{{ (Request::is('ver/asociacion*') ? 'class=active' : '') }}}><a
+                                        href="{{route('verasociacion')}}">Asociación</a>
 
-                        </li>
+                            </li>
+                        @endif
                     @endif
                     @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin','Ganadero')))
-                        <li {{{ (Request::is('ver/ganaderia*') ? 'class=active' : '') }}}><a
-                                    href="{{route('verganaderia')}}">Ganadería</a>
-                        </li>
-
+                        @if(isset(Auth::user()->asociacion) || isset(Auth::user()->ganaderia) || Auth::user()->hasAnyRole(array('SuperAdmin')))
+                            <li {{{ (Request::is('ver/ganaderia*') ? 'class=active' : '') }}}><a
+                                        href="{{route('verganaderia')}}">Ganadería</a>
+                            </li>
+                        @endif
                     @endif
                     @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin','Laboratorio')))
-                        <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
-                                    href="{{route('verganado')}}">Ganado</a></li>
+                        @if(isset(Auth::user()->asociacion) || isset(Auth::user()->ganaderia) || isset(Auth::user()->laboratorio) || Auth::user()->hasAnyRole(array('SuperAdmin')))
+                            <li {{{ (Request::is('ver/ganado*') ? 'class=active' : '') }}}><a
+                                        href="{{route('verganado')}}">Ganado</a></li>
+                        @endif
                     @endif
                     @if(Auth::user()->hasAnyRole(array('Administrador','Ganadero','SuperAdmin')))
-                        <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
-                                    href="{{route('verexplotacion')}}">Explotación</a></li>
+                        @if(isset(Auth::user()->asociacion) || isset(Auth::user()->ganaderia) || Auth::user()->hasAnyRole(array('SuperAdmin')))
+                            <li {{{ (Request::is('ver/explotacion*') ? 'class=active' : '') }}}><a
+                                        href="{{route('verexplotacion')}}">Explotación</a></li>
+                        @endif
                     @endif
 
                     @if(Auth::user()->hasAnyRole(array('Laboratorio','SuperAdmin','Administrador')))
-                        <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
-                                    href="{{route('vermuestra')}}">Muestra</a></li>
-                        <li {{{ (Request::is('ver/gen*') ? 'class=active' : '') }}}><a
-                                    href="{{route('vergen')}}">Genética</a></li>
+                        @if(isset(Auth::user()->asociacion) || isset(Auth::user()->laboratorio) || Auth::user()->hasAnyRole(array('SuperAdmin')))
+                            <li {{{ (Request::is('ver/muestra*') ? 'class=active' : '') }}}><a
+                                        href="{{route('vermuestra')}}">Muestra</a></li>
+                            <li {{{ (Request::is('ver/gen*') ? 'class=active' : '') }}}><a
+                                        href="{{route('vergen')}}">Genética</a></li>
+                        @endif
                     @endif
                     @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
                         <li {{{ (Request::is('ver/usuario*') ? 'class=active' : '') }}}><a
                                     href="{{route('verusuario')}}">Usuarios</a></li>
                     @endif
                 @endif
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="{{route('mcontacto')}}">Contacto</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
@@ -109,24 +118,24 @@
 
 <footer class="footer" id="contacto">
     <div class="container">
-    <div class="col-xs-12">
-        <div class="col-sm-6">
-            <h2>Innovagenomics S.L</h2>
-            <p><a href="https://goo.gl/maps/bW1paiWRDbF2">Parque Científico USAL<br>
-                    Edif. CIALE Lab 4<br>
-                    C/ Del Duero s/n<br>
-                    37185 Villamayor (Salamanca)</a></p>
-            <h3>Contacta con nosotros mediante:</h3>
-            <ul>
-                <li>E-Mail: <a href="mailto:innovagenomics@gmail.com">innovagenomics@gmail.com</a></li>
-                <li>Telf: <a href="tel:675686587">675 686 587</a></li>
-                <li>WebMaster: <a href="mailto:espipj@gmail.com">espipj@gmail.com</a></li>
-            </ul>
+        <div class="col-xs-12">
+            <div class="col-sm-6">
+                <h2>Innovagenomics S.L</h2>
+                <p><a href="https://goo.gl/maps/bW1paiWRDbF2">Parque Científico USAL<br>
+                        Edif. CIALE Lab 4<br>
+                        C/ Del Duero s/n<br>
+                        37185 Villamayor (Salamanca)</a></p>
+                <h3>Contacta con nosotros mediante:</h3>
+                <ul>
+                    <li>E-Mail: <a href="mailto:innovagenomics@gmail.com">innovagenomics@gmail.com</a></li>
+                    <li>Telf: <a href="tel:675686587">675 686 587</a></li>
+                    <li>WebMaster: <a href="mailto:espipj@gmail.com">espipj@gmail.com</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <div id="mapa"></div>
+            </div>
         </div>
-        <div class="col-sm-6 col-xs-12">
-            <div id="mapa"></div>
-        </div>
-    </div>
     </div>
 </footer>
 
