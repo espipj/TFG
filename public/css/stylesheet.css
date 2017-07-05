@@ -485,7 +485,7 @@ table.ganados tr.header, table.ganados tr:hover {
 }
 
 .btn {
-    /*border-radius: 0px;*/
+    margin-bottom: 10px;
 }
 
 .btn:focus,

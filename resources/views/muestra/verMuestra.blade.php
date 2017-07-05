@@ -39,23 +39,24 @@
 
                     <div class="text-center" style="margin-top: 30px">
 
-                        <a href="{{url('editar/muestra',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
-                           role="button"><span
-                                    class="glyphicon glyphicon-edit"></span> Editar</a>
-                        <a href="" class="btn btn-danger btn-sm eliminar-detail"
-                           role="button" data-id="{{$muestra->id}}"><span class="glyphicon glyphicon-remove"></span>
-                            Eliminar</a>
-
-                    @if(Auth::user()->hasAnyRole(array('Laboratorio')))
-                        @if($muestra->tipoconsulta->nombre == "Filiación Padre" || $muestra->tipoconsulta->nombre == "Filiación Progenitores")
+                        @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                            <a href="{{url('editar/muestra',['muestra'=>$muestra])}}" class="btn btn-success btn-sm"
+                               role="button"><span
+                                        class="glyphicon glyphicon-edit"></span> Editar</a>
+                            <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                               role="button" data-id="{{$muestra->id}}"><span class="glyphicon glyphicon-remove"></span>
+                                Eliminar</a>
+                        @endif
+                        @if(Auth::user()->hasAnyRole(array('Laboratorio')))
+                            @if($muestra->tipoconsulta->nombre == "Filiación Padre" || $muestra->tipoconsulta->nombre == "Filiación Progenitores")
 
                                 <a href="{{url('solicitar/filiacion',['ganado'=>$muestra->ganado])}}"
                                    class="btn btn-success btn-sm"
                                    role="button"><span
                                             class="glyphicon glyphicon-indent-right"></span> Filiar</a>
 
+                            @endif
                         @endif
-                    @endif
                     </div>
                 </div>
             </div>

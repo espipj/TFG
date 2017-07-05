@@ -45,6 +45,9 @@
                             {!! Form::file('import_file',['hidden','id'=>'file']) !!}
                         </label>
                         {!! Form::close() !!}
+
+                        <a href="{{route('infoxls')}}" class="btn btn-info btn-md" role="button"><span
+                                    class="glyphicon glyphicon-info-sign"></span> Ayuda Imporación/Exportación</a>
                     @endif
                     @include('explotacion.tablaExplotacion')
                 </div>

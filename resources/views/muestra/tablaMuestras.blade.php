@@ -30,10 +30,12 @@
                     <div class="btn-group">
                         <a href="{{route('vermuestra',[$muestra])}}" class="btn btn-info btn-sm"
                            role="button"><span class="glyphicon glyphicon-list"></span> Detalles</a>
+                        @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
                         <a href="{{url('editar/muestra',['$muestra'=>$muestra])}}" class="btn btn-success btn-sm"
                            role="button"><span class="glyphicon glyphicon-edit"></span> Editar</a>
                         <a href="#!" class="btn btn-danger btn-sm eliminar"
                            role="button"><span class="glyphicon glyphicon-remove"></span> Eliminar</a>
+                            @endif
                     </div>
                 </td>
             </tr>

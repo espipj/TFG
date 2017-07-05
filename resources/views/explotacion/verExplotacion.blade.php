@@ -17,25 +17,32 @@
                         <div class="card-color-text-normal">{{$explotacion->municipio}}</div>
                     </h2>
                     @if(isset($explotacion->ganaderia))
-                    <h2 class="card-color-text">Ganadería:
-                        <div class="card-color-text-normal"><a
-                                    href="{{route('verganaderia',[$explotacion->ganaderia])}}">{{$explotacion->ganaderia->nombre}}</a></div></a>
-                    </h2>
+                        <h2 class="card-color-text">Ganadería:
+                            <div class="card-color-text-normal"><a
+                                        href="{{route('verganaderia',[$explotacion->ganaderia])}}">{{$explotacion->ganaderia->nombre}}</a>
+                            </div>
+                            </a>
+                        </h2>
                     @else
-                    <h2 class="card-color-text">Ganadería:
-                        <div class="card-color-text-normal">No definida</div></a>
-                    </h2>
+                        <h2 class="card-color-text">Ganadería:
+                            <div class="card-color-text-normal">No definida</div>
+                            </a>
+                        </h2>
                     @endif
-                    <div class="text-center">
-                        <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}"
-                           class="btn btn-success btn-sm"
-                           role="button"><span
-                                    class="glyphicon glyphicon-edit"></span> Editar</a>
+                    @if(Auth::user()->hasAnyRole(array('Administrador','SuperAdmin')))
+                        <div class="text-center">
+                            <a href="{{url('editar/explotacion',['explotacion'=>$explotacion])}}"
+                               class="btn btn-success btn-sm"
+                               role="button"><span
+                                        class="glyphicon glyphicon-edit"></span> Editar</a>
 
-                        <a href="" class="btn btn-danger btn-sm eliminar-detail"
-                           role="button" data-id="{{$explotacion->id}}"><span class="glyphicon glyphicon-remove"></span>
-                            Eliminar</a></div>
+                            <a href="" class="btn btn-danger btn-sm eliminar-detail"
+                               role="button" data-id="{{$explotacion->id}}"><span
+                                        class="glyphicon glyphicon-remove"></span>
+                                Eliminar</a></div>
+                        @endif
                 </div>
+
             </div>
         </div>
     @endif
