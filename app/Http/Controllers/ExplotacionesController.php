@@ -59,8 +59,8 @@ class ExplotacionesController extends Controller
      */
     public function guardar(Request $request){
         $this->validate($request,[
-            'codigo_explotacion'=>['required'],
-            'municipio'=>['required'],
+            'codigo_explotacion'=>['required','string','unique:explotaciones'],
+            'municipio'=>['required','string'],
             'ganaderia_id'=>['required'],
         ]);
         $datos = $request->except('ganaderia_id');
@@ -128,8 +128,8 @@ class ExplotacionesController extends Controller
      */
     public function edit(Request $request){
         $this->validate($request,[
-            'codigo_explotacion'=>['required'],
-            'municipio'=>['required'],
+            'codigo_explotacion'=>['required','string'],
+            'municipio'=>['required','string'],
             'ganaderia_id'=>['required'],
             'explotacion_id'=>['required'],
         ]);

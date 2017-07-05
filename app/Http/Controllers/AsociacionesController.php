@@ -57,8 +57,8 @@ class AsociacionesController extends Controller
      */
     public function guardar(Request $request){
       $this->validate($request,[
-        'nombre'=>['required','max:100'],
-        'direccion'=>['required'],
+        'nombre'=>['required','max:100','string','unique:asociaciones'],
+        'direccion'=>['required','string'],
         'email'=>['required','email'],
         'telefono'=>['required','numeric'],
       ]);
@@ -134,8 +134,8 @@ class AsociacionesController extends Controller
      */
     public function edit(Request $request){
         $this->validate($request,[
-            'nombre'=>['required','max:100'],
-            'direccion'=>['required'],
+            'nombre'=>['required','max:100','string'],
+            'direccion'=>['required','string'],
             'email'=>['required','email'],
             'asociacion_id'=>['required'],
             'telefono'=>['required','numeric'],

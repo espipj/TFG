@@ -65,8 +65,8 @@ class GanaderiasController extends Controller
      */
     public function guardar(Request $request){
         $this->validate($request,[
-            'nombre'=>['required','max:256'],
-            'sigla'=>['required'],
+            'nombre'=>['required','max:256','string','unique:ganaderias'],
+            'sigla'=>['required','string'],
             'email'=>['required','email'],
             'telefono'=>['required','numeric'],
             'asociacion_id'=>['required']
@@ -144,8 +144,8 @@ class GanaderiasController extends Controller
      */
     public function edit(Request $request){
         $this->validate($request,[
-            'nombre'=>['required','max:256'],
-            'sigla'=>['required'],
+            'nombre'=>['required','max:256','string'],
+            'sigla'=>['required','string'],
             'email'=>['required','email'],
             'telefono'=>['required','numeric'],
             'asociacion_id'=>['required'],
