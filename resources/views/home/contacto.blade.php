@@ -10,7 +10,7 @@
                         <div class="col-sm-6 col-sm-offset-3">
                             {!! Form::open(['url' => 'contacto','class' =>'form-horizontal','id'=>'contact-form']) !!}
                             {!! csrf_field() !!}
-                            @if(Auth::user()->email)
+                            @if(isset(Auth::user()->email))
                             {!! Form::text('email',Auth::user()->email,['class' => 'form-control', 'placeholder'=>Auth::user()->email,'style="margin-bottom:10px"']) !!}
                             @else
                                 {!! Form::text('email',null,['class' => 'form-control', 'placeholder'=>'E-Mail','style="margin-bottom:10px"']) !!}
