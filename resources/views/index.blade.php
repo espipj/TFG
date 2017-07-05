@@ -14,13 +14,13 @@
 
         <div class="carousel-inner">
             <div class="item active">
-                <img src="{{asset('images/vaca4.png')}}" class="img-responsive">
+                <img src="{{asset('images/vaca4.png')}}" class="img-responsive" alt="Una vaca">
             </div>
             <div class="item">
-                <img src="{{asset('images/vaca5.png')}}" class="img-responsive">
+                <img src="{{asset('images/vaca5.png')}}" class="img-responsive" alt="Otra vaca">
             </div>
             <div class="item">
-                <img src="{{asset('images/vaca6.png')}}" class="img-responsive">
+                <img src="{{asset('images/vaca6.png')}}" class="img-responsive" alt="Mas vacas">
             </div>
         </div>
     </div>
@@ -81,6 +81,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
