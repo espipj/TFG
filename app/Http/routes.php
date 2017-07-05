@@ -99,6 +99,21 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'            =>  'verusuario',
         'middleware'    =>  'roles',
         'roles'         =>  ['SuperAdmin']]);
+    Route::get('/perfil/usuario', [
+        'uses'          =>  'UsuariosController@perfilUsuario',
+        'as'            =>  'perfilusuario',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Administrador','Ganadero','Laboratorio']]);
+    Route::get('/perfil/usuario/editar', [
+        'uses'          =>  'UsuariosController@editPerfil',
+        'as'            =>  'editarperfilusuario',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Administrador','Ganadero','Laboratorio']]);
+    Route::post('/perfil/usuario/editar', [
+        'uses'          =>  'UsuariosController@editPerfilCompleto',
+        'as'            =>  'editarperfilcompleto',
+        'middleware'    =>  'roles',
+        'roles'         =>  ['SuperAdmin','Administrador','Ganadero','Laboratorio']]);
     Route::get('/editar/usuario/{usuario}', [
         'uses'          =>  'UsuariosController@show_edit',
         'middleware'    =>  'roles',
@@ -279,10 +294,6 @@ Route::group(['middleware' => 'revalidate'], function()
         'as'    =>  'solicitudFiliacion',
         'middleware'    =>  'roles',
         'roles'         =>  ['SuperAdmin','Laboratorio']]);
-
-    //Route::get('marcador/{marcador}','GenesController@Marcador');
-    //Route::get('frecuencia/{alelo}/{marcador}','GenesController@Frecuencia');
-    //Route::get('filiacion','GenesController@Filiar');
 
     //Panel de Inicio
     Route::get('/panel',[

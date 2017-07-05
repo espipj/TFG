@@ -17,14 +17,21 @@
                         <div class="card-color-text-normal"><a href="mailto:{{$usuario->email}}">{{$usuario->email}}</a>
                         </div>
                     </h3>
+                    <br>
                     <div class="text-center">
-
+@if(Auth::user()==$usuario)
+                        <a href="{{url('perfil/usuario/editar')}}" class="btn btn-success btn-sm"
+                           role="button"><span
+                                    class="glyphicon glyphicon-edit"></span> Editar mi perfil</a>
+                        @endif
+    @if(Auth::user()->hasAnyRole(array('SuperAdmin')))
                         <a href="{{url('editar/usuario',['usuario'=>$usuario])}}" class="btn btn-success btn-sm"
                            role="button"><span
                                     class="glyphicon glyphicon-user"></span> Asignar Responsabilidades</a>
                         <a href="" class="btn btn-danger btn-sm eliminar-detail"
                            role="button" data-id="{{$usuario->id}}"><span class="glyphicon glyphicon-remove"></span>
                             Eliminar</a>
+        @endif
                     </div>
                 </div>
             </div>

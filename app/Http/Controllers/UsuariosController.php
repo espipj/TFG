@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
@@ -54,6 +56,38 @@ class UsuariosController extends Controller
     }
 
 
+    public function perfilUsuario()
+    {
+
+        $usuario = Auth::user();
+        return view('usuario.verUsuario', compact('usuario'));
+    }
+
+    public function editPerfil()
+    {
+
+        $usuario = Auth::user();
+        return view('usuario.editarPerfil', compact('usuario'));
+    }
+
+    public function editPerfilCompleto(Request $request){
+        $this->validate($request, [
+            'usuario_id' => ['required'],
+            'email'=>['required','email','unique:users'],
+            'name'=>['required']
+        ]);
+
+        $user = User::find($request->input('usuario_id'));
+        $user->email=$request->input('email');
+        $user->name=$request->input('name');
+        $user->save();
+        Mail::send('emails.cambioDatos',compact('user'),function ($msj) use ($user){
+            $msj->subject('Se han editado tus datos.');
+            $msj->to($user->email);
+        });
+        $usuario=$user;
+        return view('usuario.verUsuario',compact('usuario'));
+    }
     /**
      * Function to show the details of a specific User.
      *
