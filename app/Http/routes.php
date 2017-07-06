@@ -271,7 +271,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::post('/importar/{opcion}', [
         'uses'          =>   'ImportExportController@importar',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin']]);
+        'roles'         =>  ['Administrador','SuperAdmin','Laboratorio']]);
 
     //Exportar
     Route::get('/exportar/{opcion}/{formato}', [
