@@ -277,7 +277,7 @@ Route::group(['middleware' => 'revalidate'], function()
     Route::get('/exportar/{opcion}/{formato}', [
         'uses'          =>   'ImportExportController@exportar',
         'middleware'    =>  'roles',
-        'roles'         =>  ['Administrador','SuperAdmin','Ganadero']]);
+        'roles'         =>  ['Administrador','SuperAdmin','Ganadero','Laboratorio']]);
 
     //Genes
 
