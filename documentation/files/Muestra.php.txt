@@ -1,0 +1,172 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+
+/**
+ * Class Muestra
+ * @package App
+ * @author Pablo Espinosa <espipj@gmail.com>
+ */
+class Muestra extends Model
+{
+
+    /**
+     * Array with the fillable attributes of the class.
+     * @var array List of attributes of the class. Contains the code of the Analysis tube.
+     */
+    protected $fillable = ['tubo'];
+    /**
+     * Array with atributes of the type Date.
+     *
+     * This is needed to use DateFormat.
+     *
+     * @var array List of attributes type Date. Contains the extraction date.
+     */
+    protected $dates = ['fecha_extraccion'];
+
+    /**
+     * Definition of the relationship BelongsTo Ganado.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Muestra, BelongsTo Ganado.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function ganado()
+    {
+        return $this->belongsTo(Ganado::class);
+    }
+
+    /**
+     * Definition of the relationship BelongsTo TipoMuestra.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Muestra, BelongsTo TipoMuestra.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function tipoMuestra()
+    {
+        return $this->belongsTo(TipoMuestra::class);
+    }
+
+    /**
+     * Definition of the relationship BelongsTo TipoConsulta.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Muestra, BelongsTo TipoConsulta.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function tipoConsulta()
+    {
+        return $this->belongsTo(TipoConsulta::class);
+    }
+
+    /**
+     * Definition of the relationship BelongsTo Laboratorio.
+     *
+     * We need to define Eloquent our relationships in order to work with it.
+     * A Muestra, BelongsTo Laboratorio.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo Relationship BelongsTo
+     */
+    public function laboratorio()
+    {
+        return $this->belongsTo(Laboratorio::class);
+    }
+
+    /**
+     * Sets extraction date as its not fillable.
+     * @param Date $date Extraction Date.
+     * @return mixed
+     */
+    public function setFechaExtraccion($date)
+    {
+        $this->fecha_extraccion = $date;
+        $this->save();
+        return $this->fecha_extraccion;
+    }
+
+    /**
+     * Sets a Laboratorio for this Muestra.
+     * @param Laboratorio $laboratorio Laboratorio asigned to analyze this Muestra.
+     * @return mixed
+     */
+    public function setLaboratorio($laboratorio){
+        return $laboratorio->muestras()->save($this);
+
+    }
+
+    /**
+     * Sets the type of this Muestra.
+     *
+     * @param TipoMuestra $tipomuestra Type of this Muestra.
+     * @return mixed
+     */
+    public function setTipoMuestra($tipomuestra){
+        return $tipomuestra->muestras()->save($this);
+
+    }
+
+    /**
+     * Sets the query for this Muestra
+     * @param TipoConsulta $tipoconsulta Type of  query for this Muestra
+     * @return mixed
+     */
+    public function setTipoConsulta($tipoconsulta){
+        return $tipoconsulta->muestras()->save($this);
+
+    }
+
+    /**
+     * Sets the Ganado that is associated with this Muestra.
+     * @param Ganado $ganado Ganado associated with this Muestra.
+     * @return mixed
+     */
+    public function setGanado($ganado){
+        return $ganado->muestra()->save($this);
+
+    }
+
+    /**
+     * Function that saves a new Muestra from a POST request.
+     *
+     * @param Request $request Request from a form with the data to create a new Muestra
+     * @return Muestra The muestra it has just created.
+     */
+    public static function guardarNueva($request){
+        $datos = $request->except(['tipo_muestra_id','tipo_consulta_id','laboratorio_id','ganado_id','fecha_extraccion']);
+        $muestra=self::create($datos);
+        $muestra->setFechaExtraccion($request->input('fecha_extraccion'));
+        $muestra->setGanado(Ganado::find($request->input('ganado_id')));
+        $muestra->setLaboratorio(Laboratorio::find($request->input('laboratorio_id')));
+        $tconsulta=TipoConsulta::find($request->input('tipo_consulta_id'));
+        $muestra->setTipoConsulta($tconsulta);
+        $muestra->setTipoMuestra(TipoMuestra::find($request->input('tipo_muestra_id')));
+        return $muestra;
+
+    }
+
+    /**
+     * Returns Muestras that an Asociacion has registered.
+     * @param Asociacion $asociacion
+     * @return array
+     */
+    public static function muestrasAsociacion($asociacion){
+        $muestras=Muestra::all();
+        $ganado=$asociacion->ganados;
+        //dd($ganado);
+        $array=array();
+        foreach ($muestras as $muestra){
+
+            if ($ganado->contains($muestra->ganado)){
+                array_push($array,$muestra);
+            }
+        }
+
+        return $array;
+    }
+
+
+}
+
