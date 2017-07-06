@@ -25,7 +25,7 @@ function upload(file) {
     var tipo = $("#dropzone").data('tipo');
     var metas = document.getElementsByTagName('meta');
 
-    console.log(tipo);
+    //console.log(tipo);
 
 
     var formData = new FormData(), xhr = new XMLHttpRequest();
@@ -39,7 +39,7 @@ function upload(file) {
             var token = metas[i].getAttribute("content");
         }
     }
-
+    //console.log(formData);
     xhr.setRequestHeader("X-CSRF-Token", token);
     xhr.send(formData);
 

@@ -36,13 +36,13 @@ class ImportExportController extends Controller
     public function exportar($opcion, $formato){
         switch ($opcion){
             case 'ganado':
-                $nombre='Ganados'. '_' .Carbon::now()->format('d-m-Y');
+                $nombre='Ganados'. '_' .Carbon::now()->format('d-m-Y-s');
                 //$array=Ganado::get(['fecha_nacimiento','crotal','padre_id','madre_id','capa','sexo_id'])->toArray();
                 $hoja="Ganados";
                 $this->downloadExcel($formato,Ganado::generateArrayForExport(),$nombre,$hoja);
                 break;
             case 'ganaderia':
-                $nombre='Ganaderias'. '_' .Carbon::now()->format('d-m-Y');
+                $nombre='Ganaderias'. '_' .Carbon::now()->format('d-m-Y-s');
                 //dd(Ganaderia::generateArrayForExport());
                 $hoja="Ganaderias";
                 $this->downloadExcel($formato,Ganaderia::generateArrayForExport(),$nombre,$hoja);
@@ -54,7 +54,7 @@ class ImportExportController extends Controller
                 $this->downloadExcel($formato,Gen::generateArrayForExport(),$nombre,$hoja);
                 break;
             case 'explotacion':
-                $nombre='Explotaciones'. '_' .Carbon::now()->format('d-m-Y');
+                $nombre='Explotaciones'. '_' .Carbon::now()->format('d-m-Y-s');
                 //dd(Explotacion::generateArrayForExport());
                 $hoja="Explotaciones";
                 $this->downloadExcel($formato,Explotacion::generateArrayForExport(),$nombre,$hoja);
