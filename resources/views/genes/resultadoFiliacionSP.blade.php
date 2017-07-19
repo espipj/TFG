@@ -32,7 +32,7 @@
 
                                 <div class="text-left">
                                 @foreach($resimp as $key => $resultado)
-                                    <h2>{{$key+1}}º-<a href="{{route('verganado',[$resultado["ganado"]->crotal])}}">{{$resultado["ganado"]->crotal}}</a>:
+                                    <h2>{{$key+1}}º-<a href="{{route('verganado',[$resultado["ganado"]])}}">{{$resultado["ganado"]->crotal}}</a>:
                                         {{$resultado["porcentaje"]}} %.
 
                                     </h2>
