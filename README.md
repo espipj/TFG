@@ -1,6 +1,6 @@
 ## TFG
 Laravel web application developed by Pablo Espinosa for his final year project at University of Salamanca.
-Management of livestock companies and genetic filiation of the livestock.
+Management of livestock companies and genetic filiation of it.
 
 ## Documentation
 
